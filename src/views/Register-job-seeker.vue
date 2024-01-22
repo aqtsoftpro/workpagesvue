@@ -318,7 +318,8 @@ function getMimeType(file:any, fallback = null) {
                 username: null,
                 email: null,
                 password: null,
-                type: 'user'
+                type: 'user',
+                device_name: 'web app',
             },
             employerForm: {
                 first_name: null,
@@ -328,8 +329,8 @@ function getMimeType(file:any, fallback = null) {
                 company_type_id: null,
                 email: null,
                 password: null,
-                type: 'employer'
-                
+                type: 'employer',
+                device_name: 'web app',      
             },
             confirm_password: null,
         }  
