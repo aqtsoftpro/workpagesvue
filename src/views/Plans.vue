@@ -28,7 +28,7 @@
                         <div class="pricing-plan-card1">
                             <div class="pricing-plan-header">
                                 <div class="starting-form">
-                                    <span><img src="templates/assets/images/icon/price-star.svg" alt=""> {{ plan.name
+                                    <span><img src="assets/images/icon/price-star.svg" alt=""> {{ plan.name
                                     }}</span>
                                 </div>
                                 <div class="preview-btn">
@@ -42,27 +42,27 @@
                             <ul class="priceing-list">
                                 <input type="hidden" name="">
                                 <li>
-                                    <div class="icon"><img src="templates/assets/images/icon/check-icon.svg" alt=""></div>
+                                    <div class="icon"><img src="assets/images/icon/check-icon.svg" alt=""></div>
                                     <p>You can create more job post.</p>
                                 </li>
                                 <li>
-                                    <div class="icon"><img src="templates/assets/images/icon/check-icon.svg" alt=""></div>
+                                    <div class="icon"><img src="assets/images/icon/check-icon.svg" alt=""></div>
                                     <p>Resume and cover letter review and editing services.</p>
                                 </li>
                                 <li>
-                                    <div class="icon"><img src="templates/assets/images/icon/check-icon.svg" alt=""></div>
+                                    <div class="icon"><img src="assets/images/icon/check-icon.svg" alt=""></div>
                                     <p>Priority access to job listings and job seekers.</p>
                                 </li>
                                 <li>
-                                    <div class="icon"><img src="templates/assets/images/icon/check-icon.svg" alt=""></div>
+                                    <div class="icon"><img src="assets/images/icon/check-icon.svg" alt=""></div>
                                     <p>Job displayed for &nbsp;<span>35 days.</span></p>
                                 </li>
                                 <li>
-                                    <div class="icon"><img src="templates/assets/images/icon/check-icon.svg" alt=""></div>
+                                    <div class="icon"><img src="assets/images/icon/check-icon.svg" alt=""></div>
                                     <p>A dedicated account manager or career counselor.</p>
                                 </li>
                                 <li>
-                                    <div class="icon"><img src="templates/assets/images/icon/check-icon.svg" alt=""></div>
+                                    <div class="icon"><img src="assets/images/icon/check-icon.svg" alt=""></div>
                                     <p><span>Premium</span>&nbsp; support always.</p>
                                 </li>
                             </ul>
@@ -89,17 +89,17 @@
                                     </div>
                                     <ul class="priceing-list">
                                         <li>
-                                            <div class="icon"><img src="templates/assets/images/icon/check-icon.svg" alt="">
+                                            <div class="icon"><img src="assets/images/icon/check-icon.svg" alt="">
                                             </div>
                                             <p>You can create &nbsp;<span>4 job post.</span></p>
                                         </li>
                                         <li>
-                                            <div class="icon"><img src="templates/assets/images/icon/check-icon.svg" alt="">
+                                            <div class="icon"><img src="assets/images/icon/check-icon.svg" alt="">
                                             </div>
                                             <p>Resume and cover letter review and editing services.</p>
                                         </li>
                                         <li>
-                                            <div class="icon"><img src="templates/assets/images/icon/check-icon.svg" alt="">
+                                            <div class="icon"><img src="assets/images/icon/check-icon.svg" alt="">
                                             </div>
                                             <p>Job displayed for &nbsp;<span>1 weeks.</span></p>
                                         </li>
@@ -117,17 +117,17 @@
                                     </div>
                                     <ul class="priceing-list">
                                         <li>
-                                            <div class="icon"><img src="templates/assets/images/icon/check-icon.svg" alt="">
+                                            <div class="icon"><img src="assets/images/icon/check-icon.svg" alt="">
                                             </div>
                                             <p>You can create &nbsp;<span>4 job post.</span></p>
                                         </li>
                                         <li>
-                                            <div class="icon"><img src="templates/assets/images/icon/check-icon.svg" alt="">
+                                            <div class="icon"><img src="assets/images/icon/check-icon.svg" alt="">
                                             </div>
                                             <p>Resume and cover letter review and editing services.</p>
                                         </li>
                                         <li>
-                                            <div class="icon"><img src="templates/assets/images/icon/check-icon.svg" alt="">
+                                            <div class="icon"><img src="assets/images/icon/check-icon.svg" alt="">
                                             </div>
                                             <p>Job displayed for &nbsp;<span>1 weeks.</span></p>
                                         </li>
@@ -145,17 +145,17 @@
                                     </div>
                                     <ul class="priceing-list">
                                         <li>
-                                            <div class="icon"><img src="templates/assets/images/icon/check-icon.svg" alt="">
+                                            <div class="icon"><img src="assets/images/icon/check-icon.svg" alt="">
                                             </div>
                                             <p>You can create &nbsp;<span>4 job post.</span></p>
                                         </li>
                                         <li>
-                                            <div class="icon"><img src="templates/assets/images/icon/check-icon.svg" alt="">
+                                            <div class="icon"><img src="assets/images/icon/check-icon.svg" alt="">
                                             </div>
                                             <p>Resume and cover letter review and editing services.</p>
                                         </li>
                                         <li>
-                                            <div class="icon"><img src="templates/assets/images/icon/check-icon.svg" alt="">
+                                            <div class="icon"><img src="assets/images/icon/check-icon.svg" alt="">
                                             </div>
                                             <p>Job displayed for &nbsp;<span>1 weeks.</span></p>
                                         </li>

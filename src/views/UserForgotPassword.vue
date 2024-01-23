@@ -16,7 +16,7 @@
                                     <div class="form-inner mb-25">
                                         <label for="email">Enter your email address to send reset link to</label> 
                                         <div class="input-area">
-                                            <img src="templates/assets/images/icon/email-2.svg" alt="">
+                                            <img src="assets/images/icon/email-2.svg" alt="">
                                             <input v-model="email" type="email" id="email" name="email" placeholder="info@example.com">
                                         </div>
                                     </div>
@@ -79,7 +79,7 @@ import { mapGetters } from 'vuex';
   mounted(){
 
     let Script = document.createElement("script");
-    Script.setAttribute("src", "/templates/assets/js/main.js");
+    Script.setAttribute("src", "/assets/js/main.js");
     document.head.appendChild(Script);
 
     },

@@ -30,17 +30,17 @@
                                         <td data-label="Job Title">
                                             <div class="company-info">
                                                 <div class="logo">
-                                                    <img :src="(application.job.company_logo)?(application.job.company_logo):'/templates/assets/images/bg/company-logo/company-06.png'" alt="">
+                                                    <img :src="(application.job.company_logo)?(application.job.company_logo):'/assets/images/bg/company-logo/company-06.png'" alt="">
                                                 </div>
                                                 <div class="company-details">
                                                     <div class="top">
                                                         <h6><a href="job-details.html">{{ application.job.job_title }}</a></h6>
-                                                        <span><img src="/templates/assets/images/icon/calender2.svg" alt=""> 1 days ago</span>
+                                                        <span><img src="/assets/images/icon/calender2.svg" alt=""> 1 days ago</span>
                                                     </div>
                                                     <ul>
-                                                        <li><img src="/templates/assets/images/icon/location.svg" alt="">{{ application.job.location }}</li>
+                                                        <li><img src="/assets/images/icon/location.svg" alt="">{{ application.job.location }}</li>
                                                         <li>
-                                                            <img src="/templates/assets/images/icon/arrow2.svg" alt="">
+                                                            <img src="/assets/images/icon/arrow2.svg" alt="">
                                                             <p><span class="title">Salary:</span> {{ application.job.salary_range }}</p>
                                                         </li>
                                                     </ul>
@@ -156,7 +156,7 @@ mounted() {
     this.user_id = this.user.id;
 
     let Script = document.createElement("script");
-    Script.setAttribute("src", "/templates/assets/js/main.js");
+    Script.setAttribute("src", "/assets/js/main.js");
     document.head.appendChild(Script);
 },
 watch: {

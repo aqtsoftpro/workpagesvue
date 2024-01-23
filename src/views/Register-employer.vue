@@ -25,7 +25,7 @@
                                                 <div class="form-inner mb-25">
                                                     <label for="firstname1">First Name*</label>
                                                     <div class="input-area">
-                                                        <img src="templates/assets/images/icon/user-2.svg" alt="">
+                                                        <img src="assets/images/icon/user-2.svg" alt="">
                                                         <input v-model="userForm.first_name" type="text" id="firstname1" name="firstname1" placeholder="Mr. Robert">
                                                     </div>
                                                 </div>
@@ -34,7 +34,7 @@
                                                 <div class="form-inner mb-25">
                                                     <label for="lastname1">Last Name*</label>
                                                     <div class="input-area">
-                                                        <img src="templates/assets/images/icon/user-2.svg" alt="">
+                                                        <img src="assets/images/icon/user-2.svg" alt="">
                                                         <input v-model="userForm.last_name" type="text" id="lastname1" name="lastname1" placeholder="Jonson">
                                                     </div>
                                                 </div>
@@ -43,7 +43,7 @@
                                                 <div class="form-inner mb-25">
                                                     <label for="username">User Name*</label>
                                                     <div class="input-area">
-                                                        <img src="templates/assets/images/icon/user-2.svg" alt="">
+                                                        <img src="assets/images/icon/user-2.svg" alt="">
                                                         <input v-model="userForm.username" type="text" id="username" name="username" placeholder="robertjonson">
                                                     </div>
                                                 </div>
@@ -52,7 +52,7 @@
                                                 <div class="form-inner mb-25">
                                                     <label for="email">Email*</label>
                                                     <div class="input-area">
-                                                        <img src="templates/assets/images/icon/email-2.svg" alt="">
+                                                        <img src="assets/images/icon/email-2.svg" alt="">
                                                         <input v-model="userForm.email" type="text" id="email" name="email" placeholder="info@example.com">
                                                     </div>
                                                 </div>
@@ -88,10 +88,10 @@
                                             <div class="login-difarent-way">
                                                 <div class="row g-4">
                                                     <div class="col-md-6">
-                                                        <a href="https://myaccount.google.com/"><img src="templates/assets/images/icon/google1.svg" alt="">Log in with Google</a>
+                                                        <a href="https://myaccount.google.com/"><img src="assets/images/icon/google1.svg" alt="">Log in with Google</a>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <a href="https://www.facebook.com/"><img src="templates/assets/images/icon/facebook1.svg" alt="">Log in with Facebook</a>
+                                                        <a href="https://www.facebook.com/"><img src="assets/images/icon/facebook1.svg" alt="">Log in with Facebook</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -108,7 +108,7 @@
                                                 <div class="form-inner mb-25">
                                                     <label for="first_tname">First Name*</label>
                                                     <div class="input-area">
-                                                        <img src="templates/assets/images/icon/user-2.svg" alt="">
+                                                        <img src="assets/images/icon/user-2.svg" alt="">
                                                         <input
                                                         name="first_name"
                                                         v-model="employerForm.first_name" 
@@ -128,7 +128,7 @@
                                                 <div class="form-inner mb-25">
                                                     <label for="last_name">Last Name*</label>
                                                     <div class="input-area">
-                                                        <img src="templates/assets/images/icon/user-2.svg" alt="">
+                                                        <img src="assets/images/icon/user-2.svg" alt="">
                                                         <input
                                                             name="last_name"
                                                             v-model="employerForm.last_name" 
@@ -149,7 +149,7 @@
                                                 <div class="form-inner mb-25">
                                                     <label for="username">User Name*</label>
                                                     <div class="input-area">
-                                                        <img src="templates/assets/images/icon/user-2.svg" alt="">
+                                                        <img src="assets/images/icon/user-2.svg" alt="">
                                                         <input
                                                             name="username"
                                                             v-model="employerForm.username" 
@@ -166,7 +166,7 @@
                                                 <div class="form-inner mb-25">
                                                     <label for="email">Email*</label>
                                                     <div class="input-area">
-                                                        <img src="templates/assets/images/icon/email-2.svg" alt="">
+                                                        <img src="assets/images/icon/email-2.svg" alt="">
                                                         <input 
                                                         name="email"
                                                         v-model="employerForm.email" 
@@ -183,7 +183,7 @@
                                                 <div class="form-inner mb-25">
                                                     <label for="company_name">Company Name*</label>
                                                     <div class="input-area">
-                                                        <img src="templates/assets/images/icon/company-2.svg" alt="">
+                                                        <img src="assets/images/icon/company-2.svg" alt="">
                                                         <input
                                                             name="company_name"
                                                             v-model="employerForm.company_name" 
@@ -200,7 +200,7 @@
                                                 <div class="form-inner mb-25">
                                                     <label>Company Type*</label>
                                                     <div class="input-area">
-                                                        <img src="templates/assets/images/icon/category-2.svg" alt="">
+                                                        <img src="assets/images/icon/category-2.svg" alt="">
                                                         <Dropdown
                                                             name="company_type"
                                                             @change="changeCompanyType"
@@ -231,7 +231,7 @@
                                                 <div class="form-inner mb-25">
                                                     <label for="email">Suburb</label>
                                                     <div class="input-area">
-                                                        <img src="templates/assets/images/icon/loction.svg" alt="">
+                                                        <img src="assets/images/icon/loction.svg" alt="">
                                                         <!-- <input v-model="userForm.suburb_id" type="text" id="suburns" name="suburb" placeholder="Select Suburb"> -->
                                                         <Dropdown
                                                             name="suburb_id"
@@ -305,10 +305,10 @@
                                             <div class="login-difarent-way">
                                                 <div class="row g-4">
                                                     <div class="col-md-6">
-                                                        <a href="https://myaccount.google.com/"><img src="templates/assets/images/icon/google1.svg" alt="">Log in with Google</a>
+                                                        <a href="https://myaccount.google.com/"><img src="assets/images/icon/google1.svg" alt="">Log in with Google</a>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <a href="https://www.facebook.com/"><img src="templates/assets/images/icon/facebook1.svg" alt="">Log in with Facebook</a>
+                                                        <a href="https://www.facebook.com/"><img src="assets/images/icon/facebook1.svg" alt="">Log in with Facebook</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -493,7 +493,7 @@ import Dropdown from 'primevue/dropdown';
       this.$store.dispatch('getSuburb', '');
 
     let Script = document.createElement("script");
-    Script.setAttribute("src", "/templates/assets/js/main.js");
+    Script.setAttribute("src", "/assets/js/main.js");
     document.head.appendChild(Script);
     }
   

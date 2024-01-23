@@ -109,8 +109,8 @@
                                             <span class="light-blue">Remote</span> -->
                                         </div>
                                         <div class="apply-btn">
-                                            <router-link v-if="loggedIn" :to="getJobDetail(job.job_key, job.job_slug)"><span><img src="templates/assets/images/icon/apply-ellipse.svg" alt=""></span>Apply Now</router-link>
-                                            <router-link v-else :to="{ name: 'login'}"><span><img src="templates/assets/images/icon/apply-ellipse.svg" alt=""></span>Login to apply</router-link>
+                                            <router-link v-if="loggedIn" :to="getJobDetail(job.job_key, job.job_slug)"><span><img src="assets/images/icon/apply-ellipse.svg" alt=""></span>Apply Now</router-link>
+                                            <router-link v-else :to="{ name: 'login'}"><span><img src="assets/images/icon/apply-ellipse.svg" alt=""></span>Login to apply</router-link>
 
                                         </div>
                                     </div>

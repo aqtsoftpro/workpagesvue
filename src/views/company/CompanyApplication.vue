@@ -47,7 +47,7 @@
                                                                             <div class="col-lg-6">
                                                                                 <div class="author-area">
                                                                                     <div class="author-img">
-                                                                                        <img src="/templates/assets/images/bg/resume-author.png" alt="">
+                                                                                        <img src="/assets/images/bg/resume-author.png" alt="">
                                                                                     </div>
                                                                                     <div class="name-degination">
                                                                                         <h4>Mr. Jacoline Frankly</h4>
@@ -59,9 +59,9 @@
                                                                                 <div class="contact-area">
                                                                                     <h4>Contact Info</h4>
                                                                                     <ul>
-                                                                                        <li>Phone:<a href="#">+880-177 443 5455 <span><img src="/templates/assets/images/icon/phone-5.svg" alt=""></span></a></li>
-                                                                                        <li>Email:<a href="#">info@example.com <span><img src="/templates/assets/images/icon/envlop-5.svg" alt=""></span></a></li>
-                                                                                        <li>Website:<a href="#">www.infositeexample.com <span><img src="/templates/assets/images/icon/web-5.svg " alt=""></span></a></li>
+                                                                                        <li>Phone:<a href="#">+880-177 443 5455 <span><img src="/assets/images/icon/phone-5.svg" alt=""></span></a></li>
+                                                                                        <li>Email:<a href="#">info@example.com <span><img src="/assets/images/icon/envlop-5.svg" alt=""></span></a></li>
+                                                                                        <li>Website:<a href="#">www.infositeexample.com <span><img src="/assets/images/icon/web-5.svg " alt=""></span></a></li>
                                                                                     </ul>
                                                                                 </div>
                                                                             </div>
@@ -274,7 +274,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <span><img src="/templates/assets/images/icon/company-2.svg" alt="">{{ application.job.location }}</span>
+                                                    <span><img src="/assets/images/icon/company-2.svg" alt="">{{ application.job.location }}</span>
                                                     <p><span>Applied On:</span> {{ application.applied_on }}</p>
                                                     <p><span>Status:</span> {{ application.status_name }}</p>
                                                 </div>
@@ -292,9 +292,9 @@
                                         <td data-label="Actions">
                                             <div class="action-btn-group">
                                                 <ul>
-                                                    <li><router-link :to="{name: 'view-cv', query: { 'url': application.cv  }}"  class="review"><img src="/templates/assets/images/icon/docs.svg" alt=""> View CV</router-link></li>
-                                                    <li v-if="application.status_name != 'Shortlisted'"><button @click="updateCandidateApplication('shortlist', application.id)" ><img src="/templates/assets/images/icon/shortlist-icon.svg" alt=""> Shortlist</button></li>
-                                                    <li v-if="application.status_name != 'Rejected'"><button @click="updateCandidateApplication('reject', application.id)" class="reject"><img src="/templates/assets/images/icon/rejected-icon.svg" alt=""> Rejected</button></li>
+                                                    <li><router-link :to="{name: 'view-cv', query: { 'url': application.cv  }}"  class="review"><img src="/assets/images/icon/docs.svg" alt=""> View CV</router-link></li>
+                                                    <li v-if="application.status_name != 'Shortlisted'"><button @click="updateCandidateApplication('shortlist', application.id)" ><img src="/assets/images/icon/shortlist-icon.svg" alt=""> Shortlist</button></li>
+                                                    <li v-if="application.status_name != 'Rejected'"><button @click="updateCandidateApplication('reject', application.id)" class="reject"><img src="/assets/images/icon/rejected-icon.svg" alt=""> Rejected</button></li>
                                                     <li>
                                                         
                                                     </li>
@@ -341,7 +341,7 @@
                                                                             <div class="col-lg-6">
                                                                                 <div class="author-area">
                                                                                     <div class="author-img">
-                                                                                        <img src="/templates/assets/images/bg/resume-author.png" alt="">
+                                                                                        <img src="/assets/images/bg/resume-author.png" alt="">
                                                                                     </div>
                                                                                     <div class="name-degination">
                                                                                         <h4>Mr. Jacoline Frankly</h4>
@@ -353,9 +353,9 @@
                                                                                 <div class="contact-area">
                                                                                     <h4>Contact Info</h4>
                                                                                     <ul>
-                                                                                        <li>Phone:<a href="#">+880-177 443 5455 <span><img src="/templates/assets/images/icon/phone-5.svg" alt=""></span></a></li>
-                                                                                        <li>Email:<a href="#">info@example.com <span><img src="/templates/assets/images/icon/envlop-5.svg" alt=""></span></a></li>
-                                                                                        <li>Website:<a href="#">www.infositeexample.com <span><img src="/templates/assets/images/icon/web-5.svg " alt=""></span></a></li>
+                                                                                        <li>Phone:<a href="#">+880-177 443 5455 <span><img src="/assets/images/icon/phone-5.svg" alt=""></span></a></li>
+                                                                                        <li>Email:<a href="#">info@example.com <span><img src="/assets/images/icon/envlop-5.svg" alt=""></span></a></li>
+                                                                                        <li>Website:<a href="#">www.infositeexample.com <span><img src="/assets/images/icon/web-5.svg " alt=""></span></a></li>
                                                                                     </ul>
                                                                                 </div>
                                                                             </div>
@@ -568,7 +568,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <span><img src="/templates/assets/images/icon/company-2.svg" alt="">{{ application.job.location }}</span>
+                                                    <span><img src="/assets/images/icon/company-2.svg" alt="">{{ application.job.location }}</span>
                                                     <p><span>Applied On:</span> {{ application.applied_on }}</p>
                                                     <p><span>Status:</span> {{ application.status_name }}</p>
                                                 </div>
@@ -586,11 +586,11 @@
                                         <td data-label="Actions">
                                             <div class="action-btn-group">
                                                 <ul>
-                                                    <li><router-link :to="{name: 'view-cv', query: { 'url': application.cv  }}"  class="review"><img src="/templates/assets/images/icon/docs.svg" alt=""> View CV</router-link></li>
-                                                    <li v-if="application.status_name != 'Shortlisted'"><button @click="updateCandidateApplication('shortlist', application.id)" ><img src="/templates/assets/images/icon/shortlist-icon.svg" alt=""> Shortlist</button></li>
-                                                    <li v-if="application.status_name != 'Rejected'"><button @click="updateCandidateApplication('reject', application.id)" class="reject"><img src="/templates/assets/images/icon/rejected-icon.svg" alt=""> Rejected</button></li>
+                                                    <li><router-link :to="{name: 'view-cv', query: { 'url': application.cv  }}"  class="review"><img src="/assets/images/icon/docs.svg" alt=""> View CV</router-link></li>
+                                                    <li v-if="application.status_name != 'Shortlisted'"><button @click="updateCandidateApplication('shortlist', application.id)" ><img src="/assets/images/icon/shortlist-icon.svg" alt=""> Shortlist</button></li>
+                                                    <li v-if="application.status_name != 'Rejected'"><button @click="updateCandidateApplication('reject', application.id)" class="reject"><img src="/assets/images/icon/rejected-icon.svg" alt=""> Rejected</button></li>
                                                     <li>
-                                                        <button @click="deleteCandidateApplication(application.id)" class="reject"><img src="/templates/assets/images/icon/rejected-icon.svg" alt=""> Delete</button>
+                                                        <button @click="deleteCandidateApplication(application.id)" class="reject"><img src="/assets/images/icon/rejected-icon.svg" alt=""> Delete</button>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -671,7 +671,7 @@ import TabMenu from 'primevue/tabmenu';
 
 
     let Script = document.createElement("script");
-    Script.setAttribute("src", "/templates/assets/js/main.js");
+    Script.setAttribute("src", "/assets/js/main.js");
     document.head.appendChild(Script);
   },
   methods: {

@@ -301,7 +301,7 @@ import ConfirmPopup  from "primevue/confirmpopup";
     this.$store.dispatch('getCompanyJobs', '');
     
     let Script = document.createElement("script");
-    Script.setAttribute("src", "/templates/assets/js/main.js");
+    Script.setAttribute("src", "/assets/js/main.js");
     document.head.appendChild(Script);
   },
   watch: {

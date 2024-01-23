@@ -43,7 +43,7 @@
                                     <ul>
                                         <li>
                                             <div class="icon">
-                                                <img src="templates/assets/images/icon/phone-5.svg" alt="">
+                                                <img src="assets/images/icon/phone-5.svg" alt="">
 
                                     
                                             </div>
@@ -51,7 +51,7 @@
                                         </li>
                                         <li>
                                             <div class="icon">
-                                                <img src="templates/assets/images/icon/location.svg" alt="">
+                                                <img src="assets/images/icon/location.svg" alt="">
                                             </div>
                                             {{ globalSettings._site_address }}
                                         </li>
@@ -76,7 +76,7 @@
                         <p>Alternatively you can also check for the Company email, phone number and address in the official website.</p>
                         <div class="support">
                             <div class="icon">
-                                <img src="templates/assets/images/icon/footer-support-icon.svg" alt="">
+                                <img src="assets/images/icon/footer-support-icon.svg" alt="">
                             </div>
                             <div class="content">
                                 <h5>Support Line:</h5>
@@ -98,7 +98,7 @@
                                     <div class="form-inner mb-25">
                                         <label for="name">Your Name*</label>
                                         <div class="input-area">
-                                            <img src="templates/assets/images/icon/user-2.svg" alt="">
+                                            <img src="assets/images/icon/user-2.svg" alt="">
                                             <input type="text" id="name" name="name" placeholder="Mr. Jackson Mile" v-model="formData.name" required>
                                         </div>
                                     </div>
@@ -107,7 +107,7 @@
                                     <div class="form-inner mb-25">
                                         <label for="email">Email*</label>
                                         <div class="input-area">
-                                            <img src="templates/assets/images/icon/email-2.svg" alt="">
+                                            <img src="assets/images/icon/email-2.svg" alt="">
                                             <input type="email" id="email" name="email" placeholder="info@example.com" v-model="formData.email" required>
                                         </div>
                                     </div>
@@ -116,7 +116,7 @@
                                     <div class="form-inner mb-25">
                                         <label for="phonenumber">Phone*</label>
                                         <div class="input-area">
-                                            <img src="templates/assets/images/icon/phone-2.svg" alt="">
+                                            <img src="assets/images/icon/phone-2.svg" alt="">
                                             <input type="text" id="phonenumber" name="phonenumber" placeholder="+880-17 *** *** **" v-model="formData.phone" required>
                                         </div>
                                     </div>
@@ -125,7 +125,7 @@
                                     <div class="form-inner mb-25">
                                         <label for="jobplace">Company Name (Optional)</label>
                                         <div class="input-area">
-                                            <img src="templates/assets/images/icon/company-2.svg" alt="">
+                                            <img src="assets/images/icon/company-2.svg" alt="">
                                             <input type="text" id="jobplace" name="jobplace" placeholder="Company Name" v-model="formData.company_name">
                                         </div>
                                     </div>

@@ -98,7 +98,7 @@
                                 <div class="company-list-card1">
                                     <div class="company-area">
                                         <div class="logo">
-                                            <img :src="(company.logo) ? company.logo : '/templates/assets/images/bg/company-logo/company-01.png'" alt="">
+                                            <img :src="(company.logo) ? company.logo : '/assets/images/bg/company-logo/company-01.png'" alt="">
                                         </div>
                                        <div class="company-content">
                                         <div class="company-details">
@@ -108,7 +108,7 @@
                                                     {{ company.name }}
                                                 <!-- </router-link> -->
                                             </h5>
-                                                <p><img src="templates/assets/images/icon/location.svg" alt="">
+                                                <p><img src="assets/images/icon/location.svg" alt="">
                                                     {{ company.location }}
                                                     <!-- Dhaka, Bangladesh -->
                                                 </p>
@@ -120,7 +120,7 @@
                                                 <p>Vacancies: <span>{{ company.jobs_count }}</span></p>
                                             </div>
                                             <div class="apply-btn">
-                                                <router-link :to="getCompanyDetail(company.id)"><span><img src="templates/assets/images/icon/apply-ellipse.svg" alt=""></span>View Details</router-link>
+                                                <router-link :to="getCompanyDetail(company.id)"><span><img src="assets/images/icon/apply-ellipse.svg" alt=""></span>View Details</router-link>
                                             </div>
                                         </div>
                                        </div>
@@ -200,7 +200,7 @@ import { apiUrl, adminDashboardUrl, adminDashboardDomain } from '../utils/config
     // console.log(this.companies);
 
     let Script = document.createElement("script");
-    Script.setAttribute("src", "/templates/assets/js/main.js");
+    Script.setAttribute("src", "/assets/js/main.js");
     document.head.appendChild(Script);
   },
   methods: {

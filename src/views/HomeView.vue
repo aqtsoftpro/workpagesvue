@@ -101,7 +101,7 @@
                                     </div>
                                     <div class="form-inner">
                                         <button type="submit" class="primry-btn-2 "><img
-                                                src="templates/assets/images/icon/search-icon.svg" alt=""> Search</button>
+                                                src="assets/images/icon/search-icon.svg" alt=""> Search</button>
                                     </div>
                                 </form>
                             </div>
@@ -121,22 +121,22 @@
                        <div class="banner-image-area">
                             <div class="banner-img-left">
                                 <div class="banner-img1">
-                                    <img class="img-fluid" src="templates/assets/images/bg/home2-banner-01.png" alt="">
+                                    <img class="img-fluid" src="assets/images/bg/home2-banner-01.png" alt="">
                                 </div>
                                 <div class="banner-img2">
-                                    <img class="img-fluid" src="templates/assets/images/bg/home2-banner-02.png" alt="">
+                                    <img class="img-fluid" src="assets/images/bg/home2-banner-02.png" alt="">
                                 </div>
                             </div>
                             <div class="banner-img-center">
                                 <div class="banner-img3">
-                                    <img class="img-fluid" src="templates/assets/images/bg/home2-banner-03.png" alt="">
+                                    <img class="img-fluid" src="assets/images/bg/home2-banner-03.png" alt="">
                                 </div>
                                 <div class="banner-img4">
                                     <div class="user-area">
                                         <ul>
-                                            <li><img src="templates/assets/images/bg/user31.png" alt=""></li>
-                                            <li><img src="templates/assets/images/bg/user32.png" alt=""></li>
-                                            <li><img src="templates/assets/images/bg/user33.png" alt=""></li>
+                                            <li><img src="assets/images/bg/user31.png" alt=""></li>
+                                            <li><img src="assets/images/bg/user32.png" alt=""></li>
+                                            <li><img src="assets/images/bg/user33.png" alt=""></li>
                                             <li>
                                                 <div class="total-user">
                                                     <h6>21k</h6>
@@ -155,7 +155,7 @@
                                     </div>
                                 </div>
                                 <div class="banner-img6">
-                                    <img class="img-fluid" src="templates/assets/images/bg/home2-banner-04.png" alt="">
+                                    <img class="img-fluid" src="assets/images/bg/home2-banner-04.png" alt="">
                                 </div>
                             </div>
                        </div>
@@ -173,7 +173,7 @@
                 <div class="counter-single">
                     <div class="counter-icon">
                         <div class="icon-bg">
-                            <img src="templates/assets/images/icon/counter-icon-bg.svg" class="home-counter-bg" alt="">
+                            <img src="assets/images/icon/counter-icon-bg.svg" class="home-counter-bg" alt="">
                         </div>
                         <svg width="35" height="34" viewBox="0 0 35 34" xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -196,7 +196,7 @@
                 <div class="counter-single">
                     <div class="counter-icon">
                         <div class="icon-bg">
-                            <img src="templates/assets/images/icon/counter-icon-bg.svg" class="home-counter-bg" alt="">
+                            <img src="assets/images/icon/counter-icon-bg.svg" class="home-counter-bg" alt="">
                         </div>
                         <svg width="35" height="34" viewBox="0 0 35 34" xmlns="http://www.w3.org/2000/svg">
                             <path d="M19.8678 12.6758L32.3702 15.1656C33.3778 15.3791 34.059 16.2327 34.059 17.2428V31.7548C34.059 32.9357 33.1082 33.8889 31.9303 33.8889H19.1582C19.5556 33.8889 19.8678 33.5759 19.8678 33.1776V32.4662H31.9303C32.3135 32.4662 32.6399 32.1532 32.6399 31.7548V17.2428C32.6399 16.9156 32.4128 16.6168 32.0864 16.5457L19.8678 14.127V12.6758Z"/>
@@ -232,7 +232,7 @@
                 <div class="counter-single">
                     <div class="counter-icon">
                         <div class="icon-bg">
-                            <img src="templates/assets/images/icon/counter-icon-bg.svg" class="home-counter-bg" alt="">
+                            <img src="assets/images/icon/counter-icon-bg.svg" class="home-counter-bg" alt="">
 
                         </div>
                         <svg width="34" height="34" viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg">
@@ -254,7 +254,7 @@
                 <div class="counter-single">
                     <div class="counter-icon">
                         <div class="icon-bg">
-                            <img src="templates/assets/images/icon/counter-icon-bg.svg" class="home-counter-bg" alt="">
+                            <img src="assets/images/icon/counter-icon-bg.svg" class="home-counter-bg" alt="">
 
                         </div>
                         <svg width="34" height="34" viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg">
@@ -466,7 +466,7 @@
                 
                 <div class="col-lg-12 d-flex justify-content-center pt-3">
                     <div class="explore-btn">
-                        <router-link to="/job-categories">Explore More <span><img src="templates/assets/images/icon/explore-elliose.svg" alt=""></span></router-link>
+                        <router-link to="/job-categories">Explore More <span><img src="assets/images/icon/explore-elliose.svg" alt=""></span></router-link>
                     </div>
                 </div>
 
@@ -484,7 +484,7 @@
                         <p>To choose your trending job dream &amp; to make future bright.</p>
                     </div>
                     <div class="explore-btn">
-                        <router-link to="/job-listing">Explore More <span><img src="templates/assets/images/icon/explore-elliose.svg" alt=""></span></router-link>
+                        <router-link to="/job-listing">Explore More <span><img src="assets/images/icon/explore-elliose.svg" alt=""></span></router-link>
                     </div>
                 </div>
             </div>
@@ -496,7 +496,7 @@
                         </div> -->
                         <div class="company-area">
                             <div class="logo">
-                                <img :src="(job.company_logo) ? job.company_logo : '/templates/assets/images/bg/company-logo/company-01.png'" alt="">
+                                <img :src="(job.company_logo) ? job.company_logo : '/assets/images/bg/company-logo/company-01.png'" alt="">
                             </div>
                             <div class="company-details">
                                 <div class="name-location">
@@ -523,7 +523,7 @@
                         </div>
                         <div class="job-type-apply">
                             <div class="apply-btn">
-                                <router-link :to="getJobDetail(job.job_key, job.job_slug)"><span><img src="templates/assets/images/icon/apply-ellipse.svg" alt=""></span>Apply Now</router-link>
+                                <router-link :to="getJobDetail(job.job_key, job.job_slug)"><span><img src="assets/images/icon/apply-ellipse.svg" alt=""></span>Apply Now</router-link>
                             </div>
                         </div>
                     </div>
@@ -607,7 +607,7 @@
                         <p>To choose your trending job dream &amp; to make future bright.</p>
                     </div>
                     <div class="explore-btn">
-                        <router-link to="/featured-jobs">Explore More <span><img src="templates/assets/images/icon/explore-elliose.svg" alt=""></span></router-link>
+                        <router-link to="/featured-jobs">Explore More <span><img src="assets/images/icon/explore-elliose.svg" alt=""></span></router-link>
                     </div>
                 </div>
             </div>
@@ -618,14 +618,14 @@
                             <span></span>
                             <div class="logo">
 
-                                <img :src="(job.company_logo) ? job.company_logo : '/templates/assets/images/bg/company-logo/company-01.png'" alt="">
+                                <img :src="(job.company_logo) ? job.company_logo : '/assets/images/bg/company-logo/company-01.png'" alt="">
                             </div>
                             <div class="company-details">
                                 <div class="name-location">
                                     <h5>{{ job.job_title }} <span>{{job.working_mode}}</span></h5>
                                     <ul>
                                         <!-- <li><router-link to="/company-details">{{job.company.name}}</router-link></li> -->
-                                        <li class="verified"><img src="templates/assets/images/icon/verified.svg" alt=""> Verified Company</li>
+                                        <li class="verified"><img src="assets/images/icon/verified.svg" alt=""> Verified Company</li>
                                     </ul>
                                 </div>
                                 <!-- <div class="bookmark">
@@ -712,14 +712,14 @@
                                 <div class="company-area">
                                     <div class="logo">
                                         
-                                        <img :src="(top_company.logo) ? top_company.logo : '/templates/assets/images/bg/company-logo/company-01.png'" alt="">
+                                        <img :src="(top_company.logo) ? top_company.logo : '/assets/images/bg/company-logo/company-01.png'" alt="">
 
                                     </div>
                                     <div class="name-location">
                                         <h5>
                                             <router-link :to="getCompanyDetail(top_company.id)">
                                                 {{top_company.name}}</router-link></h5>
-                                        <p><img src="templates/assets/images/icon/location.svg" alt=""> {{ top_company.location }}</p>
+                                        <p><img src="assets/images/icon/location.svg" alt=""> {{ top_company.location }}</p>
                                     </div>
                                 </div>
                                 <div class="job-details-vacancies">
@@ -728,7 +728,7 @@
                                     </div>
                                     <div class="apply-btn">
                                         <router-link :to="getCompanyDetail(top_company.id)">
-                                            <span><img src="templates/assets/images/icon/apply-ellipse.svg" alt=""></span>View Details</router-link>
+                                            <span><img src="assets/images/icon/apply-ellipse.svg" alt=""></span>View Details</router-link>
                                     </div>
                                 </div>
                             </div>
@@ -750,7 +750,7 @@
                                     </div>
                                     <div class="name-location">
                                         <h5><router-link to="/company-details">{{company.name}}</router-link></h5>
-                                        <p><img src="templates/assets/images/icon/location.svg" alt=""> {{ company.location }}</p>
+                                        <p><img src="assets/images/icon/location.svg" alt=""> {{ company.location }}</p>
                                     </div>
                                 </div>
                                 <div class="job-details-vacancies">
@@ -758,7 +758,7 @@
                                         <p>Vacancies: <span>0</span></p>
                                     </div>
                                     <div class="apply-btn">
-                                        <router-link to="/company-details"><span><img src="templates/assets/images/icon/apply-ellipse.svg" alt=""></span>View Details</router-link>
+                                        <router-link to="/company-details"><span><img src="assets/images/icon/apply-ellipse.svg" alt=""></span>View Details</router-link>
                                     </div>
                                 </div>
                             </div>
@@ -789,9 +789,9 @@
                         <div v-for="testimonial in home_testimonials" :key="testimonial.id" class="swiper-slide">
                             <div class="feedback-wrap">
                                 <div class="author-img">
-                                    <img :src="(testimonial.image) ? testimonial.image : '/templates/assets/images/bg/company-logo/company-01.png'" alt="">
+                                    <img :src="(testimonial.image) ? testimonial.image : '/assets/images/bg/company-logo/company-01.png'" alt="">
                                     <div class="quoat-icon">
-                                        <img src="templates/assets/images/icon/feedback-quoat1.svg" alt="">
+                                        <img src="assets/images/icon/feedback-quoat1.svg" alt="">
                                     </div>
                                 </div>
                                 <div class="feedback-content">
@@ -840,27 +840,27 @@
                             </div>
                             <div class="swiper-slide">
                                 <div class="company-logo">
-                                    <img src="templates/assets/images/bg/company-logo/trusted-company-02.png" alt="">
+                                    <img src="assets/images/bg/company-logo/trusted-company-02.png" alt="">
                                 </div>
                             </div>
                             <div class="swiper-slide">
                                 <div class="company-logo">
-                                    <img src="templates/assets/images/bg/company-logo/trusted-company-03.png" alt="">
+                                    <img src="assets/images/bg/company-logo/trusted-company-03.png" alt="">
                                 </div>
                             </div>
                             <div class="swiper-slide">
                                 <div class="company-logo">
-                                    <img src="templates/assets/images/bg/company-logo/trusted-company-04.png" alt="">
+                                    <img src="assets/images/bg/company-logo/trusted-company-04.png" alt="">
                                 </div>
                             </div>
                             <div class="swiper-slide">
                                 <div class="company-logo">
-                                    <img src="templates/assets/images/bg/company-logo/trusted-company-05.png" alt="">
+                                    <img src="assets/images/bg/company-logo/trusted-company-05.png" alt="">
                                 </div>
                             </div>
                             <div class="swiper-slide">
                                 <div class="company-logo">
-                                    <img src="templates/assets/images/bg/company-logo/trusted-company-06.png" alt="">
+                                    <img src="assets/images/bg/company-logo/trusted-company-06.png" alt="">
                                 </div>
                             </div>
                         </div>
@@ -893,8 +893,8 @@
                         <div class="recent-article-content">
                             <div class="recent-article-meta">
                                 <ul>
-                                    <li><router-link to="#"><img src="templates/assets/images/icon/calender2.svg" alt="">June 02.2022</router-link></li>
-                                    <li><router-link to="#"><img src="templates/assets/images/icon/user-2.svg" alt="">Mr. Rakhab</router-link></li>
+                                    <li><router-link to="#"><img src="assets/images/icon/calender2.svg" alt="">June 02.2022</router-link></li>
+                                    <li><router-link to="#"><img src="assets/images/icon/user-2.svg" alt="">Mr. Rakhab</router-link></li>
                                 </ul>
                             </div>
                             <h4><router-link to="#">To Be Confident Your Dream & Struggle About It.</router-link></h4>
@@ -912,8 +912,8 @@
                         <div class="recent-article-content">
                             <div class="recent-article-meta">
                                 <ul>
-                                    <li><router-link to="#"><img src="templates/assets/images/icon/calender2.svg" alt="">June 02.2022</router-link></li>
-                                    <li><router-link to="#"><img src="templates/assets/images/icon/user-2.svg" alt="">Mr. Rakhab</router-link></li>
+                                    <li><router-link to="#"><img src="assets/images/icon/calender2.svg" alt="">June 02.2022</router-link></li>
+                                    <li><router-link to="#"><img src="assets/images/icon/user-2.svg" alt="">Mr. Rakhab</router-link></li>
                                 </ul>
                             </div>
                             <h4><router-link to="#">There Are So Many Resource In
@@ -932,8 +932,8 @@
                         <div class="recent-article-content">
                             <div class="recent-article-meta">
                                 <ul>
-                                    <li><router-link to="#"><img src="templates/assets/images/icon/calender2.svg" alt="">June 02.2022</router-link></li>
-                                    <li><router-link to="#"><img src="templates/assets/images/icon/user-2.svg" alt="">Mr. Rakhab</router-link></li>
+                                    <li><router-link to="#"><img src="assets/images/icon/calender2.svg" alt="">June 02.2022</router-link></li>
+                                    <li><router-link to="#"><img src="assets/images/icon/user-2.svg" alt="">Mr. Rakhab</router-link></li>
                                 </ul>
                             </div>
                             <h4><router-link to="#">Actual Technology To Improve & Develop Your Idea.</router-link></h4>
@@ -1073,7 +1073,7 @@ import { mapGetters } from 'vuex';
     // this.$store.dispatch('getTestimonials', '');
     
     let Script = document.createElement("script");
-    Script.setAttribute("src", "/templates/assets/js/main.js");
+    Script.setAttribute("src", "/assets/js/main.js");
     document.head.appendChild(Script);
 
   },

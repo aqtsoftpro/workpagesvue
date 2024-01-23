@@ -14,7 +14,7 @@
                                     
                                     <img width="200" v-if="company_logo"  :src="company_logo" />
 
-                                    <img v-else src="/templates/assets/images/bg/company-img2.png" alt="">
+                                    <img v-else src="/assets/images/bg/company-img2.png" alt="">
 
                                 </div>
                                 <div class="author-content">
@@ -25,7 +25,7 @@
 
                              <div class="action-btn-group">
                                 <ul>
-                                    <li><router-link to="/company/profile"><span><img src="/templates/assets/images/icon/edit2.svg" alt=""></span>Edit Profile</router-link></li>
+                                    <li><router-link to="/company/profile"><span><img src="/assets/images/icon/edit2.svg" alt=""></span>Edit Profile</router-link></li>
                                 </ul>
                             </div>
                         </div>
@@ -35,7 +35,7 @@
                                 <!-- <div class="col-lg-3 col-sm-6">
                                     <div class="counter-single">
                                         <div class="counter-icon">
-                                            <img src="/templates/assets/images/icon/tt-applied.svg" alt="image">
+                                            <img src="/assets/images/icon/tt-applied.svg" alt="image">
                                         </div>
                                         <div class="coundown">
                                             <p>Total Applied</p>
@@ -51,7 +51,7 @@
                                 <div class="col-lg-4 col-sm-6">
                                     <div class="counter-single two">
                                         <div class="counter-icon">
-                                            <img src="/templates/assets/images/icon/save-job.svg" alt="image">
+                                            <img src="/assets/images/icon/save-job.svg" alt="image">
                                         </div>
                                         <div class="coundown">
                                             <p>Live Jobs</p>
@@ -67,7 +67,7 @@
                                 <div class="col-lg-4 col-sm-6">
                                     <div class="counter-single three">
                                         <div class="counter-icon">
-                                            <img src="/templates/assets/images/icon/pending-icon.svg" alt="image">
+                                            <img src="/assets/images/icon/pending-icon.svg" alt="image">
                                         </div>
                                         <div class="coundown">
                                             <p>Pending Job</p>
@@ -83,7 +83,7 @@
                                 <div class="col-lg-4 col-sm-6">
                                     <div class="counter-single four">
                                         <div class="counter-icon">
-                                            <img src="/templates/assets/images/icon/closed-icon.svg" alt="image">
+                                            <img src="/assets/images/icon/closed-icon.svg" alt="image">
                                         </div>
                                         <div class="coundown">
                                             <p>Closed Jobs</p>
@@ -101,7 +101,7 @@
                                 <div class="col-lg-4 col-sm-6">
                                     <div class="counter-single">
                                         <div class="counter-icon">
-                                            <img src="/templates/assets/images/icon/total-view-icon.svg" alt="image">
+                                            <img src="/assets/images/icon/total-view-icon.svg" alt="image">
                                         </div>
                                         <div class="coundown">
                                             <p>Total Viewed / Total Applied</p>
@@ -119,7 +119,7 @@
                                 <!-- <div class="col-lg-3 col-sm-6">
                                     <div class="counter-single two">
                                         <div class="counter-icon">
-                                            <img src="/templates/assets/images/icon/follow-icon.svg" alt="image">
+                                            <img src="/assets/images/icon/follow-icon.svg" alt="image">
                                         </div>
                                         <div class="coundown">
                                             <p>Our Followers</p>
@@ -135,7 +135,7 @@
                                 <div class="col-lg-4 col-sm-6">
                                     <div class="counter-single three">
                                         <div class="counter-icon">
-                                            <img src="/templates/assets/images/icon/highlight-icon.svg" alt="image">
+                                            <img src="/assets/images/icon/highlight-icon.svg" alt="image">
                                         </div>
                                         <div class="coundown">
                                             <p>Highlighted Jobs</p>
@@ -151,7 +151,7 @@
                                 <div class="col-lg-4 col-sm-6">
                                     <div class="counter-single four">
                                         <div class="counter-icon">
-                                            <img src="/templates/assets/images/icon/featured-icon.svg" alt="image">
+                                            <img src="/assets/images/icon/featured-icon.svg" alt="image">
                                         </div>
                                         <div class="coundown">
                                             <p>Our Followers</p>
@@ -202,7 +202,7 @@
                                                                                 <div class="col-lg-6">
                                                                                     <div class="author-area">
                                                                                         <div class="author-img">
-                                                                                            <img src="/templates/assets/images/bg/resume-author.png" alt="">
+                                                                                            <img src="/assets/images/bg/resume-author.png" alt="">
                                                                                         </div>
                                                                                         <div class="name-degination">
                                                                                             <h4>Mr. Jacoline Frankly</h4>
@@ -214,9 +214,9 @@
                                                                                     <div class="contact-area">
                                                                                         <h4>Contact Info</h4>
                                                                                         <ul>
-                                                                                            <li>Phone:<a href="#">+880-177 443 5455 <span><img src="/templates/assets/images/icon/phone-5.svg" alt=""></span></a></li>
-                                                                                            <li>Email:<a href="#">info@example.com <span><img src="/templates/assets/images/icon/envlop-5.svg" alt=""></span></a></li>
-                                                                                            <li>Website:<a href="#">www.infositeexample.com <span><img src="/templates/assets/images/icon/web-5.svg " alt=""></span></a></li>
+                                                                                            <li>Phone:<a href="#">+880-177 443 5455 <span><img src="/assets/images/icon/phone-5.svg" alt=""></span></a></li>
+                                                                                            <li>Email:<a href="#">info@example.com <span><img src="/assets/images/icon/envlop-5.svg" alt=""></span></a></li>
+                                                                                            <li>Website:<a href="#">www.infositeexample.com <span><img src="/assets/images/icon/web-5.svg " alt=""></span></a></li>
                                                                                         </ul>
                                                                                     </div>
                                                                                 </div>
@@ -429,7 +429,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <span><img src="/templates/assets/images/icon/company-2.svg" alt="">{{ application.job.location }}</span>
+                                                        <span><img src="/assets/images/icon/company-2.svg" alt="">{{ application.job.location }}</span>
                                                         <p><span>Applied On:</span> {{ application.applied_on }}</p>
                                                         <p><span>Status:</span> {{ application.status_name }}</p>
                                                     </div>
@@ -447,9 +447,9 @@
                                             <td data-label="Actions">
                                                 <div class="action-btn-group">
                                                     <ul>
-                                                        <li><router-link :to="{name: 'view-cv', query: { 'url': application.cv  }}"  class="review"><img src="/templates/assets/images/icon/docs.svg" alt=""> View CV</router-link></li>
-                                                        <li v-if="application.status_name != 'Shortlisted'"><button @click="updateCandidateApplication('shortlist', application.id)" ><img src="/templates/assets/images/icon/shortlist-icon.svg" alt=""> Shortlist</button></li>
-                                                        <li v-if="application.status_name != 'Rejected'"><button @click="updateCandidateApplication('reject', application.id)" class="reject"><img src="/templates/assets/images/icon/rejected-icon.svg" alt=""> Rejected</button></li>
+                                                        <li><router-link :to="{name: 'view-cv', query: { 'url': application.cv  }}"  class="review"><img src="/assets/images/icon/docs.svg" alt=""> View CV</router-link></li>
+                                                        <li v-if="application.status_name != 'Shortlisted'"><button @click="updateCandidateApplication('shortlist', application.id)" ><img src="/assets/images/icon/shortlist-icon.svg" alt=""> Shortlist</button></li>
+                                                        <li v-if="application.status_name != 'Rejected'"><button @click="updateCandidateApplication('reject', application.id)" class="reject"><img src="/assets/images/icon/rejected-icon.svg" alt=""> Rejected</button></li>
                                                         <li>
                                                             
                                                         </li>
@@ -532,7 +532,7 @@ import { mapGetters } from 'vuex';
     this.company_logo = this.user.company.logo
 
     let Script = document.createElement("script");
-    Script.setAttribute("src", "/templates/assets/js/main.js");
+    Script.setAttribute("src", "/assets/js/main.js");
     document.head.appendChild(Script);
   },
   methods: {

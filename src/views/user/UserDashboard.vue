@@ -9,7 +9,7 @@
                          <div class="author-area">
                             <div class="author-img">
                                 <img v-if="imageExists" :src="user.photo">
-                                <img v-else src="/templates/assets/images/bg/no-image.jpg">
+                                <img v-else src="/assets/images/bg/no-image.jpg">
                             </div>
                             <div class="author-content">
                                 <span>Hello, I’m</span>
@@ -21,7 +21,7 @@
                                 <div class="col-lg-4 col-sm-6">
                                     <div class="counter-single">
                                         <div class="counter-icon">
-                                            <img src="/templates/assets/images/icon/tt-applied.svg" alt="image">
+                                            <img src="/assets/images/icon/tt-applied.svg" alt="image">
                                         </div>
                                         <div class="coundown">
                                             <p>Total Applied</p>
@@ -37,7 +37,7 @@
                                 <div class="col-lg-4 col-sm-6">
                                     <div class="counter-single two">
                                         <div class="counter-icon">
-                                            <img src="/templates/assets/images/icon/save-job.svg" alt="image">
+                                            <img src="/assets/images/icon/save-job.svg" alt="image">
                                         </div>
                                         <div class="coundown">
                                             <p>Saved Jobs</p>
@@ -53,7 +53,7 @@
                                 <!-- <div class="col-lg-3 col-sm-6">
                                     <div class="counter-single three">
                                         <div class="counter-icon">
-                                            <img src="/templates/assets/images/icon/massage.svg" alt="image">
+                                            <img src="/assets/images/icon/massage.svg" alt="image">
                                         </div>
                                         <div class="coundown">
                                             <p>Message</p>
@@ -69,7 +69,7 @@
                                 <div class="col-lg-4 col-sm-6">
                                     <div class="counter-single four">
                                         <div class="counter-icon">
-                                            <img src="/templates/assets/images/icon/cv-review.svg" alt="image">
+                                            <img src="/assets/images/icon/cv-review.svg" alt="image">
                                         </div>
                                         <div class="coundown">
                                             <p>Review CV</p>
@@ -101,17 +101,17 @@
                                             <td data-label="Job Title">
                                                 <div class="company-info">
                                                     <div class="logo">
-                                                        <img src="/templates/assets/images/bg/company-logo/company-06.png" alt="">
+                                                        <img src="/assets/images/bg/company-logo/company-06.png" alt="">
                                                     </div>
                                                     <div class="company-details">
                                                         <div class="top">
                                                             <h6><a href="job-details.html">{{ application.job.job_title }}</a></h6>
-                                                            <span><img src="/templates/assets/images/icon/calender2.svg" alt=""> 1 days ago</span>
+                                                            <span><img src="/assets/images/icon/calender2.svg" alt=""> 1 days ago</span>
                                                         </div>
                                                         <ul>
-                                                            <li><img src="/templates/assets/images/icon/location.svg" alt=""> {{ application.job.location }}</li>
+                                                            <li><img src="/assets/images/icon/location.svg" alt=""> {{ application.job.location }}</li>
                                                             <li>
-                                                                <img src="/templates/assets/images/icon/arrow2.svg" alt="">
+                                                                <img src="/assets/images/icon/arrow2.svg" alt="">
                                                                 <p><span class="title">Salary:</span> {{ application.job.salary_range }}</p>
                                                             </li>
                                                         </ul>
@@ -147,7 +147,7 @@
                                 <div class="company-area">
                                     <span></span>
                                     <div class="logo">
-                                        <img src="/templates/assets/images/bg/company-logo/company-02.png" alt="">
+                                        <img src="/assets/images/bg/company-logo/company-02.png" alt="">
 
                                     </div>
                                     <div class="company-details">
@@ -155,7 +155,7 @@
                                             <h5><a href="job-details.html">UI/UX Engineer</a> <span>Full Time, Remote<span></span></span></h5>
                                             <ul>
                                                 <li><a href="company-details.html">Norland Company</a></li>
-                                                <li class="verified"><img src="/templates/assets/images/icon/verified.svg" alt=""> Verified Company</li>
+                                                <li class="verified"><img src="/assets/images/icon/verified.svg" alt=""> Verified Company</li>
                                             </ul>
                                         </div>
                                         <div class="bookmark">
@@ -183,7 +183,7 @@
                                 </div>
                                 <div class="job-type-apply">
                                     <div class="apply-btn">
-                                        <a href="job-details.html"><span><img src="/templates/assets/images/icon/apply-ellipse.svg" alt=""></span>Apply Now</a>
+                                        <a href="job-details.html"><span><img src="/assets/images/icon/apply-ellipse.svg" alt=""></span>Apply Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -193,7 +193,7 @@
                                 <div class="company-area">
                                     <span></span>
                                     <div class="logo">
-                                        <img src="/templates/assets/images/bg/company-logo/company-03.png" alt="">
+                                        <img src="/assets/images/bg/company-logo/company-03.png" alt="">
 
                                     </div>
                                     <div class="company-details">
@@ -201,7 +201,7 @@
                                             <h5><a href="job-details.html">React JS Developer</a>  <span>Full Time, Remote<span></span></span></h5>
                                             <ul>
                                                 <li><a href="company-details.html">UX.UI Company</a></li>
-                                                <li class="verified"><img src="/templates/assets/images/icon/verified.svg" alt=""> Verified Company</li>
+                                                <li class="verified"><img src="/assets/images/icon/verified.svg" alt=""> Verified Company</li>
                                             </ul>
                                         </div>
                                         <div class="bookmark">
@@ -229,7 +229,7 @@
                                 </div>
                                 <div class="job-type-apply">
                                     <div class="apply-btn">
-                                        <a href="job-details.html"><span><img src="/templates/assets/images/icon/apply-ellipse.svg" alt=""></span>Apply Now</a>
+                                        <a href="job-details.html"><span><img src="/assets/images/icon/apply-ellipse.svg" alt=""></span>Apply Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -239,7 +239,7 @@
                                 <div class="company-area">
                                     <span></span>
                                     <div class="logo">
-                                        <img src="/templates/assets/images/bg/company-logo/company-04.png" alt="">
+                                        <img src="/assets/images/bg/company-logo/company-04.png" alt="">
 
                                     </div>
                                     <div class="company-details">
@@ -247,7 +247,7 @@
                                             <h5><a href="job-details.html">Receptionist</a>  <span>Full Time, Part Time<span></span></span></h5>
                                             <ul>
                                                 <li><a href="company-details.html">Germaine Group Ltd</a></li>
-                                                <li class="verified"><img src="/templates/assets/images/icon/verified.svg" alt=""> Verified Company</li>
+                                                <li class="verified"><img src="/assets/images/icon/verified.svg" alt=""> Verified Company</li>
                                             </ul>
                                         </div>
                                         <div class="bookmark">
@@ -316,7 +316,7 @@ import { mapGetters } from 'vuex';
     this.$store.dispatch('getCandidateApplications', this.user.id);
 
     let Script = document.createElement("script");
-      Script.setAttribute("src", "/templates/assets/js/main.js");
+      Script.setAttribute("src", "/assets/js/main.js");
       document.head.appendChild(Script);
   },
   watch: {

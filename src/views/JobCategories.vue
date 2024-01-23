@@ -33,7 +33,7 @@
                             <form>
                                 <div class="form-inner">
                                     <input type="text" placeholder="Search..">
-                                    <button class="primry-btn-2" type="submit"><img src="templates/assets/images/icon/search-category.svg" alt=""></button>
+                                    <button class="primry-btn-2" type="submit"><img src="assets/images/icon/search-category.svg" alt=""></button>
                                 </div>
                             </form>
                         </div>
@@ -102,7 +102,7 @@ import Categories from '../views/JobCategories.vue'; // @ is an alias to /src
 
 
     let Script = document.createElement("script");
-    Script.setAttribute("src", "/templates/assets/js/main.js");
+    Script.setAttribute("src", "/assets/js/main.js");
     document.head.appendChild(Script);
     
   },

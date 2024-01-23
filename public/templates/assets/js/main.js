@@ -1042,7 +1042,7 @@ newRow += '</div>';
     newRow += '<div class="form-inner mb-25">';
       newRow += '<label>Title*</label>';
       newRow += '<div class="input-area">';
-        newRow += '<img src="/templates/assets/images/icon/company-2.svg " alt="">';
+        newRow += '<img src="/assets/images/icon/company-2.svg " alt="">';
         // newRow += '<input type="text" id="companies" name="companies" placeholder="Portfolio Title">';
         newRow += '<input type="text" v-model="portfolio.name" name="name" placeholder="Portfolio Title">';
         newRow += '<input type="text" v-model="portfolio.portfolioID" name="portfolioID"></input>';

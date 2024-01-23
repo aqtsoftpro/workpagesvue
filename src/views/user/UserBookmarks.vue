@@ -25,17 +25,17 @@
                                         <td data-label="Job Title">
                                             <div class="company-info">
                                                 <div class="logo">
-                                                    <img src="/templates/assets/images/bg/company-logo/company-01.png" alt="">
+                                                    <img src="/assets/images/bg/company-logo/company-01.png" alt="">
                                                 </div>
                                                 <div class="company-details">
                                                     <div class="top">
                                                         <h6><a href="job-details.html">Senior UI/UX Designer</a></h6>
-                                                        <span><img src="/templates/assets/images/icon/calender2.svg" alt=""> 1 days ago</span>
+                                                        <span><img src="/assets/images/icon/calender2.svg" alt=""> 1 days ago</span>
                                                     </div>
                                                     <ul>
-                                                        <li><img src="/templates/assets/images/icon/location.svg" alt="">New-York, USA</li>
+                                                        <li><img src="/assets/images/icon/location.svg" alt="">New-York, USA</li>
                                                         <li>
-                                                            <img src="/templates/assets/images/icon/arrow2.svg" alt="">
+                                                            <img src="/assets/images/icon/arrow2.svg" alt="">
                                                             <p><span class="title">Salary:</span> $60-$90 / <span class="time">Per Hour</span></p>
                                                         </li>
                                                     </ul>

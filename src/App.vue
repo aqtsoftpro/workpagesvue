@@ -5,7 +5,7 @@
             <div class="col-lg-12 d-flex align-items-center justify-content-sm-between justify-content-center">
 
                 <div class="header-main-logo d-lg-block d-none">
-                    <router-link to="/"><img alt="image" class="img-fluid" src="/templates/assets/images/work-pages-logo-cropped.png" width="250"></router-link>
+                    <router-link to="/"><img alt="image" class="img-fluid" src="/assets/images/work-pages-logo-cropped.png" width="250"></router-link>
                 </div>
 
                 <div class="top-bar-right">
@@ -38,13 +38,13 @@
             <div class="col-lg-12">
                 <div class="menu-area">
                     <div class="header-logo">
-                        <router-link to="/"><img alt="image" class="img-fluid" src="templates/assets/images/work-pages-logo-cropped.png"></router-link>
+                        <router-link to="/"><img alt="image" class="img-fluid" src="assets/images/work-pages-logo-cropped.png"></router-link>
                     </div>
                     
                     <div class="main-menu">
                         <div class="mobile-logo-area d-lg-none d-flex justify-content-between align-items-center">
                             <div class="mobile-logo-wrap">
-                                <router-link to="/"><img alt="image" src="templates/assets/images/work-pages-logo-cropped.png" width="200"></router-link>
+                                <router-link to="/"><img alt="image" src="assets/images/work-pages-logo-cropped.png" width="200"></router-link>
                             </div>
                             <div @click="openMobileMenuToggle" class="menu-close-btn">
                                 <i class="bi bi-x-lg"></i>
@@ -123,7 +123,7 @@
                     </div>
 
                     <div class="header-main-logo d-none">
-                        <router-link to="/"><img alt="image" class="img-fluid" src="templates/assets/images/work-pages-logo-cropped.png"></router-link>
+                        <router-link to="/"><img alt="image" class="img-fluid" src="assets/images/work-pages-logo-cropped.png"></router-link>
                     </div>
                     <div  class="nav-right d-flex jsutify-content-end align-items-center">
                         <ul>
@@ -276,10 +276,10 @@
                         <div class="app-list">
                             <ul>
                                 <li>
-                                    <router-link to="/"><img src="/templates/assets/images/icon/apple-app.svg" alt=""></router-link>
+                                    <router-link to="/"><img src="/assets/images/icon/apple-app.svg" alt=""></router-link>
                                 </li>
                                 <li>
-                                    <router-link to="/"><img src="/templates/assets/images/icon/google-play.svg" alt=""></router-link>
+                                    <router-link to="/"><img src="/assets/images/icon/google-play.svg" alt=""></router-link>
                                 </li>
                             </ul>
                         </div>
@@ -292,7 +292,7 @@
                     <div class="col-lg-6 d-flex justify-content-lg-start justify-content-center">
                         <div class="support">
                             <div class="icon">
-                                <img src="/templates/assets/images/icon/footer-support-icon.svg" alt="">
+                                <img src="/assets/images/icon/footer-support-icon.svg" alt="">
                             </div>
                             <div class="content">
                                 <h5>Support Line:</h5>

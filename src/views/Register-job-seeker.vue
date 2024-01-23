@@ -28,7 +28,7 @@
                                                 <div class="form-inner mb-25">
                                                     <label for="firstname1">First Name*</label>
                                                     <div class="input-area">
-                                                        <img src="templates/assets/images/icon/user-2.svg" alt="">
+                                                        <img src="assets/images/icon/user-2.svg" alt="">
                                                         <input v-model="userForm.first_name" type="text" id="firstname1" name="firstname1" placeholder="Mr. Robert">
                                                     </div>
                                                 </div>
@@ -37,7 +37,7 @@
                                                 <div class="form-inner mb-25">
                                                     <label for="lastname1">Last Name*</label>
                                                     <div class="input-area">
-                                                        <img src="templates/assets/images/icon/user-2.svg" alt="">
+                                                        <img src="assets/images/icon/user-2.svg" alt="">
                                                         <input v-model="userForm.last_name" type="text" id="lastname1" name="lastname1" placeholder="Jonson">
                                                     </div>
                                                 </div>
@@ -46,7 +46,7 @@
                                                 <div class="form-inner mb-25">
                                                     <label for="username">User Name*</label>
                                                     <div class="input-area">
-                                                        <img src="templates/assets/images/icon/user-2.svg" alt="">
+                                                        <img src="assets/images/icon/user-2.svg" alt="">
                                                         <input v-model="userForm.username" type="text" id="username" name="username" placeholder="robertjonson">
                                                     </div>
                                                 </div>
@@ -55,7 +55,7 @@
                                                 <div class="form-inner mb-25">
                                                     <label for="email">Email*</label>
                                                     <div class="input-area">
-                                                        <img src="templates/assets/images/icon/email-2.svg" alt="">
+                                                        <img src="assets/images/icon/email-2.svg" alt="">
                                                         <input v-model="userForm.email" type="text" id="email" name="email" placeholder="info@example.com">
                                                     </div>
                                                 </div>
@@ -64,7 +64,7 @@
                                                 <div class="form-inner mb-25">
                                                     <label for="email">Suburb</label>
                                                     <div class="input-area">
-                                                        <img src="templates/assets/images/icon/loction.svg" alt="">
+                                                        <img src="assets/images/icon/loction.svg" alt="">
                                                         <!-- <input v-model="userForm.suburb_id" type="text" id="suburns" name="suburb" placeholder="Select Suburb"> -->
                                                         <Dropdown
                                                             name="suburb_id"
@@ -129,10 +129,10 @@
                                             <div class="login-difarent-way">
                                                 <div class="row g-4">
                                                     <div class="col-md-6">
-                                                        <a href="https://myaccount.google.com/"><img src="templates/assets/images/icon/google1.svg" alt="">Log in with Google</a>
+                                                        <a href="https://myaccount.google.com/"><img src="assets/images/icon/google1.svg" alt="">Log in with Google</a>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <a href="https://www.facebook.com/"><img src="templates/assets/images/icon/facebook1.svg" alt="">Log in with Facebook</a>
+                                                        <a href="https://www.facebook.com/"><img src="assets/images/icon/facebook1.svg" alt="">Log in with Facebook</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -146,7 +146,7 @@
                                                 <div class="form-inner mb-25">
                                                     <label for="firstname">First Name*</label>
                                                     <div class="input-area">
-                                                        <img src="templates/assets/images/icon/user-2.svg" alt="">
+                                                        <img src="assets/images/icon/user-2.svg" alt="">
                                                         <input v-model="employerForm.first_name" type="text" id="firstname" name="firstname" placeholder="Mr. Robert">
                                                     </div>
                                                 </div>
@@ -155,7 +155,7 @@
                                                 <div class="form-inner mb-25">
                                                     <label for="lastname">Last Name*</label>
                                                     <div class="input-area">
-                                                        <img src="templates/assets/images/icon/user-2.svg" alt="">
+                                                        <img src="assets/images/icon/user-2.svg" alt="">
                                                         <input v-model="employerForm.last_name" type="text" id="lastname" name="lastname" placeholder="Jonson">
                                                     </div>
                                                 </div>
@@ -164,7 +164,7 @@
                                                 <div class="form-inner mb-25">
                                                     <label for="username">User Name*</label>
                                                     <div class="input-area">
-                                                        <img src="templates/assets/images/icon/user-2.svg" alt="">
+                                                        <img src="assets/images/icon/user-2.svg" alt="">
                                                         <input v-model="employerForm.username" type="text" id="username1" name="username" placeholder="robertjonson">
                                                     </div>
                                                 </div>
@@ -173,7 +173,7 @@
                                                 <div class="form-inner mb-25">
                                                     <label for="email">Email*</label>
                                                     <div class="input-area">
-                                                        <img src="templates/assets/images/icon/email-2.svg" alt="">
+                                                        <img src="assets/images/icon/email-2.svg" alt="">
                                                         <input v-model="employerForm.email" type="text" id="email1" name="email" placeholder="info@example.com">
                                                     </div>
                                                 </div>
@@ -182,7 +182,7 @@
                                                 <div class="form-inner mb-25">
                                                     <label for="companyname">Company Name*</label>
                                                     <div class="input-area">
-                                                        <img src="templates/assets/images/icon/company-2.svg" alt="">
+                                                        <img src="assets/images/icon/company-2.svg" alt="">
                                                         <input v-model="employerForm.company_name" type="text" id="companyname" name="companyname" placeholder="Mr. Robert">
                                                     </div>
                                                 </div>
@@ -191,7 +191,7 @@
                                                 <div class="form-inner mb-25">
                                                     <label>Company Type*</label>
                                                     <div class="input-area">
-                                                        <img src="templates/assets/images/icon/category-2.svg" alt="">
+                                                        <img src="assets/images/icon/category-2.svg" alt="">
                                                         <Dropdown 
                                                             @change="changeCompanyType"
                                                             v-model=this.employerForm.company_type_id 
@@ -235,10 +235,10 @@
                                             <div class="login-difarent-way">
                                                 <div class="row g-4">
                                                     <div class="col-md-6">
-                                                        <a href="https://myaccount.google.com/"><img src="templates/assets/images/icon/google1.svg" alt="">Log in with Google</a>
+                                                        <a href="https://myaccount.google.com/"><img src="assets/images/icon/google1.svg" alt="">Log in with Google</a>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <a href="https://www.facebook.com/"><img src="templates/assets/images/icon/facebook1.svg" alt="">Log in with Facebook</a>
+                                                        <a href="https://www.facebook.com/"><img src="assets/images/icon/facebook1.svg" alt="">Log in with Facebook</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -432,7 +432,7 @@ function getMimeType(file:any, fallback = null) {
     this.$store.dispatch('getSuburb', '');
 
     let Script = document.createElement("script");
-    Script.setAttribute("src", "/templates/assets/js/main.js");
+    Script.setAttribute("src", "/assets/js/main.js");
     document.head.appendChild(Script);
   }
   

@@ -17,7 +17,7 @@
                                         <div class="form-inner mb-25">
                                             <label>full Name*</label>
                                             <div class="input-area">
-                                                <img src="/templates/assets/images/icon/user-2.svg" alt="">
+                                                <img src="/assets/images/icon/user-2.svg" alt="">
                                                 <input v-model="user.name" type="text" >
                                             </div>
                                         </div>
@@ -26,7 +26,7 @@
                                         <div class="form-inner mb-25">
                                             <label>Gender*</label>
                                             <div class="input-area">
-                                                <img src="/templates/assets/images/icon/language-2.svg" alt="">
+                                                <img src="/assets/images/icon/language-2.svg" alt="">
                                                 <select class="">
                                                     <option value="">Select Gender</option>
                                                     <option value="male" v-bind:selected="user.gender =='male'">Male</option>
@@ -40,7 +40,7 @@
                                         <div class="form-inner mb-25">
                                             <label>Your DOB*</label>
                                             <div class="input-area">
-                                                <img src="/templates/assets/images/icon/clock-2.svg " alt="">
+                                                <img src="/assets/images/icon/clock-2.svg " alt="">
                                                 <Calendar v-model="user.dob"  :maxDate="maxDate"   />
                                           
                                             </div>
@@ -56,7 +56,7 @@
                                         <div class="form-inner mb-25">
                                             <label>Subrub</label>
                                             <div class="input-area">
-                                                <img src="/templates/assets/images/icon/company-2.svg" alt="">
+                                                <img src="/assets/images/icon/company-2.svg" alt="">
                                                 <Dropdown 
                                                 v-model=this.user.suburb_id                                       
                                                 :options="suburbs"
@@ -74,7 +74,7 @@
                                         <div class="form-inner mb-25">
                                             <label>Phone Number*</label>
                                             <div class="input-area">
-                                                <img src="/templates/assets/images/icon/phone-2.svg" alt="">
+                                                <img src="/assets/images/icon/phone-2.svg" alt="">
                                                 <input v-model="user.phone" type="text" >
                                             </div>
                                         </div>
@@ -83,7 +83,7 @@
                                         <div class="form-inner mb-25">
                                             <label>Email*</label>
                                             <div class="input-area">
-                                                <img src="/templates/assets/images/icon/email-2.svg" alt="">
+                                                <img src="/assets/images/icon/email-2.svg" alt="">
                                                 <input v-model="user.email" type="email" readonly>
                                             </div>
                                         </div>
@@ -92,7 +92,7 @@
                                         <div class="form-inner mb-25">
                                             <label>Current Job Place</label>
                                             <div class="input-area">
-                                                <img src="/templates/assets/images/icon/company-2.svg" alt="">
+                                                <img src="/assets/images/icon/company-2.svg" alt="">
                                                 <Dropdown 
                                                 v-model=this.user.current_job_location_id                                       
                                                 :options="locations"
@@ -110,7 +110,7 @@
                                         <div class="form-inner mb-25">
                                             <label>Designation*</label>
                                             <div class="input-area">
-                                                <img src="/templates/assets/images/icon/designation-2.svg" alt="">
+                                                <img src="/assets/images/icon/designation-2.svg" alt="">
                                                 <Dropdown 
                                                 v-model=this.user.designation_id                                        
                                                 :options="designations"
@@ -128,7 +128,7 @@
                                         <div class="form-inner mb-25">
                                             <label>Qualification*</label>
                                             <div class="input-area">
-                                                <img src="/templates/assets/images/icon/qualification-2.svg" alt="">
+                                                <img src="/assets/images/icon/qualification-2.svg" alt="">
                                                 <Dropdown 
                                                 v-model=this.user.qualification_id                                       
                                                 :options="qualifications"
@@ -193,7 +193,7 @@
                                         <div class="form-inner mb-25">
                                             <label>Facebook</label>
                                             <div class="input-area">
-                                                <img src="/templates/assets/images/icon/facebook-2.svg" alt="">
+                                                <img src="/assets/images/icon/facebook-2.svg" alt="">
                                                 <input type="text" v-model="social.facebook" placeholder="https://example-facebook.com">
                                             </div>
                                         </div>
@@ -202,7 +202,7 @@
                                         <div class="form-inner mb-25">
                                             <label>Twitter</label>
                                             <div class="input-area">
-                                                <img src="/templates/assets/images/icon/twiter-2.svg" alt="">
+                                                <img src="/assets/images/icon/twiter-2.svg" alt="">
                                                 <input type="text" v-model="social.twitter" placeholder="https://example-twitter.com">
                                             </div>
                                         </div>
@@ -211,7 +211,7 @@
                                         <div class="form-inner mb-25">
                                             <label>LinkedIn</label>
                                             <div class="input-area">
-                                                <img src="/templates/assets/images/icon/linkedin-2.svg" alt="">
+                                                <img src="/assets/images/icon/linkedin-2.svg" alt="">
                                                 <input type="text" v-model="social.linkedin" placeholder="https://example-linkedin.com">
                                             </div>
                                         </div>
@@ -220,7 +220,7 @@
                                         <div class="form-inner mb-25">
                                             <label>Pinterest</label>
                                             <div class="input-area">
-                                                <img src="/templates/assets/images/icon/pinterest-2.svg" alt="">
+                                                <img src="/assets/images/icon/pinterest-2.svg" alt="">
                                                 <input type="text" v-model="social.pinterest" placeholder="https://example-pinterest.com">
                                             </div>
                                         </div>
@@ -229,7 +229,7 @@
                                         <div class="form-inner mb-25">
                                             <label>Dribbble</label>
                                             <div class="input-area">
-                                                <img src="/templates/assets/images/icon/dribble-2.svg" alt="">
+                                                <img src="/assets/images/icon/dribble-2.svg" alt="">
                                                 <input type="text" v-model="social.dribbble" placeholder="https://example-dribbble.com">
                                             </div>
                                         </div>
@@ -238,7 +238,7 @@
                                         <div class="form-inner mb-50">
                                             <label>Behance</label>
                                             <div class="input-area">
-                                                <img src="/templates/assets/images/icon/behance-2.svg" alt="">
+                                                <img src="/assets/images/icon/behance-2.svg" alt="">
                                                 <input type="text" v-model="social.behance" placeholder="https://example-behance.com">
                                             </div>
                                         </div>
@@ -371,7 +371,7 @@ import moment from 'moment';
     //   this.locationsOptions = await this.locations
 
     let Script = document.createElement("script");
-      Script.setAttribute("src", "/templates/assets/js/main.js");
+      Script.setAttribute("src", "/assets/js/main.js");
       document.head.appendChild(Script);
   },
   watch: {

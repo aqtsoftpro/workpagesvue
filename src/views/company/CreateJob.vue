@@ -20,7 +20,7 @@
                                         <div class="form-inner mb-25">
                                             <label for="job_title">Job Title*</label>
                                             <div class="input-area">
-                                                <img src="/templates/assets/images/icon/company-2.svg" alt="">
+                                                <img src="/assets/images/icon/company-2.svg" alt="">
                                                 <input v-model="jobForm.job_title" type="text" id="job_title" name="job_title">
                                             </div>
                                         </div>
@@ -29,7 +29,7 @@
                                         <div class="form-inner mb-25">
                                             <label>Job Type*</label>
                                             <div class="input-area">
-                                                <img src="/templates/assets/images/icon/category-2.svg" alt="">
+                                                <img src="/assets/images/icon/category-2.svg" alt="">
                                                 <Dropdown 
                                                 @change="changeJobType"
                                                 v-model=this.jobForm.job_type_id 
@@ -49,7 +49,7 @@
                                         <div class="form-inner mb-25">
                                             <label>Working Mode*</label>
                                             <div class="input-area">
-                                                <img src="/templates/assets/images/icon/category-2.svg" alt="">
+                                                <img src="/assets/images/icon/category-2.svg" alt="">
                                                 <Dropdown 
                                                 @change="changeWorkingMode"
                                                 v-model=this.jobForm.working_mode_Id 
@@ -67,7 +67,7 @@
                                         <div class="form-inner mb-25">
                                             <label>Payment Mode*</label>
                                             <div class="input-area">
-                                                <img src="/templates/assets/images/icon/category-2.svg" alt="">
+                                                <img src="/assets/images/icon/category-2.svg" alt="">
                                                 <Dropdown 
                                                 @change="changePaymentMode"
                                                 v-model=this.jobForm.payment_mode 
@@ -85,7 +85,7 @@
                                         <div class="form-inner mb-25">
                                             <label>Qualification Required*</label>
                                             <div class="input-area">
-                                                <img src="/templates/assets/images/icon/category-2.svg" alt="">
+                                                <img src="/assets/images/icon/category-2.svg" alt="">
                                                 <Dropdown 
                                                 @change="changeQualification"
                                                 v-model=this.jobForm.qualification_id 
@@ -103,7 +103,7 @@
                                         <div class="form-inner mb-25">
                                             <label>Gender Required</label>
                                             <div class="input-area">
-                                                <img src="/templates/assets/images/icon/category-2.svg" alt="">
+                                                <img src="/assets/images/icon/category-2.svg" alt="">
                                                 <Dropdown 
                                                 @change="changeGender"
                                                 v-model=this.jobForm.gender 
@@ -121,7 +121,7 @@
                                         <div class="form-inner mb-25">
                                             <label>Job Category</label>
                                             <div class="input-area">
-                                                <img src="/templates/assets/images/icon/category-2.svg" alt="">
+                                                <img src="/assets/images/icon/category-2.svg" alt="">
                                                 <Dropdown 
                                                 @change="changeCategory"
                                                 v-model=this.jobForm.category_id
@@ -139,7 +139,7 @@
                                         <div class="form-inner mb-25">
                                             <label>Job State</label>
                                             <div class="input-area">
-                                                <img src="/templates/assets/images/icon/category-2.svg" alt="">
+                                                <img src="/assets/images/icon/category-2.svg" alt="">
                                                 <Dropdown 
                                                 @change="changeState"
                                                 v-model=this.jobForm.state_id
@@ -169,7 +169,7 @@
                                         <div class="form-inner mb-25">
                                             <label for="vacancy">Vacancies</label>
                                             <div class="input-area">
-                                                <img src="/templates/assets/images/icon/company-2.svg" alt="">
+                                                <img src="/assets/images/icon/company-2.svg" alt="">
                                                 <input v-model="jobForm.vacancy" type="text" id="vacancy" name="companyname" placeholder="Number of vacancies">
                                             </div>
                                         </div>
@@ -178,7 +178,7 @@
                                         <div class="form-inner mb-25">
                                             <label for="experience">Experience (Years)</label>
                                             <div class="input-area">
-                                                <img src="/templates/assets/images/icon/company-2.svg" alt="">
+                                                <img src="/assets/images/icon/company-2.svg" alt="">
                                                 <input v-model="jobForm.experience" type="text" id="experience" name="experience" placeholder="1 year">
                                             </div>
                                         </div>
@@ -187,7 +187,7 @@
                                         <div class="form-inner mb-25">
                                             <label for="salary_from">Salary (from)</label>
                                             <div class="input-area">
-                                                <img src="/templates/assets/images/icon/company-2.svg" alt="">
+                                                <img src="/assets/images/icon/company-2.svg" alt="">
                                                 <input v-model="jobForm.salary_from" type="text" id="salary_from" name="salary_from" placeholder="Salary from">
                                             </div>
                                         </div>
@@ -196,7 +196,7 @@
                                         <div class="form-inner mb-25">
                                             <label for="salary_from">Salary (to)</label>
                                             <div class="input-area">
-                                                <img src="/templates/assets/images/icon/company-2.svg" alt="">
+                                                <img src="/assets/images/icon/company-2.svg" alt="">
                                                 <input v-model="jobForm.salary_to" type="text" id="salary_to" name="salary_to" placeholder="Salary to">
                                             </div>
                                         </div>
@@ -205,7 +205,7 @@
                                         <div class="form-inner mb-25">
                                             <label for="salary_from">Job Expiery</label>
                                             <div class="input-area">
-                                                <img src="/templates/assets/images/icon/company-2.svg" alt="">
+                                                <img src="/assets/images/icon/company-2.svg" alt="">
                                                 <Calendar v-model="jobForm.expiration" dateFormat="dd/mm/yy" />
                                             </div>
                                         </div>
@@ -351,7 +351,7 @@ import Calendar from 'primevue/calendar';
       this.$store.dispatch('getStates', '')
       
       let Script = document.createElement("script");
-      Script.setAttribute("src", "/templates/assets/js/main.js");
+      Script.setAttribute("src", "/assets/js/main.js");
       document.head.appendChild(Script);
   }    
   ,

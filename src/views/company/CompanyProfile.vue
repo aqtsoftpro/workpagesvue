@@ -22,7 +22,7 @@
                                         <div class="form-inner mb-25">
                                             <label for="companyname">Company Name*</label>
                                             <div class="input-area">
-                                                <img src="/templates/assets/images/icon/company-2.svg" alt="">
+                                                <img src="/assets/images/icon/company-2.svg" alt="">
                                                 <input v-model="userForm.name" type="text" id="companyname" name="companyname" placeholder="Elite Hangstroman">
                                             </div>
                                         </div>
@@ -31,7 +31,7 @@
                                         <div class="form-inner mb-25">
                                             <label>Company Type*</label>
                                             <div class="input-area">
-                                                <img src="/templates/assets/images/icon/category-2.svg" alt="">
+                                                <img src="/assets/images/icon/category-2.svg" alt="">
                                                 <Dropdown 
                                                 @change="changeCompanyType"
                                                 v-model=this.userForm.company_type_id 
@@ -50,7 +50,7 @@
                                         <div class="form-inner mb-25">
                                             <label for="company">Company Size*</label>
                                             <div class="input-area">
-                                                <img src="/templates/assets/images/icon/person-2.svg" alt="">
+                                                <img src="/assets/images/icon/person-2.svg" alt="">
                                                 <input v-model="userForm.company_size" type="text" id="company" name="company" placeholder="40 Person">
                                             </div>
                                         </div>
@@ -59,7 +59,7 @@
                                         <div class="form-inner mb-25">
                                             <label for="email">Email*</label>
                                             <div class="input-area">
-                                                <img src="/templates/assets/images/icon/email-2.svg" alt="">
+                                                <img src="/assets/images/icon/email-2.svg" alt="">
                                                 <input v-model="userForm.email" type="text" id="email" name="email" placeholder="info@example.com" >
                                             </div>
                                         </div>
@@ -74,7 +74,7 @@
                                         <div class="form-inner mb-25">
                                             <label for="location">State*</label>
                                             <div class="input-area">
-                                                <img src="/templates/assets/images/icon/map-2.svg" alt="">
+                                                <img src="/assets/images/icon/map-2.svg" alt="">
                                                 <Dropdown 
                                                 v-model=this.userForm.state_id                                       
                                                 :options="states"
@@ -92,7 +92,7 @@
                                         <div class="form-inner mb-25">
                                             <label for="website">Website Link*</label>
                                             <div class="input-area">
-                                                <img src="/templates/assets/images/icon/website-2.svg" alt="">
+                                                <img src="/assets/images/icon/website-2.svg" alt="">
                                                 <input v-model="userForm.weblink" type="text" id="website" name="website" placeholder="https://example.com">
                                             </div>
                                         </div>
@@ -101,7 +101,7 @@
                                         <div class="form-inner mb-25">
                                             <label for="facebook">Facebook</label>
                                             <div class="input-area">
-                                                <img src="/templates/assets/images/icon/facebook-2.svg" alt="">
+                                                <img src="/assets/images/icon/facebook-2.svg" alt="">
                                                 <input v-model="userForm.facebook" type="text" id="facebook" name="facebook" placeholder="https://example-facebook.com">
                                             </div>
                                         </div>
@@ -110,7 +110,7 @@
                                         <div class="form-inner mb-25">
                                             <label for="twitter">Twitter</label>
                                             <div class="input-area">
-                                                <img src="/templates/assets/images/icon/twiter-2.svg" alt="">
+                                                <img src="/assets/images/icon/twiter-2.svg" alt="">
                                                 <input v-model="userForm.twitter" type="text" id="twitter" name="twitter" placeholder="https://example-twitter.com">
                                             </div>
                                         </div>
@@ -119,7 +119,7 @@
                                         <div class="form-inner mb-25">
                                             <label for="linkedin">LinkedIn</label>
                                             <div class="input-area">
-                                                <img src="/templates/assets/images/icon/linkedin-2.svg" alt="">
+                                                <img src="/assets/images/icon/linkedin-2.svg" alt="">
                                                 <input v-model="userForm.linkedin" type="text" id="linkedin" name="linkedin" placeholder="https://example-linkedin.com">
                                             </div>
                                         </div>
@@ -128,7 +128,7 @@
                                         <div class="form-inner mb-25">
                                             <label for="pinterest">Pinterest</label>
                                             <div class="input-area">
-                                                <img src="/templates/assets/images/icon/pinterest-2.svg" alt="">
+                                                <img src="/assets/images/icon/pinterest-2.svg" alt="">
                                                 <input v-model="userForm.pinterest" type="text" id="pinterest" name="pinterest" placeholder="https://example-pinterest.com">
                                             </div>
                                         </div>
@@ -137,7 +137,7 @@
                                         <div class="form-inner mb-25">
                                             <label for="dribble">Dribbble</label>
                                             <div class="input-area">
-                                                <img src="/templates/assets/images/icon/dribble-2.svg" alt="">
+                                                <img src="/assets/images/icon/dribble-2.svg" alt="">
                                                 <input v-model="userForm.dribble" type="text" id="dribble" name="dribble" placeholder="https://example-dribbble.com">
                                             </div>
                                         </div>
@@ -146,7 +146,7 @@
                                         <div class="form-inner mb-25">
                                             <label for="behance">Behance</label>
                                             <div class="input-area">
-                                                <img src="/templates/assets/images/icon/behance-2.svg" alt="">
+                                                <img src="/assets/images/icon/behance-2.svg" alt="">
                                                 <input v-model="userForm.behance" type="text" id="behance" name="behance" placeholder="https://example-behance.com">
                                             </div>
                                         </div>
@@ -335,7 +335,7 @@ import Company from './index.vue';
       this.$store.dispatch('getCompany', this.user[0].id)
 
       let Script = document.createElement("script");
-      Script.setAttribute("src", "/templates/assets/js/main.js");
+      Script.setAttribute("src", "/assets/js/main.js");
       document.head.appendChild(Script);
   },
   watch :{

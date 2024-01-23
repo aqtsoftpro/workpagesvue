@@ -19,7 +19,7 @@
                             <div class="col-lg-6">
                                 <div class="author-area">
                                     <div class="author-img">
-                                        <img src="/templates/assets/images/bg/resume-author.png" alt="">
+                                        <img src="/assets/images/bg/resume-author.png" alt="">
                                     </div>
                                     <div class="name-degination">
                                         <h4>Mr. Jacoline Frankly</h4>
@@ -31,9 +31,9 @@
                                 <div class="contact-area">
                                     <h4>Contact Info</h4>
                                     <ul>
-                                        <li>Phone:<a href="#">+880-177 443 5455 <span><img src="/templates/assets/images/icon/phone-5.svg" alt=""></span></a></li>
-                                        <li>Email:<a href="#">info@example.com <span><img src="/templates/assets/images/icon/envlop-5.svg" alt=""></span></a></li>
-                                        <li>Website:<a href="#">www.infositeexample.com <span><img src="/templates/assets/images/icon/web-5.svg " alt=""></span></a></li>
+                                        <li>Phone:<a href="#">+880-177 443 5455 <span><img src="/assets/images/icon/phone-5.svg" alt=""></span></a></li>
+                                        <li>Email:<a href="#">info@example.com <span><img src="/assets/images/icon/envlop-5.svg" alt=""></span></a></li>
+                                        <li>Website:<a href="#">www.infositeexample.com <span><img src="/assets/images/icon/web-5.svg " alt=""></span></a></li>
                                     </ul>
                                 </div>
                             </div>

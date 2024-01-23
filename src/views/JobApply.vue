@@ -36,7 +36,7 @@
                                         <div class="form-inner mb-25">
                                             <label>Upload your resume*</label>
                                             <div class="input-area">
-                                                <img src="/templates/assets/images/icon/user-2.svg" alt="">
+                                                <img src="/assets/images/icon/user-2.svg" alt="">
                                                 <input v-on:change="onFileSelected" type="file" name="cv" />
                                             </div>
                                         </div>
@@ -45,7 +45,7 @@
                                         <div class="form-inner mb-25">
                                             <label>Your Current Designation</label>
                                             <div class="input-area">
-                                                <img src="/templates/assets/images/icon/clock-2.svg " alt="">
+                                                <img src="/assets/images/icon/clock-2.svg " alt="">
                                                 <input type="text" v-model="application.designation" placeholder="What is your current designation" />
                                             </div>
                                         </div>
@@ -54,7 +54,7 @@
                                         <div class="form-inner mb-25">
                                             <label>Your Exprience</label>
                                             <div class="input-area">
-                                                <img src="/templates/assets/images/icon/clock-2.svg " alt="">
+                                                <img src="/assets/images/icon/clock-2.svg " alt="">
                                                 <input type="text" v-model="application.experience" placeholder="How many years of experince do you have ?" />
                                             </div>
                                         </div>
@@ -63,7 +63,7 @@
                                         <div class="form-inner mb-25">
                                             <label>Expected Salary</label>
                                             <div class="input-area">
-                                                <img src="/templates/assets/images/icon/clock-2.svg " alt="">
+                                                <img src="/assets/images/icon/clock-2.svg " alt="">
                                                 <input type="text" v-model="application.salary" placeholder="What is your expected salary ?" />
                                             </div>
                                         </div>
@@ -117,7 +117,7 @@
                             </ul>
                         </div>
                         <div class="view-job-btn mb-30">
-                            <a href="job-listing1.html"><img src="templates/assets/images/icon/company-2.svg" alt="">View All Jobs In This Company</a>
+                            <a href="job-listing1.html"><img src="assets/images/icon/company-2.svg" alt="">View All Jobs In This Company</a>
                         </div>
                         <div class="job-share-area mb-50">
                             <h6>Job Link Share:</h6>
@@ -132,7 +132,7 @@
                         <!-- Commented as per meeting in march -->
                         <!-- <div class="email-area mb-50">
                             <div class="title">
-                                <h6><img src="templates/assets/images/icon/email-2.svg" alt="">Email Now</h6>
+                                <h6><img src="assets/images/icon/email-2.svg" alt="">Email Now</h6>
                             </div>
                             <p>Send your resume at <a href="mailto:info@example.com">info@example.com</a></p>
                         </div>
@@ -155,60 +155,60 @@
                         <div class="swiper company-gallery-slider" data-cursor="Drag">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
-                                    <a href="templates/assets/images/bg/company-gallery-big-01.png" data-fancybox="gallery" class="gallery2-img">
+                                    <a href="assets/images/bg/company-gallery-big-01.png" data-fancybox="gallery" class="gallery2-img">
                                         <div class="gallery-wrap">
-                                            <img class="img-fluid" src="templates/assets/images/bg/company-gallery-sm-01.png" alt="">
+                                            <img class="img-fluid" src="assets/images/bg/company-gallery-sm-01.png" alt="">
                                             <div class="overlay d-flex align-items-center justify-content-center">
                                                 <div class="items-content text-center">
-                                                    <img src="templates/assets/images/icon/eye.svg" alt="">
+                                                    <img src="assets/images/icon/eye.svg" alt="">
                                                 </div>
                                             </div>
                                         </div>
                                     </a>
                                 </div>
                                 <div class="swiper-slide">
-                                    <a href="templates/assets/images/bg/company-gallery-big-02.png" data-fancybox="gallery" class="gallery2-img">
+                                    <a href="assets/images/bg/company-gallery-big-02.png" data-fancybox="gallery" class="gallery2-img">
                                         <div class="gallery-wrap">
-                                            <img class="img-fluid" src="templates/assets/images/bg/company-gallery-sm-02.png" alt="">
+                                            <img class="img-fluid" src="assets/images/bg/company-gallery-sm-02.png" alt="">
                                             <div class="overlay d-flex align-items-center justify-content-center">
                                                 <div class="items-content text-center">
-                                                    <img src="templates/assets/images/icon/eye.svg" alt="">
+                                                    <img src="assets/images/icon/eye.svg" alt="">
                                                 </div>
                                             </div>
                                         </div>
                                     </a>
                                 </div>
                                 <div class="swiper-slide">
-                                    <a href="templates/assets/images/bg/company-gallery-big-03.png" data-fancybox="gallery" class="gallery2-img">
+                                    <a href="assets/images/bg/company-gallery-big-03.png" data-fancybox="gallery" class="gallery2-img">
                                         <div class="gallery-wrap">
-                                            <img class="img-fluid" src="templates/assets/images/bg/company-gallery-sm-03.png" alt="">
+                                            <img class="img-fluid" src="assets/images/bg/company-gallery-sm-03.png" alt="">
                                             <div class="overlay d-flex align-items-center justify-content-center">
                                                 <div class="items-content text-center">
-                                                    <img src="templates/assets/images/icon/eye.svg" alt="">
+                                                    <img src="assets/images/icon/eye.svg" alt="">
                                                 </div>
                                             </div>
                                         </div>
                                     </a>
                                 </div>
                                 <div class="swiper-slide">
-                                    <a href="templates/assets/images/bg/company-gallery-big-04.png" data-fancybox="gallery" class="gallery2-img">
+                                    <a href="assets/images/bg/company-gallery-big-04.png" data-fancybox="gallery" class="gallery2-img">
                                         <div class="gallery-wrap">
-                                            <img class="img-fluid" src="templates/assets/images/bg/company-gallery-sm-04.png" alt="">
+                                            <img class="img-fluid" src="assets/images/bg/company-gallery-sm-04.png" alt="">
                                             <div class="overlay d-flex align-items-center justify-content-center">
                                                 <div class="items-content text-center">
-                                                    <img src="templates/assets/images/icon/eye.svg" alt="">
+                                                    <img src="assets/images/icon/eye.svg" alt="">
                                                 </div>
                                             </div>
                                         </div>
                                     </a>
                                 </div>
                                 <div class="swiper-slide">
-                                    <a href="templates/assets/images/bg/company-gallery-big-05.png" data-fancybox="gallery" class="gallery2-img">
+                                    <a href="assets/images/bg/company-gallery-big-05.png" data-fancybox="gallery" class="gallery2-img">
                                         <div class="gallery-wrap">
-                                            <img class="img-fluid" src="templates/assets/images/bg/company-gallery-sm-05.png" alt="">
+                                            <img class="img-fluid" src="assets/images/bg/company-gallery-sm-05.png" alt="">
                                             <div class="overlay d-flex align-items-center justify-content-center">
                                                 <div class="items-content text-center">
-                                                    <img src="templates/assets/images/icon/eye.svg" alt="">
+                                                    <img src="assets/images/icon/eye.svg" alt="">
                                                 </div>
                                             </div>
                                         </div>
@@ -224,10 +224,10 @@
                             <h3>Related Jobs:</h3>
                             <div class="swiper-btn1 d-flex align-items-center">
                                 <div class="left-btn prev-4">
-                                    <img src="templates/assets/images/icon/explore-elliose.svg" alt="">
+                                    <img src="assets/images/icon/explore-elliose.svg" alt="">
                                 </div>
                                 <div class="right-btn next-4">
-                                    <img src="templates/assets/images/icon/explore-elliose.svg" alt="">
+                                    <img src="assets/images/icon/explore-elliose.svg" alt="">
                                 </div>
                             </div>
                         </div>
@@ -237,7 +237,7 @@
                                     <div class="feature-card">
                                         <div class="company-area">
                                             <div class="logo">
-                                                <img src="templates/assets/images/bg/company-logo/company-06.png" alt="">
+                                                <img src="assets/images/bg/company-logo/company-06.png" alt="">
                                             </div>
                                             <div class="company-details">
                                                 <div class="name-location">
@@ -252,22 +252,22 @@
                                         <div class="job-discription">
                                             <ul>
                                                 <li>
-                                                    <img src="templates/assets/images/icon/arrow2.svg" alt="">
+                                                    <img src="assets/images/icon/arrow2.svg" alt="">
                                                     <p><span class="title">Salary:</span> {{job.salary_range}} / <span class="time">{{ job.payment_mode }}</span></p>
                                                 </li>
                                                 <li>
-                                                    <img src="templates/assets/images/icon/arrow2.svg" alt="">
+                                                    <img src="assets/images/icon/arrow2.svg" alt="">
                                                     <p><span class="title">Vacancy:</span> <span> {{ job.vacancy }} Person ({{job.gender}})</span></p>
                                                 </li>
                                                 <li>
-                                                    <img src="templates/assets/images/icon/arrow2.svg" alt="">
+                                                    <img src="assets/images/icon/arrow2.svg" alt="">
                                                     <p><span class="title">Deadline:</span> <span> {{ job.expiration }}</span></p>
                                                 </li>
                                             </ul>
                                         </div>
                                         <div class="job-type-apply">
                                             <div class="apply-btn">
-                                                <router-link :to="{ name: 'job-details', query: {job_id: job.id} }" ><span><img src="templates/assets/images/icon/apply-ellipse.svg" alt=""></span>Apply Now</router-link>
+                                                <router-link :to="{ name: 'job-details', query: {job_id: job.id} }" ><span><img src="assets/images/icon/apply-ellipse.svg" alt=""></span>Apply Now</router-link>
                                             </div>
                                         </div>
                                     </div>

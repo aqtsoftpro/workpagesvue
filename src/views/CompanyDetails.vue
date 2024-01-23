@@ -18,20 +18,20 @@
                 <div class="col-lg-12">
                     <div class="post-thumb">
                         <div class="company-logo">
-                            <img :src="(company.logo) ? company.logo : '/templates/assets/images/bg/company-logo/company-01.png'" alt="">
+                            <img :src="(company.logo) ? company.logo : '/assets/images/bg/company-logo/company-01.png'" alt="">
                         </div>
                     </div>
                     <div class="company-area">
                         <div class="company-info">
                             <h4>{{ company.name  }}</h4>
                             <ul>
-                                <li><img src="templates/assets/images/icon/map-2.svg" alt=""> {{ company.location }}</li>
-                                <li><img src="templates/assets/images/icon/category-2.svg" alt=""><span class="title">Category: </span> {{company.company_type}}</li>
+                                <li><img src="assets/images/icon/map-2.svg" alt=""> {{ company.location }}</li>
+                                <li><img src="assets/images/icon/category-2.svg" alt=""><span class="title">Category: </span> {{company.company_type}}</li>
                             </ul>
                         </div>
                         <div class="company-contact">
                             <div class="websitet-link">
-                                <p><img src="templates/assets/images/icon/web-5.svg" alt="">Website Link:</p>
+                                <p><img src="assets/images/icon/web-5.svg" alt="">Website Link:</p>
                                 <a :href="company.weblink">{{ company.weblink }}</a>
                             </div>
                             <div class="social-area">
@@ -57,7 +57,7 @@
                                     <div class="col-sm-6 mb-50">
                                        <div class="working-process">
                                         <div class="icon">
-                                            <img src="templates/assets/images/icon/creative-design.svg" alt="">
+                                            <img src="assets/images/icon/creative-design.svg" alt="">
                                         </div>
                                         <div class="work-content">
                                             <div class="sl">01</div>
@@ -69,7 +69,7 @@
                                     <div class="col-sm-6 mb-50">
                                        <div class="working-process">
                                         <div class="icon">
-                                            <img src="templates/assets/images/icon/react-next.svg" alt="">
+                                            <img src="assets/images/icon/react-next.svg" alt="">
                                         </div>
                                         <div class="work-content">
                                             <div class="sl">02</div>
@@ -81,7 +81,7 @@
                                     <div class="col-sm-6 mb-50">
                                        <div class="working-process">
                                         <div class="icon">
-                                            <img src="templates/assets/images/icon/html-tem.svg" alt="">
+                                            <img src="assets/images/icon/html-tem.svg" alt="">
                                         </div>
                                         <div class="work-content">
                                             <div class="sl">03</div>
@@ -93,7 +93,7 @@
                                     <div class="col-sm-6 mb-50">
                                        <div class="working-process">
                                         <div class="icon">
-                                            <img src="templates/assets/images/icon/wordpress.svg" alt="">
+                                            <img src="assets/images/icon/wordpress.svg" alt="">
                                         </div>
                                         <div class="work-content">
                                             <div class="sl">04</div>
@@ -171,14 +171,14 @@
                                 </div>
                             </div>
                             <div class="job-type-apply">
-                                <p><img src="templates/assets/images/icon/company-4.svg" alt=""> Job Applied: <span> {{ job.applications_count }} Person</span></p>
+                                <p><img src="assets/images/icon/company-4.svg" alt=""> Job Applied: <span> {{ job.applications_count }} Person</span></p>
                                 <div class="job-type">
                                     <span class="light-yellow">{{ job.working_mode }}</span>
                                     <!-- <span class="light-purple">Part Time</span>
                                     <span class="light-blue">Remote</span> -->
                                 </div>
                                 <div class="apply-btn">
-                                    <router-link :to="`job-details?job_id=${job.id}`"><span><img src="templates/assets/images/icon/apply-ellipse.svg" alt=""></span>Apply Now</router-link>
+                                    <router-link :to="`job-details?job_id=${job.id}`"><span><img src="assets/images/icon/apply-ellipse.svg" alt=""></span>Apply Now</router-link>
                                 </div>
                             </div>
                         </div>
