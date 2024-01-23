@@ -21,7 +21,7 @@
                                           <div class="col-md-12">
                                               <div class="form-inner mb-25">
                                                   <label>Title*</label>
-                                                  <div class="input-area"><img src="/assets/images/icon/company-2.svg " alt="">
+                                                  <div class="input-area"><img src="/templates/assets/images/icon/company-2.svg " alt="">
                                                     <input type="text" v-model="portfolio.portfolioID[index]" name="portfolioID">
                                                       <input type="text" v-model="portfolio.name[index]" name="name" placeholder="Portfolio Title">
                                                       <!-- <input type="text" v-model="item.portfolioID" name="portfolioID"> -->
@@ -38,7 +38,7 @@
                                           <div class="col-md-12">
                                               <div class="form-inner mb-25">
                                                   <label>Images*</label>
-                                                  <div class="input-area"><img src="/assets/images/icon/company-2.svg " alt="">
+                                                  <div class="input-area"><img src="/templates/assets/images/icon/company-2.svg " alt="">
                                                       <!-- <input type="file" name="images" @change="previewFiles(index)" multiple> -->
                                                   </div> 
                                               </div>
@@ -210,7 +210,7 @@ import moment from 'moment';
       // this.loadPortfolioWithCount();
 
       let Script = document.createElement("script");
-        Script.setAttribute("src", "/assets/js/main.js");
+        Script.setAttribute("src", "/templates/assets/js/main.js");
         document.head.appendChild(Script);
   },
   watch: {
