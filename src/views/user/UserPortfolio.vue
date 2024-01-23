@@ -1,93 +1,202 @@
 <template>
-    <div class="dashboard-area pt-120 mb-120">
-        <div class="container">
-            <div class="row g-lg-4 gy-5 mb-90">
-                <user-menu />
-                <div class="col-lg-9">
-                    <div class="my-profile-inner">
-                        
-                        <div class="form-wrapper mb-60">
-                            <div class="section-title">
-                                <h5>My Portfolio</h5>
-                            </div>
-                            <form class="edit-profile-form profile-form">
-                              
-                                        <div class="portfolio-row" v-for="index in porfolioCount" :key="index">
+  <div class="dashboard-area pt-120 mb-120">
+    <div class="container">
+      <div class="row g-lg-4 gy-5 mb-90">
+        <user-menu />
+        <div class="col-lg-9">
+          <div class="my-profile-inner">
 
-                                          <div class="section-title2">
-                                            <h5>Portfolio Item {{ index }} :</h5>
-                                          </div>
+            <div class="form-wrapper mb-60">
+              <div class="section-title">
+                <h5>My Portfolio</h5>
+              </div>
+              <form class="edit-profile-form profile-form">
 
-                                          <div class="col-md-12">
-                                              <div class="form-inner mb-25">
-                                                  <label>Title*</label>
-                                                  <div class="input-area"><img src="/templates/assets/images/icon/company-2.svg " alt="">
-                                                    <input type="text" v-model="portfolio.portfolioID[index]" name="portfolioID">
-                                                      <input type="text" v-model="portfolio.name[index]" name="name" placeholder="Portfolio Title">
-                                                      <!-- <input type="text" v-model="item.portfolioID" name="portfolioID"> -->
-
-                                                  </div>
-                                              </div>
-                                          </div>
-                                          <div class="col-md-12">
-                                              <div class="form-inner mb-20">
-                                                  <label>Description*</label>
-                                                  <textarea name="description" v-model="portfolio.description[index]"  placeholder="Portfolio Description" spellcheck="false"></textarea>
-                                              </div>
-                                          </div>
-                                          <div class="col-md-12">
-                                              <div class="form-inner mb-25">
-                                                  <label>Images*</label>
-                                                  <div class="input-area"><img src="/templates/assets/images/icon/company-2.svg " alt="">
-                                                      <!-- <input type="file" name="images" @change="previewFiles(index)" multiple> -->
-                                                  </div> 
-                                              </div>
-
-                                              <!-- <div  class="file-previews">
-                                                <div v-for="(preview, index) in filePreviews[index]" :key="index">
-                                                  <img v-if="preview.type === 'image'" :src="preview.url" alt="Image Preview">
-                                                </div>
-                                              </div> -->
-                                          
-                                          </div>
-
-                                          <div class="col-md-12">
-                                            <hr>
-                                          </div>
-
-                                        </div>
-
-                                        <div class="col-md-12">
-                                            <div class="form-inner">
-                                                <button @click="updatePortfolio" class="primry-btn-2 lg-btn w-unset" type="button">Update Portfolio</button>
-                                                
-                                            </div>
-                                        </div>
-                                    </form> 
-                        </div>
-
-                        
-                        <div v-for="(inputIndex, index) in inputFields" :key="index">
-                          <input type="file" @change="previewImages(inputIndex)" accept="image/*" multiple>
-                         <!--  <div v-if="imagePreviews[inputIndex].length" class="image-previews">
-                            <img v-for="(preview, previewIndex) in imagePreviews[inputIndex]" :key="previewIndex" :src="preview.url" alt="Image Preview">
-                          </div> -->
-                          <!-- <div v-if="imagePreviews[inputIndex] && imagePreviews[inputIndex].length" class="image-previews">
-                            <img v-for="(preview, previewIndex) in imagePreviews[inputIndex]" :key="previewIndex" :src="preview.url" alt="Image Preview">
-                          </div> -->
-                          <div v-if="!imagePreviews[inputIndex]" class="image-previews">
-                            <img v-for="(preview, previewIndex) in imagePreviews[inputIndex]" :key="previewIndex" :src="preview.url" alt="Image Preview">
-                          </div>
-
-                        </div>
-                        
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-inner mb-25">
+                      <label>Title*</label>
+                      <div class="input-area"><img src="/templates/assets/images/icon/company-2.svg " alt="">
+                        <input type="text" v-model="portfolio.title" name="portfolioID">
+                      </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                  </div>
 
-    <!-- <form @submit.prevent="addPortfolioItem">
+                  <div class="col-md-12">
+                    <div class="form-inner mb-25">
+                      <label>Description*</label>
+                      <textarea v-model="portfolio.description" id="description" required></textarea>
+                    </div>
+                  </div>
+
+                  <div class="col-md-12">
+                    <div class="form-inner mb-25">
+                      <label>Work or page url*</label>
+                      <div class="input-area"><img src="/templates/assets/images/icon/company-2.svg " alt="">
+                        <input type="text" v-model="portfolio.url" name="portfolioID">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-6">
+                    <div class="form-inner mb-25">
+                      <label>Start Date*</label>
+                      <div class="input-area"><img src="/templates/assets/images/icon/company-2.svg " alt="">
+                        <input type="date" v-model="portfolio.start_date" name="portfolioID">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-6">
+                    <div class="form-inner mb-25">
+                      <label>End Date*</label>
+                      <div class="input-area"><img src="/templates/assets/images/icon/company-2.svg " alt="">
+                        <input type="date" v-model="portfolio.end_date" name="portfolioID">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-12">
+                    <div class="form-inner mb-25">
+                      <label>Skill Used*</label>
+                      <textarea v-model="portfolio.skill_used" id="description"></textarea>
+                    </div>
+                  </div>
+
+                  <div class="col-md-12">
+                    <div class="form-inner mb-25">
+                      <label>Video Link Url*</label>
+                      <div class="input-area"><img src="/templates/assets/images/icon/company-2.svg " alt="">
+                        <input type="text" v-model="portfolio.video_links" name="portfolioID">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-inner mb-25">
+                      <label>Other File*</label>
+                      <div class="input-area"><img src="/templates/assets/images/icon/company-2.svg " alt="">
+                        <input type="file" @change="otherFileHandle" name="otherFile">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-inner mb-25">
+                      <label>Images*</label>
+                      <div class="input-area"><img src="/templates/assets/images/icon/company-2.svg " alt="">
+                        <input type="file" @change="handleFileChange" name="images" multiple>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="file-previews">
+                      <div class="row">
+                        <div class="col-md-6 mb-3" v-for="(image, index) in portfolio.images" :key="index">
+                          <div class="file-previews" style="position: relative; width: 680px! ;">
+                            <span class="float-end point" @click="removeImage(index)">x</span>
+                            <img :src="image.preview" alt="Preview" style="width : 100%" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="col-md-6">
+                    <div class="row">
+                      <div class="col-md-6 mb-3" v-for="(image, index) in portfolio.images" :key="index">
+                        <div class="file-previews" style="position: relative; width: 680px! ;">
+                          <span class="float-end point" @click="removeImage(index)">x</span>
+                          <img :src="image.preview" alt="Preview" style="width : 100%" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-inner">
+                      <button @click="updatePortfolio" class="primry-btn-2 lg-btn w-unset" type="button">
+                        Update Portfolio</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- <div class="portfolio-row" v-for="index in porfolioCount" :key="index">
+
+                  <div class="section-title2">
+                    <h5>Portfolio Item {{ index }} :</h5>
+                  </div>
+
+                  <div class="col-md-12">
+                    <div class="form-inner mb-25">
+                      <label>Title*</label>
+                      <div class="input-area"><img src="/templates/assets/images/icon/company-2.svg " alt="">
+                        <input type="text" v-model="portfolio.portfolioID[index]" name="portfolioID">
+                        <input type="text" v-model="portfolio.name[index]" name="name" placeholder="Portfolio Title">
+                        <input type="text" v-model="item.portfolioID" name="portfolioID">
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-inner mb-20">
+                      <label>Description*</label>
+                      <textarea name="description" v-model="portfolio.description[index]"
+                        placeholder="Portfolio Description" spellcheck="false"></textarea>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-inner mb-25">
+                      <label>Images*</label>
+                      <div class="input-area"><img src="/templates/assets/images/icon/company-2.svg " alt="">
+                        <input type="file" name="images" @change="previewFiles(index)" multiple>
+                      </div>
+                    </div>
+
+                    <div  class="file-previews">
+                      <div v-for="(preview, index) in filePreviews[index]" :key="index">
+                        <img v-if="preview.type === 'image'" :src="preview.url" alt="Image Preview">
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="col-md-12">
+                    <hr>
+                  </div>
+
+                </div> -->
+
+                <!-- <div class="col-md-12">
+                  <div class="form-inner">
+                    <button @click="updatePortfolio" class="primry-btn-2 lg-btn w-unset" type="button">Update
+                      Portfolio</button>
+
+                  </div>
+                </div> -->
+              </form>
+            </div>
+
+
+            <div v-for="(inputIndex, index) in inputFields" :key="index">
+              <input type="file" @change="previewImages(inputIndex)" accept="image/*" multiple>
+              <!--  <div v-if="imagePreviews[inputIndex].length" class="image-previews">
+                            <img v-for="(preview, previewIndex) in imagePreviews[inputIndex]" :key="previewIndex" :src="preview.url" alt="Image Preview">
+                          </div> -->
+              <!-- <div v-if="imagePreviews[inputIndex] && imagePreviews[inputIndex].length" class="image-previews">
+                            <img v-for="(preview, previewIndex) in imagePreviews[inputIndex]" :key="previewIndex" :src="preview.url" alt="Image Preview">
+                          </div> -->
+              <div v-if="!imagePreviews[inputIndex]" class="image-previews">
+                <img v-for="(preview, previewIndex) in imagePreviews[inputIndex]" :key="previewIndex" :src="preview.url"
+                  alt="Image Preview">
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <form @submit.prevent="addPortfolioItem">
       <div v-for="(item, index) in newItem" :key="index">
         <div>
           <label for="title">Title:</label>
@@ -115,8 +224,14 @@
         <img :src="image" alt="Portfolio Image" />
       </div>
     </div> -->
-  
 </template>
+
+<style>
+.point {
+  cursor: pointer;
+  /* Change cursor to pointer on hover */
+}
+</style>
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
@@ -131,34 +246,40 @@ import moment from 'moment';
   },
   data() {
     return {
-        portfolio : {
-            name: [],
-            portfolioID: [],
-            description: [],
-            // images: [],
-        },
-        porfolioCount : '',
-        inputFields: [0, 1, 2], // You can adjust the number of input fields as needed
-        imagePreviews: {},
-        globalSettings: []
+      portfolio: {
+        title: '',
+        description: '',
+        url: '',
+        start_date: '',
+        end_date: '',
+        skill_used: '',
+        images: [],
+        video_links: '',
+        other_file: '',
+      },
+
+      porfolioCount: 0,
+      inputFields: [0, 1, 2], // You can adjust the number of input fields as needed
+      imagePreviews: {},
+      globalSettings: [],
+      previewImage: null,
     }
   },
-  beforeCreate()
-  {
-    
+  beforeCreate() {
+
   },
   created() {
     this.maxDate = new Date();
   },
   computed: {
     ...mapGetters([
-        'currentUser',
-        'userPortfolio',
-        'globalVariables'
+      'currentUser',
+      'userPortfolio',
+      'globalVariables'
     ])
   },
   methods: {
-    loadPortfolioWithCount(portfolioCount:any) {
+    loadPortfolioWithCount(portfolioCount: any) {
 
       this.$store.dispatch('getGlobalVariables');
       this.globalSettings = this.globalVariables;
@@ -166,13 +287,90 @@ import moment from 'moment';
       console.log(this.globalSettings);
       // this.porfolioCount  = 8;
 
-    },  
-    updatePortfolio(event:any) {
-            // console.log(this.portfolio);    
-            this.$store.dispatch('updateUserPortfolio', {user_id: this.user.id, portfolio: this.portfolio})
     },
-    previewImages(inputIndex:any) {
-      
+
+    otherFileHandle(event: any) {
+      const file = event.target.files[0];
+      this.portfolio.other_file = file;
+
+      // const reader = new FileReader();
+      // reader.onload = () => {
+      //   // this.previewImage = reader.result;
+      // };
+
+      // reader.onerror = (error) => {
+      //   console.error('Error reading the file', error);
+      // };
+
+      // reader.readAsDataURL(file);
+    },
+
+
+    removeImage(index: number) {
+      this.portfolio.images.splice(index, 1);
+
+      // this.$nextTick(() => {
+      //   const fileInput = this.$refs.fileInput;
+
+      //   if (fileInput) {
+      //     // Update the file input value to trigger the change event
+      //     fileInput.value = ''; // Clear the value
+      //     fileInput.value = null; // Set the value to null (for some browsers)
+
+      //     // Dispatch a change event to notify Vue about the change
+      //     const changeEvent = new Event('change');
+      //     fileInput.dispatchEvent(changeEvent);
+      //   }
+      // });
+    },
+
+    // Method to handle file input change
+    // handleFileChange(event: any) {
+    //   const file = event.target.files[0];
+    //   this.portfolio.images = file;
+
+    //   const reader = new FileReader();
+    //   reader.onload = () => {
+    //     this.previewImage = reader.result;
+    //   };
+
+    //   reader.onerror = (error) => {
+    //     console.error('Error reading the file', error);
+    //   };
+
+    //   reader.readAsDataURL(file);
+    // },
+
+
+    handleFileChange(event: any) {
+      const files = event.target.files;
+
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+
+        // Read the image file and set the previewImage to show the image preview
+        const reader = new FileReader();
+        reader.onload = () => {
+          // Create an object to store both the file and its preview
+          const imageObject = {
+            file: file,
+            preview: reader.result as string
+          };
+
+          // Store the image object in the array
+          this.portfolio.images.push(imageObject);
+        };
+        reader.readAsDataURL(file); // Read the file as a data URL
+      }
+    },
+
+    updatePortfolio(event: any) {
+      // console.log(this.portfolio);    
+      this.$store.dispatch('updateUserPortfolio', { user_id: this.user.id, portfolio: this.portfolio })
+    },
+
+    previewImages(inputIndex: any) {
+
       if (!this.imagePreviews[inputIndex]) {
         this.imagePreviews[inputIndex] = [];
       }
@@ -183,7 +381,7 @@ import moment from 'moment';
       console.log(inputElement);
       if (inputElement instanceof HTMLInputElement && inputElement.files) {
         const files = inputElement.files;
-        
+
         for (let i = 0; i < files.length; i++) {
           const file = files[i];
           const fileURL = URL.createObjectURL(file);
@@ -203,40 +401,39 @@ import moment from 'moment';
 
   },
   async mounted() {
-      this.user = JSON.parse(this.currentUser)[0]
-      this.$store.dispatch('getUserPortfolio', this.user.id)
-      this.$store.dispatch('getGlobalVariables');
+    this.user = JSON.parse(this.currentUser)[0]
+    this.$store.dispatch('getUserPortfolio', this.user.id)
+    this.$store.dispatch('getGlobalVariables');
 
-      // this.loadPortfolioWithCount();
+    // this.loadPortfolioWithCount();
 
-      let Script = document.createElement("script");
-        Script.setAttribute("src", "/templates/assets/js/main.js");
-        document.head.appendChild(Script);
+    let Script = document.createElement("script");
+    Script.setAttribute("src", "/templates/assets/js/main.js");
+    document.head.appendChild(Script);
   },
   watch: {
-    currentUser(){
-        this.user = JSON.parse(this.currentUser)[0]; 
+    currentUser() {
+      this.user = JSON.parse(this.currentUser)[0];
     },
-    userPortfolio()
-      {
+    userPortfolio() {
 
-        for (let i = 0; i < this.userPortfolio.data.length; i++) {
-            // console.log(this.arr[i]);
-            // console.log(this.userPortfolio.data[i]);
-            this.portfolio.name[i+1] = this.userPortfolio.data[i].name;
-            this.portfolio.description[i+1] = this.userPortfolio.data[i].description;
-            this.portfolio.portfolioID[i+1] = this.userPortfolio.data[i].id;
-        }
-
-  
-
-      },
-    globalVariables() {
-          this.globalSettings = this.globalVariables;
+      for (let i = 0; i < this.userPortfolio.data.length; i++) {
+        // console.log(this.arr[i]);
+        // console.log(this.userPortfolio.data[i]);
+        this.portfolio.name[i + 1] = this.userPortfolio.data[i].name;
+        this.portfolio.description[i + 1] = this.userPortfolio.data[i].description;
+        this.portfolio.portfolioID[i + 1] = this.userPortfolio.data[i].id;
       }
-    
-    
+
+
+
+    },
+    globalVariables() {
+      this.globalSettings = this.globalVariables;
+    }
+
+
   }
 })
-export default class UserProfile extends Vue {}
+export default class UserProfile extends Vue { }
 </script>
