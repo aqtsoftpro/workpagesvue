@@ -636,6 +636,7 @@ i.bx {
   transition: 0.5s all ease;
   z-index: 1;
 }
+
 .primry-btn-2 svg {
   fill: var(--white);
   margin-left: 8px;

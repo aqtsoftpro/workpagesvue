@@ -68,7 +68,7 @@
                             </ul>
 
                             <div class="d-flex justify-content-center mt-5">
-                                <button @click="checkout(plan.id)" class="primry-btn-2 btn" type="button">Checkout</button>
+                                <button @click="checkout(plan.id)" class="primry-btn-2 custom-btn lg-btn" type="button">Buy Now </button>
                             </div>
                         </div>
 
@@ -240,7 +240,24 @@
         <!-- ========== Pricing Plan End============= -->
     </div>
 </template>
+<style>
+.custom-btn {
+  border-radius: 50px !important;
+}
 
+.custom-btn::after{
+    border-radius: 50px !important;
+}
+
+.custom-btn:hover svg{
+    border-radius: 50px !important;
+}
+
+.custom-btn::before{
+    border-radius: 50px !important;
+}
+
+</style>
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
 import PlansListing from '../views/JobListing.vue'; // @ is an alias to /src
