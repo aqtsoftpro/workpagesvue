@@ -637,6 +637,7 @@ export default createStore({
 
       axios.put(apiUrl + 'updateUserSocial' + '/' + payload.user_id, payload, {
         headers: {
+          'Content-Type': 'multipart/form-data',
           'authorization': 'Bearer ' + localStorage.getItem('token')
         }
       })
@@ -655,10 +656,11 @@ export default createStore({
     },
 
     updateUserPortfolio(context, payload) {
-
-      axios.post(apiUrl + 'updateUserPortfolio' + '/' + payload.user_id, payload, {
+      const url = payload.id ? apiUrl + 'updateUserPortfolio' + '/' + payload.id : apiUrl + 'updateUserPortfolio';
+      axios.post(url, payload, {
         headers: {
-          'authorization': 'Bearer ' + localStorage.getItem('token')
+          'authorization': 'Bearer ' + localStorage.getItem('token'),
+          'Content-Type': 'multipart/form-data'
         }
       })
         .then(res => {

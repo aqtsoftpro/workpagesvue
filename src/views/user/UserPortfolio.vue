@@ -9,15 +9,22 @@
             <div class="form-wrapper mb-60">
               <div class="section-title">
                 <h5>My Portfolio</h5>
+                <button v-if="!showForm" class="primry-btn-2 lg-btn float-end" @click="this.showForm = true">
+                  Add New Item
+                </button>
+                <button v-if="showForm" class="primry-btn-2 lg-btn float-end" @click="this.showForm = false">
+                  Cancel Form
+                </button>
               </div>
-              <form class="edit-profile-form profile-form">
+
+              <form v-if="showForm" class="edit-profile-form profile-form" enctype="multipart/form-data">
 
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-inner mb-25">
                       <label>Title*</label>
-                      <div class="input-area"><img src="/templates/assets/images/icon/company-2.svg " alt="">
-                        <input type="text" v-model="portfolio.title" name="portfolioID">
+                      <div class="input-area">
+                        <input type="text" v-model="portfolio.title" name="tile">
                       </div>
                     </div>
                   </div>
@@ -32,8 +39,8 @@
                   <div class="col-md-12">
                     <div class="form-inner mb-25">
                       <label>Work or page url*</label>
-                      <div class="input-area"><img src="/templates/assets/images/icon/company-2.svg " alt="">
-                        <input type="text" v-model="portfolio.url" name="portfolioID">
+                      <div class="input-area">
+                        <input type="text" v-model="portfolio.url" name="url">
                       </div>
                     </div>
                   </div>
@@ -41,8 +48,8 @@
                   <div class="col-sm-6">
                     <div class="form-inner mb-25">
                       <label>Start Date*</label>
-                      <div class="input-area"><img src="/templates/assets/images/icon/company-2.svg " alt="">
-                        <input type="date" v-model="portfolio.start_date" name="portfolioID">
+                      <div class="input-area">
+                        <input type="date" v-model="portfolio.start_date" name="startDate">
                       </div>
                     </div>
                   </div>
@@ -50,8 +57,8 @@
                   <div class="col-sm-6">
                     <div class="form-inner mb-25">
                       <label>End Date*</label>
-                      <div class="input-area"><img src="/templates/assets/images/icon/company-2.svg " alt="">
-                        <input type="date" v-model="portfolio.end_date" name="portfolioID">
+                      <div class="input-area">
+                        <input type="date" v-model="portfolio.end_date" name="endDate">
                       </div>
                     </div>
                   </div>
@@ -66,7 +73,7 @@
                   <div class="col-md-12">
                     <div class="form-inner mb-25">
                       <label>Video Link Url*</label>
-                      <div class="input-area"><img src="/templates/assets/images/icon/company-2.svg " alt="">
+                      <div class="input-area">
                         <input type="text" v-model="portfolio.video_links" name="portfolioID">
                       </div>
                     </div>
@@ -74,7 +81,7 @@
                   <div class="col-md-6">
                     <div class="form-inner mb-25">
                       <label>Other File*</label>
-                      <div class="input-area"><img src="/templates/assets/images/icon/company-2.svg " alt="">
+                      <div class="input-area">
                         <input type="file" @change="otherFileHandle" name="otherFile">
                       </div>
                     </div>
@@ -82,7 +89,7 @@
                   <div class="col-md-6">
                     <div class="form-inner mb-25">
                       <label>Images*</label>
-                      <div class="input-area"><img src="/templates/assets/images/icon/company-2.svg " alt="">
+                      <div class="input-area">
                         <input type="file" @change="handleFileChange" name="images" multiple>
                       </div>
                     </div>
@@ -127,7 +134,7 @@
                   <div class="col-md-12">
                     <div class="form-inner mb-25">
                       <label>Title*</label>
-                      <div class="input-area"><img src="/templates/assets/images/icon/company-2.svg " alt="">
+                      <div class="input-area">
                         <input type="text" v-model="portfolio.portfolioID[index]" name="portfolioID">
                         <input type="text" v-model="portfolio.name[index]" name="name" placeholder="Portfolio Title">
                         <input type="text" v-model="item.portfolioID" name="portfolioID">
@@ -172,24 +179,29 @@
                   </div>
                 </div> -->
               </form>
-            </div>
+              <div class="edit-profile-form profile-form">
+                <!-- {{  userPortfolio }} -->
+                <div class="row">
+                  <div v-for="portfolio in userPortfolio.data" class="col-md-6 mb-4">
+                    <div class="card">
+                      <div class="card-header">
+                        <h6 class="card-title">
+                          {{ portfolio.title }}
 
-
-            <div v-for="(inputIndex, index) in inputFields" :key="index">
-              <input type="file" @change="previewImages(inputIndex)" accept="image/*" multiple>
-              <!--  <div v-if="imagePreviews[inputIndex].length" class="image-previews">
-                            <img v-for="(preview, previewIndex) in imagePreviews[inputIndex]" :key="previewIndex" :src="preview.url" alt="Image Preview">
-                          </div> -->
-              <!-- <div v-if="imagePreviews[inputIndex] && imagePreviews[inputIndex].length" class="image-previews">
-                            <img v-for="(preview, previewIndex) in imagePreviews[inputIndex]" :key="previewIndex" :src="preview.url" alt="Image Preview">
-                          </div> -->
-              <div v-if="!imagePreviews[inputIndex]" class="image-previews">
-                <img v-for="(preview, previewIndex) in imagePreviews[inputIndex]" :key="previewIndex" :src="preview.url"
-                  alt="Image Preview">
+                        </h6>
+                        <button class="primry-btn-2 lg-btn float-end" @click="editView(portfolio)">
+                          view or edit
+                        </button>
+                      </div>
+                      <div class="card-body">
+                        <p>{{ portfolio.description }}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
 
             </div>
-
           </div>
         </div>
       </div>
@@ -255,14 +267,16 @@ import moment from 'moment';
         skill_used: '',
         images: [],
         video_links: '',
-        other_file: '',
+        other_file: null,
+        user_id: '',
+        id: null
       },
-
       porfolioCount: 0,
       inputFields: [0, 1, 2], // You can adjust the number of input fields as needed
       imagePreviews: {},
       globalSettings: [],
       previewImage: null,
+      showForm: false,
     }
   },
   beforeCreate() {
@@ -289,9 +303,28 @@ import moment from 'moment';
 
     },
 
+
+    editView(portfolioItem: any) {
+      this.showForm = true;
+      this.portfolio.title = portfolioItem.title;
+      this.portfolio.description = portfolioItem.description;
+      this.portfolio.url = portfolioItem.url;
+      this.portfolio.start_date = portfolioItem.start_date;
+      this.portfolio.end_date = portfolioItem.end_date;
+      this.portfolio.skill_used = portfolioItem.skill_used;
+      this.portfolio.video_links = portfolioItem.video_links;
+      this.portfolio.id = portfolioItem.id;
+    },
+
     otherFileHandle(event: any) {
       const file = event.target.files[0];
+      console.log(event);
+
       this.portfolio.other_file = file;
+      console.log(this.portfolio.other_file);
+      console.log('no data found');
+
+
 
       // const reader = new FileReader();
       // reader.onload = () => {
@@ -354,6 +387,7 @@ import moment from 'moment';
           // Create an object to store both the file and its preview
           const imageObject = {
             file: file,
+            type: file.type,
             preview: reader.result as string
           };
 
@@ -365,8 +399,10 @@ import moment from 'moment';
     },
 
     updatePortfolio(event: any) {
-      // console.log(this.portfolio);    
-      this.$store.dispatch('updateUserPortfolio', { user_id: this.user.id, portfolio: this.portfolio })
+      var data = this.portfolio
+      // console.log(this.portfolio);  
+      // { user_id: this.user.id, portfolio: this.portfolio }  
+      this.$store.dispatch('updateUserPortfolio', data)
     },
 
     previewImages(inputIndex: any) {
@@ -404,6 +440,7 @@ import moment from 'moment';
     this.user = JSON.parse(this.currentUser)[0]
     this.$store.dispatch('getUserPortfolio', this.user.id)
     this.$store.dispatch('getGlobalVariables');
+    this.portfolio.user_id = this.user.id;
 
     // this.loadPortfolioWithCount();
 
@@ -415,17 +452,16 @@ import moment from 'moment';
     currentUser() {
       this.user = JSON.parse(this.currentUser)[0];
     },
+
     userPortfolio() {
 
-      for (let i = 0; i < this.userPortfolio.data.length; i++) {
-        // console.log(this.arr[i]);
-        // console.log(this.userPortfolio.data[i]);
-        this.portfolio.name[i + 1] = this.userPortfolio.data[i].name;
-        this.portfolio.description[i + 1] = this.userPortfolio.data[i].description;
-        this.portfolio.portfolioID[i + 1] = this.userPortfolio.data[i].id;
-      }
-
-
+      // for (let i = 0; i < this.userPortfolio.data.length; i++) {
+      // console.log(this.arr[i]);
+      // console.log(this.userPortfolio.data[i]);
+      this.portfolio.title = this.userPortfolio.data[0].name;
+      this.portfolio.description = this.userPortfolio.data[0].description;
+      // this.portfolio.portfolioID[i + 1] = this.userPortfolio.data[i].id;
+      // }
 
     },
     globalVariables() {

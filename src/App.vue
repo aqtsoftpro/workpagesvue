@@ -380,7 +380,9 @@ Vue.prototype.$globalVar = "Shared Data";
             var newsletter = {
             'newsletter_email': this.newletter.newsletter_email,
         }
-            this.$store.dispatch('subscribe', newsletter);
+            this.$store.dispatch('subscribe', newsletter).then(response => {
+                this.newletter.newsletter_email = '';
+            });
         }
 
     },
