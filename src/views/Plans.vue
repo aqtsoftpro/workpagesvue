@@ -24,8 +24,8 @@
         <div class="pricing-plan-area pt-120 mb-120">
             <div class="container">
                 <div class="row g-4 mb-70 justify-content-center align-items-center">
-                    <div v-for="plan in allPlans" class="col-lg-4 col-md-6">
-                        <div class="pricing-plan-card1">
+                    <div v-for="(plan, index) in allPlans" class="col-lg-4 col-md-6">
+                        <div class="pricing-plan-card1" :class="{'bg-card1': index % 2 === 0, 'bg-card2': index % 2 !== 0 }">
                             <div class="pricing-plan-header">
                                 <div class="starting-form">
                                     <span><img src="assets/images/icon/price-star.svg" alt=""> {{ plan.name
@@ -39,13 +39,16 @@
                                 <h3>${{ plan.price }} / <span>Per Job +VAT</span></h3>
                             </div>
 
-                            <ul class="priceing-list">
+                            <ul class="priceing-list h-fix">
                                 <input type="hidden" name="">
-                                <li>
-                                    <div class="icon"><img src="assets/images/icon/check-icon.svg" alt=""></div>
-                                    <p>You can create more job post.</p>
+                                <li v-for="point in plan.keypoints">
+                                    <div class="icon">
+                                        <img :src="point.icon==null ? 'assets/images/icon/check-icon.svg' : point.icon" alt="">
+                                        <!-- <i class="fa-regular fa-circle-check"></i> -->
+                                    </div>
+                                    <p>{{ point.detail }}</p>
                                 </li>
-                                <li>
+                                <!-- <li>
                                     <div class="icon"><img src="assets/images/icon/check-icon.svg" alt=""></div>
                                     <p>Resume and cover letter review and editing services.</p>
                                 </li>
@@ -64,7 +67,7 @@
                                 <li>
                                     <div class="icon"><img src="assets/images/icon/check-icon.svg" alt=""></div>
                                     <p><span>Premium</span>&nbsp; support always.</p>
-                                </li>
+                                </li> -->
                             </ul>
 
                             <div class="d-flex justify-content-center mt-5">
@@ -99,7 +102,9 @@
                                             <p>Resume and cover letter review and editing services.</p>
                                         </li>
                                         <li>
-                                            <div class="icon"><img src="assets/images/icon/check-icon.svg" alt="">
+                                            <div class="icon">
+                                                <!-- <img src="assets/images/icon/check-icon.svg" alt=""> -->
+                                                <i class="fa-regular fa-circle-check"></i>
                                             </div>
                                             <p>Job displayed for &nbsp;<span>1 weeks.</span></p>
                                         </li>
@@ -255,6 +260,17 @@
 
 .custom-btn::before{
     border-radius: 50px !important;
+}
+.h-fix {
+    height: 375px !important;
+}
+
+.bg-card1 {
+    background-color: rgb(255, 255, 242) !important;
+}
+
+.bg-card2 {
+    background-color: rgb(252, 250, 252) !important;
 }
 
 </style>
