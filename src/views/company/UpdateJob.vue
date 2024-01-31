@@ -258,6 +258,12 @@
     </div>
 </template>
 
+<style>
+.p-dropdown {
+    width: 100% !important;
+}
+</style>
+
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
 import Profile from './CompanyProfile.vue'; // @ is an alias to /src
@@ -372,6 +378,8 @@ import { useRoute } from 'vue-router'
   },
   async mounted() {
     const route = useRoute()
+    console.log(route.params.job_key);
+    
     this.$store.dispatch('getJobDetail', route.params.job_key)
     this.$store.dispatch('getJobTypes', '')
     this.$store.dispatch('getQualifications', '')
@@ -392,6 +400,9 @@ import { useRoute } from 'vue-router'
       jobDetail(oldUserForm, newUserForm){
         console.log(this.jobDetail)
         this.jobForm = this.jobDetail
+        this.jobForm.job_description = this.jobDetail.job_description
+        console.log(this.jobForm);
+        
         // this.jobForm.job_type_id = this.jobDetail.job_type
       }
       

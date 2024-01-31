@@ -23,20 +23,20 @@
     <!-- ========== Job Details Start============= -->
     <div class="job-details-pages pt-120 mb-120">
         <div class="container" v-if="current_job">
+            <!-- {{ current_job }} -->
             <div class="row g-lg-4 gy-5">
                 <div class="col-lg-8">
                     <div class="job-details-content">
                         <div class="job-list-content">
                             <div class="company-area">
                                 <div class="logo">
-  
                                     <img width="200" v-if="current_job.company_logo"  :src="current_job.company_logo" />
                                     <img v-else src="/assets/images/bg/company-logo/company-01.png" alt="">
-
                                 </div>
                                 <div class="company-details">
                                     <div class="name-location">
-                                        <h5><a href="#">{{ current_job.job_title }}</a>{{ current_job.id }}</h5>
+                                        <h5><a href="#">{{ current_job.job_title }}</a></h5>
+                                        <!-- {{ current_job.id }} -->
                                         <p>{{current_job.working_mode}}</p>
                                     </div>
                                 </div>
@@ -74,10 +74,10 @@
                         </ul>
                         <h6>Experiences:</h6>
                         <ul>
-                            <li>{{ current_job.exprience }} Years in this field.</li>
+                            <li>{{ current_job.experience }} Years in this field.</li>
                         </ul>
                         <p><span>Main Duties:</span></p>
-                        {{ current_job.duties }}
+                        {{ current_job.job_responsibilities }}
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -92,7 +92,9 @@
                                     
                                 </li>
                             </ul>
-                            <b v-else>You already Appied for this job</b>
+                            <ul v-if="user_current_job_applied">
+                                <b>You already Appied for this job</b>
+                            </ul>
                         </div>
                         <div class="job-summary-area mb-50">
                             <div class="job-summary-title">
@@ -102,7 +104,7 @@
                                 <li><p><span class="title">Job Posted:</span> {{ current_job.posted_on }}</p></li>
                                 <li><p><span class="title">Expiration:</span> {{ current_job.expiration }}</p></li>
                                 <li><p><span class="title">Vacancy:</span> {{ current_job.vacancy }} Person.</p></li>
-                                <li><p><span class="title">Experiences:</span> {{  current_job.exprience  }} Years.</p></li>
+                                <li><p><span class="title">Experiences:</span> {{  current_job.experience  }} Years.</p></li>
                                 <li><p><span class="title">Education:</span>{{ current_job.qualification }}</p></li>
                                 <li><p><span class="title">Gender:</span> {{ current_job.gender }}</p></li>
                             </ul>
@@ -114,10 +116,11 @@
                             <h6>Job Link Share:</h6>
                             <ul>
                                 <li><a href="#"><i class='bx bx-link' ></i></a></li>
-                                <li><a href="https://www.facebook.com/"><i class='bx bxl-facebook'></i></a></li>
-                                <li><a href="https://twitter.com/"><i class='bx bxl-twitter' ></i></a></li>
-                                <li><a href="https://www.linkedin.com/"><i class='bx bxl-linkedin' ></i></a></li>
-                                <li><a href="https://www.instagram.com/"><i class='bx bxl-instagram-alt' ></i></a></li>
+                                <!-- <button @click="shareOnFacebook">Share on Facebook</button> -->
+                                <li><a href="#" @click="shareOnFacebook"><i class='bx bxl-facebook'></i></a></li>
+                                <li><a href="#" @click="shareOnTwitter"><i class='bx bxl-twitter' ></i></a></li>
+                                <li><a href="#" @click="shareOnLinkedIn"><i class='bx bxl-linkedin' ></i></a></li>
+                                <li><a href="#" @click="shareOnInstagram"><i class='bx bxl-instagram-alt' ></i></a></li>
                             </ul>
                         </div>
                         <!-- Commented as per meeting in march -->
@@ -368,7 +371,9 @@ import { useRoute } from 'vue-router'
             job_id: null,
             cv: null
         },
-        user_current_job_applied : ''
+        user_current_job_applied : '',
+        currentUri: '',
+        
         
     }
   },
@@ -383,11 +388,11 @@ import { useRoute } from 'vue-router'
   },
   mounted(){
     const route = useRoute()
-
     this.$store.dispatch('getJobDetail', route.params.job_key)
     this.$store.dispatch('relatedJobs', '')
     this.user = JSON.parse(this.currentUser)[0]
     this.role = this.user.roles[0].id
+    this.currentUri = window.location.href;
     console.log(this.user.id);
     this.application.user_id = JSON.parse(this.currentUser)[0].id
     const applied_job = {
@@ -401,6 +406,41 @@ import { useRoute } from 'vue-router'
       document.head.appendChild(Script);
   },
   methods: {
+    shareOnFacebook() {
+      // URL of your web app
+      const urlToShare = encodeURIComponent(this.currentUri);
+
+      // Create a Facebook share link
+      const shareLink = 'https://www.facebook.com/sharer/sharer.php?u=' + urlToShare;
+
+      // Open the Facebook Share Dialog in a new window
+      window.open(shareLink, 'Share on Facebook', 'width=600,height=400');
+    },
+
+    shareOnTwitter() {
+      this.openShareDialog('https://twitter.com/intent/tweet?url=');
+    },
+    shareOnLinkedIn() {
+      this.openShareDialog('https://www.linkedin.com/shareArticle?url=');
+    },
+    shareOnInstagram() {
+      // Instagram doesn't provide a direct URL sharing API like Facebook, Twitter, and LinkedIn
+      // You may consider using Instagram's official Embedding API for sharing images or other content
+      // https://developers.facebook.com/docs/instagram/oembed/
+      alert('Instagram sharing is not supported directly. Consider using Instagram Embedding API.');
+    },
+    openShareDialog() {
+      // URL of your web app
+      const urlToShare = encodeURIComponent('https://your-web-app-url.com');
+
+      // Create a share link
+      const shareLink = this.currentUri + urlToShare;
+
+      // Open the Share Dialog in a new window
+      window.open(shareLink, 'Share', 'width=600,height=400');
+    },
+
+
     onFileSelected(event: any){
         this.application.cv = event.target.files[0];
     },
