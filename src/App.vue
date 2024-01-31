@@ -61,14 +61,13 @@
                                 <li>
                                     <router-link to="/plans" @click="closeResponsiveMenu">Price</router-link>
                                 </li>
-                                <li>
+                                <!-- <li>
                                     <router-link to="/casual-portal" @click="closeResponsiveMenu">Casual Portal</router-link>
-                                </li>
+                                </li> -->
                                 <li>
                                     <router-link to="/charity-partner" @click="closeResponsiveMenu">Charity Partner</router-link>
                                 </li>
 
-                                
                                 <!-- <li>
                                     <router-link to="/job-listing" @click="closeResponsiveMenu">Job Listing</router-link>
                                 </li>

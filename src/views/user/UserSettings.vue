@@ -220,12 +220,12 @@ import InputSwitch from 'primevue/inputswitch';
         this.changepass.user_id = this.user.id
         this.userMeta.user_id = this.user.id
 
-        this.applicationShortlistedEmailAlert = this.user.userMeta.application_shortlisted_email_alert == 1 ? true : false;
-        this.applicationRejectedEmailAlert = this.user.userMeta.application_rejected_email_alert == 1 ? true : false;
-        this.userMeta.primary_number = this.user.userMeta.primary_number;
-        this.userMeta.secondary_number = this.user.userMeta.secondary_number;
-        this.userMeta.primary_email = this.user.userMeta.primary_email;
-        this.userMeta.secondary_email = this.user.userMeta.secondary_email;
+        this.applicationShortlistedEmailAlert = this.user.userMeta?.application_shortlisted_email_alert == 1 ? true : false;
+        this.applicationRejectedEmailAlert = this.user.userMeta?.application_rejected_email_alert == 1 ? true : false;
+        this.userMeta.primary_number = this.user.userMeta?.primary_number;
+        this.userMeta.secondary_number = this.user.userMeta?.secondary_number;
+        this.userMeta.primary_email = this.user.userMeta?.primary_email;
+        this.userMeta.secondary_email = this.user.userMeta?.secondary_email;
 
         
         let Script = document.createElement("script");

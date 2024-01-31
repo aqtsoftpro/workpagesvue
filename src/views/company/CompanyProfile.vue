@@ -32,7 +32,7 @@
                                             <label>Company Type*</label>
                                             <div class="input-area">
                                                 <img src="/assets/images/icon/category-2.svg" alt="">
-                                                <Dropdown 
+                                                <!-- <Dropdown 
                                                 @change="changeCompanyType"
                                                 v-model=this.userForm.company_type_id 
                                                 :options="companyTypes" 
@@ -42,7 +42,11 @@
                                                 placeholder="Select Company Type" 
                                                 class="w-full 
                                                 md:w-24rem"
-                                                 />
+                                                 /> -->
+                                                 <select class="form-select" v-model="userForm.company_type_id" @change="changeCompanyType">
+                                                    <option value="">Select Location</option>
+                                                    <option v-for="companyType in companyTypes" :value="companyType.id">{{ companyType.name }}</option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
@@ -75,7 +79,7 @@
                                             <label for="location">State*</label>
                                             <div class="input-area">
                                                 <img src="/assets/images/icon/map-2.svg" alt="">
-                                                <Dropdown 
+                                                <!-- <Dropdown 
                                                 v-model=this.userForm.state_id                                       
                                                 :options="states"
                                                 @change="changeState"
@@ -84,7 +88,11 @@
                                                 optionValue="id"
                                                 placeholder="Select State"
                                                 class="w-full
-                                                md:w-14rem" />
+                                                md:w-14rem" /> -->
+                                                <select class="form-select" v-model="userForm.state_id" @change="changeState">
+                                                    <option value="">Select Location</option>
+                                                    <option v-for="state in states" :value="state.id">{{ state.name }}</option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>

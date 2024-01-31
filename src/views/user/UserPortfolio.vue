@@ -90,7 +90,7 @@
                     <div class="form-inner mb-25">
                       <label>Images*</label>
                       <div class="input-area">
-                        <input type="file" @change="handleFileChange" name="images" multiple>
+                        <input type="file" @change="handleFileChange" name="images[]" multiple>
                       </div>
                     </div>
                   </div>
@@ -105,7 +105,6 @@
                         </div>
                       </div>
                     </div>
-
                   </div>
                   <div class="col-md-6">
                     <div class="row">
@@ -458,8 +457,8 @@ import moment from 'moment';
       // for (let i = 0; i < this.userPortfolio.data.length; i++) {
       // console.log(this.arr[i]);
       // console.log(this.userPortfolio.data[i]);
-      this.portfolio.title = this.userPortfolio.data[0].name;
-      this.portfolio.description = this.userPortfolio.data[0].description;
+      this.portfolio.title = this.userPortfolio.data[0]?.name;
+      this.portfolio.description = this.userPortfolio.data[0]?.description;
       // this.portfolio.portfolioID[i + 1] = this.userPortfolio.data[i].id;
       // }
 
