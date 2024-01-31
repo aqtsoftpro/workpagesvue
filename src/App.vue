@@ -364,7 +364,7 @@ Vue.prototype.$globalVar = "Shared Data";
       },
     getCountryIP() {
             // Use an IP geolocation service like ipinfo.io to determine the user's country
-            axios.get('http://ip-api.com/json/')
+            axios.get('https://ip-api.com/json/')
             .then(response => {
                 this.checkCountryIP = response.data.countryCode;
                 console.log(this.checkCountryIP);
