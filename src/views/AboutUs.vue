@@ -23,9 +23,7 @@
     <!-- ========== Job Listing Start============= -->
     <div class="job-listing-area pt-120 mb-120">
         <div class="container">
-
-          Under Contruction
-    
+            <div v-html="cmsPages"></div>
         </div>
     </div>
     <!-- ========== Job Listing e nd============= -->
@@ -52,7 +50,7 @@ import PrivacyPolicy from './PrivacyPolicy.vue'; // @ is an alias to /src
     ])
   },
   mounted() {
-    this.$store.dispatch('getCMSPages', 'privacy-policy');
+    this.$store.dispatch('getCMSPages', 'about-us');
     console.log('mounting');
   },
   watch: {

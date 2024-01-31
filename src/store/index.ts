@@ -397,10 +397,14 @@ export default createStore({
           else {
             toast.success(res.data.message, {
               position: toast.POSITION.BOTTOM_RIGHT,
-            });
-            //   setTimeout(function () {
-            //     location.href = '/employer-registeration-completed';
-            //  }, 2000);
+            })
+
+            this.dispatch('login', {
+              email: payload.email,
+              password: payload.password,
+              type: payload.type,
+              device_name: 'web app'
+            })
           }
 
         })
@@ -578,35 +582,35 @@ export default createStore({
 
             console.log(result.data[0])
 
-              if (result.data[0].email_verified_at == null) {
-                window.location.href = adminDashboardUrl + result.data[0].email;
-              } else if (result.data[0].roles[0].name == 'Job Seeker') {
+            if (result.data[0].email_verified_at == null) {
+              window.location.href = adminDashboardUrl + result.data[0].email;
+            } else if (result.data[0].roles[0].name == 'Job Seeker') {
 
-                localStorage.setItem('currentUser', JSON.stringify(result.data));
-                context.commit('SET_CURRENT_USER', JSON.stringify(result.data));
-                this.state.loggedIn = true
-  
-                router.push('/user/dashboard');
-  
-              } else if (result.data[0].roles[0].name == 'Employer') {
-  
-                localStorage.setItem('currentUser', JSON.stringify(result.data));
-                context.commit('SET_CURRENT_USER', JSON.stringify(result.data));
-                this.state.loggedIn = true
-  
-                this.dispatch('getCompany', result.data[0].id);
-  
-                router.push('/company/dashboard');
-  
-              } else if (result.data[0].roles[0].name == 'Super Admin') {
-  
-                window.location.href = adminDashboardUrl + result.data[0].email;
-  
-              } else {
-                toast.error('You cannot assign admin role!', {
-                  position: toast.POSITION.BOTTOM_RIGHT,
-                });
-              }
+              localStorage.setItem('currentUser', JSON.stringify(result.data));
+              context.commit('SET_CURRENT_USER', JSON.stringify(result.data));
+              this.state.loggedIn = true
+
+              router.push('/user/dashboard');
+
+            } else if (result.data[0].roles[0].name == 'Employer') {
+
+              localStorage.setItem('currentUser', JSON.stringify(result.data));
+              context.commit('SET_CURRENT_USER', JSON.stringify(result.data));
+              this.state.loggedIn = true
+
+              this.dispatch('getCompany', result.data[0].id);
+
+              router.push('/company/dashboard');
+
+            } else if (result.data[0].roles[0].name == 'Super Admin') {
+
+              window.location.href = adminDashboardUrl + result.data[0].email;
+
+            } else {
+              toast.error('You cannot assign admin role!', {
+                position: toast.POSITION.BOTTOM_RIGHT,
+              });
+            }
           })
       } catch (err) {
         toast.error('Login Error!', {
@@ -637,11 +641,13 @@ export default createStore({
 
       axios.put(apiUrl + 'updateUserSocial' + '/' + payload.user_id, payload, {
         headers: {
-          'Content-Type': 'multipart/form-data',
+          'Content-Type': 'application/json',
           'authorization': 'Bearer ' + localStorage.getItem('token')
         }
       })
         .then(res => {
+          console.log(payload);
+          
           let result = res
           context.commit('SET_USER_SOCIALS', result.data)
           toast.success(res.data.message, {

@@ -9,7 +9,6 @@
                     <div class="col-lg-12">
                         <div class="hero-content">
                             <span v-html="slider_content"></span>
-                     
                             <!-- <h1><span>Search now </span> to find your new job opportunity</h1> -->
                             <!-- <h1>1020+ <span>Category</span> Job’s Here</h1> -->
                             <!-- <p>Don’t forget to create your profile and let employers find you and contact you directly! </p> -->
@@ -61,6 +60,7 @@
                                     </div>
                                 </form>
                             </div>
+                            <div v-html="cmsPages"></div>
                             <!-- <div class="suggest-tag">
                                 <h6><i class="bi bi-bookmark-fill"></i>Suggested Tag:</h6>
                                 <ul>
@@ -77,6 +77,7 @@
             </div>
         </div>
     </div>
+
     <!-- <div class="hero2">
         <div class="hero-wapper">
             <div class="container-fluid px-0">
@@ -442,8 +443,7 @@
                                     <path d="M56.606 23.9769L56.6343 23.9915L56.5459 23.4821L56.606 23.9769Z"/>
                                     <path d="M57.6938 26.4297C57.6504 26.0684 57.6187 25.7038 57.5503 25.3457L57.522 25.3245C57.5904 25.6826 57.6238 26.0472 57.6671 26.4085L57.6938 26.4297Z"/>
                                     <path d="M59.6511 29.8837C59.7228 29.5061 59.5777 28.9852 59.5844 28.6727L59.5693 29.2343L59.6177 29.2798C59.6528 29.441 59.6478 29.6575 59.6511 29.8837Z"/>
-                                    </svg>
-
+                                </svg>
                             </div>
                              <!-- <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 2323
@@ -980,6 +980,7 @@ import { mapGetters } from 'vuex';
         'topCompanies',
         'testimonials',        
         'jobs',
+        'cmsPages'
                 
         
         
@@ -1064,6 +1065,8 @@ import { mapGetters } from 'vuex';
     this.$store.dispatch('getFeaturedJobs', '');
     this.$store.dispatch('getTopCompanies', '');
     this.$store.dispatch('getTestimonials', '');
+    this.$store.dispatch('getCMSPages', 'home');
+
 
     // this.$store.dispatch('getCategories', '');
     // this.$store.dispatch('getCompanies', '');

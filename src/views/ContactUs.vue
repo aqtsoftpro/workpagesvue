@@ -23,6 +23,9 @@
     <!-- ========== Contact Pages Start============= -->
     <div class="contact-pages-area pt-120 mb-20">
         <div class="container">
+            <div v-html="cmsPages"></div>
+        </div>
+        <div class="container">
             <div class="row mb-50 d-flex justify-content-center">
                 <div class="col-lg-6 mb-20 ">
                     <div class="office-location">
@@ -58,8 +61,6 @@
                                     </ul>
                                 </div>
                             </div>
-                          
-                        
                         </div>
                     </div>
                 </div>
@@ -178,7 +179,8 @@ import 'vue3-toastify/dist/index.css';
     },
     computed: {
         ...mapGetters([
-            'globalVariables'
+            'globalVariables',
+            'cmsPages'
         ])
     },
     methods: {
@@ -214,7 +216,7 @@ import 'vue3-toastify/dist/index.css';
   mounted() 
   {
     this.$store.dispatch('getGlobalVariables');
-
+    this.$store.dispatch('getCMSPages', 'contact');
   },
   watch: {
         globalVariables() {

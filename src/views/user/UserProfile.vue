@@ -27,7 +27,7 @@
                                             <label>Gender*</label>
                                             <div class="input-area">
                                                 <img src="/assets/images/icon/language-2.svg" alt="">
-                                                <select class="">
+                                                <select class="form-select" v-model="user.gender">
                                                     <option value="">Select Gender</option>
                                                     <option value="male" v-bind:selected="user.gender =='male'">Male</option>
                                                     <option value="female"  v-bind:selected="user.gender =='female'">Female</option>
@@ -57,7 +57,7 @@
                                             <label>Subrub</label>
                                             <div class="input-area">
                                                 <img src="/assets/images/icon/company-2.svg" alt="">
-                                                <Dropdown 
+                                                <!-- <Dropdown 
                                                 v-model=this.user.suburb_id                                       
                                                 :options="suburbs"
                                                 @change="changeSuburb"
@@ -65,8 +65,16 @@
                                                 optionLabel="name" 
                                                 optionValue="id"
                                                 placeholder="Select Suburb"
-                                                class="w-full
-                                                md:w-14rem" />
+                                                class="form-select" /> -->
+                                                <select class="form-select" v-model="user.suburb_id" @change="changeSuburb">
+                                                    <option value="">Select Suburb</option>
+
+                                                    <option v-for="suburb in suburbs" :value="suburb.id" v-bind:selected="user.gender =='male'">{{ suburb.name }}</option>
+
+
+                                                    <!-- <option value="female"  v-bind:selected="user.gender =='female'">Female</option>
+                                                    <option value="unspecified"  v-bind:selected="user.gender =='unspecified'">Un Specified</option> -->
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
@@ -93,7 +101,7 @@
                                             <label>Current Job Place</label>
                                             <div class="input-area">
                                                 <img src="/assets/images/icon/company-2.svg" alt="">
-                                                <Dropdown 
+                                                <!-- <Dropdown 
                                                 v-model=this.user.current_job_location_id                                       
                                                 :options="locations"
                                                 @change="changeLocation"
@@ -101,8 +109,14 @@
                                                 optionLabel="name" 
                                                 optionValue="id"
                                                 placeholder="Select Location"
-                                                class="w-full
-                                                md:w-14rem" />
+                                                class="form-select" /> -->
+
+                                                <select class="form-select" v-model="user.current_job_location_id" @change="changeLocation">
+                                                    <option value="">Select Location</option>
+
+                                                    <option v-for="location in locations" :value="location.id">{{ location.name }}</option>
+                                                </select>
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -111,7 +125,7 @@
                                             <label>Designation*</label>
                                             <div class="input-area">
                                                 <img src="/assets/images/icon/designation-2.svg" alt="">
-                                                <Dropdown 
+                                                <!-- <Dropdown 
                                                 v-model=this.user.designation_id                                        
                                                 :options="designations"
                                                 @change="changeDesignation"
@@ -119,8 +133,12 @@
                                                 optionLabel="name" 
                                                 optionValue="id"
                                                 placeholder="Select Designation"
-                                                class="w-full
-                                                md:w-14rem" />
+                                                class="form-select"/> -->
+
+                                                <select class="form-select" v-model="user.designation_id" @change="changeDesignation">
+                                                    <option value="">Select Designation</option>
+                                                    <option v-for="designation in designations" :value="designation.id">{{ designation.name }}</option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
@@ -129,7 +147,7 @@
                                             <label>Qualification*</label>
                                             <div class="input-area">
                                                 <img src="/assets/images/icon/qualification-2.svg" alt="">
-                                                <Dropdown 
+                                                <!-- <Dropdown 
                                                 v-model=this.user.qualification_id                                       
                                                 :options="qualifications"
                                                 @change="changeQualification"
@@ -137,9 +155,12 @@
                                                 optionLabel="name" 
                                                 optionValue="id"
                                                 placeholder="Select Qualification"
-                                                class="w-full
-                                                md:w-14rem" />
+                                                class="form-select" /> -->
 
+                                                <select class="form-select" v-model="user.qualification_id" @change="changeQualification">
+                                                    <option value="">Select Qualification</option>
+                                                    <option v-for="qualification in qualifications" :value="qualification.id">{{ qualification.name }}</option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
@@ -248,17 +269,21 @@
                                             <button @click="updateUserSocial" class="primry-btn-2 lg-btn w-unset" type="button">Update Social Info</button>
                                         </div>
                                     </div>
-
                                 </div>
                             </form>
-                        </div>
-                        
+                        </div>                       
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </template>
+
+<style>
+.input-area {
+    padding-right: 6px;
+}
+</style>
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
