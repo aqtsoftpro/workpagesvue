@@ -181,6 +181,9 @@
               <div class="edit-profile-form profile-form">
                 <!-- {{  userPortfolio }} -->
                 <div class="row">
+                  <div v-if="userPortfolio.data">
+                    <h5 v-if="userPortfolio.data.length == 0">No Portfolio...</h5>
+                  </div>
                   <div v-for="portfolio in userPortfolio.data" class="col-md-6 mb-4">
                     <div class="card">
                       <div class="card-header">

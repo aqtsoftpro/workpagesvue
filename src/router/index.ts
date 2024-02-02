@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+import store from '../store/index';
 import HomeView from '../views/HomeView.vue'
 import AboutUs from '../views/AboutUs.vue'
 import CasualPortal from '../views/CasualPortal.vue'
@@ -102,7 +103,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/job-search',
     name: 'job-search',
-    component: JobSearch
+    component: JobSearch,
   },
   {
     path: '/featured-jobs',
@@ -159,35 +160,43 @@ const routes: Array<RouteRecordRaw> = [
     children: [
       {
         path: '/company/dashboard',
-        component: CompanyDashboard
+        component: CompanyDashboard,
+        meta: { requiresAuth: true, roles: 'Employer' }
       },
       {
         path: '/company/profile',
-        component: CompanyProfile
+        component: CompanyProfile,
+        meta: { requiresAuth: true, roles: 'Employer' }
       },
       {
         path: '/company/job-list',
-        component: CompanyJobList
+        component: CompanyJobList,
+        meta: { requiresAuth: true, roles: 'Employer' }
       },
       {
         path: '/company/applications',
-        component: CompanyApplicationList
+        component: CompanyApplicationList,
+        meta: { requiresAuth: true, roles: 'Employer' }
       },
       {
         path: '/company/create-job',
-        component: CreateJob
+        component: CreateJob,
+        meta: { requiresAuth: true, roles: 'Employer' }
       },
       {
         path: '/company/update-job/:job_key/:job_slug',
-        component: UpdateJob
+        component: UpdateJob,
+        meta: { requiresAuth: true, roles: 'Employer' }
       },      
       {
         path: '/company/plan',
-        component: CompanyPlan
+        component: CompanyPlan,
+        meta: { requiresAuth: true, roles: 'Employer' }
       },
       {
         path: '/company/settings',
-        component: CompanySettings
+        component: CompanySettings,
+        meta: { requiresAuth: true, roles: 'Employer' }
       },
     ]
   },
@@ -196,35 +205,43 @@ const routes: Array<RouteRecordRaw> = [
     children: [
       {
         path: '/user/dashboard',
-        component: UserDashboard
+        component: UserDashboard,
+        meta: { requiresAuth: true, roles: 'Job Seeker' }
       },
       {
         path: '/user/profile',
-        component: UserProfile
+        component: UserProfile,
+        meta: { requiresAuth: true, roles: 'Job Seeker' }
       },
       {
         path: '/user/portfolio',
-        component: UserPortfolio
+        component: UserPortfolio,
+        meta: { requiresAuth: true}
       },
       {
         path: '/user/jobs',
-        component: UserJobs
+        component: UserJobs,
+        meta: { requiresAuth: true}
       },
       {
         path: '/user/bookmarks',
-        component: UserBookmarks
+        component: UserBookmarks,
+        meta: { requiresAuth: true, }
       },
       {
         path: '/user/edit-resume',
-        component: UserEditResume
+        component: UserEditResume,
+        meta: { requiresAuth: true, }
       },
       {
         path: '/user/view-resume',
-        component: UserViewResume
+        component: UserViewResume,
+        meta: { requiresAuth: true, }
       },
       {
         path: '/user/settings',
-        component: UserSettings
+        component: UserSettings,
+        meta: { requiresAuth: true, }
       },
     ]
   },
@@ -260,5 +277,29 @@ const router = createRouter({
   linkExactActiveClass: "active",
   routes
 })
+
+// router.beforeEach((to, from, next) => {
+//   const isAuthenticated = store.getters.loggedIn;
+//   const userRoles = (store.getters.currentUser.roles) || [];
+
+//   if (to.meta.requiresAuth) {
+//     if (isAuthenticated) {
+//       // Check if the user has the required role
+//       const toMetaRole = to.meta.roles;
+//       if (toMetaRole && userRoles.length > 0 && userRoles[0].name === toMetaRole) {        
+//         next();
+//       } else {
+//         // Redirect to unauthorized page
+//         next('/unauthorized');
+//       }
+//     } else {
+//       // Redirect to login page if not authenticated
+//       next('/login');
+//     }
+//   } else {
+//     // Allow access to public pages
+//     next();
+//   }
+// });
 
 export default router

@@ -678,12 +678,11 @@ export default createStore({
         .then(res => {
           let result = res
           console.log(result.data);
-          // context.commit('SET_USER_PORTFOLIO', result)
-          // context.commit('SET_USER_SOCIALS', result.data)
-          // toast.success(res.data.message, {
-          //   position: toast.POSITION.BOTTOM_RIGHT
-          // })
-
+          context.commit('SET_USER_PORTFOLIO', result)
+          context.commit('SET_USER_SOCIALS', result.data)
+          toast.success(res.data.message, {
+            position: toast.POSITION.BOTTOM_RIGHT
+          })
         }).catch(err => {
           toast.error(err.message, {
             position: toast.POSITION.BOTTOM_RIGHT,
