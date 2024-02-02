@@ -58,7 +58,7 @@
                                             <p>Live Jobs</p>
                                             <div class="d-flex align-items-center">
                                                 <h3 class="odometer">
-                                                    {{ company.data.jobs.length }}
+                                                    {{ company?.data.jobs.length }}
                                                 </h3>
                                                 <span>+</span>
                                             </div>

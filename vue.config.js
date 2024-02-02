@@ -15,6 +15,16 @@ module.exports = defineConfig({
       },
       // or
       overlay: false,
+    },
+    proxy: {
+      '/api': {
+          target: 'https://wpages.aqtdemos.com/api', // Replace with your API base URL
+          changeOrigin: true,
+          pathRewrite: {
+              '^/api': ''
+          }
+      }
     }
+
   }
 })
