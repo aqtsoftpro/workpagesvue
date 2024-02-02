@@ -5,6 +5,7 @@
         <div class="container">
             <div class="row g-lg-4">
                 <company-menu />
+                
                  <!-- Company Menu Here -->
                 <div class="col-lg-12">
                     <div class="dashboard-inner">
@@ -57,7 +58,7 @@
                                             <p>Live Jobs</p>
                                             <div class="d-flex align-items-center">
                                                 <h3 class="odometer">
-                                                    {{ live_jobs }}
+                                                    {{ company.data.jobs.length }}
                                                 </h3>
                                                 <span>+</span>
                                             </div>
@@ -449,7 +450,7 @@
                                                     <ul>
                                                         <li><router-link :to="{name: 'view-cv', query: { 'url': application.cv  }}"  class="review"><img src="/assets/images/icon/docs.svg" alt=""> View CV</router-link></li>
                                                         <li v-if="application.status_name != 'Shortlisted'"><button @click="updateCandidateApplication('shortlist', application.id)" ><img src="/assets/images/icon/shortlist-icon.svg" alt=""> Shortlist</button></li>
-                                                        <li v-if="application.status_name != 'Rejected'"><button @click="updateCandidateApplication('reject', application.id)" class="reject"><img src="/assets/images/icon/rejected-icon.svg" alt=""> Rejected</button></li>
+                                                        <li v-if="application.status_name != 'Rejected'"><button @click="updateCandidateApplication('reject', application.id)" class="reject"><img src="/assets/images/icon/rejected-icon.svg" alt=""> Reject</button></li>
                                                         <li>
                                                             
                                                         </li>

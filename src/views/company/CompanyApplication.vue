@@ -7,10 +7,8 @@
                 <company-menu />
                  <!-- Company Menu Here -->
                 <div class="col-lg-12">
-                    <div class="dashboard-inner">
-                    
+                    <div class="dashboard-inner">                    
                     <TabMenu :model="items" @tab-change="onTabChange" />
-
                     <!-- Display the content of the active tab -->
                     <div v-if="activeItem === 0" class="new-applied-job-area">
                         <h5> Shortlisted Applications List:</h5>
@@ -600,9 +598,7 @@
                             </table>
                         </div>
                     </div>
-
                     </div>
-       
                 </div>
             </div>
         </div>
@@ -659,8 +655,11 @@ import TabMenu from 'primevue/tabmenu';
     },
     rejectedApplications() {
       return this.applications.filter((item:any) => item.status_id === 5);
-    }
-    
+    },
+    // ne() {
+    //   return this.applications.filter((item:any) => item.status_id === 5);
+    // },
+
 
   },
   async mounted() {
@@ -668,11 +667,12 @@ import TabMenu from 'primevue/tabmenu';
     this.$store.dispatch('getCompanyApplications', this.user.company.id )
     this.$store.dispatch('getCompany', this.user.id)
     this.company_logo = this.user.company.logo
-
-
+    this.applications = this.companyApplications.data
+    // console.log(companyApplications);
     let Script = document.createElement("script");
     Script.setAttribute("src", "/assets/js/main.js");
     document.head.appendChild(Script);
+    // console.log(this.companyApplications);
   },
   methods: {
     updateCandidateApplication(status:string, application_id:any) {
@@ -682,7 +682,7 @@ import TabMenu from 'primevue/tabmenu';
       this.$store.dispatch('deleteCandidateApplication', {application_id: application_id})
     },
   
-        onTabChange(event:any) {
+    onTabChange(event:any) {
             console.log(event);
       this.activeItem = event.index;
       console.log(this.activeItem);
@@ -698,8 +698,6 @@ import TabMenu from 'primevue/tabmenu';
         this.company_logo = this.company.data.logo
         console.log(this.company.data.logo);
     },
-
-    
   }
 })
 export default class CompanyDashboard extends Vue {}

@@ -10,7 +10,9 @@
                                 <h4>Plan & Invoice List:</h4>
                             </div>
                             <div class="job-post-btn">
-                                <a class="primry-btn-2" href="job-post.html">Upgrade Plan</a>
+                                <!-- <a class="primry-btn-2" href="job-post.html">Upgrade Plan</a> -->
+                                <router-link class="primry-btn-2" to="/plans">Upgrade Plan</router-link>
+
                             </div>
                         </div>
                         <table class="eg-table table plan-invoice-table mb-0">
@@ -25,7 +27,15 @@
                                 </tr>
                             </thead>   
                             <tbody>
-                                <tr class="style-2">
+                                <tr v-for="subscription in companySubscriptions" class="style-2">
+                                    <td data-label="(#) Number">#-{{ subscription.id }}</td>
+                                    <td data-label="Date">{{ formatDate(subscription.created_at) }}</td>
+                                    <td data-label="Package"><button class="eg-btn light-sky-btn">{{ subscription.package.name }}</button></td>
+                                    <td data-label="Amount">${{ subscription.stripe_price }}</td>
+                                    <td data-label="Payment Through">{{ subscription.package.stripe_price_id?? 'Offline Method' }}</td>
+                                    <td data-label="Payment Status"><button class="status yellow-color">{{ subscription.stripe_status==""? 'Pending': subscription.stripe_status}} <i class="bi bi-download"></i></button></td>
+                                </tr>
+                                <!-- <tr class="style-2">
                                     <td data-label="(#) Number">#83c8h9s88ee4</td>
                                     <td data-label="Date">03/01/2023</td>
                                     <td data-label="Package"><button class="eg-btn light-sky-btn">Default</button></td>
@@ -80,7 +90,7 @@
                                     <td data-label="Amount">$720</td>
                                     <td data-label="Payment Through">Online Method</td>
                                     <td data-label="Payment Status"><button class="status yellow-color">Pending <i class="bi bi-download"></i></button></td>
-                                </tr>
+                                </tr> -->
                             </tbody>
                         </table>
                         <div class="pagination-table-info">
@@ -110,12 +120,37 @@
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
 import Plan from './CompanyPlan.vue'; // @ is an alias to /src
+import { mapGetters } from 'vuex';
 import CompanyMenu from './CompanyMenu.vue'
 
 @Options({
   components: {
     Plan,
     'company-menu': CompanyMenu
+  },
+  data() {    
+    return {
+        subscriptions:[],
+    }  
+  },
+  computed: {
+    ...mapGetters(['companySubscriptions']),
+  },
+
+  methods: {
+    formatDate(dateString: any) {
+      const date = new Date(dateString);
+      const day = date.getDate().toString().padStart(2, '0');
+      const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
+      const year = date.getFullYear();
+
+      return `${day}/${month}/${year}`;
+    }
+  },
+  async mounted() {
+    this.$store.dispatch('companySubscriptions')
+    // this.subscriptions = this.companySubscriptions;
+    console.log(this.companySubscriptions);
   },
 })
 export default class CompanyPlan extends Vue {}

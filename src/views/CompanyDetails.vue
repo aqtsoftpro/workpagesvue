@@ -184,9 +184,17 @@
                                     <span class="light-blue">Remote</span> -->
                                     </div>
                                     <div class="apply-btn">
-                                        <router-link :to="`job-details?job_id=${job.id}`"><span><img
+                                        <router-link v-if="loggedIn"
+                                            :to="getJobDetail(job.job_key, job.job_slug)"><span><img
                                                     src="assets/images/icon/apply-ellipse.svg" alt=""></span>Apply
                                             Now</router-link>
+                                        <router-link v-else :to="{ name: 'login' }"><span><img
+                                                    src="assets/images/icon/apply-ellipse.svg" alt=""></span>Login to
+                                            apply</router-link>
+
+                                        <!-- <router-link :to="`job-details?job_id=${job.id}`"><span><img
+                                                    src="assets/images/icon/apply-ellipse.svg" alt=""></span>Apply
+                                            Now</router-link> -->
                                     </div>
                                 </div>
                             </div>
@@ -316,13 +324,20 @@ import { useRoute } from 'vue-router';
         createReview() {
             console.log(this.reviewForm);
             this.$store.dispatch('createCompanyReview', this.reviewForm);
-        }
+        },
+        getJobDetail(job_key: any, job_slug: any) {
+            return {
+                path: '/job-details/' + job_key + '/' + job_slug
+                // path: '/job-details/${job_key}/${job_slug}'
+            };
+        },
     },
     computed: {
         ...mapGetters([
             'companyInfo',
             'companyReviews',
             'currentUser',
+            'loggedIn'
         ]),
     },
     mounted() {

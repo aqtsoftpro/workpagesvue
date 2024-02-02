@@ -63,6 +63,7 @@ export default createStore({
     cmsPages: [],
 
     allPlans: [],
+    companySubscriptions: [],
 
   },
   getters: {
@@ -122,6 +123,7 @@ export default createStore({
     cmsPages: state => state.cmsPages,
 
     allPlans: state => state.allPlans,
+    companySubscriptions: state => state.companySubscriptions,
 
 
   },
@@ -285,6 +287,10 @@ export default createStore({
     SET_ALL_PLANS(state, payload) {
       state.allPlans = payload
     },
+
+    SET_SUBSCRIPTIONS(state, payload){
+      state.companySubscriptions = payload
+    }
   },
   actions: {
 
@@ -1136,7 +1142,8 @@ export default createStore({
           toast.success(res.data.message, {
             position: toast.POSITION.BOTTOM_RIGHT,
           })
-          router.push({ path: '/job-details/' + res.data.job.job_key + '/' + res.data.job.job_slug, });
+          // router.push({ path: '/job-details/' + res.data.job.job_key + '/' + res.data.job.job_slug, });
+          router.push({ path: 'company/job-list' });
         })
     },
 
@@ -1320,7 +1327,10 @@ export default createStore({
           console.log(res);
           toast.success(res.data.message, {
             position: toast.POSITION.BOTTOM_RIGHT,
-          })
+          });
+          setTimeout(() => {
+            window.history.back();
+          }, 2000);
         })
     },
 
@@ -1354,6 +1364,7 @@ export default createStore({
         }
       })
         .then(res => {
+          // console.log(res);
           context.commit('SET_COMPANY_APPLICATIONS', res.data);
         })
     },
@@ -1422,6 +1433,23 @@ export default createStore({
     //     // });
     //   }
     // },
+
+    companySubscriptions(context, payload) {
+
+      axios.get(apiUrl + 'companySubscriptions', {
+        headers: {
+          'authorization': 'Bearer ' + localStorage.getItem('token')
+        }
+      })
+      .then(res => {
+          // console.log(res);
+          context.commit('SET_SUBSCRIPTIONS', res.data);
+      })
+      .catch(err => {
+        console.log(err);
+        
+      })
+    },
 
 
 
