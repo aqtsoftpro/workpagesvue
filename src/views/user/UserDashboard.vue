@@ -8,7 +8,7 @@
                     <div class="dashboard-inner">
                          <div class="author-area">
                             <div class="author-img">
-                                <img v-if="imageExists" :src="user.photo">
+                                <img v-if="user.photo" :src="user.photo">
                                 <img v-else src="/assets/images/bg/no-image.jpg">
                             </div>
                             <div class="author-content">
@@ -27,7 +27,7 @@
                                             <p>Total Applied</p>
                                             <div class="d-flex align-items-center">
                                                 <h3 class="odometer">
-                                                    0
+                                                    {{ jobApplications.length }}
                                                 </h3>
                                                 <span>+</span>
                                             </div>

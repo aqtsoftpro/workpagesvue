@@ -12,12 +12,12 @@
                 <button v-if="!showForm" class="primry-btn-2 lg-btn float-end" @click="this.showForm = true">
                   Add New Item
                 </button>
-                <button v-if="showForm" class="primry-btn-2 lg-btn float-end" @click="this.showForm = false">
+                <button v-if="showForm" class="primry-btn-2 lg-btn float-end" @click="cancelForm">
                   Cancel Form
                 </button>
               </div>
 
-              <form v-if="showForm" class="edit-profile-form profile-form" enctype="multipart/form-data">
+              <form v-if="showForm" id="myForm" class="edit-profile-form profile-form" enctype="multipart/form-data">
 
                 <div class="row">
                   <div class="col-md-12">
@@ -94,7 +94,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-md-12">
                     <div class="file-previews">
                       <div class="row">
                         <div class="col-md-6 mb-3" v-for="(image, index) in portfolio.images" :key="index">
@@ -106,20 +106,10 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-6">
-                    <div class="row">
-                      <div class="col-md-6 mb-3" v-for="(image, index) in portfolio.images" :key="index">
-                        <div class="file-previews" style="position: relative; width: 680px! ;">
-                          <span class="float-end point" @click="removeImage(index)">x</span>
-                          <img :src="image.preview" alt="Preview" style="width : 100%" />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
                   <div class="col-md-12">
                     <div class="form-inner">
                       <button @click="updatePortfolio" class="primry-btn-2 lg-btn w-unset" type="button">
-                        Update Portfolio</button>
+                       {{portfolio.id==null? 'Save Portfolio': 'Update Portfolio'}}</button>
                     </div>
                   </div>
                 </div>
@@ -318,6 +308,23 @@ import moment from 'moment';
       this.portfolio.id = portfolioItem.id;
     },
 
+    cancelForm(){
+      Object.assign(this.portfolio, {
+            title: '',
+            description: '',
+            url: '',
+            start_date: '',
+            end_date: '',
+            skill_used: '',
+            images: [],
+            video_links: '',
+            other_file: null,
+            user_id: '',
+            id: null
+          });
+          this.showForm = false;
+    },
+
     otherFileHandle(event: any) {
       const file = event.target.files[0];
       console.log(event);
@@ -400,11 +407,38 @@ import moment from 'moment';
       }
     },
 
-    updatePortfolio(event: any) {
-      var data = this.portfolio
-      // console.log(this.portfolio);  
-      // { user_id: this.user.id, portfolio: this.portfolio }  
-      this.$store.dispatch('updateUserPortfolio', data)
+    // updatePortfolio(event: any) {
+    //   var data = this.portfolio
+    //   // console.log(this.portfolio);  
+    //   // { user_id: this.user.id, portfolio: this.portfolio }  
+    //   this.$store.dispatch('updateUserPortfolio', data)
+    //   this.showForm = false;
+    //   event.target.reset();
+    // },
+
+    async updatePortfolio(event: any) {
+      var data = this.portfolio;
+        try {
+          await this.$store.dispatch('updateUserPortfolio', data);
+                  // Reset all fields in the form
+          Object.assign(this.portfolio, {
+            title: '',
+            description: '',
+            url: '',
+            start_date: '',
+            end_date: '',
+            skill_used: '',
+            images: [],
+            video_links: '',
+            other_file: null,
+            user_id: '',
+            id: null
+          });
+          this.showForm = false;
+        } catch (error) {
+          // Handle errors if needed
+          console.error(error);
+        }
     },
 
     previewImages(inputIndex: any) {

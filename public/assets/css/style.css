@@ -8011,7 +8011,7 @@ header.style-7 .main-menu ul li.menu-item-has-children > i {
 .form-wrapper form .form-inner .input-area img {
   margin-right: 15px;
 }
-.form-wrapper form .form-inner .input-area::before {
+/* .form-wrapper form .form-inner .input-area::before {
   content: "";
   width: 1px;
   height: 14px;
@@ -8021,7 +8021,7 @@ header.style-7 .main-menu ul li.menu-item-has-children > i {
   top: 50%;
   transform: translateY(-50%);
   line-height: 1;
-}
+} */
 .form-wrapper form .form-inner .input-area input {
   height: 48px;
   background: #FFFFFF;

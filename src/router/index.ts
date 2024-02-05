@@ -161,42 +161,42 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: '/company/dashboard',
         component: CompanyDashboard,
-        meta: { requiresAuth: true, roles: 'Employer' }
+        meta: { requiresAuth: true, role1: 'Employer' }
       },
       {
         path: '/company/profile',
         component: CompanyProfile,
-        meta: { requiresAuth: true, roles: 'Employer' }
+        meta: { requiresAuth: true, role1: 'Employer' }
       },
       {
         path: '/company/job-list',
         component: CompanyJobList,
-        meta: { requiresAuth: true, roles: 'Employer' }
+        meta: { requiresAuth: true, role1: 'Employer' }
       },
       {
         path: '/company/applications',
         component: CompanyApplicationList,
-        meta: { requiresAuth: true, roles: 'Employer' }
+        meta: { requiresAuth: true, role1: 'Employer' }
       },
       {
         path: '/company/create-job',
         component: CreateJob,
-        meta: { requiresAuth: true, roles: 'Employer' }
+        meta: { requiresAuth: true, role1: 'Employer' }
       },
       {
         path: '/company/update-job/:job_key/:job_slug',
         component: UpdateJob,
-        meta: { requiresAuth: true, roles: 'Employer' }
+        meta: { requiresAuth: true, role1: 'Employer' }
       },      
       {
         path: '/company/plan',
         component: CompanyPlan,
-        meta: { requiresAuth: true, roles: 'Employer' }
+        meta: { requiresAuth: true, role1: 'Employer' }
       },
       {
         path: '/company/settings',
         component: CompanySettings,
-        meta: { requiresAuth: true, roles: 'Employer' }
+        meta: { requiresAuth: true, role1: 'Employer' }
       },
     ]
   },
@@ -206,12 +206,12 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: '/user/dashboard',
         component: UserDashboard,
-        meta: { requiresAuth: true, roles: 'Job Seeker' }
+        meta: { requiresAuth: true}
       },
       {
         path: '/user/profile',
         component: UserProfile,
-        meta: { requiresAuth: true, roles: 'Job Seeker' }
+        meta: { requiresAuth: true}
       },
       {
         path: '/user/portfolio',
@@ -274,32 +274,40 @@ const routes: Array<RouteRecordRaw> = [
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  linkExactActiveClass: "active",
-  routes
-})
+  linkExactActiveClass: 'active',
+  routes,
+});
 
-// router.beforeEach((to, from, next) => {
-//   const isAuthenticated = store.getters.loggedIn;
-//   const userRoles = (store.getters.currentUser.roles) || [];
+router.beforeEach((to, from, next) => {
+  // Check if the route requires authentication
+  if (to.meta.requiresAuth) {
+    const isLoggedIn = store.state.loggedIn;
+    
+    const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+    if (!isLoggedIn) {
+      // User is not logged in, redirect to login or handle accordingly
+      next('/login');
+      return;
+    }
 
-//   if (to.meta.requiresAuth) {
-//     if (isAuthenticated) {
-//       // Check if the user has the required role
-//       const toMetaRole = to.meta.roles;
-//       if (toMetaRole && userRoles.length > 0 && userRoles[0].name === toMetaRole) {        
-//         next();
-//       } else {
-//         // Redirect to unauthorized page
-//         next('/unauthorized');
-//       }
-//     } else {
-//       // Redirect to login page if not authenticated
-//       next('/login');
-//     }
-//   } else {
-//     // Allow access to public pages
-//     next();
-//   }
-// });
+    // Check if the user is logged in
+
+    if (!currentUser || !currentUser[0].roles) {
+      // User is not logged in or doesn't have roles, redirect to login or handle accordingly
+      next('/login');
+      return;
+    }
+
+    //Check if the user has the required role for the route
+    if (to.meta.role1 && !currentUser[0].roles[0].name == to.meta.role1) {
+      // User doesn't have the required role, redirect to unauthorized page or handle accordingly
+      next('/unauthorized');
+      return;
+    }
+  }
+
+  // Continue to the route
+  next();
+});
 
 export default router

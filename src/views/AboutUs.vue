@@ -52,7 +52,7 @@ import PrivacyPolicy from './PrivacyPolicy.vue'; // @ is an alias to /src
   mounted() {
     this.$store.dispatch('getCMSPages', 'about-us');
     console.log('mounting');
-    console.log(this.meta.roles);
+    // console.log(this.meta.roles);
     
   },
   watch: {

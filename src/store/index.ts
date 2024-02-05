@@ -590,7 +590,7 @@ export default createStore({
 
             if (result.data[0].email_verified_at == null) {
               window.location.href = adminDashboardUrl + result.data[0].email;
-            } else if (result.data[0].roles[0].name == 'Job Seeker') {
+            } else if (result.data[0].roles[0].name == 'Job Seeker' || result.data[0].roles[0].name == 'Employer') {
 
               localStorage.setItem('currentUser', JSON.stringify(result.data));
               context.commit('SET_CURRENT_USER', JSON.stringify(result.data));
@@ -598,17 +598,19 @@ export default createStore({
 
               router.push('/user/dashboard');
 
-            } else if (result.data[0].roles[0].name == 'Employer') {
+            } 
+            // else if (result.data[0].roles[0].name == 'Employer') {
 
-              localStorage.setItem('currentUser', JSON.stringify(result.data));
-              context.commit('SET_CURRENT_USER', JSON.stringify(result.data));
-              this.state.loggedIn = true
+            //   localStorage.setItem('currentUser', JSON.stringify(result.data));
+            //   context.commit('SET_CURRENT_USER', JSON.stringify(result.data));
+            //   this.state.loggedIn = true
 
-              this.dispatch('getCompany', result.data[0].id);
+            //   this.dispatch('getCompany', result.data[0].id);
 
-              router.push('/company/dashboard');
+            //   router.push('/company/dashboard');
 
-            } else if (result.data[0].roles[0].name == 'Super Admin') {
+            // } 
+            else if (result.data[0].roles[0].name == 'Super Admin') {
 
               window.location.href = adminDashboardUrl + result.data[0].email;
 
@@ -1284,7 +1286,10 @@ export default createStore({
           toast.success(res.data.message, {
             position: toast.POSITION.BOTTOM_RIGHT
           })
-          router.push({ path: '/user/jobs', query: { job_id: res.data.job.id } });
+          // router.push({ path: '/user/jobs', query: { job_id: res.data.job.id } });
+          window.setTimeout(() => {
+            router.push({ path: '/user/jobs'});
+          }, 2000);
         })
         .catch(err => {
           toast.error(err.message, {

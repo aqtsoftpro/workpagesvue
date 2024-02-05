@@ -288,6 +288,18 @@
 .p-dropdown {
     width: 100% !important;
 }
+
+/* .form-wrapper form .form-inner .input-area::before {
+  content: "";
+  width: 1px;
+  height: 14px;
+  background: #D9D9D9;
+  position: absolute;
+  left: 39px;
+  top: 50%;
+  transform: translateY(-50%);
+  line-height: 1;
+} */
 </style>
 
 <script lang="ts">

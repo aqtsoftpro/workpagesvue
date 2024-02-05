@@ -152,20 +152,20 @@
                             </li>
                             <li v-if="loggedIn" class="d-md-flex d-none">
                                 <div class="sign-in-btn">
-                                    <router-link v-if="this.role == 2" class="primry-btn-1 user-btn-custom" :to="{path:'/user/dashboard'}">
+                                    <router-link v-if="this.role == 'Job Seeker'" class="primry-btn-1 user-btn-custom" :to="{path:'/user/dashboard'}">
                                         <i class="bi bi-speedometer2" style="margin-right:10px"></i>
                                             Dashboard</router-link>
-                                    <router-link v-else class="primry-btn-1 user-btn-custom" :to="{path:'/company/dashboard'}">
+                                    <router-link v-if="this.role == 'Employer'" class="primry-btn-1 user-btn-custom" :to="{path:'/company/dashboard'}">
                                         <i class="bi bi-speedometer2" style="margin-right:10px"></i>
                                             Dashboard</router-link>
                                 </div>
                             </li>
                             <li v-if="loggedIn" class="d-md-flex d-none">
                                 <div class="sign-in-btn">
-                                    <router-link v-if="this.role == 2" class="primry-btn-1 user-btn-custom" :to="{path:'/user/settings'}">
+                                    <router-link v-if="this.role == 'Job Seeker'" class="primry-btn-1 user-btn-custom" :to="{path:'/user/settings'}">
                                         <i class="bi bi-speedometer2" style="margin-right:10px"></i>
                                             Settings</router-link>
-                                    <router-link v-else class="primry-btn-1 user-btn-custom" :to="{path:'/company/settings'}">
+                                    <router-link v-if="this.role == 'Employer'" class="primry-btn-1 user-btn-custom" :to="{path:'/company/settings'}">
                                         <i class="bi bi-speedometer2" style="margin-right:10px"></i>
                                             Settings</router-link>
                                 </div>
@@ -315,7 +315,6 @@
                             <p>©Copyright {{ currentYear }} <router-link to="/">Workpages</router-link> </p>
                         </div>
                     </div>
-                    
                 </div>
             </div>
         </div>
@@ -388,7 +387,7 @@ Vue.prototype.$globalVar = "Shared Data";
     mounted() {
         if(this.loggedIn){
             this.user = JSON.parse(this.currentUser)[0]
-            this.role = this.user.roles[0].id
+            this.role = this.user.roles[0].name
         }
         this.$store.dispatch('getGlobalVariables');
 

@@ -11,7 +11,7 @@
                                     <h5>Applied Jobs:</h5>
                                 </div>
                             </div>
-                            <table class="eg-table table category-table mb-30">
+                            <table v-if="jobApplications.length > 0" class="eg-table table category-table mb-30">
                                 <thead>
                                     <tr>
                                         <th>Job Tittle</th>
@@ -53,6 +53,7 @@
                                     </tr>
                                 </tbody>
                             </table>
+                            <h4 v-else class="title">No Record Found...</h4>
                             <div class="pagination-table-info">
 
                                 <Paginator v-model:first="currentPage" :rows="rowsPerPage" :totalRecords="totalPages" @page="handlePageChange">
