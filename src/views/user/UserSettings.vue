@@ -119,32 +119,32 @@
                                                 <InputSwitch v-model="applicationRejectedEmailAlert"  />
                                             </div>
                                         </div>
-                                        <div class="single-permission mb-30">
+                                        <!-- <div class="single-permission mb-30">
                                             <div class="title">
                                                 <h6>Resume Visibility</h6>
                                             </div>
                                             <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault2">
+                                                <InputSwitch v-model="resumeVisibility"/>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <div class="single-permission mb-3">
                                             <div class="title">
                                                 <h6>Disable Account</h6>
                                                 <p>If you log in again you will able to see all the match jobs and get all information.</p>
                                             </div>
                                             <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault3">
+                                                <InputSwitch v-model="disableAccount"/>
                                             </div>
                                         </div>
-                                        <div class="single-permission align-items-start">
+                                        <!-- <div class="single-permission align-items-start">
                                             <div class="title">
                                                 <h6>Delete Account</h6>
                                                 <p>If you delete your account, you will no longer be able to get information about the matched jobs.</p>
                                             </div>
                                             <div class="delete-btn">
-                                                <button type="reset">Delete Account</button>
+                                                <button type="reset" @click="deletUser">Delete Account</button>
                                             </div>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                             </div>
@@ -187,12 +187,14 @@ import InputSwitch from 'primevue/inputswitch';
                 secondary_email: '',
                 application_shortlisted_email_alert: '',
                 application_rejected_email_alert: '',
+                resume_visibility: '',
+                disable_account: ''
             },
             applicationShortlistedEmailAlert: false,
             applicationRejectedEmailAlert: false,
+            resumeVisibility: false,
+            disableAccount: false,
             mapAddress:'',
-
-
         }
     },
     computed: {
@@ -209,33 +211,34 @@ import InputSwitch from 'primevue/inputswitch';
         updateSettings(event:any) {
             this.userMeta.application_shortlisted_email_alert = this.applicationShortlistedEmailAlert ? true : false;
             this.userMeta.application_rejected_email_alert = this.applicationRejectedEmailAlert ? true : false;
-            
-            
+            this.userMeta.resume_visibility = this.resumeVisibility ? true : false;
+            this.userMeta.disable_account = this.disableAccount ? true : false;
             this.$store.dispatch('updateUserMeta', this.userMeta)
         },
 
+        deletUser(){
+            this.$store.dispatch('deletUser', this.userMeta.user_id)
+        }
   },
   mounted() {
         this.user = JSON.parse(this.currentUser)[0]
         this.changepass.user_id = this.user.id
         this.userMeta.user_id = this.user.id
-
         this.applicationShortlistedEmailAlert = this.user.userMeta?.application_shortlisted_email_alert == 1 ? true : false;
         this.applicationRejectedEmailAlert = this.user.userMeta?.application_rejected_email_alert == 1 ? true : false;
+        this.resumeVisibility = this.userMeta.resume_visibility == 1 ? true : false;
+        this.disableAccount = this.userMeta.disable_account == 1 ? true : false; 
         this.userMeta.primary_number = this.user.userMeta?.primary_number;
         this.userMeta.secondary_number = this.user.userMeta?.secondary_number;
         this.userMeta.primary_email = this.user.userMeta?.primary_email;
         this.userMeta.secondary_email = this.user.userMeta?.secondary_email;
-
-        
+        this.userMeta.resume_visibility = this.user.userMeta?.resume_visibility;
+        this.userMeta.disable_account = this.user.userMeta?.disable_account;       
         let Script = document.createElement("script");
         Script.setAttribute("src", "/assets/js/main.js");
         document.head.appendChild(Script);
   },
-
-  watch :{
-
-          
+  watch :{    
   }
 
 })

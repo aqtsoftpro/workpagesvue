@@ -496,6 +496,29 @@ export default createStore({
         })
     },
 
+    deletUser(context, payload) {
+      axios.post(apiUrl + 'user/', payload.id, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          'authorization': 'Bearer ' + localStorage.getItem('token')
+        },
+        params: {
+          _method: 'delete'
+        }
+
+      }).then(res => {
+        toast.success(res.data.message, {
+          position: toast.POSITION.BOTTOM_RIGHT,
+        })
+        router.push('/login');
+      })
+        .catch(err => {
+          toast.error(err.message, {
+            position: toast.POSITION.BOTTOM_RIGHT,
+          })
+        })
+    },
+
     reset(context, payload) {
       axios.post(apiUrl + 'password/email', payload)
         .then(async res => {
@@ -585,12 +608,10 @@ export default createStore({
         )
           .then(res => {
             let result = res
-
             console.log(result.data[0])
-
             if (result.data[0].email_verified_at == null) {
               window.location.href = adminDashboardUrl + result.data[0].email;
-            } else if (result.data[0].roles[0].name == 'Job Seeker' || result.data[0].roles[0].name == 'Employer') {
+            } else if (result.data[0].roles[0].name == 'Job Seeker') {
 
               localStorage.setItem('currentUser', JSON.stringify(result.data));
               context.commit('SET_CURRENT_USER', JSON.stringify(result.data));
@@ -599,17 +620,17 @@ export default createStore({
               router.push('/user/dashboard');
 
             } 
-            // else if (result.data[0].roles[0].name == 'Employer') {
+            else if (result.data[0].roles[0].name == 'Employer') {
 
-            //   localStorage.setItem('currentUser', JSON.stringify(result.data));
-            //   context.commit('SET_CURRENT_USER', JSON.stringify(result.data));
-            //   this.state.loggedIn = true
+              localStorage.setItem('currentUser', JSON.stringify(result.data));
+              context.commit('SET_CURRENT_USER', JSON.stringify(result.data));
+              this.state.loggedIn = true
 
-            //   this.dispatch('getCompany', result.data[0].id);
+              this.dispatch('getCompany', result.data[0].id);
 
-            //   router.push('/company/dashboard');
+              router.push('/company/dashboard');
 
-            // } 
+            } 
             else if (result.data[0].roles[0].name == 'Super Admin') {
 
               window.location.href = adminDashboardUrl + result.data[0].email;
@@ -1448,6 +1469,24 @@ export default createStore({
       .then(res => {
           // console.log(res);
           context.commit('SET_SUBSCRIPTIONS', res.data);
+      })
+      .catch(err => {
+        console.log(err);
+        
+      })
+    },
+
+    deletePort(context, payload) {
+      axios.post(apiUrl + 'delete-portfolio/' + payload.id, {
+        headers: {
+          'authorization': 'Bearer ' + localStorage.getItem('token')
+        },
+      })
+      .then(res => {
+        toast.success(res.data.message, {
+          position: toast.POSITION.BOTTOM_RIGHT,
+        })
+        context.commit('SET_USER_PORTFOLIO', res.data.data);
       })
       .catch(err => {
         console.log(err);
