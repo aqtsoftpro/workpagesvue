@@ -66,7 +66,7 @@
                   <div class="col-md-12">
                     <div class="form-inner mb-25">
                       <label>Skill Used*</label>
-                      <textarea v-model="portfolio.skill_used" id="description"></textarea>
+                      <textarea v-model="portfolio.skill_used" id="skill-used"></textarea>
                     </div>
                   </div>
 
@@ -97,19 +97,35 @@
                   <div class="col-md-12">
                     <div class="file-previews">
                       <div class="row">
+                        <!-- {{ portfolio.images }} -->
                         <div class="col-md-6 mb-3" v-for="(image, index) in portfolio.images" :key="index">
                           <div class="file-previews" style="position: relative; width: 680px! ;">
                             <span class="float-end point" @click="removeImage(index)">x</span>
-                            <img :src="image.preview" alt="Preview" style="width : 100%" />
+                            <img v-if="image.image" :src="image.image" alt="Preview" style="width : 100%" />
+                            <img v-else :src="image.preview" alt="Preview" style="width : 100%" />
                           </div>
                         </div>
+                        <!-- <div v-if="portfolio.images"  class="col-md-6 mb-3" 
+                          v-for="(image, index) in portfolio.portfolio_images" :key="index">
+                          <div class="file-previews" style="position: relative; width: 680px! ;">
+                            <span class="float-end point" @click="removeImage(index)">x</span>
+                            <img :src="image.image" alt="Preview" style="width : 100%" />
+                          </div>
+                        </div> -->
                       </div>
                     </div>
                   </div>
                   <div class="col-md-12">
                     <div class="form-inner">
-                      <button @click="updatePortfolio" class="primry-btn-2 lg-btn w-unset" type="button">
-                        {{ portfolio.id == null ? 'Save Portfolio' : 'Update Portfolio' }}</button>
+                      <button v-if="!isLoading" @click="updatePortfolio" class="primry-btn-2 lg-btn w-unset"
+                        type="button">
+                        {{ portfolio.id == null ? 'Save Portfolio' : 'Update Portfolio' }}
+                      </button>
+                      <button v-else class="primry-btn-2 lg-btn w-unset" type="button">
+                        <span class="me-3 fs-6 text-white">Processing...</span>
+                        <i class="fa fa-spinner fa-spin text-white ms-3" style="font-size:24px">
+                        </i>
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -177,7 +193,10 @@
                           {{ viewPortfolio.title }}
                         </div>
                         <div>
-                          <button class="btn btn-primary" @click="showPortfolio = false">x</button>
+                          <button type="button" class="btn-close" @click="showPortfolio = false"
+                            aria-label="Close"></button>
+
+                          <!-- <button class="btn btn-primary" @click="showPortfolio = false">x</button> -->
                         </div>
                       </div>
                       <div class="card-body">
@@ -204,12 +223,14 @@
                           <a :href="viewPortfolio.video_links" target="_blank" rel="noopener noreferrer"
                             class="text-primary">{{ viewPortfolio.video_links }}</a>
                         </div>
-
                         <div class="d-flex justify-content-around">
-                          <button class="btn btn-danger" @click="deletePortfolio(viewPortfolio)">Delete</button>
-
+                          <button v-if="!isLoading" class="primry-btn-2 lg-btn" @click="deletePortfolio(viewPortfolio)">Delete</button>
+                          <button v-else class="primry-btn-2 lg-btn w-unset" type="button">
+                            <span class="me-3 fs-6 text-white">Processing...</span>
+                            <i class="fa fa-spinner fa-spin text-white ms-3" style="font-size:24px">
+                            </i>
+                          </button>
                         </div>
-
                       </div>
                     </div>
                   </div>
@@ -240,10 +261,10 @@
                           </span>
                           <span class="btn" @click="viewPort(portfolio)">
                             <svg width="14" height="10" viewBox="0 0 14 10" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M14 5C14 5 11.375 0 7 0C2.625 0 0 5 0 5C0 5 2.625 10 7 10C11.375 10 14 5 14 5ZM1.02637 5C1.44945 4.33193 1.93606 3.70971 2.47887 3.14273C3.605 1.97091 5.145 0.909091 7 0.909091C8.855 0.909091 10.3941 1.97091 11.522 3.14273C12.0648 3.70971 12.5514 4.33193 12.9745 5C12.9237 5.07909 12.8678 5.16636 12.8039 5.26182C12.5108 5.69818 12.0776 6.28 11.522 6.85727C10.3941 8.02909 8.85413 9.09091 7 9.09091C5.145 9.09091 3.60588 8.02909 2.478 6.85727C1.93519 6.29028 1.44946 5.66807 1.02637 5Z" />
-                                <path
-                                    d="M7 2.72721C6.41984 2.72721 5.86344 2.96665 5.4532 3.39287C5.04297 3.81909 4.8125 4.39717 4.8125 4.99993C4.8125 5.6027 5.04297 6.18078 5.4532 6.60699C5.86344 7.03321 6.41984 7.27266 7 7.27266C7.58016 7.27266 8.13656 7.03321 8.5468 6.60699C8.95703 6.18078 9.1875 5.6027 9.1875 4.99993C9.1875 4.39717 8.95703 3.81909 8.5468 3.39287C8.13656 2.96665 7.58016 2.72721 7 2.72721ZM3.9375 4.99993C3.9375 4.15606 4.26016 3.34676 4.83449 2.75005C5.40882 2.15334 6.18777 1.81812 7 1.81812C7.81223 1.81812 8.59118 2.15334 9.16551 2.75005C9.73984 3.34676 10.0625 4.15606 10.0625 4.99993C10.0625 5.8438 9.73984 6.65311 9.16551 7.24982C8.59118 7.84652 7.81223 8.18175 7 8.18175C6.18777 8.18175 5.40882 7.84652 4.83449 7.24982C4.26016 6.65311 3.9375 5.8438 3.9375 4.99993Z" />
+                              <path
+                                d="M14 5C14 5 11.375 0 7 0C2.625 0 0 5 0 5C0 5 2.625 10 7 10C11.375 10 14 5 14 5ZM1.02637 5C1.44945 4.33193 1.93606 3.70971 2.47887 3.14273C3.605 1.97091 5.145 0.909091 7 0.909091C8.855 0.909091 10.3941 1.97091 11.522 3.14273C12.0648 3.70971 12.5514 4.33193 12.9745 5C12.9237 5.07909 12.8678 5.16636 12.8039 5.26182C12.5108 5.69818 12.0776 6.28 11.522 6.85727C10.3941 8.02909 8.85413 9.09091 7 9.09091C5.145 9.09091 3.60588 8.02909 2.478 6.85727C1.93519 6.29028 1.44946 5.66807 1.02637 5Z" />
+                              <path
+                                d="M7 2.72721C6.41984 2.72721 5.86344 2.96665 5.4532 3.39287C5.04297 3.81909 4.8125 4.39717 4.8125 4.99993C4.8125 5.6027 5.04297 6.18078 5.4532 6.60699C5.86344 7.03321 6.41984 7.27266 7 7.27266C7.58016 7.27266 8.13656 7.03321 8.5468 6.60699C8.95703 6.18078 9.1875 5.6027 9.1875 4.99993C9.1875 4.39717 8.95703 3.81909 8.5468 3.39287C8.13656 2.96665 7.58016 2.72721 7 2.72721ZM3.9375 4.99993C3.9375 4.15606 4.26016 3.34676 4.83449 2.75005C5.40882 2.15334 6.18777 1.81812 7 1.81812C7.81223 1.81812 8.59118 2.15334 9.16551 2.75005C9.73984 3.34676 10.0625 4.15606 10.0625 4.99993C10.0625 5.8438 9.73984 6.65311 9.16551 7.24982C8.59118 7.84652 7.81223 8.18175 7 8.18175C6.18777 8.18175 5.40882 7.84652 4.83449 7.24982C4.26016 6.65311 3.9375 5.8438 3.9375 4.99993Z" />
                             </svg>
                           </span>
                         </div>
@@ -349,6 +370,8 @@ import moment from 'moment';
       previewImage: null,
       showForm: false,
       showPortfolio: false,
+      isLoading: false,
+      // userPortfolioData: [],
       viewPortfolio: {
         id: '',
         title: '',
@@ -375,7 +398,7 @@ import moment from 'moment';
       'currentUser',
       'userPortfolio',
       'globalVariables'
-    ])
+    ]),
   },
   methods: {
     loadPortfolioWithCount(portfolioCount: any) {
@@ -399,6 +422,7 @@ import moment from 'moment';
       this.portfolio.video_links = portfolioItem.video_links;
       this.portfolio.id = portfolioItem.id;
       this.portfolio.user_id = portfolioItem.user_id;
+      this.portfolio.images = portfolioItem.portfolio_images;
     },
 
     viewPort(item: any) {
@@ -429,6 +453,7 @@ import moment from 'moment';
         id: null
       });
       this.showForm = false;
+
     },
 
     otherFileHandle(event: any) {
@@ -492,7 +517,6 @@ import moment from 'moment';
 
     handleFileChange(event: any) {
       const files = event.target.files;
-
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
 
@@ -515,14 +539,28 @@ import moment from 'moment';
 
     // deletePort
 
-    deletePortfolio(item: any) {
-      var data = item 
+    async deletePortfolio(item: any) {
+      this.isLoading = true;
+      var data = item
       console.log(data);
-      
-      this.$store.dispatch('deletePort', data)
+      try {
+        await this.$store.dispatch('deletePort', data);
+        window.setTimeout(() => {
+          this.isLoading = false;
+        }, 500);
+        window.setTimeout(() => {
+          this.showPortfolio = false;
+        }, 800);
+
+      } catch (error) {
+        console.log(error);
+      }
+      // .then(data: any => {
+      //   window.alert(data);
+      // })
     },
 
-    
+
     // updatePortfolio(event: any) {
     //   var data = this.portfolio
     //   // console.log(this.portfolio);  
@@ -533,6 +571,7 @@ import moment from 'moment';
     // },
 
     async updatePortfolio(event: any) {
+      this.isLoading = true;
       var data = this.portfolio;
       try {
         await this.$store.dispatch('updateUserPortfolio', data);
@@ -549,7 +588,12 @@ import moment from 'moment';
           other_file: null,
           id: null
         });
-        this.showForm = false;
+        window.setTimeout(() => {
+          this.isLoading = false;
+        }, 800);
+        window.setTimeout(() => {
+          this.showForm = false;
+        }, 1000);
       } catch (error) {
         // Handle errors if needed
         console.error(error);
@@ -576,15 +620,12 @@ import moment from 'moment';
           this.imagePreviews[inputIndex].push({ url: fileURL });
         }
       }
-
       // for (let i = 0; i < files.length; i++) {
       //   const file = files[i];
       //   const fileURL = URL.createObjectURL(file);
       //   this.imagePreviews[inputIndex].push({ url: fileURL });
       // }
-
     },
-
 
   },
   async mounted() {

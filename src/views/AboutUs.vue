@@ -23,7 +23,10 @@
     <!-- ========== Job Listing Start============= -->
     <div class="job-listing-area pt-120 mb-120">
         <div class="container">
-            <div v-html="cmsPages"></div>
+            <div v-if="!isLoading" v-html="cmsPages"></div>
+            <div v-else class="blur">
+              <div class="spin-loader"></div>
+            </div>
         </div>
     </div>
     <!-- ========== Job Listing e nd============= -->
@@ -42,6 +45,7 @@ import PrivacyPolicy from './PrivacyPolicy.vue'; // @ is an alias to /src
   data(){
     return {
       cmsPageInfo: null,
+      isLoading: false,
     }
   },
   computed: {
@@ -60,6 +64,9 @@ import PrivacyPolicy from './PrivacyPolicy.vue'; // @ is an alias to /src
     {
       this.cmsPageInfo = this.cmsPages
       console.log(this.cmsPages);
+      window.setTimeout(() => {
+          this.isLoading = false;
+      }, 5000);
     },
   }
 })

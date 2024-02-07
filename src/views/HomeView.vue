@@ -2,13 +2,21 @@
   <div>
     <!-- ========== Home Two Banner Start============= -->
     <div class="hero6">
-        <div class="hero-wapper" :style="{ backgroundImage: 'url(' + slider_img + ')' }">
-      
+        <div v-if="!isLoading" class="hero-wapper" :style="{ backgroundImage: 'url(' + slider_img + ')' }">
+            <!-- <div class="spin-loader"></div> -->
+
+            <!-- <div :class="{ 'blur': isLoading }"> -->
+
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="hero-content">
-                            <span v-html="slider_content"></span>
+
+                            <span v-if="slider_content" v-html="slider_content"></span>
+
+                            <div v-else class="blur">
+                                <div class="spin-loader"></div>
+                            </div>
                             <!-- <h1><span>Search now </span> to find your new job opportunity</h1> -->
                             <!-- <h1>1020+ <span>Category</span> Job’s Here</h1> -->
                             <!-- <p>Don’t forget to create your profile and let employers find you and contact you directly! </p> -->
@@ -75,6 +83,9 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div v-else class="blur">
+            <div class="spin-loader"></div>
         </div>
     </div>
 
@@ -993,6 +1004,7 @@ import { mapGetters } from 'vuex';
   },
   data() {
     return {
+        isLoading: true,
         slider_img: '',
         slider_content: '',
         slider_search_panel_margin_top: '',
@@ -1087,6 +1099,9 @@ import { mapGetters } from 'vuex';
             this.slider_content = this.globalVariables._slider_content;
             this.slider_search_panel_margin_top = this.globalVariables._search_panel_margin_top;
             this.slider_search_panel_margin_bottom = this.globalVariables._search_panel_margin_bottom;
+            window.setTimeout(() => {
+                this.isLoading = false;
+            }, 2000);
         },
     categories(){
         this.search_category = this.categories

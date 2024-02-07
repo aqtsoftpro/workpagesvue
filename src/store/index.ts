@@ -691,7 +691,7 @@ export default createStore({
     },
 
     updateUserPortfolio(context, payload) {
-      const url = payload.id ? apiUrl + 'updateUserPortfolio' + '/' + payload.id : apiUrl + 'updateUserPortfolio';
+      const url = payload.id ? apiUrl + 'updateUserPortfolio/' + payload.id : apiUrl + 'updateUserPortfolio';
       axios.post(url, payload, {
         headers: {
           'authorization': 'Bearer ' + localStorage.getItem('token'),
@@ -699,10 +699,10 @@ export default createStore({
         }
       })
         .then(res => {
-          let result = res
+          let result = res.data
           console.log(result.data);
           context.commit('SET_USER_PORTFOLIO', result)
-          context.commit('SET_USER_SOCIALS', result.data)
+          context.commit('SET_USER_SOCIALS', result)
           toast.success(res.data.message, {
             position: toast.POSITION.BOTTOM_RIGHT
           })
@@ -722,7 +722,7 @@ export default createStore({
         .then(res => {
           let result = res
 
-          context.commit('SET_USER_PORTFOLIO', result)
+          context.commit('SET_USER_PORTFOLIO', result.data)
         }).catch(err => {
           toast.error(err.message, {
             position: toast.POSITION.BOTTOM_RIGHT,
@@ -1483,10 +1483,10 @@ export default createStore({
         },
       })
       .then(res => {
+        context.commit('SET_USER_PORTFOLIO', res.data)
         toast.success(res.data.message, {
           position: toast.POSITION.BOTTOM_RIGHT,
         })
-        context.commit('SET_USER_PORTFOLIO', res.data.data);
       })
       .catch(err => {
         console.log(err);

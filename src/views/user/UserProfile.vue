@@ -196,7 +196,15 @@
 
                                     <div class="col-md-12">
                                         <div class="form-inner">
-                                            <button @click="updateProfile" class="primry-btn-2 lg-btn w-unset" type="button">Update Profile</button>
+                                            <!-- <span class="fa-spinner"></span> -->
+                                            <button v-if="!isLoading" @click="updateProfile" class="primry-btn-2 lg-btn w-unset" type="button">Update Profile
+                                            </button>
+                                            <button v-else class="primry-btn-2 lg-btn w-unset" type="button">
+                                                <span class="me-3 fs-6 text-white">Processing...</span>
+                                                <i class="fa fa-spinner fa-spin text-white ms-3" style="font-size:24px">
+                                                </i>
+                                            </button>
+
                                         </div>
                                     </div>
 
@@ -349,6 +357,7 @@ import moment from 'moment';
         locationsOptions: [],
         designationsOptions: [],
         logoVisible : true,
+        isLoading: false,
     }
   },
   created() {
@@ -382,9 +391,14 @@ import moment from 'moment';
     changeSuburb(event:any){
             this.user.suburb_id = event.value
         },
-    updateProfile(){
+    async updateProfile(){
+        this.isLoading = true;
         this.user.dob = moment(this.user.dob).format('YYYY-MM-DD');
-        this.$store.dispatch('updateProfile', this.user)
+        await this.$store.dispatch('updateProfile', this.user).then(
+            window.setTimeout(() => {
+                this.isLoading = false
+            }, 3000)
+        )
     },
 
     updateUserSocial(){
