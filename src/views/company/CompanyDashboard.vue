@@ -8,7 +8,6 @@
                 
                  <!-- Company Menu Here -->
                 <div class="col-lg-12">
-                    {{ company }}
                     <div class="dashboard-inner">
                         <div class="author-and-action-btn-area two mb-40">
                             <div class="author-area two">
