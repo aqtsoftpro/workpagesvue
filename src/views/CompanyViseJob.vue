@@ -204,8 +204,10 @@ import Jobs from '../views/JobListing.vue'; // @ is an alias to /src
 
   },
   mounted() {
-    let query = this.$route.query
-    this.$store.dispatch('searchJobs', query);
+    let params = this.$route.params
+    console.log('this parameters are params', params);
+    
+    this.$store.dispatch('getJobsByCompany', params);
   },
   watch: {
     searchResult(){
@@ -221,5 +223,5 @@ import Jobs from '../views/JobListing.vue'; // @ is an alias to /src
     // }
   }
 })
-export default class JobListing extends Vue {}
+export default class CompanyViseJob extends Vue {}
 </script>

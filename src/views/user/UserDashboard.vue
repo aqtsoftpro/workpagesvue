@@ -312,6 +312,7 @@ import { mapGetters } from 'vuex';
     ])
   },
   mounted() {
+    this.$store.dispatch('getUserInfo');
     this.user = JSON.parse(this.currentUser)[0]
     this.$store.dispatch('getCandidateApplications', this.user.id);
 
@@ -322,7 +323,13 @@ import { mapGetters } from 'vuex';
   watch: {
     candidateApplications() {
       this.jobApplications = this.candidateApplications.Listing
-    }
+    },
+    currentUser: {
+        handler() {
+        this.user = JSON.parse(this.currentUser)[0];
+        },
+        immediate: true, // Trigger immediately on component mount
+    },
   }
 })
 export default class UserDashboard extends Vue {}

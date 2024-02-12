@@ -122,7 +122,14 @@
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="form-inner">
-                                                    <button @click="createUser" class="primry-btn-2" type="button">Sign Up</button>
+                                                    <button v-if="!isLoading"  @click="createUser" class="primry-btn-2" type="button">Sign Up</button>
+                                                    <button v-else class="primry-btn-2" type="button">
+                                                        <span class="me-3 fs-6 text-white">Processing...</span>
+                                                        <i class="fa fa-spinner fa-spin text-white" style="font-size:24px">
+                                                        </i>
+                                                    </button>
+                                                    <!-- <button @click="createEmployer" class="primry-btn-2" type="button">Sign Up</button> -->
+
                                                 </div>
                                             </div>
                                             <h6>Already have an account? <router-link to="/login"> Login</router-link> Here</h6>
@@ -347,6 +354,7 @@ function getMimeType(file:any, fallback = null) {
                 device_name: 'web app',      
             },
             confirm_password: null,
+            isLoading: false,
         }  
     },
     computed: {
@@ -357,12 +365,24 @@ function getMimeType(file:any, fallback = null) {
         ])
     },
     methods: {
-        createUser() {
-            this.$store.dispatch('signUpUser', this.userForm)
+        async createUser() {
+            this.isLoading = true;
+            try {
+                await this.$store.dispatch('signUpUser', this.userForm)
+                // this.isLoading = false;
+            } catch (error) {
+                console.log(error);
+            }
         },
 
-        createEmployer() {
-            this.$store.dispatch('signUpUser', this.employerForm)
+        async createEmployer() {
+            this.isLoading = true;
+            try {
+                this.$store.dispatch('signUpUser', this.employerForm)
+                // this.isLoading = false;
+            } catch (error) {
+                console.log(error);
+            }
         },
         changeCompanyType(event:any){
             this.employerForm.company_type_id = event.value

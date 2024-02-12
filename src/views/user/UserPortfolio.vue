@@ -98,13 +98,20 @@
                     <div class="file-previews">
                       <div class="row">
                         <!-- {{ portfolio.images }} -->
-                        <div class="col-md-6 mb-3" v-for="(image, index) in portfolio.images" :key="index">
+                        <div class="col-md-6 mb-3" v-for="(image, index) in portfolio.viewImages" :key="index">
                           <div class="file-previews" style="position: relative; width: 680px! ;">
                             <span class="float-end point" @click="removeImage(index)">x</span>
                             <img v-if="image.image" :src="image.image" alt="Preview" style="width : 100%" />
                             <img v-else :src="image.preview" alt="Preview" style="width : 100%" />
                           </div>
                         </div>
+                        <!-- <div class="col-md-6 mb-3" v-for="(image, index) in portfolio.images" :key="index">
+                          <div class="file-previews" style="position: relative; width: 680px! ;">
+                            <span class="float-end point" @click="removeImage(index)">x</span>
+                            <img v-if="image.image" :src="image.image" alt="Preview" style="width : 100%" />
+                            <img v-else :src="image.preview" alt="Preview" style="width : 100%" />
+                          </div>
+                        </div> -->
                         <!-- <div v-if="portfolio.images"  class="col-md-6 mb-3" 
                           v-for="(image, index) in portfolio.portfolio_images" :key="index">
                           <div class="file-previews" style="position: relative; width: 680px! ;">
@@ -223,6 +230,16 @@
                           <a :href="viewPortfolio.video_links" target="_blank" rel="noopener noreferrer"
                             class="text-primary">{{ viewPortfolio.video_links }}</a>
                         </div>
+                        <div class="row">
+                          <h5 class="title">Images</h5>
+                          <div v-for="item in viewPortfolio.images" class="col-md-4 mb-3">
+                            <div class="card h-100">
+                              <div class="card-body d-flex justify-content-center align-itme-center">
+                                <img :src="item.image" alt="" style="min-width: 120px !important; max-width: 170px !important;">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                         <div class="d-flex justify-content-around">
                           <button v-if="!isLoading" class="primry-btn-2 lg-btn" @click="deletePortfolio(viewPortfolio)">Delete</button>
                           <button v-else class="primry-btn-2 lg-btn w-unset" type="button">
@@ -239,7 +256,7 @@
               <div class="edit-profile-form profile-form">
                 <!-- {{  userPortfolio }} -->
                 <div class="row">
-                  <div v-if="userPortfolio.data">
+                  <div v-if="userPortfolio.data && !showForm">
                     <h5 v-if="userPortfolio.data.length == 0">No Portfolio...</h5>
                   </div>
                   <div v-for="portfolio in userPortfolio.data" class="col-md-6 mb-4">
@@ -361,7 +378,8 @@ import moment from 'moment';
         video_links: '',
         other_file: null,
         user_id: '',
-        id: null
+        id: null,
+        viewImages: [],
       },
       porfolioCount: 0,
       inputFields: [0, 1, 2], // You can adjust the number of input fields as needed
@@ -384,6 +402,7 @@ import moment from 'moment';
         video_links: '',
         other_file: null,
         user_id: '',
+        viewImages: [],
       }
     }
   },
@@ -423,6 +442,7 @@ import moment from 'moment';
       this.portfolio.id = portfolioItem.id;
       this.portfolio.user_id = portfolioItem.user_id;
       this.portfolio.images = portfolioItem.portfolio_images;
+      this.portfolio.viewImages = this.portfolio.images;
     },
 
     viewPort(item: any) {
@@ -436,6 +456,8 @@ import moment from 'moment';
       this.viewPortfolio.end_date = item.end_date;
       this.viewPortfolio.skill_used = item.skill_used;
       this.viewPortfolio.video_links = item.video_links;
+      this.viewPortfolio.images = item.portfolio_images;
+      this.viewPortfolio.viewImages = [];    
     },
 
     cancelForm() {
@@ -481,6 +503,7 @@ import moment from 'moment';
 
     removeImage(index: number) {
       this.portfolio.images.splice(index, 1);
+      this.portfolio.viewImages.splice(index, 1);
 
       // this.$nextTick(() => {
       //   const fileInput = this.$refs.fileInput;
@@ -517,6 +540,7 @@ import moment from 'moment';
 
     handleFileChange(event: any) {
       const files = event.target.files;
+      this.portfolio.images = event.target.files;
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
 
@@ -525,13 +549,13 @@ import moment from 'moment';
         reader.onload = () => {
           // Create an object to store both the file and its preview
           const imageObject = {
-            file: file,
-            type: file.type,
+            // file: file,
+            // type: file.type,
             preview: reader.result as string
           };
 
           // Store the image object in the array
-          this.portfolio.images.push(imageObject);
+          this.portfolio.viewImages.push(imageObject);
         };
         reader.readAsDataURL(file); // Read the file as a data URL
       }

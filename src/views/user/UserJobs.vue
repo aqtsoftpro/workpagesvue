@@ -11,6 +11,7 @@
                                     <h5>Applied Jobs:</h5>
                                 </div>
                             </div>
+                            <h4 v-if="!isLoading && jobApplications.length == 0" class="title">No Record Found...</h4>
                             <table v-if="jobApplications.length > 0" class="eg-table table category-table mb-30">
                                 <thead>
                                     <tr>
@@ -53,7 +54,6 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <h4 v-else class="title">No Record Found...</h4>
                             <div class="pagination-table-info">
 
                                 <Paginator v-model:first="currentPage" :rows="rowsPerPage" :totalRecords="totalPages" @page="handlePageChange">
@@ -111,7 +111,7 @@ data() {
       user: {},
       user_id: {},
       jobApplications: [],
-      isLoading: false,
+      isLoading: true,
       currentPage : 1,
       totalPages : 0,
       rowsPerPage : 10,
@@ -151,14 +151,22 @@ methods: {
 
         },
 }, 
-mounted() {
+async mounted() {
     this.user = JSON.parse(this.currentUser)[0]
-    this.$store.dispatch('getCandidateApplications', this.user.id)
+    try {
+        this.$store.dispatch('getCandidateApplications', this.user.id)
+        window.setTimeout(() => {
+            this.isLoading = false;
+        }, 2000);
+    } catch (error) {
+        console.log(error);
+    }
     this.user_id = this.user.id;
 
     let Script = document.createElement("script");
     Script.setAttribute("src", "/assets/js/main.js");
     document.head.appendChild(Script);
+
 },
 watch: {
     candidateApplications() {

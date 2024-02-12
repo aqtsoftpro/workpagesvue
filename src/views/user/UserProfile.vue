@@ -204,10 +204,8 @@
                                                 <i class="fa fa-spinner fa-spin text-white ms-3" style="font-size:24px">
                                                 </i>
                                             </button>
-
                                         </div>
                                     </div>
-
                                 </div>
                             </form>
                         </div>
@@ -218,7 +216,6 @@
                             </div>
                             <form class="profile-form">
                                 <div class="row">
-                                 
                                     <div class="col-md-6">
                                         <div class="form-inner mb-25">
                                             <label>Facebook</label>
@@ -393,15 +390,20 @@ import moment from 'moment';
         },
     async updateProfile(){
         this.isLoading = true;
-        this.user.dob = moment(this.user.dob).format('YYYY-MM-DD');
-        await this.$store.dispatch('updateProfile', this.user).then(
+        try {
+            this.user.dob = moment(this.user.dob).format('YYYY-MM-DD');
+            await this.$store.dispatch('updateProfile', this.user);
             window.setTimeout(() => {
                 this.isLoading = false
             }, 3000)
-        )
+        } catch (error) {
+            console.log(error);
+            
+        }
+
     },
 
-    updateUserSocial(){
+    updateUserSocial(){        
         this.$store.dispatch('updateUserSocials', this.social)
     },
 
@@ -412,14 +414,15 @@ import moment from 'moment';
     }
   },
   async mounted() {
-      this.user = JSON.parse(this.currentUser)[0]
-      this.social.user_id = this.user.id
-      this.$store.dispatch('getDesignations', '')
-      this.$store.dispatch('getQualifications', '')
-      this.$store.dispatch('getLocations', '')
-      this.$store.dispatch('getLanguages', '')
-      this.$store.dispatch('getSuburb', '')
-      this.$store.dispatch('getUserSocials', this.user.id)
+        // this.$store.dispatch('getUserInfo')
+        this.user = JSON.parse(this.currentUser)[0]
+        this.social.user_id = this.user.id
+        this.$store.dispatch('getDesignations', '')
+        this.$store.dispatch('getQualifications', '')
+        this.$store.dispatch('getLocations', '')
+        this.$store.dispatch('getLanguages', '')
+        this.$store.dispatch('getSuburb', '')
+        this.$store.dispatch('getUserSocials', this.user.id)
     //   this.designationsOptions = await this.designations
     //   this.qualificationsOptions = await this.qualifications
     //   this.languagesOptions = await this.languages

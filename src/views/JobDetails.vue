@@ -266,18 +266,20 @@
 
                                             <div class="col-md-12">
                                                 <div class="form-inner">
-                                                    <button @click="applyForPosition"  class="primry-btn-2 lg-btn w-unset" type="button">Submit Application</button>
+                                                    <button v-if="!isLoading" @click="applyForPosition"  class="primry-btn-2 lg-btn w-unset" type="button">Submit Application</button>
+                                                    <button v-else class="primry-btn-2 lg-btn w-unset" type="button">
+                                                        <span class="me-3 fs-6 text-white">Processing...</span>
+                                                        <i class="fa fa-spinner fa-spin text-white ms-3" style="font-size:24px">
+                                                        </i>
+                                                    </button>
                                                 </div>
                                             </div>
-
                                         </div>
                                     </form>
                                 </div>      
                             </div> 
                         </div>
-
                     </div>
-
                     <hr>
                 </div>
                 <div class="col-lg-12">
@@ -373,7 +375,7 @@ import { useRoute } from 'vue-router'
         },
         user_current_job_applied : '',
         currentUri: '',
-        
+        isLoading: false,
         
     }
   },
@@ -470,9 +472,17 @@ import { useRoute } from 'vue-router'
     onFileSelected(event: any){
         this.application.cv = event.target.files[0];
     },
-    applyForPosition(){
+    async applyForPosition(){
+        this.isLoading = true;
         console.log(this.application);
-        this.$store.dispatch('applyForPosition', this.application)
+        try {
+            await this.$store.dispatch('applyForPosition', this.application)
+            window.setTimeout(() => {
+                this.isLoading = false;
+            }, 1000);
+        } catch (error) {
+            console.log(error);
+        }
     },
     applyBtn()
         {

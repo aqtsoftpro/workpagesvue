@@ -288,7 +288,7 @@ export default createStore({
       state.allPlans = payload
     },
 
-    SET_SUBSCRIPTIONS(state, payload){
+    SET_SUBSCRIPTIONS(state, payload) {
       state.companySubscriptions = payload
     }
   },
@@ -365,17 +365,15 @@ export default createStore({
             toast.success(res.data.message, {
               position: toast.POSITION.BOTTOM_RIGHT,
             })
-
-            this.dispatch('login', {
-              email: payload.email,
-              password: payload.password,
-              type: payload.type,
-              device_name: 'web app'
-            })
-
+            window.setTimeout(() => {
+              this.dispatch('login', {
+                email: payload.email,
+                password: payload.password,
+                type: payload.type,
+                device_name: 'web app'
+              })
+            }, 2000);
           }
-
-
         })
         .catch(err => {
           toast.error(err.message, {
@@ -577,32 +575,32 @@ export default createStore({
     },
 
     verifyEmail(context, payload) {
-      axios.get(apiUrl + 'verify-email/'+ payload.id +'/'+payload.token+'?expires='+payload.expires+'&signature='+payload.signature,  {
+      axios.get(apiUrl + 'verify-email/' + payload.id + '/' + payload.token + '?expires=' + payload.expires + '&signature=' + payload.signature, {
         headers: {
           'Content-Type': 'multipart/form-data',
           'authorization': 'Bearer ' + localStorage.getItem('token')
         },
 
       }).then(async res => {
-          console.log(res);
-          
-          // if (res.data.status == 'error') {
-          //   toast.error(res.data.message, {
-          //     position: toast.POSITION.BOTTOM_RIGHT,
-          //   });
-          // } else {
-          //   let result = await res.data.token
+        console.log(res);
 
-          //   localStorage.setItem('token', result)
-          //   context.commit('SET_TOKEN', result);
+        // if (res.data.status == 'error') {
+        //   toast.error(res.data.message, {
+        //     position: toast.POSITION.BOTTOM_RIGHT,
+        //   });
+        // } else {
+        //   let result = await res.data.token
 
-          //   this.dispatch('getUserInfo', payload.type)
-          // }
-        }).catch(err => {
-          toast.error(err.message, {
-            position: toast.POSITION.BOTTOM_RIGHT,
-          });
-        })
+        //   localStorage.setItem('token', result)
+        //   context.commit('SET_TOKEN', result);
+
+        //   this.dispatch('getUserInfo', payload.type)
+        // }
+      }).catch(err => {
+        toast.error(err.message, {
+          position: toast.POSITION.BOTTOM_RIGHT,
+        });
+      })
     },
 
     // verify-email/{id}/{hash}
@@ -655,7 +653,7 @@ export default createStore({
               }
 
 
-            } 
+            }
             else if (result.data[0].roles[0].name == 'Employer') {
 
               localStorage.setItem('currentUser', JSON.stringify(result.data));
@@ -672,19 +670,18 @@ export default createStore({
                 router.push('/company/dashboard');
               }
 
-            } 
+            }
             else if (result.data[0].roles[0].name == 'Super Admin') {
 
               if (result.data[0].email_verified_at == null) {
                 window.location.href = adminDashboardUrl + result.data[0].email;
                 // router.push('/send-email');
               }
-              else
-              {
+              else {
                 window.location.href = adminDashboardUrl + result.data[0].email;
               }
             }
-             else {
+            else {
               toast.error('You cannot assign admin role!', {
                 position: toast.POSITION.BOTTOM_RIGHT,
               });
@@ -750,7 +747,7 @@ export default createStore({
           let result = res.data
           console.log(result.data);
           context.commit('SET_USER_PORTFOLIO', result)
-          context.commit('SET_USER_SOCIALS', result)
+          // context.commit('SET_USER_SOCIALS', result)
           toast.success(res.data.message, {
             position: toast.POSITION.BOTTOM_RIGHT
           })
@@ -1061,6 +1058,16 @@ export default createStore({
         })
     },
 
+    getJobsByCompany(context, payload) {
+      axios.post(apiUrl + 'getJobs/' + payload.company_id)
+      .then(res => {
+        console.log(res);
+        context.commit('SET_SEARCH_RESULT', res.data);
+      })
+    },
+
+    // getJobs/{comapny_id}
+
     getFilterTypeofCompanies(context, payload) {
       axios.get(apiUrl + 'filter_company_type')
         .then(res => {
@@ -1359,7 +1366,7 @@ export default createStore({
           })
           // router.push({ path: '/user/jobs', query: { job_id: res.data.job.id } });
           window.setTimeout(() => {
-            router.push({ path: '/user/jobs'});
+            router.push({ path: '/user/jobs' });
           }, 2000);
         })
         .catch(err => {
@@ -1516,14 +1523,14 @@ export default createStore({
           'authorization': 'Bearer ' + localStorage.getItem('token')
         }
       })
-      .then(res => {
+        .then(res => {
           // console.log(res);
           context.commit('SET_SUBSCRIPTIONS', res.data);
-      })
-      .catch(err => {
-        console.log(err);
-        
-      })
+        })
+        .catch(err => {
+          console.log(err);
+
+        })
     },
 
     deletePort(context, payload) {
@@ -1532,16 +1539,16 @@ export default createStore({
           'authorization': 'Bearer ' + localStorage.getItem('token')
         },
       })
-      .then(res => {
-        context.commit('SET_USER_PORTFOLIO', res.data)
-        toast.success(res.data.message, {
-          position: toast.POSITION.BOTTOM_RIGHT,
+        .then(res => {
+          context.commit('SET_USER_PORTFOLIO', res.data)
+          toast.success(res.data.message, {
+            position: toast.POSITION.BOTTOM_RIGHT,
+          })
         })
-      })
-      .catch(err => {
-        console.log(err);
-        
-      })
+        .catch(err => {
+          console.log(err);
+
+        })
     },
 
 

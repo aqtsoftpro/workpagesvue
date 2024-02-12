@@ -10,6 +10,7 @@ import JobSeekerRegister from '../views/Register-job-seeker.vue'
 import EmployerRegister from '../views/Register-employer.vue'
 import JobListing from '../views/JobListing.vue'
 import JobSearch from '../views/JobSearch.vue'
+import CompanyViseJob from '../views/CompanyViseJob.vue'
 import JobFeatured from '../views/JobFeatured.vue'
 import JobDetails from '../views/JobDetails.vue'
 import JobCategories from '../views/JobCategories.vue'
@@ -106,6 +107,13 @@ const routes: Array<RouteRecordRaw> = [
     name: 'job-search',
     component: JobSearch,
   },
+
+  {
+    path: '/company-job/:company_id',
+    name: 'company-job',
+    component: CompanyViseJob,
+  },
+
   {
     path: '/featured-jobs',
     name: 'featured-jobs',

@@ -47,7 +47,7 @@
                                 </div>
                              
                             </div>
-                            <div class="phone-email-area">
+                            <!-- <div class="phone-email-area">
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="info-title">
@@ -92,7 +92,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                          
                             <div class="privacy-security-area">
                                 <div class="row">
@@ -150,7 +150,12 @@
                             </div>
                             <div class="col-md-12 pt-50">
                                 <div class="form-inner">
-                                    <button @click="updateSettings" class="primry-btn-2 lg-btn w-unset" type="button">Update Change</button>
+                                    <button v-if="!isLoading" @click="updateSettings" class="primry-btn-2 lg-btn w-unset" type="button">Update Change</button>
+                                    <button v-else class="primry-btn-2 lg-btn w-unset" type="button">
+                                        <span class="me-3 fs-6 text-white">Processing...</span>
+                                        <i class="fa fa-spinner fa-spin text-white ms-3" style="font-size:24px">
+                                        </i>
+                                    </button>
                                 </div>
                             </div>
                         </form>
@@ -195,6 +200,7 @@ import InputSwitch from 'primevue/inputswitch';
             resumeVisibility: false,
             disableAccount: false,
             mapAddress:'',
+            isLoading: false,
         }
     },
     computed: {
@@ -208,12 +214,20 @@ import InputSwitch from 'primevue/inputswitch';
             console.log(this.changepass);
             this.$store.dispatch('updatePassword', this.changepass)
         },
-        updateSettings(event:any) {
+        async updateSettings(event:any) {
+            this.isLoading = true;
             this.userMeta.application_shortlisted_email_alert = this.applicationShortlistedEmailAlert ? true : false;
             this.userMeta.application_rejected_email_alert = this.applicationRejectedEmailAlert ? true : false;
             this.userMeta.resume_visibility = this.resumeVisibility ? true : false;
             this.userMeta.disable_account = this.disableAccount ? true : false;
-            this.$store.dispatch('updateUserMeta', this.userMeta)
+            try {
+                await this.$store.dispatch('updateUserMeta', this.userMeta)
+                window.setTimeout(() => {
+                    this.isLoading = false
+                }, 1000);
+            } catch (error) {
+                console.log(error);
+            }
         },
 
         deletUser(){
