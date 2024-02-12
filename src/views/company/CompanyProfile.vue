@@ -241,7 +241,12 @@
                                     </div>-->
                                     <div class="col-md-12">
                                         <div class="form-inner">
-                                            <button @click="updateCompanyProfile"  class="primry-btn-2 lg-btn w-unset" type="button">Update Change</button>
+                                            <button v-if="!isLoading" @click="updateCompanyProfile"  class="primry-btn-2 lg-btn w-unset" type="button">Update Change</button>
+                                            <button v-else class="primry-btn-2 lg-btn w-unset" type="button">
+                                                <span class="me-3 fs-6 text-white">Processing...</span>
+                                                <i class="fa fa-spinner fa-spin text-white ms-3" style="font-size:24px">
+                                                </i>
+                                            </button>
                                         </div>
                                     </div> 
 
@@ -307,6 +312,7 @@ import Company from './index.vue';
         coverlogoVisible: true,
         previewlogo: null,
         previewcoverlogo:null,
+        isLoading: false,
         
     }
   },
@@ -320,9 +326,19 @@ import Company from './index.vue';
     changeState(event:any){
         this.userForm.state_id = event.value
     },
-    updateCompanyProfile(){
-        // console.log(this.userForm);
-        this.$store.dispatch('updateCompanyProfile', this.userForm);
+    async updateCompanyProfile(){
+        this.isLoading = true;
+        try {
+          // console.log(this.userForm);
+        await this.$store.dispatch('updateCompanyProfile', this.userForm);
+        window.setTimeout(() => {
+            this.isLoading = false;
+        }, 1000);
+        } catch (error) {
+            console.log(error);
+            
+        }
+
     },
     handleLogoUpload(event:any){
         this.logoVisible = false

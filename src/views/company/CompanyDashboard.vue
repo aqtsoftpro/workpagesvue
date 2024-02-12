@@ -8,6 +8,7 @@
                 
                  <!-- Company Menu Here -->
                 <div class="col-lg-12">
+                    {{ company }}
                     <div class="dashboard-inner">
                         <div class="author-and-action-btn-area two mb-40">
                             <div class="author-area two">
@@ -58,7 +59,7 @@
                                             <p>Live Jobs</p>
                                             <div class="d-flex align-items-center">
                                                 <h3 class="odometer">
-                                                    {{ company?.data.jobs.length }}
+                                                    {{ company?.data.live_jobs }}
                                                 </h3>
                                                 <span>+</span>
                                             </div>
@@ -74,7 +75,7 @@
                                             <p>Pending Job</p>
                                             <div class="d-flex align-items-center">
                                                 <h3 class="odometer">
-                                                    {{pending_jobs}}
+                                                    {{ company?.data.pending_jobs }}
                                                 </h3>
                                                 <span>+</span>
                                             </div>
@@ -90,7 +91,7 @@
                                             <p>Closed Jobs</p>
                                             <div class="d-flex align-items-center">
                                                 <h3 class="odometer">
-                                                    {{closed_jobs}}
+                                                    {{ company?.data.closed_jobs }}
                                                 </h3>
                                                 <span>+</span>
                                             </div>
@@ -531,7 +532,7 @@ import { mapGetters } from 'vuex';
     this.$store.dispatch('getCompanyApplications', this.user.company.id )
     this.$store.dispatch('getCompany', this.user.id)
     this.company_logo = this.user.company.logo
-
+    // this.live_jobs = 
     let Script = document.createElement("script");
     Script.setAttribute("src", "/assets/js/main.js");
     document.head.appendChild(Script);

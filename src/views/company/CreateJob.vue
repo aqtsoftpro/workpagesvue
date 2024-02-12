@@ -212,7 +212,12 @@
                                     </div>                                                                                                                                                                                                                                            
                                     <div class="col-md-12">
                                         <div class="form-inner">
-                                            <button @click="createJob"  class="primry-btn-2 lg-btn w-unset" type="button">Create Job</button>
+                                            <button v-if="!isLoading" @click="createJob"  class="primry-btn-2 lg-btn w-unset" type="button">Create Job</button>
+                                            <button v-else class="primry-btn-2 lg-btn w-unset" type="button">
+                                                <span class="me-3 fs-6 text-white">Processing...</span>
+                                                <i class="fa fa-spinner fa-spin text-white ms-3" style="font-size:24px">
+                                                </i>
+                                            </button>
                                         </div>
                                     </div> 
 
@@ -266,7 +271,8 @@ import Calendar from 'primevue/calendar';
             salary_from: 0,
             salary_to: 0,
             currency_id: 1,
-            expiration: null
+            expiration: null,
+            isLoading: false,
         },
         currentCompany: [],
         genders: [
@@ -326,9 +332,15 @@ import Calendar from 'primevue/calendar';
         this.$store.dispatch('updateCompanyProfile', this.userForm);
     },
 
-    createJob(){
+    async createJob(){
+        this.isLoading = true;
         console.log(this.jobForm);
-        this.$store.dispatch('createJob', this.jobForm);
+        try {
+          await this.$store.dispatch('createJob', this.jobForm);
+          this.isLoading = false;
+        } catch (error) {
+            console.log(error);
+        }
     }
   },
   computed: {

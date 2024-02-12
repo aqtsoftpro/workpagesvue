@@ -51,7 +51,7 @@
                                         <router-link :to="{name: 'job-seeker-register'}">Job Seeker Sign Up</router-link>
                                     </small>
                                     <small class="col-lg-6 text-right">
-                                        <router-link :to="{name: 'job-seeker-register'}">Company Sign Up</router-link>
+                                        <router-link :to="{name: 'employer-register'}">Company Sign Up</router-link>
                                     </small>
 
                             </div>

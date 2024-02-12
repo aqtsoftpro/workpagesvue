@@ -42,6 +42,7 @@ import TermsConditions from '../views/TermsConditions.vue'
 import ViewCv from '../views/ViewCv.vue'
 import ForgotPassord from '../views/UserForgotPassword.vue'
 import ResetPassord from '../views/UserResetPassword.vue'
+import UserVerifyLink from '../views/UserVerifyLink.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -153,50 +154,60 @@ const routes: Array<RouteRecordRaw> = [
     props: true,
   },
 
-  
-
+  {
+    path: '/verify-email/:id/:token',
+    name: 'verify-email',
+    component: UserVerifyLink,
+    props: true,
+  },
+  {
+    path: '/send-email',
+    name: 'send-email',
+    component: UserVerifyLink,
+    props: true,
+  },
   {
     path: '/company',
     children: [
       {
         path: '/company/dashboard',
         component: CompanyDashboard,
-        meta: { requiresAuth: true, role1: 'Employer' }
+        meta: { requiresAuth: true, role: 'Employer' }
       },
       {
         path: '/company/profile',
         component: CompanyProfile,
-        meta: { requiresAuth: true, role1: 'Employer' }
+        meta: { requiresAuth: true, role: 'Employer' }
       },
       {
         path: '/company/job-list',
         component: CompanyJobList,
-        meta: { requiresAuth: true, role1: 'Employer' }
+        meta: { requiresAuth: true, role: 'Employer' }
       },
       {
         path: '/company/applications',
         component: CompanyApplicationList,
-        meta: { requiresAuth: true, role1: 'Employer' }
+        meta: { requiresAuth: true, role: 'Employer' }
       },
       {
         path: '/company/create-job',
         component: CreateJob,
-        meta: { requiresAuth: true, role1: 'Employer' }
+        meta: { requiresAuth: true, role: 'Employer' }
       },
       {
         path: '/company/update-job/:job_key/:job_slug',
         component: UpdateJob,
-        meta: { requiresAuth: true, role1: 'Employer' }
+        meta: { requiresAuth: true, role: 'Employer' }
       },      
       {
         path: '/company/plan',
         component: CompanyPlan,
-        meta: { requiresAuth: true, role1: 'Employer' }
+        meta: { requiresAuth: true, role: 'Employer' }
       },
       {
         path: '/company/settings',
         component: CompanySettings,
-        meta: { requiresAuth: true, role1: 'Employer' }
+        meta: { requiresAuth: true, role: 'Employer' }
       },
     ]
   },
@@ -206,42 +217,42 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: '/user/dashboard',
         component: UserDashboard,
-        meta: { requiresAuth: true}
+        meta: { requiresAuth: true, role: 'Job Seeker'}
       },
       {
         path: '/user/profile',
         component: UserProfile,
-        meta: { requiresAuth: true}
+        meta: { requiresAuth: true, role: 'Job Seeker'}
       },
       {
         path: '/user/portfolio',
         component: UserPortfolio,
-        meta: { requiresAuth: true}
+        meta: { requiresAuth: true, role: 'Job Seeker'}
       },
       {
         path: '/user/jobs',
         component: UserJobs,
-        meta: { requiresAuth: true}
+        meta: { requiresAuth: true, role: 'Job Seeker'}
       },
       {
         path: '/user/bookmarks',
         component: UserBookmarks,
-        meta: { requiresAuth: true, }
+        meta: { requiresAuth: true, role: 'Job Seeker'}
       },
       {
         path: '/user/edit-resume',
         component: UserEditResume,
-        meta: { requiresAuth: true, }
+        meta: { requiresAuth: true, role: 'Job Seeker'}
       },
       {
         path: '/user/view-resume',
         component: UserViewResume,
-        meta: { requiresAuth: true, }
+        meta: { requiresAuth: true, role: 'Job Seeker'}
       },
       {
         path: '/user/settings',
         component: UserSettings,
-        meta: { requiresAuth: true, }
+        meta: { requiresAuth: true, role: 'Job Seeker'}
       },
     ]
   },
@@ -280,6 +291,8 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   // Check if the route requires authentication
+  window.scrollTo(0, 0);
+
   if (to.meta.requiresAuth) {
     const isLoggedIn = store.state.loggedIn;
     
@@ -299,7 +312,7 @@ router.beforeEach((to, from, next) => {
     }
 
     //Check if the user has the required role for the route
-    if (to.meta.role1 && !currentUser[0].roles[0].name == to.meta.role1) {
+    if (to.meta.role && currentUser[0].roles[0].name != to.meta.role) {
       // User doesn't have the required role, redirect to unauthorized page or handle accordingly
       next('/unauthorized');
       return;

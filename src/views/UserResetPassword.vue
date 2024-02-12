@@ -108,7 +108,7 @@ import { mapGetters } from 'vuex';
                 'password_confirmation': this.user.confired_password,
                 'token': this.user.token,
                 'type': 'user',
-                'device_name': 'web',
+                'device_name': 'web app',
             }
             this.$store.dispatch('passwordChange', credentials)
             // if(this.user.email == 'company@demo.com' && this.user.password == '1234') {

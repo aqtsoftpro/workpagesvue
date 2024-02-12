@@ -115,7 +115,7 @@
                         <div class="job-share-area mb-50">
                             <h6>Job Link Share:</h6>
                             <ul>
-                                <li><a href="#"><i class='bx bx-link' ></i></a></li>
+                                <li><span class=""><i @click="copyLink" class='bx bx-link' ></i></span></li>
                                 <!-- <button @click="shareOnFacebook">Share on Facebook</button> -->
                                 <li><a href="#" @click="shareOnFacebook"><i class='bx bxl-facebook'></i></a></li>
                                 <li><a href="#" @click="shareOnTwitter"><i class='bx bxl-twitter' ></i></a></li>
@@ -415,6 +415,32 @@ import { useRoute } from 'vue-router'
 
       // Open the Facebook Share Dialog in a new window
       window.open(shareLink, 'Share on Facebook', 'width=600,height=400');
+    },
+
+    copyLink(){
+        // const urlToShare = encodeURIComponent(this.currentUri);
+        // var url = "https://example.com";
+        // Get the URL you want to copy
+        const url: string = this.currentUri;
+
+        // Decode the URL
+        const decodedUrl = decodeURIComponent(url);
+
+        // Create a temporary input element
+        const input = document.createElement('input');
+        input.setAttribute('value', decodedUrl);
+        document.body.appendChild(input);
+        input.select();
+
+        // Copy the URL to the clipboard
+        document.execCommand('copy');
+
+        // Remove the temporary input element
+        document.body.removeChild(input);
+
+        // Log success or failure
+        console.log('URL copied to clipboard successfully: ' + decodedUrl);
+
     },
 
     shareOnTwitter() {

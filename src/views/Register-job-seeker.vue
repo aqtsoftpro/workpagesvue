@@ -64,7 +64,7 @@
                                                 <div class="form-inner mb-25">
                                                     <label for="email">Suburb</label>
                                                     <div class="input-area">
-                                                        <img src="assets/images/icon/loction.svg" alt="">
+                                                        <img src="/assets/images/icon/company-2.svg" alt="">
                                                         <!-- <input v-model="userForm.suburb_id" type="text" id="suburns" name="suburb" placeholder="Select Suburb"> -->
                                                         <Dropdown
                                                             name="suburb_id"
@@ -245,9 +245,8 @@
                                         </div>
                                     </form>
                                 </div>
-                              </div> -->
+                            </div> -->
                         </div>
-                       
                      </div>
                 </div>
             </div>
@@ -256,6 +255,21 @@
     <!-- ========== Login Area end============= -->
   </div>  
 </template>
+
+<style>
+.form-wrapper form .form-inner span {
+    font-size: 1rem !important;
+    padding: 10px !important;
+}
+.p-dropdown {
+    width: 100% !important;
+    padding: 0 !important;
+    margin-right: 5px !important;
+    border-radius: 5px;
+    padding-left: 0px !important;
+}
+</style>
+
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';

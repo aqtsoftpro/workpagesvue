@@ -244,7 +244,12 @@
                                     </div>                                                                                                                                                                                                                                            
                                     <div class="col-md-12">
                                         <div class="form-inner">
-                                            <button @click="updateJob"  class="primry-btn-2 lg-btn w-unset" type="button">Update Job</button>
+                                            <button v-if="!isLoading"  @click="updateJob"  class="primry-btn-2 lg-btn w-unset" type="button">Update Job</button>
+                                            <button v-else class="primry-btn-2 lg-btn w-unset" type="button" disabled>
+                                                <span class="me-3 fs-6 text-white">Processing...</span>
+                                                <i class="fa fa-spinner fa-spin text-white ms-3" style="font-size:24px">
+                                                </i>
+                                            </button>
                                         </div>
                                     </div> 
 
@@ -304,7 +309,8 @@ import { useRoute } from 'vue-router'
             salary_from: 0,
             salary_to: 0,
             currency_id: 1,
-            expiration: null
+            expiration: null,
+            isLoading: false,
         },
         currentCompany: [],
         genders: [
@@ -361,9 +367,19 @@ import { useRoute } from 'vue-router'
         this.$store.dispatch('updateCompanyProfile', this.userForm);
     },
 
-    updateJob(){
+    async updateJob(){
+        this.isLoading = true;
         console.log(this.jobForm);
-        this.$store.dispatch('updateJob',  this.jobForm);
+        try {
+            this.isLoading = true;
+            await this.$store.dispatch('updateJob',  this.jobForm);
+            window.setTimeout(() => {
+                this.isLoading = false;
+            }, 2000);
+        
+        } catch (error) {
+            console.log(error);
+        }
     }
   },
   computed: {

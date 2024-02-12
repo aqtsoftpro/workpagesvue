@@ -46,9 +46,13 @@
                                     <ul>
                                         <li>
                                             <div class="icon">
+                                                <img src="assets/images/icon/email-2.svg" alt="">
+                                            </div>
+                                            {{ globalSettings._site_email }}
+                                        </li>
+                                        <li>
+                                            <div class="icon">
                                                 <img src="assets/images/icon/phone-5.svg" alt="">
-
-                                    
                                             </div>
                                             {{ globalSettings._site_contact_no }}
                                         </li>
@@ -184,11 +188,18 @@ import 'vue3-toastify/dist/index.css';
         ])
     },
     methods: {
-    submitForm() {
+    async submitForm() {
+        try {
+            this.loading = true
+            await this.sendDataToServer(this.formData);
+            this.formData = {};
+        } catch (error) {
+            console.log(error);
+            
+        }
 
-      this.loading = true;
 
-      this.sendDataToServer(this.formData);
+
     },
     sendDataToServer(data:any) {
 

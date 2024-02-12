@@ -69,7 +69,7 @@
                             </div>
                         </div> -->
                         <div class="row ">
-                            <div v-for="job in searchResult" :key="job.id" class="col-lg-12 mb-30">
+                            <div v-for="job in searchResult" :key="job.expiration" class="col-lg-12 mb-30">
                                 <div class="job-listing-card">
                                     <div class="job-top">
                                         <div class="job-list-content">
@@ -108,11 +108,13 @@
                                             <!-- <span class="light-purple">Part Time</span>
                                             <span class="light-blue">Remote</span> -->
                                         </div>
-                                        <div class="apply-btn">
+                                        <div class="apply-btn" v-if="!isJobExpired(job.expiration)">
                                             <router-link v-if="loggedIn" :to="getJobDetail(job.job_key, job.job_slug)"><span><img src="assets/images/icon/apply-ellipse.svg" alt=""></span>Apply Now</router-link>
                                             <router-link v-else :to="{ name: 'login'}"><span><img src="assets/images/icon/apply-ellipse.svg" alt=""></span>Login to apply</router-link>
-
                                         </div>
+                                        <!-- <div v-else class="apply-btn">
+                                            <a href="#" class="text-danger"><span><img src="assets/images/icon/apply-ellipse.svg" alt=""></span>Expired...</a>
+                                        </div> -->
                                     </div>
                                 </div>
                             </div>
@@ -160,12 +162,46 @@ import Jobs from '../views/JobListing.vue'; // @ is an alias to /src
         // path: '/job-details/${job_key}/${job_slug}'
       };
     },
+
+    parsedExpirationDate(expirationDate:any) {
+      // Split the expiration date string into month, day, and year
+      const [month, day, year] = expirationDate.split(' ');
+      // Type annotation for monthMap
+      const monthMap: { [key: string]: number } = {
+        'Jan': 0, 'Feb': 1, 'Mar': 2, 'Apr': 3,
+        'May': 4, 'Jun': 5, 'Jul': 6, 'Aug': 7,
+        'Sep': 8, 'Oct': 9, 'Nov': 10, 'Dec': 11
+      };
+
+      // Create and return a Date object using the parsed month, day, and year
+      return new Date(year, monthMap[month], parseInt(day, 10));
+    },
+    
+    isJobExpired(expirationDate: any) {
+      const today = new Date();
+      const expiration = this.parsedExpirationDate(expirationDate);
+      return expiration < today; // Returns true if the job is expired
+    }
   },  
   computed: {
     ...mapGetters([
         'searchResult',
         'loggedIn'
-    ])
+    ]),
+    // parsedExpirationDate(): Date {
+    //   // Split the expiration date string into month, day, and year
+    //   const [month, day, year] = this.job.expiration.split(' ');
+    //   // Type annotation for monthMap
+    //   const monthMap: { [key: string]: number } = {
+    //     'Jan': 0, 'Feb': 1, 'Mar': 2, 'Apr': 3,
+    //     'May': 4, 'Jun': 5, 'Jul': 6, 'Aug': 7,
+    //     'Sep': 8, 'Oct': 9, 'Nov': 10, 'Dec': 11
+    //   };
+
+    //   // Create and return a Date object using the parsed month, day, and year
+    //   return new Date(year, monthMap[month], parseInt(day, 10));
+    // },
+
   },
   mounted() {
     let query = this.$route.query
@@ -175,7 +211,14 @@ import Jobs from '../views/JobListing.vue'; // @ is an alias to /src
     searchResult(){
         console.log(this.searchResult);
         this.jobs = this.searchResult
-    }
+    },
+
+    // activeJobs(): { expiration: string }[] {
+    //   const today = new Date();
+    //   return this.jobs.filter((job: { expiration: string }) => {
+    //     return this.parsedExpirationDate >= today;
+    //   });
+    // }
   }
 })
 export default class JobListing extends Vue {}

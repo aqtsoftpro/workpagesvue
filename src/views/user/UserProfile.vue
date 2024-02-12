@@ -402,7 +402,6 @@ import moment from 'moment';
     },
 
     updateUserSocial(){
-        
         this.$store.dispatch('updateUserSocials', this.social)
     },
 
@@ -425,7 +424,7 @@ import moment from 'moment';
     //   this.qualificationsOptions = await this.qualifications
     //   this.languagesOptions = await this.languages
     //   this.locationsOptions = await this.locations
-
+    this.social = this.userSocials.data
     let Script = document.createElement("script");
       Script.setAttribute("src", "/assets/js/main.js");
       document.head.appendChild(Script);

@@ -576,6 +576,37 @@ export default createStore({
         })
     },
 
+    verifyEmail(context, payload) {
+      axios.get(apiUrl + 'verify-email/'+ payload.id +'/'+payload.token+'?expires='+payload.expires+'&signature='+payload.signature,  {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          'authorization': 'Bearer ' + localStorage.getItem('token')
+        },
+
+      }).then(async res => {
+          console.log(res);
+          
+          // if (res.data.status == 'error') {
+          //   toast.error(res.data.message, {
+          //     position: toast.POSITION.BOTTOM_RIGHT,
+          //   });
+          // } else {
+          //   let result = await res.data.token
+
+          //   localStorage.setItem('token', result)
+          //   context.commit('SET_TOKEN', result);
+
+          //   this.dispatch('getUserInfo', payload.type)
+          // }
+        }).catch(err => {
+          toast.error(err.message, {
+            position: toast.POSITION.BOTTOM_RIGHT,
+          });
+        })
+    },
+
+    // verify-email/{id}/{hash}
+
     subscribe(context, payload) {
       axios.post(apiUrl + 'newletterEmail', payload)
         .then(async res => {
@@ -609,15 +640,20 @@ export default createStore({
           .then(res => {
             let result = res
             console.log(result.data[0])
-            if (result.data[0].email_verified_at == null) {
-              window.location.href = adminDashboardUrl + result.data[0].email;
-            } else if (result.data[0].roles[0].name == 'Job Seeker') {
+            if (result.data[0].roles[0].name == 'Job Seeker') {
 
               localStorage.setItem('currentUser', JSON.stringify(result.data));
               context.commit('SET_CURRENT_USER', JSON.stringify(result.data));
               this.state.loggedIn = true
 
-              router.push('/user/dashboard');
+              if (result.data[0].email_verified_at == null) {
+                window.location.href = adminDashboardUrl + result.data[0].email;
+                // router.push('/send-email');
+              }
+              else {
+                router.push('/user/dashboard');
+              }
+
 
             } 
             else if (result.data[0].roles[0].name == 'Employer') {
@@ -628,14 +664,27 @@ export default createStore({
 
               this.dispatch('getCompany', result.data[0].id);
 
-              router.push('/company/dashboard');
+              if (result.data[0].email_verified_at == null) {
+                window.location.href = adminDashboardUrl + result.data[0].email;
+                // router.push('/send-email');
+              }
+              else {
+                router.push('/company/dashboard');
+              }
 
             } 
             else if (result.data[0].roles[0].name == 'Super Admin') {
 
-              window.location.href = adminDashboardUrl + result.data[0].email;
-
-            } else {
+              if (result.data[0].email_verified_at == null) {
+                window.location.href = adminDashboardUrl + result.data[0].email;
+                // router.push('/send-email');
+              }
+              else
+              {
+                window.location.href = adminDashboardUrl + result.data[0].email;
+              }
+            }
+             else {
               toast.error('You cannot assign admin role!', {
                 position: toast.POSITION.BOTTOM_RIGHT,
               });
@@ -676,7 +725,6 @@ export default createStore({
       })
         .then(res => {
           console.log(payload);
-          
           let result = res
           context.commit('SET_USER_SOCIALS', result.data)
           toast.success(res.data.message, {
@@ -1153,8 +1201,8 @@ export default createStore({
         })
     },
 
-    createJob(context, payload) {
-      axios.post(apiUrl + 'job', payload, {
+    async createJob(context, payload) {
+      await axios.post(apiUrl + 'job', payload, {
         headers: {
           'authorization': 'Bearer ' + localStorage.getItem('token')
         }
@@ -1165,7 +1213,9 @@ export default createStore({
             position: toast.POSITION.BOTTOM_RIGHT,
           })
           // router.push({ path: '/job-details/' + res.data.job.job_key + '/' + res.data.job.job_slug, });
-          router.push({ path: 'company/job-list' });
+          window.setTimeout(() => {
+            router.push({ path: '/company/job-list' });
+          }, 2000);
         })
     },
 

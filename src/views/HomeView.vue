@@ -12,7 +12,7 @@
                     <div class="col-lg-12">
                         <div class="hero-content">
 
-                            <span v-if="slider_content" v-html="slider_content"></span>
+                            <span v-if="slider_content" v-html="slider_content" :style="{ color: slider_text_color }"></span>
 
                             <div v-else class="blur">
                                 <div class="spin-loader"></div>
@@ -47,6 +47,7 @@
                                             placeholder="Select Category"
                                             class="w-full
                                             md:w-14rem" 
+                                            style="padding-left: 1rem !important; align-items: center !important; height: 2.6rem !important; border-radius: 20px;"
                                         />
                                     </div>
                                     <div class="form-inner location" style="flex: 1">
@@ -61,6 +62,7 @@
                                             placeholder="Select State"
                                             class="w-full
                                             md:w-14rem" 
+                                            style="padding-left: 1rem !important; align-items: center !important; height: 2.6rem !important; border-radius: 20px;"
                                         />                                     
                                     </div>
                                     <div class="form-inner">
@@ -959,6 +961,21 @@
   
 </template>
 
+<style>
+/* .form-wrapper form .form-inner span {
+    font-size: 1rem !important;
+    padding: 10px !important;
+} */
+.p-dropdown {
+    padding: 0.5rem !important;
+    border-radius: 20px;
+    padding-left: 1rem !important;
+}
+ul {
+    padding-left: 1rem !important;
+}
+</style>
+
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
 import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
@@ -1009,6 +1026,7 @@ import { mapGetters } from 'vuex';
         slider_content: '',
         slider_search_panel_margin_top: '',
         slider_search_panel_margin_bottom: '',
+        slider_text_color: '',
         searchForm: {
             keyword: null,
             category_id: null,
@@ -1099,6 +1117,7 @@ import { mapGetters } from 'vuex';
             this.slider_content = this.globalVariables._slider_content;
             this.slider_search_panel_margin_top = this.globalVariables._search_panel_margin_top;
             this.slider_search_panel_margin_bottom = this.globalVariables._search_panel_margin_bottom;
+            this.slider_text_color = this.globalVariables._slider_text_color;
             window.setTimeout(() => {
                 this.isLoading = false;
             }, 2000);

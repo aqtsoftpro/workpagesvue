@@ -260,7 +260,7 @@
                         </div>
                     </div>
                 </div>
-                <div v-if="role == 2"
+                <div v-if="role == 'Job Seeker'"
                     class="col-lg-3 col-md-4 col-sm-6 mb--50 d-flex justify-content-md-center justify-content-sm-end justify-content-center">
                     <div class="footer-widget">
                         <div class="widget-title">
@@ -280,7 +280,7 @@
                         </div>
                     </div>
                 </div>
-                <div v-if="role == 3"
+                <div v-if="role == 'Employer'"
                     class="col-lg-3 col-md-4 col-sm-6 mb--50 d-flex justify-content-lg-center justify-content-md-end justify-content-sm-start justify-content-center">
                     <div class="footer-widget">
                         <div class="widget-title">
@@ -452,6 +452,7 @@ Vue.prototype.$globalVar = "Shared Data";
         if (this.loggedIn) {
             this.user = JSON.parse(this.currentUser)[0]
             this.role = this.user.roles[0].name
+            console.log(this.role);
         }
         this.$store.dispatch('getGlobalVariables');
 

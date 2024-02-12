@@ -65,19 +65,9 @@ import { mapGetters } from 'vuex';
             'email': this.email,
         }
         this.$store.dispatch('reset', credentials)
-        // if(this.user.email == 'company@demo.com' && this.user.password == '1234') {
-        //     router.push('/company/dashboard');
-        // } else if(this.user.email == 'user@demo.com' && this.user.password == '1234'){
-        //     router.push('/user/dashboard');
-        // } else {
-        //     toast.error("Login Error !", {
-        //         position: toast.POSITION.BOTTOM_RIGHT,
-        //     });
-        // }
     }
   },
   mounted(){
-
     let Script = document.createElement("script");
     Script.setAttribute("src", "/assets/js/main.js");
     document.head.appendChild(Script);
