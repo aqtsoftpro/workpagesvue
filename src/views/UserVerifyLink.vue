@@ -65,10 +65,9 @@ import { mapGetters } from 'vuex';
 
         verifyMail() {
             var credentials = {
-                'id': this.$route.params.id,
-                'token': this.$route.params.token,
-                'expires': this.$route.query.expires,
-                'signature': this.$route.query.signature
+                'userId': this.$route.query.userId,
+                'token': this.$route.query.token,
+                'expired': this.$route.query.expired,
             }    
             this.$store.dispatch('verifyEmail', credentials)
         },

@@ -163,7 +163,7 @@ const routes: Array<RouteRecordRaw> = [
   },
 
   {
-    path: '/verify-email/:id/:token',
+    path: '/verify-email',
     name: 'verify-email',
     component: UserVerifyLink,
     props: true,

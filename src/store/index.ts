@@ -574,7 +574,7 @@ export default createStore({
     },
 
     verifyEmail(context, payload) {
-      axios.get(apiUrl + 'verify-email/' + payload.id + '/' + payload.token + '?expires=' + payload.expires + '&signature=' + payload.signature, {
+      axios.get(apiUrl + 'verify-email/?userId=' + payload.userId + '&token=' + payload.token + '&expired=' + payload.expired, {
         headers: {
           'Content-Type': 'multipart/form-data',
           'authorization': 'Bearer ' + localStorage.getItem('token')
@@ -582,6 +582,7 @@ export default createStore({
 
       }).then(async res => {
         console.log(res);
+        this.dispatch('getUserInfo', payload.type)
 
         // if (res.data.status == 'error') {
         //   toast.error(res.data.message, {
@@ -644,8 +645,8 @@ export default createStore({
               this.state.loggedIn = true
 
               if (result.data[0].email_verified_at == null) {
-                window.location.href = adminDashboardUrl + result.data[0].email;
-                // router.push('/send-email');
+                // window.location.href = adminDashboardUrl + result.data[0].email;
+                router.push('/send-email');
               }
               else {
                 router.push('/user/dashboard');
@@ -662,8 +663,8 @@ export default createStore({
               this.dispatch('getCompany', result.data[0].id);
 
               if (result.data[0].email_verified_at == null) {
-                window.location.href = adminDashboardUrl + result.data[0].email;
-                // router.push('/send-email');
+                // window.location.href = adminDashboardUrl + result.data[0].email;
+                router.push('/send-email');
               }
               else {
                 router.push('/company/dashboard');
