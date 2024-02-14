@@ -413,7 +413,7 @@ import moment from 'moment';
         this.preview = URL.createObjectURL(event.target.files[0]);
     }
   },
-  async mounted() {
+  mounted() {
         // this.$store.dispatch('getUserInfo')
         this.user = JSON.parse(this.currentUser)[0]
         this.social.user_id = this.user.id
@@ -427,7 +427,7 @@ import moment from 'moment';
     //   this.qualificationsOptions = await this.qualifications
     //   this.languagesOptions = await this.languages
     //   this.locationsOptions = await this.locations
-    this.social = this.userSocials.data
+    this.social = this.userSocials
     let Script = document.createElement("script");
       Script.setAttribute("src", "/assets/js/main.js");
       document.head.appendChild(Script);

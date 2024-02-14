@@ -169,11 +169,12 @@
                                             <!-- <span class="light-purple">Part Time</span>
                                             <span class="light-blue">Remote</span> -->
                                         </div>
-                                        <div class="apply-btn">
-                                            <!-- <router-link v-if="loggedIn" :to="{ name: 'job-details', query: {job_id: job.id}}"><span><img src="assets/images/icon/apply-ellipse.svg" alt=""></span>Apply Now</router-link>
-                                            <router-link v-else :to="{ name: 'login'}"><span><img src="assets/images/icon/apply-ellipse.svg" alt=""></span>Login to apply</router-link> -->
-                                            <router-link :to="getJobDetail(job.job_key, job.job_slug)"><span><img src="assets/images/icon/apply-ellipse.svg" alt=""></span>Apply Now</router-link>
-
+                                        <div class="apply-btn" v-if="!isJobExpired(job.expiration)">
+                                            <router-link v-if="loggedIn" :to="getJobDetail(job.job_key, job.job_slug)"><span><img src="assets/images/icon/apply-ellipse.svg" alt=""></span>Apply Now</router-link>
+                                            <router-link v-else :to="{ name: 'login'}"><span><img src="assets/images/icon/apply-ellipse.svg" alt=""></span>Login to apply</router-link>
+                                        </div>
+                                        <div class="apply-btn" v-else>
+                                            <span>Expired</span>
                                         </div>
                                     </div>
                                 </div>
@@ -321,7 +322,27 @@ import { apiUrl, adminDashboardUrl, adminDashboardDomain } from '../utils/config
             return {
                     path: '/job-details/'+job_key+'/'+job_slug
             };
-        },   
+        },  
+        
+        parsedExpirationDate(expirationDate:any) {
+            // Split the expiration date string into month, day, and year
+            const [month, day, year] = expirationDate.split(' ');
+            // Type annotation for monthMap
+            const monthMap: { [key: string]: number } = {
+                'Jan': 0, 'Feb': 1, 'Mar': 2, 'Apr': 3,
+                'May': 4, 'Jun': 5, 'Jul': 6, 'Aug': 7,
+                'Sep': 8, 'Oct': 9, 'Nov': 10, 'Dec': 11
+            };
+
+            // Create and return a Date object using the parsed month, day, and year
+            return new Date(year, monthMap[month], parseInt(day, 10));
+        },
+            
+        isJobExpired(expirationDate: any) {
+            const today = new Date();
+            const expiration = this.parsedExpirationDate(expirationDate);
+            return expiration < today; // Returns true if the job is expired
+        },
 
   },  
   mounted() 

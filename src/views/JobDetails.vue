@@ -76,8 +76,8 @@
                         <ul>
                             <li>{{ current_job.experience }} Years in this field.</li>
                         </ul>
-                        <p><span>Main Duties:</span></p>
-                        {{ current_job.job_responsibilities }}
+                        <!-- <p><span>Main Duties:</span></p>
+                        {{ current_job.job_responsibilities }} -->
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -93,7 +93,7 @@
                                 </li>
                             </ul>
                             <ul v-if="user_current_job_applied">
-                                <b>You already Appied for this job</b>
+                                <b>You have already Applied for this job</b>
                             </ul>
                         </div>
                         <div class="job-summary-area mb-50">
@@ -115,7 +115,13 @@
                         <div class="job-share-area mb-50">
                             <h6>Job Link Share:</h6>
                             <ul>
-                                <li><span class=""><i @click="copyLink" class='bx bx-link' ></i></span></li>
+                                <li>
+                                    <span  @click="copyLink" style="cursor: pointer;" :title="titleText"><i class='bx bx-link' ></i></span>
+                                </li>
+
+                                <!-- <button type="button" class="btn-clipboard mt-0 me-0" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard" title="">
+                                    <svg class="bi" aria-hidden="true"><use xlink:href="#clipboard"></use></svg>
+                                </button> -->
                                 <!-- <button @click="shareOnFacebook">Share on Facebook</button> -->
                                 <li><a href="#" @click="shareOnFacebook"><i class='bx bxl-facebook'></i></a></li>
                                 <li><a href="#" @click="shareOnTwitter"><i class='bx bxl-twitter' ></i></a></li>
@@ -123,6 +129,7 @@
                                 <li><a href="#" @click="shareOnInstagram"><i class='bx bxl-instagram-alt' ></i></a></li>
                             </ul>
                         </div>
+                        <span class="mt-0 alert alert-success" v-if="isCopied">link copied successfully</span>
                         <!-- Commented as per meeting in march -->
                         <!-- <div class="email-area mb-50">
                             <div class="title">
@@ -376,6 +383,8 @@ import { useRoute } from 'vue-router'
         user_current_job_applied : '',
         currentUri: '',
         isLoading: false,
+        isCopied: false,
+        titleText: 'Copy to clipboard'
         
     }
   },
@@ -409,17 +418,20 @@ import { useRoute } from 'vue-router'
   },
   methods: {
     shareOnFacebook() {
-      // URL of your web app
-      const urlToShare = encodeURIComponent(this.currentUri);
-
+        //URL of your web app
+        //const urlToShare = encodeURIComponent(this.currentUri);
+        const urlToShare = encodeURI(this.currentUri);
+        // console.log(this.currentUri);
+        
       // Create a Facebook share link
-      const shareLink = 'https://www.facebook.com/sharer/sharer.php?u=' + urlToShare;
+      const shareLink = 'https://www.facebook.com/sharer/sharer.php?u=' + this.currentUri;
 
       // Open the Facebook Share Dialog in a new window
       window.open(shareLink, 'Share on Facebook', 'width=600,height=400');
     },
 
     copyLink(){
+        this.isCopied = true;
         // const urlToShare = encodeURIComponent(this.currentUri);
         // var url = "https://example.com";
         // Get the URL you want to copy
@@ -439,7 +451,11 @@ import { useRoute } from 'vue-router'
 
         // Remove the temporary input element
         document.body.removeChild(input);
-
+        this.titleText = "Link Copied..."
+        window.setTimeout(() => {
+            this.isCopied = false;
+            this.titleText = "Copy to clipboard"
+        }, 2000);
         // Log success or failure
         console.log('URL copied to clipboard successfully: ' + decodedUrl);
 

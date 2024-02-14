@@ -34,7 +34,7 @@
                                                 <img src="/assets/images/icon/category-2.svg" alt="">
                                                 <Dropdown 
                                                 @change="changeCompanyType"
-                                                v-model=this.userForm.company_type_id 
+                                                v-model=userForm.company_type_id 
                                                 :options="companyTypes" 
                                                 ref="language"
                                                 optionLabel="name" 

@@ -552,7 +552,7 @@ export default createStore({
 
 
 
-    login(context, payload) {
+  login(context, payload) {
       axios.post(apiUrl + 'workpages/login', payload)
         .then(async res => {
           if (res.data.status == 'error') {
@@ -564,8 +564,7 @@ export default createStore({
 
             localStorage.setItem('token', result)
             context.commit('SET_TOKEN', result);
-
-            this.dispatch('getUserInfo', payload.type)
+            this.dispatch('getUserInfo', payload.type);
           }
         }).catch(err => {
           toast.error(err.message, {
@@ -1063,6 +1062,19 @@ export default createStore({
       .then(res => {
         console.log(res);
         context.commit('SET_SEARCH_RESULT', res.data);
+      })
+    },
+
+    addPartner(context, payload) {
+      axios.post(apiUrl + 'storePartner/', payload)
+      .then(res => {
+        console.log(res);
+        toast.success(res.data.message, {
+          position: toast.POSITION.BOTTOM_RIGHT,
+        })
+        // window.setTimeout(() => {
+        //   router.push({ path: '/company/job-list' });
+        // }, 2000);
       })
     },
 

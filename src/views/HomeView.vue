@@ -535,8 +535,15 @@
                             </ul>
                         </div>
                         <div class="job-type-apply">
-                            <div class="apply-btn">
+                            <!-- <div class="apply-btn">
                                 <router-link :to="getJobDetail(job.job_key, job.job_slug)"><span><img src="assets/images/icon/apply-ellipse.svg" alt=""></span>Apply Now</router-link>
+                            </div> -->
+                            <div class="apply-btn" v-if="!isJobExpired(job.expiration)">
+                                <router-link v-if="loggedIn" :to="getJobDetail(job.job_key, job.job_slug)"><span><img src="assets/images/icon/apply-ellipse.svg" alt=""></span>Apply Now</router-link>
+                                <router-link v-else :to="{ name: 'login'}"><span><img src="assets/images/icon/apply-ellipse.svg" alt=""></span>Login to apply</router-link>
+                            </div>
+                            <div class="apply-btn" v-else>
+                                <span>Expired</span>
                             </div>
                         </div>
                     </div>
@@ -665,13 +672,14 @@
                             </ul>
                         </div>
                         <div class="job-type-apply">
-                            <div class="apply-btn">
-                                <!-- <router-link :to="getJobDetail(123, 'johndoe')"> -->
-                                    <router-link :to="getJobDetail(job.job_key, job.job_slug)">
-                                <!-- <router-link :to="{ path: '/job-details/${job.id}/${job.id}' }"> -->
-                                    <span>
-                                        <!-- <img :src="{name: 'job-details', query : { job_id: job.id }}" alt=""> -->
-                                    </span>Apply Now</router-link>
+                            
+
+                            <div class="apply-btn" v-if="!isJobExpired(job.expiration)">
+                                <router-link v-if="loggedIn" :to="getJobDetail(job.job_key, job.job_slug)"><span><img src="assets/images/icon/apply-ellipse.svg" alt=""></span>Apply Now</router-link>
+                                <router-link v-else :to="{ name: 'login'}"><span><img src="assets/images/icon/apply-ellipse.svg" alt=""></span>Login to apply</router-link>
+                            </div>
+                            <div class="apply-btn" v-else>
+                                <span>Expired</span>
                             </div>
                         </div>
                     </div>
@@ -961,7 +969,7 @@
   
 </template>
 
-<style>
+<style scoped>
 /* .form-wrapper form .form-inner span {
     font-size: 1rem !important;
     padding: 10px !important;
@@ -1008,7 +1016,8 @@ import { mapGetters } from 'vuex';
         'topCompanies',
         'testimonials',        
         'jobs',
-        'cmsPages'
+        'cmsPages',
+        'loggedIn'
                 
         
         
@@ -1081,6 +1090,26 @@ import { mapGetters } from 'vuex';
     },
     quoteRemove(text:any) {
       return text.replace('"', '');
+    },
+
+    parsedExpirationDate(expirationDate:any) {
+        // Split the expiration date string into month, day, and year
+        const [month, day, year] = expirationDate.split(' ');
+        // Type annotation for monthMap
+        const monthMap: { [key: string]: number } = {
+            'Jan': 0, 'Feb': 1, 'Mar': 2, 'Apr': 3,
+            'May': 4, 'Jun': 5, 'Jul': 6, 'Aug': 7,
+            'Sep': 8, 'Oct': 9, 'Nov': 10, 'Dec': 11
+        };
+
+        // Create and return a Date object using the parsed month, day, and year
+        return new Date(year, monthMap[month], parseInt(day, 10));
+    },
+        
+    isJobExpired(expirationDate: any) {
+        const today = new Date();
+        const expiration = this.parsedExpirationDate(expirationDate);
+        return expiration < today; // Returns true if the job is expired
     },
 
   },

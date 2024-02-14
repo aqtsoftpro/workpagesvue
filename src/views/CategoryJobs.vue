@@ -104,15 +104,19 @@
                                     </div>
                                     <div class="job-type-apply">
                                         <div class="job-type">
-                                            <span class="light-green">{{ job.working_mode  }}</span>
+                                            <span class="light-green">{{ job.working_mode  }} {{ job.expiration }}</span>
                                             <!-- <span class="light-purple">Part Time</span>
                                             <span class="light-blue">Remote</span> -->
                                         </div>
-                                        <div class="apply-btn">
+                                        <div class="apply-btn" v-if="!isJobExpired(job.expiration)">
+                                            <router-link v-if="loggedIn" :to="getJobDetail(job.job_key, job.job_slug)"><span><img src="assets/images/icon/apply-ellipse.svg" alt=""></span>Apply Now</router-link>
+                                            <router-link v-else :to="{ name: 'login'}"><span><img src="assets/images/icon/apply-ellipse.svg" alt=""></span>Login to apply</router-link>
+                                        </div>
+                                        <!-- <div class="apply-btn">
                                             <router-link v-if="loggedIn" :to="{ name: 'job-details', query: {job_id: job.id}}"><span><img src="assets/images/icon/apply-ellipse.svg" alt=""></span>Apply Now</router-link>
                                             <router-link v-else :to="{ name: 'login'}"><span><img src="assets/images/icon/apply-ellipse.svg" alt=""></span>Login to apply</router-link>
 
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                             </div>
@@ -144,7 +148,7 @@
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
 import JobCats from '../views/CategoryJobs.vue'; // @ is an alias to /src
-import { mapState } from 'vuex';
+import { mapGetters } from 'vuex';
 import { useRoute } from 'vue-router'
 
 @Options({
@@ -157,15 +161,47 @@ import { useRoute } from 'vue-router'
     }
   },
   computed: {
-    ...mapState([
+    // ...mapState([
+    //     'job',
+    // ]),
+    ...mapGetters([
         'job',
-    ])
+        'loggedIn'
+    ]),
   },
   mounted(){
     const route = useRoute()
     console.log(route.params.cat_slug)
     this.$store.dispatch('getCategoryJobs', route.params.cat_slug)
 
+  },
+  methods: {
+    getJobDetail(job_key:any, job_slug:any) {    
+      return {
+        path: '/job-details/'+job_key+'/'+job_slug
+        // path: '/job-details/${job_key}/${job_slug}'
+      };
+    },
+
+    parsedExpirationDate(expirationDate:any) {
+      // Split the expiration date string into month, day, and year
+      const [month, day, year] = expirationDate.split(' ');
+      // Type annotation for monthMap
+      const monthMap: { [key: string]: number } = {
+        'Jan': 0, 'Feb': 1, 'Mar': 2, 'Apr': 3,
+        'May': 4, 'Jun': 5, 'Jul': 6, 'Aug': 7,
+        'Sep': 8, 'Oct': 9, 'Nov': 10, 'Dec': 11
+      };
+
+      // Create and return a Date object using the parsed month, day, and year
+      return new Date(year, monthMap[month], parseInt(day, 10));
+    },
+    
+    isJobExpired(expirationDate: any) {
+      const today = new Date();
+      const expiration = this.parsedExpirationDate(expirationDate);
+      return expiration < today; // Returns true if the job is expired
+    }
   },
   watch: {
     job(){
