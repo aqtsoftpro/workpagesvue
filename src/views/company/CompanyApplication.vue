@@ -293,9 +293,6 @@
                                                     <li><router-link :to="{name: 'view-cv', query: { 'url': application.cv  }}"  class="review"><img src="/assets/images/icon/docs.svg" alt=""> View CV</router-link></li>
                                                     <li v-if="application.status_name != 'Shortlisted'"><button @click="updateCandidateApplication('shortlist', application.id)" ><img src="/assets/images/icon/shortlist-icon.svg" alt=""> Shortlist</button></li>
                                                     <li v-if="application.status_name != 'Rejected'"><button @click="updateCandidateApplication('reject', application.id)" class="reject"><img src="/assets/images/icon/rejected-icon.svg" alt=""> Reject</button></li>
-                                                    <li>
-                                                        
-                                                    </li>
                                                 </ul>
                                             </div>
                                         </td>
@@ -683,9 +680,9 @@ import TabMenu from 'primevue/tabmenu';
     },
   
     onTabChange(event:any) {
-            console.log(event);
-      this.activeItem = event.index;
-      console.log(this.activeItem);
+        console.log(event);
+        this.activeItem = event.index;
+        console.log(this.activeItem);
     }
    
   },

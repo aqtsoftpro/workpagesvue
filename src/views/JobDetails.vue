@@ -83,7 +83,7 @@
                 <div class="col-lg-4">
                     <div class="job-details-sidebar mb-120">
                         <div class="save-apply-btn d-flex justify-content-end mb-50" id="user-applied-on-job">
-                            <ul v-if="role == 2 && !user_current_job_applied">
+                            <ul v-if="role == 'Job Seeker' && !user_current_job_applied">
                                 <!-- <li><a class="save-btn" href="#">Save Job <span><i class="bi bi-bookmark-fill"></i></span></a></li> -->
                                 <li>
                                     <!-- <router-link class="primry-btn-2 lg-btn" :to="{ name: 'job-apply', query: { job_id: current_job.id, company_id: current_job.company_id }}">Apply Position</router-link> -->
@@ -219,7 +219,7 @@
                         </div>
                     </div>
                 </div> -->
-                <div v-if="role == 2 && !user_current_job_applied" class="col-lg-12" id="user-applied-on-job-form">
+                <div v-if="role == 'Job Seeker' && !user_current_job_applied" class="col-lg-12" id="user-applied-on-job-form">
                     <div class="related-jobs" id="scrollTarget">
                         <div class="section-title mb-40">
                             <h3>Apply For {{ current_job.job_title }}</h3>
@@ -402,7 +402,7 @@ import { useRoute } from 'vue-router'
     this.$store.dispatch('getJobDetail', route.params.job_key)
     this.$store.dispatch('relatedJobs', '')
     this.user = JSON.parse(this.currentUser)[0]
-    this.role = this.user.roles[0].id
+    this.role = this.user.roles[0].name
     this.currentUri = window.location.href;
     console.log(this.user.id);
     this.application.user_id = JSON.parse(this.currentUser)[0].id

@@ -27,7 +27,7 @@
                                 </tr>
                             </thead>   
                             <tbody>
-                                <tr v-for="subscription in companySubscriptions" class="style-2">
+                                <tr v-if="companySubscriptions.length > 0" v-for="subscription in companySubscriptions" class="style-2">
                                     <td data-label="(#) Number">#-{{ subscription.id }}</td>
                                     <td data-label="Date">{{ formatDate(subscription.created_at) }}</td>
                                     <td data-label="Package"><button class="eg-btn light-sky-btn">{{ subscription.package.name }}</button></td>
@@ -35,6 +35,12 @@
                                     <td data-label="Payment Through">{{ subscription.package.stripe_price_id?? 'Offline Method' }}</td>
                                     <td data-label="Payment Status"><button class="status yellow-color">{{ subscription.stripe_status==""? 'Pending': subscription.stripe_status}} <i class="bi bi-download"></i></button></td>
                                 </tr>
+                                <tr v-else >
+                                    <td colspan="4">
+                                        No result found...
+                                    </td>
+                                </tr>
+
                                 <!-- <tr class="style-2">
                                     <td data-label="(#) Number">#83c8h9s88ee4</td>
                                     <td data-label="Date">03/01/2023</td>
@@ -93,7 +99,7 @@
                                 </tr> -->
                             </tbody>
                         </table>
-                        <div class="pagination-table-info">
+                        <!-- <div class="pagination-table-info">
                             <div class="table-info">
                                 <span>06 Results Showing In 20 Jobs</span>
                             </div>
@@ -109,7 +115,7 @@
                                     </ul>
                                 </nav>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

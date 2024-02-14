@@ -1047,7 +1047,11 @@ export default createStore({
     },
 
     getCompanyJobs(context, payload) {
-      axios.get(apiUrl + 'getCompanyJobs')
+      axios.get(apiUrl + 'getCompanyJobs', {
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem('token')
+        }
+      })
         .then(res => {
           context.commit('SET_COMPANY_JOBS', res.data)
         })

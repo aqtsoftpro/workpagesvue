@@ -35,7 +35,7 @@
                                                 </div>
                                                 <div class="company-details">
                                                     <div class="top">
-                                                        <h6><a href="job-details.html">{{ application.job.job_title }}</a></h6>
+                                                        <h6><router-link :to="getJobDetail(application.job.job_key, application.job.job_slug)">{{ application.job.job_title }}</router-link></h6>
                                                         <span><img src="/assets/images/icon/calender2.svg" alt=""> 1 days ago</span>
                                                     </div>
                                                     <ul>
@@ -149,7 +149,14 @@ methods: {
             this.isLoading = false; // Hide loader
             });
 
-        },
+    },
+
+    getJobDetail(job_key:any, job_slug:any) {    
+        return {
+            path: '/job-details/'+job_key+'/'+job_slug
+            // path: '/job-details/${job_key}/${job_slug}'
+        };
+    },
 }, 
 async mounted() {
     this.user = JSON.parse(this.currentUser)[0]
