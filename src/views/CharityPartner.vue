@@ -32,7 +32,7 @@
                                     <label for="name">Your Name*</label>
                                     <div class="input-area">
                                         <img src="assets/images/icon/user-2.svg" alt="">
-                                        <input type="text" id="name" name="name" placeholder="Mr. Jackson Mile">
+                                        <input type="text" id="name" v-model="charityForm.name" placeholder="Mr. Jackson Mile">
                                     </div>
                                 </div>
                             </div>
@@ -41,7 +41,7 @@
                                     <label for="email">Email*</label>
                                     <div class="input-area">
                                         <img src="assets/images/icon/email-2.svg" alt="">
-                                        <input type="text" id="email" name="email" placeholder="info@example.com">
+                                        <input type="text" id="email" v-model="charityForm.email" placeholder="info@example.com">
                                     </div>
                                 </div>
                             </div>
@@ -50,7 +50,7 @@
                                     <label for="phonenumber">Phone*</label>
                                     <div class="input-area">
                                         <img src="assets/images/icon/phone-2.svg" alt="">
-                                        <input type="text" id="phonenumber" name="phonenumber" placeholder="+880-17 *** *** **">
+                                        <input type="text" id="phonenumber" v-model="charityForm.phone" placeholder="+880-17 *** *** **">
                                     </div>
                                 </div>
                             </div>
@@ -59,19 +59,24 @@
                                     <label for="jobplace">Company Name (Optional)</label>
                                     <div class="input-area">
                                         <img src="assets/images/icon/company-2.svg" alt="">
-                                        <input type="text" id="jobplace" name="jobplace" placeholder="Company Name">
+                                        <input type="text" id="jobplace" v-model="charityForm.company" placeholder="Company Name">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-inner mb-40">
                                     <label for="description">Message</label>
-                                    <textarea name="description" id="description" placeholder="Message..."></textarea>
+                                    <textarea v-model="charityForm.message" id="description" placeholder="Message..."></textarea>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-inner">
-                                    <button class="primry-btn-2 lg-btn w-unset" type="submit">Become a Charity Partner</button>
+                                    <button v-if="!isLoading" @click="charityPartner" class="primry-btn-2 lg-btn w-unset" type="button">Become a Charity Partner</button>
+                                    <button v-else class="primry-btn-2 lg-btn w-unset" type="button">
+                                        <span class="me-3 fs-6 text-white">Processing...</span>
+                                        <i class="fa fa-spinner fa-spin text-white" style="font-size:24px">
+                                        </i>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -97,8 +102,13 @@ import PrivacyPolicy from './PrivacyPolicy.vue'; // @ is an alias to /src
     return {
       cmsPageInfo: null,
       charityForm: {
-            name: '',
-      }
+        name: '',
+        email: '',
+        phone: '',
+        comapny: '',
+        message: '',
+      },
+      isLoading: false,
     }
   },
   computed: {
@@ -119,8 +129,18 @@ import PrivacyPolicy from './PrivacyPolicy.vue'; // @ is an alias to /src
   },
   methods: {
     charityPartner() {
-        this.$store.dispatch('addPartner', )
-        console.log('this is just test');
+        this.isLoading = true;
+        try {
+            this.isLoading = true;
+            var credentials = this.charityForm;
+            this.$store.dispatch('addPartner', credentials)
+            console.log('this is just test');
+            window.setTimeout(() => {
+                this.isLoading = false;
+            }, 5000);
+        } catch (error) {
+            console.log(error);
+        }
     }
   },
 })

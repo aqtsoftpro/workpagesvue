@@ -575,13 +575,7 @@ export default createStore({
     },
 
     verifyEmail(context, payload) {
-      axios.get(apiUrl + 'verify-email/?userId=' + payload.userId + '&token=' + payload.token + '&expired=' + payload.expired, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          'authorization': 'Bearer ' + localStorage.getItem('token')
-        },
-
-      }).then(async res => {
+      axios.get(apiUrl + 'verify-email/?userId=' + payload.userId + '&token=' + payload.token + '&expired=' + payload.expired).then(async res => {
         console.log(res);
         this.dispatch('getUserInfo', payload.type)
 
@@ -1072,7 +1066,7 @@ export default createStore({
     },
 
     addPartner(context, payload) {
-      axios.post(apiUrl + 'storePartner/', payload)
+      axios.post(apiUrl + 'storePartner', payload)
       .then(res => {
         console.log(res);
         toast.success(res.data.message, {
