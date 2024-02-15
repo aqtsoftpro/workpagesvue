@@ -49,7 +49,11 @@
                                             </div>
                                         </td>
                                         <td data-label="Apply Job">{{ application.applied_on  }}</td>
-                                        <td data-label="Company"><a class="view-btn" href="company-details.html">{{ application.job.company }}</a></td>
+                                        <td data-label="Company">
+                                            <router-link :to="companyDetail(application.job.company_id)">{{ application.job.company }}</router-link>
+
+                                            <!-- <a class="view-btn" href="company-details.html">{{ application.job.company }}</a> -->
+                                        </td>
                                         <td data-label="Status"><button class="eg-btn purple-btn">{{ application.status_name }}</button></td>
                                     </tr>
                                 </tbody>
@@ -157,6 +161,13 @@ methods: {
             // path: '/job-details/${job_key}/${job_slug}'
         };
     },
+
+    companyDetail(company_id: any)
+    {
+        return {
+            path: '/company-details/'+company_id
+        }
+    }
 }, 
 async mounted() {
     this.user = JSON.parse(this.currentUser)[0]

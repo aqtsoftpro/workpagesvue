@@ -40,7 +40,12 @@
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="form-inner">
-                                        <button @click="login" class="primry-btn-2" type="button">LogIn</button>
+                                        <button v-if="!isLoading" @click="login" class="primry-btn-2" type="button">LogIn</button>
+                                        <button v-else class="primry-btn-2" type="button">
+                                            <span class="me-3 fs-6 text-white">Processing...</span>
+                                            <i class="fa fa-spinner fa-spin text-white ms-3" style="font-size:24px">
+                                            </i>
+                                        </button>
                                     </div>
                                 </div>
                                 <h6>Don’t have an account?<br>
@@ -53,7 +58,6 @@
                                     <small class="col-lg-6 text-right">
                                         <router-link :to="{name: 'employer-register'}">Company Sign Up</router-link>
                                     </small>
-
                             </div>
                         </form>
                      </div>
@@ -78,7 +82,8 @@ import { mapGetters } from 'vuex';
             user: {
                 email: '',
                 password: '',
-            }
+            },
+            isLoading: false,
         }
     },
     computed: {
@@ -91,14 +96,20 @@ import { mapGetters } from 'vuex';
     SignIn,
   },
   methods: {
-    login() {
+    async login() {
+        this.isLoading = true;
         var credentials = {
             'email': this.user.email,
             'password': this.user.password,
             'type': 'user',
             'device_name': 'web',
         }
-        this.$store.dispatch('login', credentials)
+        try {
+           await this.$store.dispatch('login', credentials)
+           this.isLoading = false;
+        } catch (error) {
+            console.log(error);
+        }
         // if(this.user.email == 'company@demo.com' && this.user.password == '1234') {
         //     router.push('/company/dashboard');
         // } else if(this.user.email == 'user@demo.com' && this.user.password == '1234'){

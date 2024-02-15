@@ -44,6 +44,8 @@ import ViewCv from '../views/ViewCv.vue'
 import ForgotPassord from '../views/UserForgotPassword.vue'
 import ResetPassord from '../views/UserResetPassword.vue'
 import UserVerifyLink from '../views/UserVerifyLink.vue'
+import Unauthorize from '../views/Unauthorize.vue'
+import SendLinkMail from '../views/SendLinkMail.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -171,9 +173,16 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/send-email',
     name: 'send-email',
-    component: UserVerifyLink,
+    component: SendLinkMail,
     props: true,
   },
+
+  {
+    path: '/unauthorized',
+    name: 'unauthorized',
+    component: Unauthorize,
+  },
+
   {
     path: '/company',
     children: [

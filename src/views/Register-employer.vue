@@ -293,12 +293,12 @@
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="form-inner">
-                                                    <button @click="createEmployer" class="primry-btn-2" type="button">Sign Up</button>
-                                                    <!-- <button class="primry-btn-2" type="submit" >
-                                                        Sign Up
-                                                    </button> -->
-                                                    <!-- <button @click="(event) => createEmployer(event)" class="primry-btn-2" type="button">Sign Up</button> -->
-                                                    <!-- <button class="primry-btn-2" type="submit">Sign Up</button> -->
+                                                    <button v-if="!isLoading" @click="createEmployer" class="primry-btn-2" type="button">Sign Up</button>
+                                                    <button v-else class="primry-btn-2" type="button">
+                                                        <span class="me-3 fs-6 text-white">Processing...</span>
+                                                        <i class="fa fa-spinner fa-spin text-white" style="font-size:24px">
+                                                        </i>
+                                                    </button>
                                                 </div>
                                             </div>
                                             <h6>Already have an account? <router-link to="/login"> Login</router-link> Here</h6>
@@ -380,6 +380,7 @@ import Dropdown from 'primevue/dropdown';
             
         },
         confirm_password: null,
+        isLoading: false,
    
     }  
   },
@@ -476,9 +477,17 @@ import Dropdown from 'primevue/dropdown';
         createUser() {
             this.$store.dispatch('signUpUser', this.userForm)
         },
+
         createEmployer() {
+                this.isLoading = true;
                 console.log(this.employerForm);
-                this.$store.dispatch('signUpCompany', this.employerForm);
+                try {
+                    this.$store.dispatch('signUpCompany', this.employerForm);
+                    this.isLoading = false;
+                } catch (error) {
+                    console.log(error);
+                    this.isLoading = false;
+                }
         },
         changeCompanyType(event:any){
             this.employerForm.company_type_id = event.value

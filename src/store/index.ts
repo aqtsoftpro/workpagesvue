@@ -402,13 +402,14 @@ export default createStore({
             toast.success(res.data.message, {
               position: toast.POSITION.BOTTOM_RIGHT,
             })
-
-            this.dispatch('login', {
-              email: payload.email,
-              password: payload.password,
-              type: payload.type,
-              device_name: 'web app'
-            })
+            window.setTimeout(() => {
+              this.dispatch('login', {
+                email: payload.email,
+                password: payload.password,
+                type: payload.type,
+                device_name: 'web app'
+              })
+            }, 1000);
           }
 
         })
@@ -1454,6 +1455,26 @@ export default createStore({
 
           context.commit('SET_CANDIDATE_APPLIED_ON_JOB', res.data);
         })
+    },
+
+    resendEmail() {
+      axios.post(apiUrl + 'resendEmail', null, {
+        headers: {
+          'authorization': 'Bearer ' + localStorage.getItem('token')
+        }
+      })
+        .then(res => {
+          toast.success(res.data.message, {
+            position: toast.POSITION.BOTTOM_RIGHT,
+          })
+        })
+        .catch(error => {
+          toast.error(error, {
+            position: toast.POSITION.BOTTOM_RIGHT,
+          })
+        }
+
+        )
     },
 
     getCompanyApplications(context, payload) {

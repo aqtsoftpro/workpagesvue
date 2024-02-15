@@ -9,7 +9,7 @@
             <div class="form-wrapper mb-60">
               <div class="section-title">
                 <h5>My Portfolio</h5>
-                <button v-if="!showForm" class="primry-btn-2 lg-btn float-end" @click="this.showForm = true">
+                <button v-if="!showForm" class="primry-btn-2 lg-btn float-end" @click="addNewItem">
                   Add New Item
                 </button>
                 <button v-if="showForm" class="primry-btn-2 lg-btn float-end" @click="cancelForm">
@@ -253,7 +253,7 @@
                   </div>
                 </div>
               </div>
-              <div class="edit-profile-form profile-form">
+              <div v-if="!showForm" class="edit-profile-form profile-form">
                 <!-- {{  userPortfolio }} -->
                 <div class="row">
                   <div v-if="userPortfolio.data && !showForm">
@@ -420,6 +420,22 @@ import moment from 'moment';
     ]),
   },
   methods: {
+
+    addNewItem (){
+      this.showForm = true;
+      this.portfolio.title = '';
+      this.portfolio.description = '';
+      this.portfolio.url = '';
+      this.portfolio.start_date = '';
+      this.portfolio.end_date = '';
+      this.portfolio.skill_used = '';
+      // this.portfolio.images = [];
+      // this.portfolio.video_links = '';
+      // this.portfolio.other_file = nul;
+      // this.portfolio.user_id = '';
+      this.portfolio.viewImages = [];
+
+    },
     loadPortfolioWithCount(portfolioCount: any) {
 
       this.$store.dispatch('getGlobalVariables');
