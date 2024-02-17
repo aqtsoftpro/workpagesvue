@@ -16,7 +16,7 @@
                                 <h4>{{ user.name  }}</h4>
                             </div>
                          </div>
-                         <div class="counter-area">
+                        <div class="counter-area">
                             <div class="row g-lg-4 g-md-5 gy-5 justify-content-center">
                                 <div class="col-lg-4 col-sm-6">
                                     <div class="counter-single">

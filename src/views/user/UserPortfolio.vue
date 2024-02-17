@@ -4,7 +4,7 @@
       <div class="row g-lg-4 gy-5 mb-90">
         <user-menu />
         <div class="col-lg-9">
-          <div class="my-profile-inner">
+          <div class="dashboard-inner">
 
             <div class="form-wrapper mb-60">
               <div class="section-title">
@@ -235,13 +235,15 @@
                           <div v-for="item in viewPortfolio.images" class="col-md-4 mb-3">
                             <div class="card h-100">
                               <div class="card-body d-flex justify-content-center align-itme-center">
-                                <img :src="item.image" alt="" style="min-width: 120px !important; max-width: 170px !important;">
+                                <img :src="item.image" alt=""
+                                  style="min-width: 120px !important; max-width: 170px !important;">
                               </div>
                             </div>
                           </div>
                         </div>
                         <div class="d-flex justify-content-around">
-                          <button v-if="!isLoading" class="primry-btn-2 lg-btn" @click="deletePortfolio(viewPortfolio)">Delete</button>
+                          <button v-if="!isLoading" class="primry-btn-2 lg-btn"
+                            @click="deletePortfolio(viewPortfolio)">Delete</button>
                           <button v-else class="primry-btn-2 lg-btn w-unset" type="button">
                             <span class="me-3 fs-6 text-white">Processing...</span>
                             <i class="fa fa-spinner fa-spin text-white ms-3" style="font-size:24px">
@@ -253,8 +255,7 @@
                   </div>
                 </div>
               </div>
-              <div v-if="!showForm" class="edit-profile-form profile-form">
-                <!-- {{  userPortfolio }} -->
+              <!-- <div v-if="!showForm" class="edit-profile-form profile-form">
                 <div class="row">
                   <div v-if="userPortfolio.data && !showForm">
                     <h5 v-if="userPortfolio.data.length == 0">No Portfolio...</h5>
@@ -285,23 +286,6 @@
                             </svg>
                           </span>
                         </div>
-
-                        <!-- <router-link >
-                            <svg width="14" height="10" viewBox="0 0 14 10" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M14 5C14 5 11.375 0 7 0C2.625 0 0 5 0 5C0 5 2.625 10 7 10C11.375 10 14 5 14 5ZM1.02637 5C1.44945 4.33193 1.93606 3.70971 2.47887 3.14273C3.605 1.97091 5.145 0.909091 7 0.909091C8.855 0.909091 10.3941 1.97091 11.522 3.14273C12.0648 3.70971 12.5514 4.33193 12.9745 5C12.9237 5.07909 12.8678 5.16636 12.8039 5.26182C12.5108 5.69818 12.0776 6.28 11.522 6.85727C10.3941 8.02909 8.85413 9.09091 7 9.09091C5.145 9.09091 3.60588 8.02909 2.478 6.85727C1.93519 6.29028 1.44946 5.66807 1.02637 5Z" />
-                                <path
-                                    d="M7 2.72721C6.41984 2.72721 5.86344 2.96665 5.4532 3.39287C5.04297 3.81909 4.8125 4.39717 4.8125 4.99993C4.8125 5.6027 5.04297 6.18078 5.4532 6.60699C5.86344 7.03321 6.41984 7.27266 7 7.27266C7.58016 7.27266 8.13656 7.03321 8.5468 6.60699C8.95703 6.18078 9.1875 5.6027 9.1875 4.99993C9.1875 4.39717 8.95703 3.81909 8.5468 3.39287C8.13656 2.96665 7.58016 2.72721 7 2.72721ZM3.9375 4.99993C3.9375 4.15606 4.26016 3.34676 4.83449 2.75005C5.40882 2.15334 6.18777 1.81812 7 1.81812C7.81223 1.81812 8.59118 2.15334 9.16551 2.75005C9.73984 3.34676 10.0625 4.15606 10.0625 4.99993C10.0625 5.8438 9.73984 6.65311 9.16551 7.24982C8.59118 7.84652 7.81223 8.18175 7 8.18175C6.18777 8.18175 5.40882 7.84652 4.83449 7.24982C4.26016 6.65311 3.9375 5.8438 3.9375 4.99993Z" />
-                            </svg>
-                        </router-link> -->
-
-                        <!-- <router-link>
-                            <svg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M11.8798 1.19201C11.9563 1.26957 11.9993 1.37462 11.9993 1.48414C11.9993 1.59365 11.9563 1.6987 11.8798 1.77627L11.0253 2.64024L9.3868 0.98512L10.2413 0.121149C10.3181 0.0435774 10.4223 0 10.5309 0C10.6395 0 10.7437 0.0435774 10.8205 0.121149L11.8798 1.19118V1.19201ZM10.4461 3.22449L8.8076 1.56938L3.22607 7.20836C3.18098 7.2539 3.14704 7.30944 3.12694 7.37056L2.46745 9.36829C2.45549 9.40471 2.45379 9.44377 2.46254 9.48111C2.4713 9.51844 2.49016 9.55259 2.51702 9.57972C2.54388 9.60685 2.57768 9.62591 2.61464 9.63475C2.65161 9.64359 2.69028 9.64188 2.72633 9.62979L4.70399 8.96361C4.76442 8.94355 4.8194 8.90955 4.86456 8.8643L10.4461 3.22532V3.22449Z"></path>
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M0 10.7585C0 11.0878 0.12947 11.4035 0.359928 11.6363C0.590385 11.8691 0.902953 11.9999 1.22887 11.9999H10.2406C10.5665 11.9999 10.8791 11.8691 11.1095 11.6363C11.34 11.4035 11.4694 11.0878 11.4694 10.7585V5.79319C11.4694 5.68345 11.4263 5.5782 11.3495 5.50061C11.2727 5.42301 11.1685 5.37941 11.0598 5.37941C10.9512 5.37941 10.847 5.42301 10.7702 5.50061C10.6934 5.5782 10.6502 5.68345 10.6502 5.79319V10.7585C10.6502 10.8683 10.607 10.9735 10.5302 11.0511C10.4534 11.1287 10.3492 11.1723 10.2406 11.1723H1.22887C1.12023 11.1723 1.01604 11.1287 0.939222 11.0511C0.862403 10.9735 0.819246 10.8683 0.819246 10.7585V1.6554C0.819246 1.54566 0.862403 1.44041 0.939222 1.36281C1.01604 1.28522 1.12023 1.24162 1.22887 1.24162H6.55397C6.66261 1.24162 6.7668 1.19803 6.84362 1.12043C6.92044 1.04283 6.96359 0.937583 6.96359 0.827842C6.96359 0.718101 6.92044 0.612854 6.84362 0.535256C6.7668 0.457657 6.66261 0.414063 6.55397 0.414062H1.22887C0.902953 0.414063 0.590385 0.544846 0.359928 0.777642C0.12947 1.01044 0 1.32618 0 1.6554V10.7585Z"></path>
-                            </svg>
-                        </router-link> -->
-                        <!-- <button @click="viewPort(portfolio)">kjlkjlk</button> -->
                       </div>
                       <div class="card-body">
                         <p>{{ portfolio.description }}</p>
@@ -309,6 +293,90 @@
                     </div>
                   </div>
                 </div>
+              </div> -->
+            </div>
+            <!-- <div v-if="!showForm && !showPortfolio && !loadPortfolio" class="counter-area">
+              <div class="row g-lg-4 g-md-5 gy-5 justify-content-center">
+                <div v-for="(portfolioItem, index) in allportfolioItems.slice(0, 3)" :key="index"
+                  class="col-lg-4 col-sm-6">
+                  <div class="counter-single">
+                    <div v-if="portfolioItem.portfolio_images" class="counter-icon">
+                      <img v-if="portfolioItem.portfolio_images[0]" :src="portfolioItem.portfolio_images[0].image"
+                        alt="image" width="30">
+                    </div>
+                    <div class="coundown">
+                      <p>{{ portfolioItem.title ?? 'No title' }}</p>
+                      <div class="d-flex">
+                        <h4 class="odometer mt-1">
+                          Status:
+                        </h4>
+                        <p class="ms-3 mt-1">({{ portfolioStatus(index) }})</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+            <div v-if="!showForm && !showPortfolio" class="table-wrapper">
+              <h5 class="title">All Portfolio Item List:</h5>
+              <div class="scroll-table">
+                <table class="eg-table table category-table mb-0">
+                  <thead>
+                    <tr>
+                      <th>Portfolio Title</th>
+                      <th>Description</th>
+                      <th>Skills</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-if="userPortfolio.data && !showForm">
+                      <h5 v-if="userPortfolio.data.length == 0">No Portfolio...</h5>
+                    </tr>
+                    <tr v-for="portfolio in userPortfolio.data" :key="portfolio.id">
+                      <td data-label="Job Title">
+                        <div class="company-info">
+                          <div class="logo">
+                            <img :src="portfolio.portfolio_images[0]?.image" alt="">
+                          </div>
+                          <div class="company-details">
+                            <span>{{ portfolio.title }}</span>
+                          </div>
+                        </div>
+                      </td>
+                      <td data-label="Apply Job">{{ portfolio.description }}</td>
+                      <td data-label="Company">
+                        <span>{{ portfolio.skill_used }}</span>
+                      </td>
+                      <td data-label="Status">
+                        <div class="d-flex justify-content-between">
+                          <span class="btn" @click="viewPort(portfolio)">
+                            <svg width="14" height="10" viewBox="0 0 14 10" xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                d="M14 5C14 5 11.375 0 7 0C2.625 0 0 5 0 5C0 5 2.625 10 7 10C11.375 10 14 5 14 5ZM1.02637 5C1.44945 4.33193 1.93606 3.70971 2.47887 3.14273C3.605 1.97091 5.145 0.909091 7 0.909091C8.855 0.909091 10.3941 1.97091 11.522 3.14273C12.0648 3.70971 12.5514 4.33193 12.9745 5C12.9237 5.07909 12.8678 5.16636 12.8039 5.26182C12.5108 5.69818 12.0776 6.28 11.522 6.85727C10.3941 8.02909 8.85413 9.09091 7 9.09091C5.145 9.09091 3.60588 8.02909 2.478 6.85727C1.93519 6.29028 1.44946 5.66807 1.02637 5Z" />
+                              <path
+                                d="M7 2.72721C6.41984 2.72721 5.86344 2.96665 5.4532 3.39287C5.04297 3.81909 4.8125 4.39717 4.8125 4.99993C4.8125 5.6027 5.04297 6.18078 5.4532 6.60699C5.86344 7.03321 6.41984 7.27266 7 7.27266C7.58016 7.27266 8.13656 7.03321 8.5468 6.60699C8.95703 6.18078 9.1875 5.6027 9.1875 4.99993C9.1875 4.39717 8.95703 3.81909 8.5468 3.39287C8.13656 2.96665 7.58016 2.72721 7 2.72721ZM3.9375 4.99993C3.9375 4.15606 4.26016 3.34676 4.83449 2.75005C5.40882 2.15334 6.18777 1.81812 7 1.81812C7.81223 1.81812 8.59118 2.15334 9.16551 2.75005C9.73984 3.34676 10.0625 4.15606 10.0625 4.99993C10.0625 5.8438 9.73984 6.65311 9.16551 7.24982C8.59118 7.84652 7.81223 8.18175 7 8.18175C6.18777 8.18175 5.40882 7.84652 4.83449 7.24982C4.26016 6.65311 3.9375 5.8438 3.9375 4.99993Z" />
+                            </svg>
+                          </span>
+                          <span class="btn" @click="editView(portfolio)">
+                            <svg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                d="M11.8798 1.19201C11.9563 1.26957 11.9993 1.37462 11.9993 1.48414C11.9993 1.59365 11.9563 1.6987 11.8798 1.77627L11.0253 2.64024L9.3868 0.98512L10.2413 0.121149C10.3181 0.0435774 10.4223 0 10.5309 0C10.6395 0 10.7437 0.0435774 10.8205 0.121149L11.8798 1.19118V1.19201ZM10.4461 3.22449L8.8076 1.56938L3.22607 7.20836C3.18098 7.2539 3.14704 7.30944 3.12694 7.37056L2.46745 9.36829C2.45549 9.40471 2.45379 9.44377 2.46254 9.48111C2.4713 9.51844 2.49016 9.55259 2.51702 9.57972C2.54388 9.60685 2.57768 9.62591 2.61464 9.63475C2.65161 9.64359 2.69028 9.64188 2.72633 9.62979L4.70399 8.96361C4.76442 8.94355 4.8194 8.90955 4.86456 8.8643L10.4461 3.22532V3.22449Z">
+                              </path>
+                              <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M0 10.7585C0 11.0878 0.12947 11.4035 0.359928 11.6363C0.590385 11.8691 0.902953 11.9999 1.22887 11.9999H10.2406C10.5665 11.9999 10.8791 11.8691 11.1095 11.6363C11.34 11.4035 11.4694 11.0878 11.4694 10.7585V5.79319C11.4694 5.68345 11.4263 5.5782 11.3495 5.50061C11.2727 5.42301 11.1685 5.37941 11.0598 5.37941C10.9512 5.37941 10.847 5.42301 10.7702 5.50061C10.6934 5.5782 10.6502 5.68345 10.6502 5.79319V10.7585C10.6502 10.8683 10.607 10.9735 10.5302 11.0511C10.4534 11.1287 10.3492 11.1723 10.2406 11.1723H1.22887C1.12023 11.1723 1.01604 11.1287 0.939222 11.0511C0.862403 10.9735 0.819246 10.8683 0.819246 10.7585V1.6554C0.819246 1.54566 0.862403 1.44041 0.939222 1.36281C1.01604 1.28522 1.12023 1.24162 1.22887 1.24162H6.55397C6.66261 1.24162 6.7668 1.19803 6.84362 1.12043C6.92044 1.04283 6.96359 0.937583 6.96359 0.827842C6.96359 0.718101 6.92044 0.612854 6.84362 0.535256C6.7668 0.457657 6.66261 0.414063 6.55397 0.414062H1.22887C0.902953 0.414063 0.590385 0.544846 0.359928 0.777642C0.12947 1.01044 0 1.32618 0 1.6554V10.7585Z">
+                              </path>
+                            </svg>
+                          </span>
+                          <span class="btn"  @click="deletePortfolio(portfolio)">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16"> <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/> </svg>
+                          </span>
+
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
@@ -403,7 +471,9 @@ import moment from 'moment';
         other_file: null,
         user_id: '',
         viewImages: [],
-      }
+      },
+      loadPortfolio: false,
+      allportfolioItems: [],
     }
   },
   beforeCreate() {
@@ -418,10 +488,19 @@ import moment from 'moment';
       'userPortfolio',
       'globalVariables'
     ]),
+
+    portfolioStatus() {
+      return (index: any) => {
+        // If userPortfolio.data is undefined or null, it will be considered inactive
+        const status = this.userPortfolio.data && this.userPortfolio.data[index].status === 1 ? 'Active' : 'Inactive';
+        return `${status}`;
+      };
+    }
+
   },
   methods: {
 
-    addNewItem (){
+    addNewItem() {
       this.showForm = true;
       this.portfolio.title = '';
       this.portfolio.description = '';
@@ -473,7 +552,7 @@ import moment from 'moment';
       this.viewPortfolio.skill_used = item.skill_used;
       this.viewPortfolio.video_links = item.video_links;
       this.viewPortfolio.images = item.portfolio_images;
-      this.viewPortfolio.viewImages = [];    
+      this.viewPortfolio.viewImages = [];
     },
 
     cancelForm() {
@@ -585,6 +664,7 @@ import moment from 'moment';
       console.log(data);
       try {
         await this.$store.dispatch('deletePort', data);
+        this.$store.dispatch('getUserPortfolio', this.user.id)
         window.setTimeout(() => {
           this.isLoading = false;
         }, 500);
@@ -670,11 +750,21 @@ import moment from 'moment';
   },
   async mounted() {
     this.user = JSON.parse(this.currentUser)[0]
-    this.$store.dispatch('getUserPortfolio', this.user.id)
+    try {
+      this.loadPortfolio = true;
+      this.$store.dispatch('getUserPortfolio', this.user.id)
+      window.setTimeout(() => {
+        this.loadPortfolio = false;
+      }, 3000);
+    } catch (error) {
+      console.log(error);
+    }
     this.$store.dispatch('getGlobalVariables');
     this.portfolio.user_id = this.user.id;
 
     // this.loadPortfolioWithCount();
+
+    this.allportfolioItems = this.userPortfolio.data;
 
     let Script = document.createElement("script");
     Script.setAttribute("src", "/templates/assets/js/main.js");

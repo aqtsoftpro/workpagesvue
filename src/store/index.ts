@@ -575,9 +575,9 @@ export default createStore({
     },
 
     verifyEmail(context, payload) {
-      axios.get(apiUrl + 'verify-email/?userId=' + payload.userId + '&token=' + payload.token + '&expired=' + payload.expired).then(async res => {
+      axios.post(apiUrl + 'verify-mail', payload).then(async res => {
         console.log(res);
-        this.dispatch('getUserInfo', payload.type)
+        await this.dispatch('getUserInfo', payload.type)
 
         // if (res.data.status == 'error') {
         //   toast.error(res.data.message, {
@@ -1522,8 +1522,22 @@ export default createStore({
     //   })
     // },
 
-    async getCMSPages(context, payload) {
-      await axios.get(apiUrl + 'cmsPages/?page_slug=' + payload)
+    // getCMSPages(context, payload) {
+    //   axios.get(apiUrl + 'cmsPages/?page_slug=' + payload)
+    //     .then(res => {
+    //       let result = res
+    //       // console.log(result.data);
+    //       context.commit('SET_CMS_PAGES', result.data)
+    //     })
+    //     .catch(err => {
+    //       toast.error(err.message, {
+    //         position: toast.POSITION.BOTTOM_RIGHT
+    //       })
+    //     })
+    // },
+
+    getCMSPages(context, payload) {
+      axios.post(apiUrl + 'getCmsPages', payload)
         .then(res => {
           let result = res
           // console.log(result.data);
