@@ -13,19 +13,19 @@
                         <div class="social-area">
                             <ul>
                                 <li v-if="globalSettings['_social_media_facebook']">
-                                    <a v-bind:href="globalSettings['_social_media_facebook']"><i
+                                    <a v-bind:href="globalSettings['_social_media_facebook']" target="_blank"><i
                                             class="bx bxl-facebook"></i></a>
                                 </li>
                                 <li v-if="globalSettings['_social_media_twitter']">
-                                    <a v-bind:href="globalSettings['_social_media_twitter']"><i
+                                    <a v-bind:href="globalSettings['_social_media_twitter']" target="_blank"><i
                                             class="bx bxl-twitter"></i></a>
                                 </li>
                                 <li v-if="globalSettings['_social_media_linkedin']">
-                                    <a v-bind:href="globalSettings['_social_media_linkedin']"><i
+                                    <a v-bind:href="globalSettings['_social_media_linkedin']" target="_blank"><i
                                             class="bx bxl-linkedin"></i></a>
                                 </li>
                                 <li v-if="globalSettings['_social_media_instagram']">
-                                    <a to="globalSettings['_social_media_instagram']"><i class="bx bxl-instagram"></i></a>
+                                    <a v-bind:href="globalSettings['_social_media_instagram']" target="_blank"><i class="bx bxl-instagram"></i></a>
                                 </li>
                             </ul>
                         </div>
@@ -115,19 +115,19 @@
                                 <div class="social-area">
                                     <ul>
                                         <li v-if="globalSettings['_social_media_facebook']">
-                                            <a v-bind:href="globalSettings['_social_media_facebook']"><i
+                                            <a v-bind:href="globalSettings['_social_media_facebook']" target="_blank"><i
                                                     class="bx bxl-facebook"></i></a>
                                         </li>
                                         <li v-if="globalSettings['_social_media_twitter']">
-                                            <a v-bind:href="globalSettings['_social_media_twitter']"><i
+                                            <a v-bind:href="globalSettings['_social_media_twitter']" target="_blank"><i
                                                     class="bx bxl-twitter"></i></a>
                                         </li>
                                         <li v-if="globalSettings['_social_media_linkedin']">
-                                            <a v-bind:href="globalSettings['_social_media_linkedin']"><i
+                                            <a v-bind:href="globalSettings['_social_media_linkedin']" target="_blank"><i
                                                     class="bx bxl-linkedin"></i></a>
                                         </li>
                                         <li v-if="globalSettings['_social_media_instagram']">
-                                            <a to="globalSettings['_social_media_instagram']"><i
+                                            <a v-bind:href="globalSettings['_social_media_instagram']" target="_blank"><i
                                                     class="bx bxl-instagram"></i></a>
                                         </li>
                                     </ul>

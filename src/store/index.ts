@@ -64,6 +64,7 @@ export default createStore({
 
     allPlans: [],
     companySubscriptions: [],
+    companyUsers: [],
 
   },
   getters: {
@@ -124,6 +125,7 @@ export default createStore({
 
     allPlans: state => state.allPlans,
     companySubscriptions: state => state.companySubscriptions,
+    companyUsers: state => state.companyUsers,
 
 
   },
@@ -290,7 +292,12 @@ export default createStore({
 
     SET_SUBSCRIPTIONS(state, payload) {
       state.companySubscriptions = payload
-    }
+    },
+
+    SET_COMPANY_USERS(state, payload) {
+      state.companyUsers = payload
+    },
+
   },
   actions: {
 
@@ -1604,7 +1611,22 @@ export default createStore({
       localStorage.removeItem('currentUser');
       this.state.loggedIn = false;
       router.push('/');
-    }
+    },
+
+    getCompanyUsers(context, payload) {
+      axios.get(apiUrl + 'company-users', {
+        headers: {
+          authorization: 'Bearer ' + localStorage.getItem('token'),
+        }
+
+      }).then(res => {
+        context.commit('SET_COMPANY_USERS', JSON.stringify(res.data.user));
+      })
+        .catch(err => {
+          console.log(err);
+          
+        })
+    },
 
   },
   modules: {

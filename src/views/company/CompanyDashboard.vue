@@ -530,6 +530,7 @@ import { mapGetters } from 'vuex';
     this.user = JSON.parse(this.currentUser)[0]
     this.$store.dispatch('getCompanyApplications', this.user.company.id )
     this.$store.dispatch('getCompany', this.user.id)
+    this.$store.dispatch('getCompanyUsers');
     this.company_logo = this.user.company.logo
     // this.live_jobs = 
     let Script = document.createElement("script");
@@ -540,7 +541,6 @@ import { mapGetters } from 'vuex';
     updateCandidateApplication(status:string, application_id:any) {
       this.$store.dispatch('updateCandidateApplication', {status: status, application_id: application_id})
     },
-
    
   },
   watch:{
