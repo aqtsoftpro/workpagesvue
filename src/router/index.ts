@@ -46,6 +46,12 @@ import ResetPassord from '../views/UserResetPassword.vue'
 import UserVerifyLink from '../views/UserVerifyLink.vue'
 import Unauthorize from '../views/Unauthorize.vue'
 import SendLinkMail from '../views/SendLinkMail.vue'
+import JobSeekerDetail from '../views/JobSeekerDetail.vue'
+import JobSeekerList from '../views/JobSeekerList.vue'
+import CompanySeekers from '../views/company/CompanySeekers.vue'
+
+
+
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -178,6 +184,20 @@ const routes: Array<RouteRecordRaw> = [
   },
 
   {
+    path: '/job-seeker-list',
+    name: 'job-seeker-list',
+    component: JobSeekerList,
+    // meta: { requiresAuth: true, role: 'Employer' }
+  },
+
+  {
+    path: '/job-seeker/:id',
+    name: 'job-seeker',
+    component: JobSeekerDetail,
+    // meta: { requiresAuth: true, role: 'Employer' }
+  },
+
+  {
     path: '/unauthorized',
     name: 'unauthorized',
     component: Unauthorize,
@@ -224,6 +244,12 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: '/company/settings',
         component: CompanySettings,
+        meta: { requiresAuth: true, role: 'Employer' }
+      },
+
+      {
+        path: '/company/jobseekers',
+        component: CompanySeekers,
         meta: { requiresAuth: true, role: 'Employer' }
       },
     ]

@@ -33,7 +33,15 @@
                                     <td data-label="Package"><button class="eg-btn light-sky-btn">{{ subscription.package.name }}</button></td>
                                     <td data-label="Amount">${{ subscription.stripe_price }}</td>
                                     <td data-label="Payment Through">{{ subscription.package.stripe_price_id?? 'Offline Method' }}</td>
-                                    <td data-label="Payment Status"><button class="status yellow-color">{{ subscription.stripe_status==""? 'Pending': subscription.stripe_status}} <i class="bi bi-download"></i></button></td>
+                                    <td data-label="Payment Status">
+                                        <!-- <router-link v-if="subscription.receipt_url" class="status yellow-color" :to="subscription.receipt_url" target="_blank">
+                                            {{ subscription.stripe_status==""? 'Pending': subscription.stripe_status}} <i class="bi bi-download ms-5"></i>
+                                        </router-link> -->
+                                        <!-- <a class="status yellow-color" :href="subscription.receipt_url" target="_blank" >
+                                            {{ subscription.stripe_status==""? 'Pending': subscription.stripe_status}} <i class="bi bi-download ms-5"></i>
+                                        </a> -->
+                                        <button class="status yellow-color" @click="getReceipt(subscription.receipt_url)">{{ subscription.stripe_status==""? 'Pending': subscription.stripe_status}} <i class="bi bi-download"></i></button>
+                                    </td>
                                 </tr>
                                 <tr v-else >
                                     <td colspan="4">
@@ -151,7 +159,14 @@ import CompanyMenu from './CompanyMenu.vue'
       const year = date.getFullYear();
 
       return `${day}/${month}/${year}`;
-    }
+    },
+    getReceipt(url: any){
+        if (url == null) {
+            return false;
+        }
+        window.open(url);
+        // window.open("https://www.w3schools.com");
+    },
   },
   async mounted() {
     this.$store.dispatch('companySubscriptions')

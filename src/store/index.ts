@@ -65,6 +65,8 @@ export default createStore({
     allPlans: [],
     companySubscriptions: [],
     companyUsers: [],
+    jobSeekerDetail: [],
+    searchSeeker: [],
 
   },
   getters: {
@@ -126,8 +128,8 @@ export default createStore({
     allPlans: state => state.allPlans,
     companySubscriptions: state => state.companySubscriptions,
     companyUsers: state => state.companyUsers,
-
-
+    jobSeekerDetail: state => state.jobSeekerDetail,
+    searchSeeker: state => state.searchSeeker,
   },
   mutations: {
     SIGN_UP_USER(state, payload) {
@@ -259,8 +261,6 @@ export default createStore({
       state.companyReviews = payload
     },
 
-
-
     SET_HOME_STATS(state, payload) {
       state.homeStats = payload
     },
@@ -296,6 +296,13 @@ export default createStore({
 
     SET_COMPANY_USERS(state, payload) {
       state.companyUsers = payload
+    },
+
+    SET_JOB_SEEKER(state, payload) {
+      state.jobSeekerDetail = payload
+    },
+    SET_JOB_SEEKERS(state, payload) {
+      state.searchSeeker = payload
     },
 
   },
@@ -1259,6 +1266,20 @@ export default createStore({
         })
     },
 
+    createUserReview(context, payload) {
+      axios.post(apiUrl + 'user_reviews', payload, {
+        headers: {
+          'authorization': 'Bearer ' + localStorage.getItem('token')
+        }
+      })
+        .then(res => {
+          console.log(res);
+          toast.success(res.data.message, {
+            position: toast.POSITION.BOTTOM_RIGHT,
+          })
+        })
+    },
+
     getJob(context, payload) {
       axios.get(apiUrl + 'getjob/' + payload, {
         headers: {
@@ -1623,9 +1644,36 @@ export default createStore({
         context.commit('SET_COMPANY_USERS', JSON.stringify(res.data.user));
       })
         .catch(err => {
-          console.log(err);
-          
-        })
+          console.log(err);  
+      })
+    },
+
+    getUserDetail(context, payload) {
+      axios.get(apiUrl + 'user/' + payload, {
+        headers: {
+          authorization: 'Bearer ' + localStorage.getItem('token'),
+        }
+
+      }).then(res => {
+        context.commit('SET_JOB_SEEKER', res.data);
+      })
+        .catch(err => {
+          console.log(err);  
+      })
+    },
+
+    searchSeeker(context, payload) {
+      axios.get(apiUrl + 'search-seeker', {
+        headers: {
+          authorization: 'Bearer ' + localStorage.getItem('token'),
+        }
+
+      }).then(res => {
+        context.commit('SET_JOB_SEEKERS', res.data);
+      })
+        .catch(err => {
+          console.log(err);  
+      })
     },
 
   },

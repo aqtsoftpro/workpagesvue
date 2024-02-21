@@ -24,13 +24,18 @@
                                 </div>
                              </div>
 
+                             <!-- <div class="auth-area two">
+                                <router-link :to="'/job-seeker-list'">
+                                <h5>Company related jobseekers</h5>
+                                </router-link>
+                             </div> -->
+                             
                              <div class="action-btn-group">
                                 <ul>
                                     <li><router-link to="/company/profile"><span><img src="/assets/images/icon/edit2.svg" alt=""></span>Edit Profile</router-link></li>
                                 </ul>
                             </div>
                         </div>
-
                          <div class="counter-area">
                             <div class="row g-4 justify-content-center mb-30">
                                 <!-- <div class="col-lg-3 col-sm-6">
@@ -167,7 +172,9 @@
                                 </div>
                             </div>
                         </div>
-
+                        <div class="counter-area">
+                            <h6 class="text-center">Click here to get all jobseeker ralated to your company: <router-link class="primary-btn-2 lg-btn" :to="'/jobseekers'">job seeker</router-link></h6>
+                        </div>
                         <div class="new-applied-job-area">
                             <h5>New Applied List:</h5>
                             <div class="table-wrapper2">

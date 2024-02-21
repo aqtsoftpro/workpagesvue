@@ -88,6 +88,10 @@
                                 <li>
                                     <router-link to="/contact-us" @click="closeResponsiveMenu">Contact</router-link>
                                 </li>
+
+                                <li v-if="loggedIn && this.role == 'Employer'">
+                                    <router-link to="/job-seeker-list" >Recommended</router-link>
+                                </li>
                             </ul>
 
                             <div class="for-mobile-menu d-lg-none d-block">
