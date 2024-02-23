@@ -49,9 +49,10 @@ import SendLinkMail from '../views/SendLinkMail.vue'
 import JobSeekerDetail from '../views/JobSeekerDetail.vue'
 import JobSeekerList from '../views/JobSeekerList.vue'
 import CompanySeekers from '../views/company/CompanySeekers.vue'
+import CreateAd from '../views/company/CreateAd.vue'
+import CompanyJobAd from '../views/company/CompanyJobAd.vue'
 
-
-
+import { toast } from 'vue3-toastify'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -187,14 +188,14 @@ const routes: Array<RouteRecordRaw> = [
     path: '/job-seeker-list',
     name: 'job-seeker-list',
     component: JobSeekerList,
-    // meta: { requiresAuth: true, role: 'Employer' }
+    // meta: { requiresAuth: true, role: 'Employer', recruiter_dash: 'yes' }
   },
 
   {
     path: '/job-seeker/:id',
     name: 'job-seeker',
     component: JobSeekerDetail,
-    // meta: { requiresAuth: true, role: 'Employer' }
+    // meta: { requiresAuth: true, role: 'Employer', recruiter_dash: 'yes' }
   },
 
   {
@@ -209,48 +210,60 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: '/company/dashboard',
         component: CompanyDashboard,
-        meta: { requiresAuth: true, role: 'Employer' }
+        meta: { requiresAuth: true, role: 'Employer', recruiter_dash: 'yes' }
       },
       {
         path: '/company/profile',
         component: CompanyProfile,
-        meta: { requiresAuth: true, role: 'Employer' }
+        meta: { requiresAuth: true, role: 'Employer', recruiter_dash: 'yes' }
       },
       {
         path: '/company/job-list',
         component: CompanyJobList,
-        meta: { requiresAuth: true, role: 'Employer' }
+        meta: { requiresAuth: true, role: 'Employer', recruiter_dash: 'yes' }
       },
       {
         path: '/company/applications',
         component: CompanyApplicationList,
-        meta: { requiresAuth: true, role: 'Employer' }
+        meta: { requiresAuth: true, role: 'Employer', recruiter_dash: 'yes' }
       },
       {
         path: '/company/create-job',
         component: CreateJob,
-        meta: { requiresAuth: true, role: 'Employer' }
+        meta: { requiresAuth: true, role: 'Employer', recruiter_dash: 'yes' }
       },
       {
         path: '/company/update-job/:job_key/:job_slug',
         component: UpdateJob,
-        meta: { requiresAuth: true, role: 'Employer' }
+        meta: { requiresAuth: true, role: 'Employer', recruiter_dash: 'yes' }
       },      
       {
         path: '/company/plan',
         component: CompanyPlan,
-        meta: { requiresAuth: true, role: 'Employer' }
+        meta: { requiresAuth: true, role: 'Employer', recruiter_dash: 'yes' }
       },
       {
         path: '/company/settings',
         component: CompanySettings,
-        meta: { requiresAuth: true, role: 'Employer' }
+        meta: { requiresAuth: true, role: 'Employer', recruiter_dash: 'yes' }
       },
 
       {
         path: '/company/jobseekers',
         component: CompanySeekers,
-        meta: { requiresAuth: true, role: 'Employer' }
+        meta: { requiresAuth: true, role: 'Employer', recruiter_dash: 'yes' }
+      },
+
+      {
+        path: '/company/post-job-ad',
+        component: CreateAd,
+        meta: { requiresAuth: true, role: 'Employer', recruiter_dash: 'yes', allow_ads: 'yes' }
+      },
+
+      {
+        path: '/company/ad-list',
+        component: CompanyJobAd,
+        meta: { requiresAuth: true, role: 'Employer', recruiter_dash: 'yes', allow_ads: 'yes' }
       },
     ]
   },
@@ -355,11 +368,31 @@ router.beforeEach((to, from, next) => {
     }
 
     //Check if the user has the required role for the route
-    if (to.meta.role && currentUser[0].roles[0].name != to.meta.role) {
+    if (to.meta.recruiter_dash && currentUser[0].sub_accesses[0].recruiter_dash != to.meta.recruiter_dash) {
       // User doesn't have the required role, redirect to unauthorized page or handle accordingly
-      next('/unauthorized');
+      next('/plans');
+      toast.error('Please purchase a plan to get access', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
       return;
     }
+
+    //Check if the user has the required role for the route
+    if (to.meta.allow_ads && currentUser[0].sub_accesses[0].allow_ads != to.meta.allow_ads) {
+      // User doesn't have the required role, redirect to unauthorized page or handle accordingly
+      next('/plans');
+      toast.error('Please purchase a plan to get access', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
+      return;
+    }
+
+    //Check if subscrition give recruiter access..
+    // if (to.meta.role && currentUser[0].roles[0].name != to.meta.role) {
+    //   // User doesn't have the required role, redirect to unauthorized page or handle accordingly
+    //   next('/unauthorized');
+    //   return;
+    // }
   }
 
   // Continue to the route

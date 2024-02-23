@@ -11,6 +11,9 @@
                                 <h4>Latest Job List:</h4>
                             </div>
                             <div class="job-post-btn">
+                                <router-link to="/company/post-job-ad" class="primry-btn-2">Job Advertisement List</router-link>
+                            </div>
+                            <div class="job-post-btn">
                                 <router-link to="/company/create-job" class="primry-btn-2">Create Job Post</router-link>
                             </div>
                         </div>

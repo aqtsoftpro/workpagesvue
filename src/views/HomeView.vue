@@ -320,7 +320,17 @@
         </div>
        </div>
     </div>
+
     <!-- ========== Home Two Counter End============= -->
+
+    <!-- ============ Home Slider Start =========== -->
+    <div  class="home2-category-area mb-120">
+        <div class="container">
+            
+        </div>
+    </div>
+    <!-- ============ Home Slider End =========== -->
+
     <!-- ========== Home Two Job Category Start============= -->
     <div  class="home2-category-area mb-120">
         <div class="container">
@@ -1124,7 +1134,10 @@ import { mapGetters } from 'vuex';
     this.$store.dispatch('getFeaturedJobs', '');
     this.$store.dispatch('getTopCompanies', '');
     this.$store.dispatch('getTestimonials', '');
-    this.$store.dispatch('getCMSPages', 'home');
+    var credentials = {
+        'page_slug': 'home',
+    }
+    this.$store.dispatch('getCMSPages', credentials);
 
 
     // this.$store.dispatch('getCategories', '');

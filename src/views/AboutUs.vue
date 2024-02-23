@@ -54,7 +54,10 @@ import PrivacyPolicy from './PrivacyPolicy.vue'; // @ is an alias to /src
     ])
   },
   mounted() {
-    this.$store.dispatch('getCMSPages', 'about-us');
+    var credentials = {
+        'page_slug': 'about-us',
+    }
+    this.$store.dispatch('getCMSPages', credentials);
     console.log('mounting');
     // console.log(this.meta.roles);
     

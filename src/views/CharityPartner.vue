@@ -117,8 +117,10 @@ import PrivacyPolicy from './PrivacyPolicy.vue'; // @ is an alias to /src
     ])
   },
   mounted() {
-    this.$store.dispatch('getCMSPages', 'privacy-policy');
-    console.log('mounting');
+    var credentials = {
+        'page_slug': 'privacy-policy',
+    }
+    this.$store.dispatch('getCMSPages', credentials);
   },
   watch: {
     cmsPages()

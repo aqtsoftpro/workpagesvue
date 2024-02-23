@@ -525,7 +525,8 @@ import { mapGetters } from 'vuex';
     ...mapGetters([
         'currentUser',
         'companyApplications',
-        'company'
+        'company',
+        'companyDashCounts'
     ]),
     newApplications() {
         console.log(this.applications);
@@ -535,9 +536,11 @@ import { mapGetters } from 'vuex';
   },
   async mounted() {
     this.user = JSON.parse(this.currentUser)[0]
+    this.$store.dispatch('getUserInfo')
     this.$store.dispatch('getCompanyApplications', this.user.company.id )
     this.$store.dispatch('getCompany', this.user.id)
     this.$store.dispatch('getCompanyUsers');
+    this.$store.dispatch('companyData');
     this.company_logo = this.user.company.logo
     // this.live_jobs = 
     let Script = document.createElement("script");

@@ -131,14 +131,23 @@
                                         <label for="jobplace">Company Name (Optional)</label>
                                         <div class="input-area">
                                             <img src="assets/images/icon/company-2.svg" alt="">
-                                            <input type="text" id="jobplace" name="jobplace" placeholder="Company Name" v-model="formData.company_name">
+                                            <input type="text" id="jobplace" name="jobplace" placeholder="Your Company Name" v-model="formData.company_name">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-inner mb-25">
+                                        <label for="jobplace">Subject</label>
+                                        <div class="input-area">
+                                            <img src="assets/images/icon/company-2.svg" alt="">
+                                            <input type="text" id="jobplace" name="jobplace" placeholder="Your Subject" v-model="formData.company_name">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-inner mb-40">
                                         <label for="description">Message*</label>
-                                        <textarea name="description" id="description" placeholder="Message..." v-model="formData.message"></textarea>
+                                        <textarea name="description" id="description" placeholder="Your Message..." v-model="formData.message"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -227,7 +236,10 @@ import 'vue3-toastify/dist/index.css';
   mounted() 
   {
     this.$store.dispatch('getGlobalVariables');
-    this.$store.dispatch('getCMSPages', 'contact');
+    var credentials = {
+        'page_slug': 'contact',
+    }
+    this.$store.dispatch('getCMSPages', credentials);
   },
   watch: {
         globalVariables() {

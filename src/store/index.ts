@@ -29,6 +29,7 @@ export default createStore({
     companiesListing: [],
     companyTypes: [],
     companyJobs: [],
+    companyAds: [],
 
     jobTypes: [],
     job: null,
@@ -67,6 +68,7 @@ export default createStore({
     companyUsers: [],
     jobSeekerDetail: [],
     searchSeeker: [],
+    companyDashCounts: [],
 
   },
   getters: {
@@ -89,7 +91,7 @@ export default createStore({
     companiesListing: state => state.companiesListing,
     companyTypes: state => state.companyTypes,
     companyJobs: state => state.companyJobs,
-
+    companyAds: state => state.companyAds,
     loggedIn: state => state.loggedIn,
     jobTypes: state => state.jobTypes,
     job: state => state.job,
@@ -130,6 +132,7 @@ export default createStore({
     companyUsers: state => state.companyUsers,
     jobSeekerDetail: state => state.jobSeekerDetail,
     searchSeeker: state => state.searchSeeker,
+    companyDashCounts: state => state.companyDashCounts,
   },
   mutations: {
     SIGN_UP_USER(state, payload) {
@@ -188,6 +191,10 @@ export default createStore({
     },
     SET_COMPANY_JOBS(state, payload) {
       state.companyJobs = payload
+    },
+
+    SET_COMPANY_ADS(state, payload) {
+      state.companyAds = payload
     },
 
 
@@ -304,6 +311,10 @@ export default createStore({
     SET_JOB_SEEKERS(state, payload) {
       state.searchSeeker = payload
     },
+
+    SET_COMPANY_COUNTS(state, payload) {
+      state.companyDashCounts = payload
+    }
 
   },
   actions: {
@@ -1071,6 +1082,22 @@ export default createStore({
         })
     },
 
+    getCompanyAds(context, payload) {
+      axios.get(apiUrl + 'getCompanyAds', {
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem('token')
+        }
+      })
+        .then(res => {
+          context.commit('SET_COMPANY_ADS', res.data)
+        })
+        .catch(err => {
+          toast.error(err.message, {
+            position: toast.POSITION.BOTTOM_RIGHT
+          })
+        })
+    },
+
     getJobsByCompany(context, payload) {
       axios.post(apiUrl + 'getJobs/' + payload.company_id)
       .then(res => {
@@ -1674,6 +1701,56 @@ export default createStore({
         .catch(err => {
           console.log(err);  
       })
+    },
+
+    companyData(context, payload) {
+      axios.get(apiUrl + 'company-dashboard', {
+        headers: {
+          authorization: 'Bearer ' + localStorage.getItem('token'),
+        }
+
+      }).then(res => {
+        context.commit('SET_COMPANY_COUNTS', res.data);
+      })
+        .catch(err => {
+          console.log(err);  
+      })
+    },
+
+    
+
+    storeJobAd(context, payload) {
+      axios.post(apiUrl + 'store-job-ad', payload, {
+        headers: {
+          'authorization': 'Bearer ' + localStorage.getItem('token')
+        },
+      })
+        .then(res => {
+          toast.success(res.data.message, {
+            position: toast.POSITION.BOTTOM_RIGHT,
+          })
+        })
+        .catch(err => {
+          console.log(err);
+
+        })
+    },
+
+    zeroSubscribe(context, payload) {
+      axios.post(apiUrl + 'zeroSubscribe', payload, {
+        headers: {
+          'authorization': 'Bearer ' + localStorage.getItem('token')
+        },
+      })
+        .then(res => {
+          toast.success(res.data.message, {
+            position: toast.POSITION.BOTTOM_RIGHT,
+          })
+        })
+        .catch(err => {
+          console.log(err);
+
+        })
     },
 
   },

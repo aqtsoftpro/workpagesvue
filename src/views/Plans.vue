@@ -71,7 +71,13 @@
                             </ul>
 
                             <div class="d-flex justify-content-center mt-5">
-                                <button @click="checkout(plan.id)" class="primry-btn-2 custom-btn lg-btn" type="button">Buy Now </button>
+                                <button v-if="!plan.isLoading && plan.price > 0" @click="checkout(plan)" class="primry-btn-2 custom-btn lg-btn" type="button">Buy Now </button>
+                                <button v-if="!plan.isLoading && plan.price <= 0" @click="zeroSubscribe(plan)" class="primry-btn-2 custom-btn lg-btn" type="button">Buy Now </button>
+                                <button v-if="plan.isLoading" class="primry-btn-2 custom-btn lg-btn" type="button">
+                                    <span class="me-3 fs-6 text-white">Processing...</span>
+                                    <i class="fa fa-spinner fa-spin text-white ms-3" style="font-size:24px">
+                                    </i>
+                                </button>
                             </div>
                         </div>
 
@@ -280,6 +286,11 @@ import PlansListing from '../views/JobListing.vue'; // @ is an alias to /src
 import { mapGetters } from 'vuex';
 import { loadStripe } from '@stripe/stripe-js';
 
+interface Plan {
+    id: number;
+    isLoading: boolean;
+    // Define other properties of the Plan interface
+}
 
 @Options({
     data() {
@@ -288,7 +299,7 @@ import { loadStripe } from '@stripe/stripe-js';
 
         return {
             // allPlans: [],
-            plans: [],
+            isLoading: false,
         }
     },
     async created() {
@@ -306,12 +317,29 @@ import { loadStripe } from '@stripe/stripe-js';
     },
 
     methods: {
-        checkout(id: string | number) {
+        checkout(plan: Plan) {
+            plan.isLoading = true;
             var credentials = {
-                'package': id,
+                'package': plan.id,
             }
             this.$store.dispatch('goToCheckout', credentials);
-        }
+        },
+
+        async zeroSubscribe(plan: Plan) {
+            plan.isLoading = true;
+            try {
+                var credentials = {
+                    'package': plan.id,
+                }
+                await this.$store.dispatch('zeroSubscribe', credentials);
+                window.setTimeout(() => {
+                    plan.isLoading = false;
+                }, 2000);
+            } catch (error) {
+                console.log(error);
+                
+            }
+        },
     },
 })
 export default class Plans extends Vue { }
