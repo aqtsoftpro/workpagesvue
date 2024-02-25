@@ -25,11 +25,11 @@
             <div class="container">
                 <div class="row g-4 mb-70 justify-content-center align-items-center">
                     <div v-for="(plan, index) in allPlans" class="col-lg-4 col-md-6">
-                        <div class="pricing-plan-card1" :class="{'bg-card1': index % 2 === 0, 'bg-card2': index % 2 !== 0 }">
+                        <div class="pricing-plan-card1" :class="{'bg-card1': index % 2 === 0, 'bg-card2': index % 2 !== 0 }" style="height: 50em;">
                             <div class="pricing-plan-header">
                                 <div class="starting-form">
-                                    <span><img src="assets/images/icon/price-star.svg" alt=""> {{ plan.name
-                                    }}</span>
+                                    <span v-if="plan.main_icon == '' || plan.main_icon == null" ><img src="assets/images/icon/price-star.svg" alt=""> {{ plan.name }}</span>
+                                    <span v-else  ><i style="color: #e59a22;">{{ plan.main_icon }}</i style="color: yellowgreen;"> {{ plan.name }}</span>
                                 </div>
                                 <div class="preview-btn">
                                     <a href="#">Preview Sample</a>
@@ -38,37 +38,136 @@
                             <div class="price-area">
                                 <h3>${{ plan.price }} / <span>Per Job +VAT</span></h3>
                             </div>
+                            <div class="">
+                                <ul class="priceing-list h-fix mb-4">
+                                    <li>
+                                        <div class="icon">
+                                            <span v-if="plan.post_for > 0" style="color: rgb(47, 203, 203); margin-right: 1em;">&#10004;</span>
+                                            <span v-else style="color: rgb(47, 203, 203); margin-right: 1em;">&#10006;</span>
+                                            <!-- <img src="assets/images/icon/check-icon.svg" alt=""> -->
+                                        </div>
+                                        <p>Your ad will be posted for {{ plan.post_for?? "30" }} days</p>
+                                    </li>
+                                    <li>
+                                        <div class="icon">
+                                            <span v-if="plan.allow_ads == 'yes'" style="color: rgb(47, 203, 203); margin-right: 1em;">&#10004;</span>
+                                            <span v-else style="color: rgb(47, 203, 203); margin-right: 1em;">&#10006;</span>
+                                            <!-- <img src="assets/images/icon/check-icon.svg" alt=""> -->
+                                        </div>
+                                        <p>Unlimited ads</p>
+                                    </li>
+                                    <li>
+                                        <div class="icon">
+                                            <span v-if="plan.allow_ads == 'yes'" style="color: rgb(47, 203, 203); margin-right: 1em;">&#10004;</span>
+                                            <span v-else style="color: rgb(47, 203, 203); margin-right: 1em;">&#10006;</span>
+                                            <!-- <img src="assets/images/icon/check-icon.svg" alt=""> -->
+                                        </div>
+                                        <p>Unlimited edits</p>
+                                    </li>
+                                    <li v-for="point in plan.keypoints">
+                                        <div class="icon">
+                                            <span style="color: rgb(47, 203, 203); margin-right: 1em;">{{ point.icon }}</span>
+                                            <!-- <img :src="point.icon==null ? 'assets/images/icon/check-icon.svg' : point.icon" alt=""> -->
+                                            <!-- <i class="fa-regular fa-circle-check"></i> -->
+                                        </div>
+                                        <p>{{ point.detail }}</p>
+                                    </li>
+                                    <!-- <li>
+                                        <div class="icon"><img src="assets/images/icon/check-icon.svg" alt=""></div>
+                                        <p>Resume and cover letter review and editing services.</p>
+                                    </li>
+                                    <li>
+                                        <div class="icon"><img src="assets/images/icon/check-icon.svg" alt=""></div>
+                                        <p>Priority access to job listings and job seekers.</p>
+                                    </li>
+                                    <li>
+                                        <div class="icon"><img src="assets/images/icon/check-icon.svg" alt=""></div>
+                                        <p>Job displayed for &nbsp;<span>35 days.</span></p>
+                                    </li>
+                                    <li>
+                                        <div class="icon"><img src="assets/images/icon/check-icon.svg" alt=""></div>
+                                        <p>A dedicated account manager or career counselor.</p>
+                                    </li>
+                                    <li>
+                                        <div class="icon"><img src="assets/images/icon/check-icon.svg" alt=""></div>
+                                        <p><span>Premium</span>&nbsp; support always.</p>
+                                    </li> -->
+                                </ul>
+                            </div>
+                            <div class="primry-btn-2 custom-btn lg-btn mx-4 py-2">
+                                <h5 class="title ms-4">
+                                    ---Access Permission Area---
+                                </h5>
+                            </div>
+                            <div class="mt-4">
+                                <ul class="priceing-list h-fix">
+                                    <li>
+                                        <div class="icon">
+                                            <span v-if="plan.post_for > 0" style="color: rgb(47, 203, 203); margin-right: 1em;">&#10004;</span>
+                                            <span v-else style="color: rgb(47, 203, 203); margin-right: 1em;">&#10006;</span>
+                                            <!-- <img src="assets/images/icon/check-icon.svg" alt=""> -->
+                                        </div>
+                                        <p>Your ad will be posted for {{ plan.post_for?? "30" }} days</p>
+                                    </li>
+                                    <li>
+                                        <div class="icon">
+                                            <span v-if="plan.allow_ads == 'yes'" style="color: rgb(47, 203, 203); margin-right: 1em;">&#10004;</span>
+                                            <span v-else style="color: rgb(47, 203, 203); margin-right: 1em;">&#10006;</span>
+                                            <!-- <img src="assets/images/icon/check-icon.svg" alt=""> -->
+                                        </div>
+                                        <p>Unlimited ads</p>
+                                    </li>
+                                    <li>
+                                        <div class="icon">
+                                            <span v-if="plan.allow_edits == 'yes'" style="color: rgb(47, 203, 203); margin-right: 1em;">&#10004;</span>
+                                            <span v-else style="color: rgb(47, 203, 203); margin-right: 1em;">&#10006;</span>
+                                            <!-- <img src="assets/images/icon/check-icon.svg" alt=""> -->
+                                        </div>
+                                        <p>Can change body of your ads after publishing</p>
+                                    </li>
+                                    <li>
+                                        <div class="icon">
+                                            <span v-if="plan.allow_edits == 'yes'" style="color: rgb(47, 203, 203); margin-right: 1em;">&#10004;</span>
+                                            <span v-else style="color: rgb(47, 203, 203); margin-right: 1em;">&#10006;</span>
+                                            <!-- <img src="assets/images/icon/check-icon.svg" alt=""> -->
+                                        </div>
+                                        <p>Unlimited edits</p>
+                                    </li>
+                                    <li>
+                                        <div class="icon">
+                                            <span v-if="plan.cv_access == 'yes'" style="color: rgb(47, 203, 203); margin-right: 1em;">&#10004;</span>
+                                            <span v-else style="color: rgb(47, 203, 203); margin-right: 1em;">&#10006;</span>
+                                            <!-- <img src="assets/images/icon/check-icon.svg" alt=""> -->
+                                        </div>
+                                        <p>CV Access</p>
+                                    </li>
+                                    <li>
+                                        <div class="icon">
+                                            <span v-if="plan.allow_edits == 'yes'" style="color: rgb(47, 203, 203); margin-right: 1em;">&#10004;</span>
+                                            <span v-else style="color: rgb(47, 203, 203); margin-right: 1em;">&#10006;</span>
+                                            <!-- <img src="assets/images/icon/check-icon.svg" alt=""> -->
+                                        </div>
+                                        <p>Pause the ads</p>
+                                    </li>
+                                    <li>
+                                        <div class="icon">
+                                            <span v-if="plan.allow_edits == 'yes'" style="color: rgb(47, 203, 203); margin-right: 1em;">&#10004;</span>
+                                            <span v-else style="color: rgb(47, 203, 203); margin-right: 1em;">&#10006;</span>
+                                            <!-- <img src="assets/images/icon/check-icon.svg" alt=""> -->
+                                        </div>
+                                        <p>Delete the ads</p>
+                                    </li>
+                                    <li>
+                                        <div class="icon">
+                                            <span v-if="plan.allow_edits == 'yes'" style="color: rgb(47, 203, 203); margin-right: 1em;">&#10004;</span>
+                                            <span v-else style="color: rgb(47, 203, 203); margin-right: 1em;">&#10006;</span>
+                                            <!-- <img src="assets/images/icon/check-icon.svg" alt=""> -->
+                                        </div>
+                                        <p>Close the ads</p>
+                                    </li>
+                                </ul>
+                            </div>
 
-                            <ul class="priceing-list h-fix">
-                                <input type="hidden" name="">
-                                <li v-for="point in plan.keypoints">
-                                    <div class="icon">
-                                        <img :src="point.icon==null ? 'assets/images/icon/check-icon.svg' : point.icon" alt="">
-                                        <!-- <i class="fa-regular fa-circle-check"></i> -->
-                                    </div>
-                                    <p>{{ point.detail }}</p>
-                                </li>
-                                <!-- <li>
-                                    <div class="icon"><img src="assets/images/icon/check-icon.svg" alt=""></div>
-                                    <p>Resume and cover letter review and editing services.</p>
-                                </li>
-                                <li>
-                                    <div class="icon"><img src="assets/images/icon/check-icon.svg" alt=""></div>
-                                    <p>Priority access to job listings and job seekers.</p>
-                                </li>
-                                <li>
-                                    <div class="icon"><img src="assets/images/icon/check-icon.svg" alt=""></div>
-                                    <p>Job displayed for &nbsp;<span>35 days.</span></p>
-                                </li>
-                                <li>
-                                    <div class="icon"><img src="assets/images/icon/check-icon.svg" alt=""></div>
-                                    <p>A dedicated account manager or career counselor.</p>
-                                </li>
-                                <li>
-                                    <div class="icon"><img src="assets/images/icon/check-icon.svg" alt=""></div>
-                                    <p><span>Premium</span>&nbsp; support always.</p>
-                                </li> -->
-                            </ul>
 
                             <div class="d-flex justify-content-center mt-5">
                                 <button v-if="!plan.isLoading && plan.price > 0" @click="checkout(plan)" class="primry-btn-2 custom-btn lg-btn" type="button">Buy Now </button>
@@ -80,7 +179,6 @@
                                 </button>
                             </div>
                         </div>
-
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <div class="pricing-plan-card2">
@@ -268,7 +366,27 @@
     border-radius: 50px !important;
 }
 .h-fix {
-    height: 375px !important;
+    height: 10em !important;
+    overflow-y: scroll;
+}
+
+.h-fix::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+  background-color: #d0e0eb; /* Background color of the scrollbar track */
+  border-radius: 6px; /* Radius of the scrollbar track */
+}
+
+.h-fix::-webkit-scrollbar-thumb {
+  background-color: #010536; /* Color of the scrollbar thumb */
+  border-radius: 6px; /* Radius of the scrollbar thumb */
+}
+
+.h-fix::-webkit-scrollbar-thumb:hover {
+  background-color: #000; /* Color of the scrollbar thumb on hover */
+}
+
+.h-fix::-webkit-scrollbar-button {
+  display: none; /* Hide scrollbar buttons */
 }
 
 .bg-card1 {

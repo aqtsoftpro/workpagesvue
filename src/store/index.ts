@@ -69,6 +69,7 @@ export default createStore({
     jobSeekerDetail: [],
     searchSeeker: [],
     companyDashCounts: [],
+    advertisement: null,
 
   },
   getters: {
@@ -133,6 +134,7 @@ export default createStore({
     jobSeekerDetail: state => state.jobSeekerDetail,
     searchSeeker: state => state.searchSeeker,
     companyDashCounts: state => state.companyDashCounts,
+    advertisement: state => state.advertisement,
   },
   mutations: {
     SIGN_UP_USER(state, payload) {
@@ -314,7 +316,11 @@ export default createStore({
 
     SET_COMPANY_COUNTS(state, payload) {
       state.companyDashCounts = payload
-    }
+    },
+
+    SET_ADVERTISEMENT(state, payload) {
+      state.advertisement = payload
+    },
 
   },
   actions: {
@@ -1736,6 +1742,26 @@ export default createStore({
         })
     },
 
+    updateJobAd(context, payload) {
+      axios.post(apiUrl + 'update-job-ad/'+payload.ad_id, payload, {
+        headers: {
+          'authorization': 'Bearer ' + localStorage.getItem('token')
+        },
+        params: {
+          _method: "put"
+        }
+      })
+        .then(res => {
+          toast.success(res.data.message, {
+            position: toast.POSITION.BOTTOM_RIGHT,
+          })
+        })
+        .catch(err => {
+          console.log(err);
+
+        })
+    },
+
     zeroSubscribe(context, payload) {
       axios.post(apiUrl + 'zeroSubscribe', payload, {
         headers: {
@@ -1750,6 +1776,20 @@ export default createStore({
         .catch(err => {
           console.log(err);
 
+        })
+    },
+
+    getJobAd(context, payload) {
+      axios.get(apiUrl + 'get-advertise/'+payload.ad_id, {
+        headers: {
+          'authorization': 'Bearer ' + localStorage.getItem('token')
+        },
+      })
+        .then(res => {       
+          context.commit('SET_ADVERTISEMENT', res.data)
+        })
+        .catch(err => {
+          console.log(err);
         })
     },
 

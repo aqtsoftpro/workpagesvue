@@ -8,7 +8,8 @@
                         <div class="form-wrapper">
                             <div class="section-title two">
                                 <h5>Post New Job Ad</h5>
-                                <div class="dash"></div>
+                                {{ advertisement }}
+                                <!-- <div class="dash"></div> -->
                             </div>
                             <form class="profile-form">
                                 <div class="section-title2">
@@ -20,7 +21,7 @@
                                             <label for="job_title">Job Ad Title*</label>
                                             <div class="input-area">
                                                 <img src="/assets/images/icon/company-2.svg" alt="">
-                                                <input v-model="adForm.title" type="text" id="job_title" name="job_title">
+                                                <input v-model="adForm.title" type="text" id="job_title" name="job_title" :disabled="advertisement.id">
                                             </div>
                                         </div>
                                     </div>
@@ -29,7 +30,7 @@
                                             <label>Select Job*</label>
                                             <div class="input-area">
                                                 <img src="/assets/images/icon/category-2.svg" alt="">
-                                                <Dropdown 
+                                                <Dropdown :disabled="advertisement.id"
                                                 @change="changeJob"
                                                 v-model=this.adForm.job_id 
                                                 :options="companyJobs.Listing" 
@@ -52,8 +53,9 @@
                                     </div>                                                                                                                                                                                                                                                  
                                     <div class="col-md-12">
                                         <div class="form-inner">
-                                            <button v-if="!isLoading" @click="createJobAd"  class="primry-btn-2 lg-btn w-unset" type="button">Post New Job Ad</button>
-                                            <button v-else class="primry-btn-2 lg-btn w-unset" type="button">
+                                            <button v-if="!isLoading && advertisement.id == null" @click="createJobAd"  class="primry-btn-2 lg-btn w-unset" type="button">Post New Job Ad</button>
+                                            <button v-if="!isLoading && advertisement.id" @click="updateJobAd"  class="primry-btn-2 lg-btn w-unset" type="button">Update Ad Detaile</button>
+                                            <button v-if="isLoading" class="primry-btn-2 lg-btn w-unset" type="button">
                                                 <span class="me-3 fs-6 text-white">Processing...</span>
                                                 <i class="fa fa-spinner fa-spin text-white ms-3" style="font-size:24px">
                                                 </i>
@@ -97,6 +99,7 @@ import Calendar from 'primevue/calendar';
             title: '',
             job_id: null,
             description: '',
+            ad_id: null,
         },
         currentCompany: [],
         isLoading: false,
@@ -121,37 +124,56 @@ import Calendar from 'primevue/calendar';
             this.adForm.description = '',
             window.setTimeout(() => {
                 this.isLoading = false;
-                this.$router.push({ path: '/company/job-list' });
+                this.$router.push({ path: '/company/ad-list' });
+            }, 3000);
+        } catch (error) {
+            console.log(error);
+        }
+    },
+
+    async updateJobAd(){
+        this.isLoading = true;
+        console.log(this.adForm);
+        try {
+          await this.$store.dispatch('updateJobAd', this.adForm);
+            window.setTimeout(() => {
+                this.isLoading = false;
+                this.$router.push({ path: '/company/ad-list' });
             }, 3000);
         } catch (error) {
             console.log(error);
         }
     }
+
   },
   computed: {
       ...mapGetters([
         'currentUser',
         'company',
-        'companyJobs'
+        'companyJobs',
+        'advertisement',
       ])
   },
-  async mounted() {
-      this.user = JSON.parse(this.currentUser)
-      console.log(this.user);
-      this.$store.dispatch('getCompany', this.user[0].id)
-      this.$store.dispatch('getCompanyJobs', '')
-      let Script = document.createElement("script");
-      Script.setAttribute("src", "/assets/js/main.js");
-      document.head.appendChild(Script);
-  },
-//   watch :{
-//       company(oldUserForm, newUserForm){
-//         this.currentCompany = this.company
-//         this.adForm.company_id = this.currentCompany.data.id
-//         this.adForm.location_id = 2
-//         this.adForm.category_id = this.currentCompany.data.category_id
-//       }
-//   }
+    async mounted() {
+        let query = this.$route.query
+        // If query exists, dispatch the action
+        await this.$store.dispatch('getJobAd', query);           
+        this.user = JSON.parse(this.currentUser)
+        console.log(this.user);
+        this.$store.dispatch('getCompany', this.user[0].id)
+        this.$store.dispatch('getCompanyJobs', '')
+        let Script = document.createElement("script");
+        Script.setAttribute("src", "/assets/js/main.js");
+        document.head.appendChild(Script);
+    },
+  watch :{
+    advertisement() {
+        this.adForm.ad_id = this.advertisement.id,
+        this.adForm.title = this.advertisement.title;
+        this.adForm.job_id = this.advertisement.job_id;
+        this.adForm.description = this.advertisement.description;
+    }
+  }
 })
 export default class CreateAd extends Vue {}
 </script>
