@@ -51,6 +51,7 @@ import JobSeekerList from '../views/JobSeekerList.vue'
 import CompanySeekers from '../views/company/CompanySeekers.vue'
 import CreateAd from '../views/company/CreateAd.vue'
 import CompanyJobAd from '../views/company/CompanyJobAd.vue'
+import FreeTrial from '../views/FreeTrial.vue'
 
 import { toast } from 'vue3-toastify'
 
@@ -198,6 +199,12 @@ const routes: Array<RouteRecordRaw> = [
     // meta: { requiresAuth: true, role: 'Employer', recruiter_dash: 'yes' }
   },
 
+  {
+    path: '/free-trial/:id',
+    name: 'free-trial',
+    component: FreeTrial,
+    // meta: { requiresAuth: true, role: 'Employer', recruiter_dash: 'yes' }
+  },
   {
     path: '/unauthorized',
     name: 'unauthorized',

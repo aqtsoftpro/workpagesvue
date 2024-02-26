@@ -23,6 +23,7 @@
         <!-- ========== Pricing Plan Start============= -->
         <div class="pricing-plan-area pt-120 mb-120">
             <div class="container">
+                <h1>check login {{ loggedIn }}</h1>
                 <div class="row g-4 mb-70 justify-content-center align-items-center">
                     <div v-for="(plan, index) in allPlans" class="col-lg-4 col-md-6">
                         <div class="pricing-plan-card1" :class="{'bg-card1': index % 2 === 0, 'bg-card2': index % 2 !== 0 }" style="height: 50em;">
@@ -170,8 +171,8 @@
 
 
                             <div class="d-flex justify-content-center mt-5">
-                                <button v-if="!plan.isLoading && plan.price > 0" @click="checkout(plan)" class="primry-btn-2 custom-btn lg-btn" type="button">Buy Now </button>
-                                <button v-if="!plan.isLoading && plan.price <= 0" @click="zeroSubscribe(plan)" class="primry-btn-2 custom-btn lg-btn" type="button">Buy Now </button>
+                                <button v-if="!plan.isLoading && plan.price > 0" @click="checkout(plan)" class="primry-btn-2 custom-btn lg-btn" type="button">{{ this.loggedIn == true ? 'Buy Now':'Login To Buy'}} </button>
+                                <button v-if="!plan.isLoading && plan.price <= 0" @click="zeroSubscribe(plan)" class="primry-btn-2 custom-btn lg-btn" type="button">{{ this.loggedIn == true ? 'Buy Now':'Login To Buy'}} </button>
                                 <button v-if="plan.isLoading" class="primry-btn-2 custom-btn lg-btn" type="button">
                                     <span class="me-3 fs-6 text-white">Processing...</span>
                                     <i class="fa fa-spinner fa-spin text-white ms-3" style="font-size:24px">
@@ -350,52 +351,52 @@
     </div>
 </template>
 <style>
-.custom-btn {
-  border-radius: 50px !important;
-}
-
-.custom-btn::after{
+    .custom-btn {
     border-radius: 50px !important;
-}
+    }
 
-.custom-btn:hover svg{
-    border-radius: 50px !important;
-}
+    .custom-btn::after{
+        border-radius: 50px !important;
+    }
 
-.custom-btn::before{
-    border-radius: 50px !important;
-}
-.h-fix {
-    height: 10em !important;
-    overflow-y: scroll;
-}
+    .custom-btn:hover svg{
+        border-radius: 50px !important;
+    }
 
-.h-fix::-webkit-scrollbar {
-  width: 8px; /* Width of the scrollbar */
-  background-color: #d0e0eb; /* Background color of the scrollbar track */
-  border-radius: 6px; /* Radius of the scrollbar track */
-}
+    .custom-btn::before{
+        border-radius: 50px !important;
+    }
+    .h-fix {
+        height: 10em !important;
+        overflow-y: scroll;
+    }
 
-.h-fix::-webkit-scrollbar-thumb {
-  background-color: #010536; /* Color of the scrollbar thumb */
-  border-radius: 6px; /* Radius of the scrollbar thumb */
-}
+    .h-fix::-webkit-scrollbar {
+    width: 8px; /* Width of the scrollbar */
+    background-color: #d0e0eb; /* Background color of the scrollbar track */
+    border-radius: 6px; /* Radius of the scrollbar track */
+    }
 
-.h-fix::-webkit-scrollbar-thumb:hover {
-  background-color: #000; /* Color of the scrollbar thumb on hover */
-}
+    .h-fix::-webkit-scrollbar-thumb {
+    background-color: #010536; /* Color of the scrollbar thumb */
+    border-radius: 6px; /* Radius of the scrollbar thumb */
+    }
 
-.h-fix::-webkit-scrollbar-button {
-  display: none; /* Hide scrollbar buttons */
-}
+    .h-fix::-webkit-scrollbar-thumb:hover {
+    background-color: #000; /* Color of the scrollbar thumb on hover */
+    }
 
-.bg-card1 {
-    background-color: rgb(255, 255, 242) !important;
-}
+    .h-fix::-webkit-scrollbar-button {
+    display: none; /* Hide scrollbar buttons */
+    }
 
-.bg-card2 {
-    background-color: rgb(252, 250, 252) !important;
-}
+    .bg-card1 {
+        background-color: rgb(255, 255, 242) !important;
+    }
+
+    .bg-card2 {
+        background-color: rgb(252, 250, 252) !important;
+    }
 
 </style>
 <script lang="ts">
@@ -428,7 +429,10 @@ interface Plan {
     },
 
     computed: {
-        ...mapGetters(['allPlans']),
+        ...mapGetters([
+            'allPlans',
+            'loggedIn',
+        ]),
     },
     mounted() {
         this.$store.dispatch('getAllPlans');
@@ -437,25 +441,23 @@ interface Plan {
     methods: {
         checkout(plan: Plan) {
             plan.isLoading = true;
-            var credentials = {
-                'package': plan.id,
+            if (this.loggedIn == true) {
+                var credentials = {
+                    'package': plan.id,
+                }
+                this.$store.dispatch('goToCheckout', credentials);
+            } else {
+                this.$router.push('/login');
             }
-            this.$store.dispatch('goToCheckout', credentials);
+
         },
 
         async zeroSubscribe(plan: Plan) {
             plan.isLoading = true;
-            try {
-                var credentials = {
-                    'package': plan.id,
-                }
-                await this.$store.dispatch('zeroSubscribe', credentials);
-                window.setTimeout(() => {
-                    plan.isLoading = false;
-                }, 2000);
-            } catch (error) {
-                console.log(error);
-                
+            if (this.loggedIn == true) {
+                this.$router.push('/free-trial/' + plan.id);
+            } else {
+                this.$router.push('/login');
             }
         },
     },

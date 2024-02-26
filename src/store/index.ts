@@ -420,9 +420,6 @@ export default createStore({
         }
       })
         .then(res => {
-          // toast.success(res.data, {
-          //   position: toast.POSITION.BOTTOM_RIGHT,
-          // })
           console.log(res.data.status);
           if (res.data.status == 'error') {
             toast.error(res.data.message, {
@@ -449,6 +446,17 @@ export default createStore({
             position: toast.POSITION.BOTTOM_RIGHT,
           })
         })
+    },
+
+    async companyFreeTrial(context, payload){
+      try {
+          await this.dispatch('zeroSubscribe', {'package': payload.planId,});
+          this.dispatch('getUserInfo', payload.type);
+      } catch (error) {
+        console.log(error);
+      }
+      
+
     },
 
     async goToCheckout(context, payload) {
