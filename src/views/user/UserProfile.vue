@@ -212,6 +212,75 @@
 
                         <div class="form-wrapper">
                             <div class="section-title">
+                                <h5>Other Details:</h5>
+                            </div>
+                            <form class="profile-form">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-inner mb-25">
+                                            <label>Facebook</label>
+                                            <div class="input-area">
+                                                <img src="/assets/images/icon/facebook-2.svg" alt="">
+                                                <input type="text" v-model="social.facebook" placeholder="https://example-facebook.com">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-inner mb-25">
+                                            <label>Twitter</label>
+                                            <div class="input-area">
+                                                <img src="/assets/images/icon/twiter-2.svg" alt="">
+                                                <input type="text" v-model="social.twitter" placeholder="https://example-twitter.com">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-inner mb-25">
+                                            <label>LinkedIn</label>
+                                            <div class="input-area">
+                                                <img src="/assets/images/icon/linkedin-2.svg" alt="">
+                                                <input type="text" v-model="social.linkedin" placeholder="https://example-linkedin.com">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-inner mb-25">
+                                            <label>Pinterest</label>
+                                            <div class="input-area">
+                                                <img src="/assets/images/icon/pinterest-2.svg" alt="">
+                                                <input type="text" v-model="social.pinterest" placeholder="https://example-pinterest.com">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-inner mb-25">
+                                            <label>Dribbble</label>
+                                            <div class="input-area">
+                                                <img src="/assets/images/icon/dribble-2.svg" alt="">
+                                                <input type="text" v-model="social.dribbble" placeholder="https://example-dribbble.com">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-inner mb-50">
+                                            <label>Behance</label>
+                                            <div class="input-area">
+                                                <img src="/assets/images/icon/behance-2.svg" alt="">
+                                                <input type="text" v-model="social.behance" placeholder="https://example-behance.com">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-inner">
+                                            <button @click="updateUserSocial" class="primry-btn-2 lg-btn w-unset" type="button">Update Social Info</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        
+                        <div class="form-wrapper">
+                            <div class="section-title">
                                 <h5>Social Network:</h5>
                             </div>
                             <form class="profile-form">
@@ -277,7 +346,7 @@
                                     </div>
                                 </div>
                             </form>
-                        </div>                       
+                        </div>
                     </div>
                 </div>
             </div>
@@ -348,6 +417,10 @@ import moment from 'moment';
             pinterest: null,
             dribbble: null,
             behance: null,
+        },
+
+        otherDetail: {
+            
         },
         qualificationsOptions: [],
         languagesOptions: [],
