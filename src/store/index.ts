@@ -13,6 +13,7 @@ export default createStore({
     currentUser: (localStorage.getItem('currentUser')) ? localStorage.getItem('currentUser') : null,
     userSetting: [],
     userSocials: {},
+    userDetails: {},
     userPortfolio: [],
     token: (localStorage.getItem('token')) ? localStorage.getItem('token') : null,
     loggedIn: (localStorage.getItem('token')) ? true : false,
@@ -70,6 +71,7 @@ export default createStore({
     searchSeeker: [],
     companyDashCounts: [],
     advertisement: null,
+    userDocuments: [],
 
   },
   getters: {
@@ -77,6 +79,7 @@ export default createStore({
     currentUser: state => state.currentUser,
     userSetting: state => state.userSetting,
     userSocials: state => state.userSocials,
+    userDetails: state => state.userDetails,
     userPortfolio: state => state.userPortfolio,
     token: state => state.token,
     designations: state => state.designations,
@@ -135,6 +138,7 @@ export default createStore({
     searchSeeker: state => state.searchSeeker,
     companyDashCounts: state => state.companyDashCounts,
     advertisement: state => state.advertisement,
+    userDocuments: state => state.userDocuments,
   },
   mutations: {
     SIGN_UP_USER(state, payload) {
@@ -258,6 +262,10 @@ export default createStore({
       state.userSocials = payload
     },
 
+    SET_USER_DETAILS(state, payload) {
+      state.userDetails = payload
+    },
+
     SET_USER_PORTFOLIO(state, payload) {
       state.userPortfolio = payload
     },
@@ -320,6 +328,10 @@ export default createStore({
 
     SET_ADVERTISEMENT(state, payload) {
       state.advertisement = payload
+    },
+
+    SET_USER_DOCUMENTS(state, payload) {
+      state.userDocuments = payload
     },
 
   },
@@ -668,8 +680,7 @@ export default createStore({
             'Authorization': 'Bearer ' + localStorage.getItem('token')
           }
         }
-        )
-          .then(res => {
+        ).then(res => {
             let result = res
             console.log(result.data[0])
             if (result.data[0].roles[0].name == 'Job Seeker') {
@@ -745,6 +756,26 @@ export default createStore({
     },
 
 
+    getUserDetails(context, payload) {
+      axios.get(apiUrl + 'get-detail', {
+        headers: {
+          'authorization': 'Bearer ' + localStorage.getItem('token')
+        }
+      })
+        .then(res => {
+          let result = res
+          context.commit('SET_USER_DETAILS', result.data.user_detail);
+          context.commit('SET_USER_DOCUMENTS', result.data.documents);
+        }).catch(err => {
+          toast.error(err.message, {
+            position: toast.POSITION.BOTTOM_RIGHT,
+          });
+        })
+    },
+
+    
+
+
 
     updateUserSocials(context, payload) {
 
@@ -762,6 +793,72 @@ export default createStore({
             position: toast.POSITION.BOTTOM_RIGHT
           })
 
+        }).catch(err => {
+          toast.error(err.message, {
+            position: toast.POSITION.BOTTOM_RIGHT,
+          });
+        })
+    },
+    
+
+    updateUserDetail(context, payload) {
+      axios.post(apiUrl + 'user-detail', payload, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          'authorization': 'Bearer ' + localStorage.getItem('token')
+        }
+      }).then(res => {
+          console.log(payload);
+          let result = res
+          context.commit('SET_USER_DETAILS', result.data)
+          toast.success(res.data.message, {
+            position: toast.POSITION.BOTTOM_RIGHT
+          })
+
+        }).catch(err => {
+          toast.error(err.message, {
+            position: toast.POSITION.BOTTOM_RIGHT,
+          });
+        })
+    },
+
+
+    updateStatus(context, payload) {
+      axios.post(apiUrl + 'detail-status', payload, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          'authorization': 'Bearer ' + localStorage.getItem('token')
+        },
+      }).then(res => {
+          console.log(payload);
+          let result = res
+          context.commit('SET_USER_DETAILS', result.data.user_detail);
+          context.commit('SET_USER_DOCUMENTS', result.data.documents);
+          toast.success(res.data.message, {
+            position: toast.POSITION.BOTTOM_RIGHT
+          })
+
+        }).catch(err => {
+          toast.error(err.message, {
+            position: toast.POSITION.BOTTOM_RIGHT,
+          });
+        })
+    },
+
+
+    documentStore(context, payload){
+      axios.post(apiUrl + 'user-document', payload, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          'authorization': 'Bearer ' + localStorage.getItem('token')
+        }
+      }).then(res => {
+          console.log(payload);
+          let result = res
+          // context.commit('SET_USER_DETAILS', result.data)
+          toast.success(result.data.message, {
+            position: toast.POSITION.BOTTOM_RIGHT
+          })
         }).catch(err => {
           toast.error(err.message, {
             position: toast.POSITION.BOTTOM_RIGHT,

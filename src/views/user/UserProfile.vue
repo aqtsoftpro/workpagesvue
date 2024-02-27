@@ -210,7 +210,7 @@
                             </form>
                         </div>
 
-                        <div class="form-wrapper">
+                        <div class="form-wrapper mb-5">
                             <div class="section-title">
                                 <h5>Other Details:</h5>
                             </div>
@@ -218,50 +218,60 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-inner mb-25">
-                                            <label>Facebook</label>
+                                            <label>User Active Job</label>
                                             <div class="input-area">
-                                                <img src="/assets/images/icon/facebook-2.svg" alt="">
-                                                <input type="text" v-model="social.facebook" placeholder="https://example-facebook.com">
+                                                <img src="/assets/images/icon/job2.svg" alt="" width="16">
+                                                <input type="text" v-model="otherDetail.active_job" placeholder="Job Name">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-inner mb-25">
-                                            <label>Twitter</label>
+                                            <label>Nationality</label>
                                             <div class="input-area">
-                                                <img src="/assets/images/icon/twiter-2.svg" alt="">
-                                                <input type="text" v-model="social.twitter" placeholder="https://example-twitter.com">
+                                                <img src="/assets/images/icon/nid.svg" alt="">
+                                                <Dropdown 
+                                                v-model=otherDetail.country_id                                     
+                                                :options="locations"
+                                                @change="changeLocation"
+                                                ref="location"
+                                                optionLabel="name" 
+                                                optionValue="id"
+                                                placeholder="Select Location"
+                                                class="w-full 
+                                                md:w-24rem" />
+                                                <!-- <input type="text" v-model="otherDetail.country_id" placeholder="https://example-twitter.com"> -->
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <!-- <div class="col-md-6">
                                         <div class="form-inner mb-25">
-                                            <label>LinkedIn</label>
+                                            <label>Profile Status</label>
                                             <div class="input-area">
                                                 <img src="/assets/images/icon/linkedin-2.svg" alt="">
-                                                <input type="text" v-model="social.linkedin" placeholder="https://example-linkedin.com">
+                                                <input type="text" v-model="otherDetail.profile_status" placeholder="https://example-linkedin.com">
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-6">
+                                    </div> -->
+                                    <!-- <div class="col-md-6">
                                         <div class="form-inner mb-25">
                                             <label>Pinterest</label>
                                             <div class="input-area">
                                                 <img src="/assets/images/icon/pinterest-2.svg" alt="">
-                                                <input type="text" v-model="social.pinterest" placeholder="https://example-pinterest.com">
+                                                <input type="text" v-model="otherDetail.is_available" placeholder="https://example-pinterest.com">
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="col-md-6">
                                         <div class="form-inner mb-25">
-                                            <label>Dribbble</label>
+                                            <label>Introduction Short video</label>
                                             <div class="input-area">
-                                                <img src="/assets/images/icon/dribble-2.svg" alt="">
-                                                <input type="text" v-model="social.dribbble" placeholder="https://example-dribbble.com">
+                                                <img src="/assets/images/icon/devlopment-06.svg" alt="" width="16">
+                                                <input type="file" @change="otherFileHandle" placeholder="https://example-dribbble.com">
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <!-- <div class="col-md-6">
                                         <div class="form-inner mb-50">
                                             <label>Behance</label>
                                             <div class="input-area">
@@ -269,10 +279,10 @@
                                                 <input type="text" v-model="social.behance" placeholder="https://example-behance.com">
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="col-md-12">
                                         <div class="form-inner">
-                                            <button @click="updateUserSocial" class="primry-btn-2 lg-btn w-unset" type="button">Update Social Info</button>
+                                            <button @click="updateUserDetail" class="primry-btn-2 lg-btn w-unset" type="button">Update Detail</button>
                                         </div>
                                     </div>
                                 </div>
@@ -314,28 +324,10 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-inner mb-25">
-                                            <label>Pinterest</label>
-                                            <div class="input-area">
-                                                <img src="/assets/images/icon/pinterest-2.svg" alt="">
-                                                <input type="text" v-model="social.pinterest" placeholder="https://example-pinterest.com">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-inner mb-25">
                                             <label>Dribbble</label>
                                             <div class="input-area">
                                                 <img src="/assets/images/icon/dribble-2.svg" alt="">
                                                 <input type="text" v-model="social.dribbble" placeholder="https://example-dribbble.com">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-inner mb-50">
-                                            <label>Behance</label>
-                                            <div class="input-area">
-                                                <img src="/assets/images/icon/behance-2.svg" alt="">
-                                                <input type="text" v-model="social.behance" placeholder="https://example-behance.com">
                                             </div>
                                         </div>
                                     </div>
@@ -420,8 +412,13 @@ import moment from 'moment';
         },
 
         otherDetail: {
-            
+            active_job: null,
+            country_id: null,
+            profile_status: null,
+            is_available: null,
+            intro_video: null,
         },
+
         qualificationsOptions: [],
         languagesOptions: [],
         locationsOptions: [],
@@ -441,7 +438,8 @@ import moment from 'moment';
         'locations',
         'languages',
         'userSocials',
-        'suburbs'
+        'suburbs',
+        'userDetails'
     ])
   },
   methods: {
@@ -480,11 +478,22 @@ import moment from 'moment';
         this.$store.dispatch('updateUserSocials', this.social)
     },
 
+    updateUserDetail(){
+        this.$store.dispatch('updateUserDetail', this.otherDetail)
+    },
+
     handlePhotoUpload(event:any){
         this.logoVisible = false;
         this.user.photo = event.target.files[0];
         this.preview = URL.createObjectURL(event.target.files[0]);
-    }
+    },
+
+    otherFileHandle(event: any) {
+      const file = event.target.files[0];
+      console.log(event);
+      this.otherDetail.intro_video = file;
+      console.log('no data found');
+    },
   },
   mounted() {
         // this.$store.dispatch('getUserInfo')
@@ -496,12 +505,14 @@ import moment from 'moment';
         this.$store.dispatch('getLanguages', '')
         this.$store.dispatch('getSuburb', '')
         this.$store.dispatch('getUserSocials', this.user.id)
-    //   this.designationsOptions = await this.designations
-    //   this.qualificationsOptions = await this.qualifications
-    //   this.languagesOptions = await this.languages
-    //   this.locationsOptions = await this.locations
-    this.social = this.userSocials
-    let Script = document.createElement("script");
+        this.$store.dispatch('getUserDetails', '')
+        
+        //   this.designationsOptions = await this.designations
+        //   this.qualificationsOptions = await this.qualifications
+        //   this.languagesOptions = await this.languages
+        //   this.locationsOptions = await this.locations
+        this.social = this.userSocials
+        let Script = document.createElement("script");
       Script.setAttribute("src", "/assets/js/main.js");
       document.head.appendChild(Script);
   },
@@ -512,6 +523,14 @@ import moment from 'moment';
     },
     currentUser(){
         this.user = JSON.parse(this.currentUser)[0]
+    },
+
+    userDetails() {
+        this.otherDetail.active_job = this.userDetails.active_job;
+        this.otherDetail.country_id = this.userDetails.country_id;
+        this.otherDetail.profile_status = this.userDetails.profile_status;
+        this.otherDetail.is_available = this.userDetails.is_available;
+        this.otherDetail.intro_video = this.userDetails.intro_video;
     }
   }
 })
