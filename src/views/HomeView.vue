@@ -309,7 +309,7 @@
 
                     </div>
                     <div class="coundown">
-                        <p>New Jobs</p>
+                        <p>Casual Portal</p>
                         <div class="d-flex align-items-center gap-2">
                             <h3 class="odometer">{{ new_jobs_stats }}</h3>
                             <span>+</span>

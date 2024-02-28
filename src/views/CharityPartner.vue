@@ -65,8 +65,8 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="form-inner mb-40">
-                                    <label for="description">Message</label>
-                                    <textarea v-model="charityForm.message" id="description" placeholder="Message..."></textarea>
+                                    <label for="description">Address</label>
+                                    <textarea v-model="charityForm.address" id="description" placeholder="Your company address"></textarea>
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -106,7 +106,7 @@ import PrivacyPolicy from './PrivacyPolicy.vue'; // @ is an alias to /src
         email: '',
         phone: '',
         comapny: '',
-        message: '',
+        address: '',
       },
       isLoading: false,
     }

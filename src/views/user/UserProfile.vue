@@ -527,11 +527,11 @@ import moment from 'moment';
     },
 
     userDetails() {
-        this.otherDetail.active_job = this.userDetails.active_job;
-        this.otherDetail.country_id = this.userDetails.country_id;
-        this.otherDetail.profile_status = this.userDetails.profile_status;
-        this.otherDetail.is_available = this.userDetails.is_available;
-        this.otherDetail.intro_video = this.userDetails.intro_video;
+        this.otherDetail.active_job = this.userDetails?.active_job;
+        this.otherDetail.country_id = this.userDetails?.country_id;
+        this.otherDetail.profile_status = this.userDetails?.profile_status;
+        this.otherDetail.is_available = this.userDetails?.is_available;
+        this.otherDetail.intro_video = this.userDetails?.intro_video;
     },
     suburbs() {
        this.subrubsList =  this.suburbs;

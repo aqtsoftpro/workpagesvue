@@ -64,15 +64,22 @@
                                 <li>
                                     <router-link to="/about-us" @click="closeResponsiveMenu">About Us</router-link>
                                 </li>
+                                <!-- v-if="loggedIn && this.role == 'Job Seeker'" -->
                                 <li>
-                                    <router-link to="/plans" @click="closeResponsiveMenu">Price</router-link>
+                                    <!-- <router-link to="/companies" @click="closeResponsiveMenu">Companies</router-link> -->
+                                    <a href="#" class="dropdown-toggle">Componies</a>
+                                    <ul class="dropdown-menu">
+                                        <li v-if="loggedIn && this.role == 'Employer'">
+                                            <router-link to="/casual-portal" @click="closeResponsiveMenu">Casual Portal</router-link>
+                                        </li>
+                                    </ul>
                                 </li>
-                                <!-- <li>
-                                    <router-link to="/casual-portal" @click="closeResponsiveMenu">Casual Portal</router-link>
-                                </li> -->
                                 <li>
                                     <router-link to="/charity-partner" @click="closeResponsiveMenu">Charity
                                         Partner</router-link>
+                                </li>
+                                <li>
+                                    <router-link to="/plans" @click="closeResponsiveMenu">Price</router-link>
                                 </li>
 
                                 <!-- <li>
@@ -388,6 +395,59 @@
     transform: rotate(360deg);
   }
 }
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    list-style-type: none;
+    padding: 0;
+    /* max-width: 35em !important;
+    max-height: 35em;
+    overflow-y: auto; */
+
+}
+
+
+    .dropdown-menu::-webkit-scrollbar {
+    width: 8px; /* Width of the scrollbar */
+    background-color: #d0e0eb; /* Background color of the scrollbar track */
+    border-radius: 6px; /* Radius of the scrollbar track */
+    }
+
+    .dropdown-menu::-webkit-scrollbar-thumb {
+    background-color: #010536; /* Color of the scrollbar thumb */
+    border-radius: 6px; /* Radius of the scrollbar thumb */
+    }
+
+    .dropdown-menu::-webkit-scrollbar-thumb:hover {
+    background-color: #000; /* Color of the scrollbar thumb on hover */
+    }
+
+    .dropdown-menu::-webkit-scrollbar-button {
+    display: none; /* Hide scrollbar buttons */
+    }
+
+.dropdown-menu li {
+    margin: 0;
+}
+
+.dropdown-menu li a {
+    color: white;
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+}
+
+.dropdown-menu > li > a:hover{
+    /* background-color: #010536; */
+    text-decoration: underline;
+    color: #3b3434;
+}
+
+li:hover > .dropdown-menu {
+    display: block;
+}
+
 </style>
 
 <script>
@@ -416,7 +476,8 @@ Vue.prototype.$globalVar = "Shared Data";
         ...mapGetters([
             'currentUser',
             'loggedIn',
-            'globalVariables'
+            'globalVariables',
+            'topCompanies'
         ])
     },
     methods: {
@@ -442,6 +503,7 @@ Vue.prototype.$globalVar = "Shared Data";
                 });
         },
 
+
         subscribe() {
             var newsletter = {
                 'newsletter_email': this.newletter.newsletter_email,
@@ -459,8 +521,7 @@ Vue.prototype.$globalVar = "Shared Data";
             console.log(this.role);
         }
         this.$store.dispatch('getGlobalVariables');
-
-
+        this.$store.dispatch('getTopCompanies');
         // if(!this.loggedIn){
         //     this.$router.push('/')
         // } else {
