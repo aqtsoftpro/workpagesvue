@@ -59,7 +59,7 @@
                                                 <img src="/assets/images/icon/company-2.svg" alt="">
                                                 <Dropdown 
                                                 v-model=this.user.suburb_id                                       
-                                                :options="suburbs"
+                                                :options="subrubsList"
                                                 @change="changeSuburb"
                                                 ref="suburb_id"
                                                 optionLabel="name" 
@@ -101,7 +101,7 @@
                                                 <img src="/assets/images/icon/company-2.svg" alt="">
                                                 <Dropdown 
                                                 v-model=this.user.current_job_location_id                                       
-                                                :options="locations"
+                                                :options="locationsOptions"
                                                 @change="changeLocation"
                                                 ref="location"
                                                 optionLabel="name" 
@@ -126,7 +126,7 @@
                                                 <img src="/assets/images/icon/designation-2.svg" alt="">
                                                 <Dropdown 
                                                 v-model=this.user.designation_id                                        
-                                                :options="designations"
+                                                :options="designationsOptions"
                                                 @change="changeDesignation"
                                                 ref="designation"
                                                 optionLabel="name" 
@@ -149,7 +149,7 @@
                                                 <img src="/assets/images/icon/qualification-2.svg" alt="">
                                                 <Dropdown 
                                                 v-model=this.user.qualification_id                                       
-                                                :options="qualifications"
+                                                :options="qualificationsOptions"
                                                 @change="changeQualification"
                                                 ref="qualification"
                                                 optionLabel="name" 
@@ -232,7 +232,7 @@
                                                 <img src="/assets/images/icon/nid.svg" alt="">
                                                 <Dropdown 
                                                 v-model=otherDetail.country_id                                     
-                                                :options="locations"
+                                                :options="locationsOptions"
                                                 @change="changeLocation"
                                                 ref="location"
                                                 optionLabel="name" 
@@ -425,6 +425,7 @@ import moment from 'moment';
         designationsOptions: [],
         logoVisible : true,
         isLoading: false,
+        subrubsList: [],
     }
   },
   created() {
@@ -513,8 +514,8 @@ import moment from 'moment';
         //   this.locationsOptions = await this.locations
         this.social = this.userSocials
         let Script = document.createElement("script");
-      Script.setAttribute("src", "/assets/js/main.js");
-      document.head.appendChild(Script);
+        Script.setAttribute("src", "/assets/js/main.js");
+        document.head.appendChild(Script);
   },
   watch: {
     userSocials() {
@@ -531,7 +532,22 @@ import moment from 'moment';
         this.otherDetail.profile_status = this.userDetails.profile_status;
         this.otherDetail.is_available = this.userDetails.is_available;
         this.otherDetail.intro_video = this.userDetails.intro_video;
-    }
+    },
+    suburbs() {
+       this.subrubsList =  this.suburbs;
+    },
+    locations() {
+        this.locationsOptions = this.locations
+    },
+
+    designations() {
+        this.designationsOptions = this.designations
+    },
+
+    qualifications() {
+        this.qualificationsOptions = this.qualifications
+    },
+
   }
 })
 export default class UserProfile extends Vue {}
