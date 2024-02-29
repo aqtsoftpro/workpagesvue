@@ -178,6 +178,7 @@
                                     </div>
                                 </li>
                                 <li v-if="loggedIn" class="d-md-flex d-none">
+                                    
                                     <div class="sign-in-btn">
                                         <router-link v-if="this.role == 'Job Seeker'" class="primry-btn-1 user-btn-custom"
                                             :to="{ path: '/user/dashboard' }">
@@ -480,6 +481,7 @@ Vue.prototype.$globalVar = "Shared Data";
             'topCompanies'
         ])
     },
+
     methods: {
         openMobileMenuToggle() {
             this.openMobileMenu = !this.openMobileMenu
@@ -548,6 +550,13 @@ Vue.prototype.$globalVar = "Shared Data";
             window.setTimeout(() => {
                 this.isLoading = false;
             }, 2000);
+        },
+        currentUser() {
+            if (this.loggedIn) {
+                this.user = JSON.parse(this.currentUser)[0]
+                this.role = this.user.roles[0].name
+                console.log(this.role);
+            }
         }
     }
 })

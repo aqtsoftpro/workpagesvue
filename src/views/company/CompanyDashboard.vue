@@ -5,18 +5,14 @@
         <div class="container">
             <div class="row g-lg-4">
                 <company-menu />
-                
                  <!-- Company Menu Here -->
                 <div class="col-lg-12">
                     <div class="dashboard-inner">
                         <div class="author-and-action-btn-area two mb-40">
                             <div class="author-area two">
                                 <div class="author-img">
-                                    
                                     <img width="200" v-if="company_logo"  :src="company_logo" />
-
                                     <img v-else src="/assets/images/bg/company-img2.png" alt="">
-
                                 </div>
                                 <div class="author-content">
                                     <span>Hello,</span>
@@ -110,12 +106,12 @@
                                             <img src="/assets/images/icon/total-view-icon.svg" alt="image">
                                         </div>
                                         <div class="coundown">
-                                            <p>Total Viewed / Total Applied</p>
+                                            <p>Total Reviews / Total Applied</p>
                                             <div class="d-flex align-items-center">
                                                 <h3 class="odometer">
                                                     <!-- <span></span><span></span> -->
                                                 </h3>
-                                                <span>{{total_viewed}}</span>/<span>{{total_applied}}</span>
+                                                <span>{{companyCounts.reviews_count}}</span>/<span>{{ companyCounts.total_applied_job}}</span>
 
                                                 <!-- <span>+</span> -->
                                             </div>
@@ -147,7 +143,7 @@
                                             <p>Highlighted Jobs</p>
                                             <div class="d-flex align-items-center">
                                                 <h3 class="odometer">
-                                                    {{highlighted_jobs}}
+                                                    {{ companyCounts.highlighted_jobs }}
                                                 </h3>
                                                 <span>+</span>
                                             </div>
@@ -163,7 +159,7 @@
                                             <p>Our Followers</p>
                                             <div class="d-flex align-items-center">
                                                 <h3 class="odometer">
-                                                    {{our_followers}}
+                                                    {{companyCounts.followers_count}}
                                                 </h3>
                                                 <span>+</span>
                                             </div>
@@ -176,6 +172,7 @@
                             <h6 class="text-center">Click here to get all jobseeker ralated to your company: <router-link class="primary-btn-2 lg-btn" :to="'/jobseekers'">job seeker</router-link></h6>
                         </div>
                         <div class="new-applied-job-area">
+                            <input type="hidden" :value="companyApplications">
                             <h5>New Applied List:</h5>
                             <div class="table-wrapper2">
                                 <table class="eg-table table category-table mb-0">
@@ -519,6 +516,7 @@ import { mapGetters } from 'vuex';
         confirmVisible: true,
         message: "Are you sure?",
         header: "Confirmation",
+        companyCounts: {},
     }  
   },
   computed: {
@@ -554,13 +552,16 @@ import { mapGetters } from 'vuex';
    
   },
   watch:{
-    companyApplications: function(newValue){
+    companyApplications(){
         this.applications = this.companyApplications.data
     },
-    company(newValue){        
+    company(){        
         this.company_logo = this.company.data.logo
         console.log(this.company.data.logo);
-      }
+    },
+    companyDashCounts(){
+        this.companyCounts = this.companyDashCounts
+    }
     
   }
 })

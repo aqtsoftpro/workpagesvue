@@ -483,10 +483,10 @@ import Dropdown from 'primevue/dropdown';
                 console.log(this.employerForm);
                 try {
                     this.$store.dispatch('signUpCompany', this.employerForm);
-                    this.isLoading = false;
+                    // this.isLoading = false;
                 } catch (error) {
                     console.log(error);
-                    this.isLoading = false;
+                    // this.isLoading = false;
                 }
         },
         changeCompanyType(event:any){

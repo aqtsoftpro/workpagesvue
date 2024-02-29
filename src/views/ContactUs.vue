@@ -117,7 +117,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <!-- <div class="col-md-6">
                                     <div class="form-inner mb-25">
                                         <label for="phonenumber">Phone*</label>
                                         <div class="input-area">
@@ -125,7 +125,7 @@
                                             <input type="text" id="phonenumber" name="phonenumber" placeholder="+880-17 *** *** **" v-model="formData.phone" required>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="col-md-6">
                                     <div class="form-inner mb-25">
                                         <label for="jobplace">Company Name (Optional)</label>

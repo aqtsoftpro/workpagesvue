@@ -7,8 +7,15 @@
                 <company-menu />
                  <!-- Company Menu Here -->
                 <div class="col-lg-12">
-                    <div class="dashboard-inner">                    
-                    <TabMenu :model="items" @tab-change="onTabChange" />
+                    <div class="dashboard-inner"> 
+                    <input type="hidden" :value="this.applications">
+                    <TabMenu :model="items" @tab-change="onTabChange" >
+                        <template #item="{ item, props }">
+                            <a v-ripple v-bind="props.value" class="me-3">
+                                <span class="font-bold">{{ item.label }}</span>
+                            </a>
+                        </template>
+                    </TabMenu>
                     <!-- Display the content of the active tab -->
                     <div v-if="activeItem === 0" class="new-applied-job-area">
                         <h5> Shortlisted Applications List:</h5>
@@ -604,6 +611,13 @@
   </div>  
 </template>
 
+<style scoped>
+.custom-tabmenu > ul {
+    display: flex !important;
+    justify-content: space-evenly !important;
+}
+</style>
+
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
 import CompanyMenu from './CompanyMenu.vue';
@@ -687,7 +701,7 @@ import TabMenu from 'primevue/tabmenu';
    
   },
   watch:{
-    companyApplications: function(newValue){
+    companyApplications(){
         console.log(this.companyApplications.data);
         this.applications = this.companyApplications.data
     },

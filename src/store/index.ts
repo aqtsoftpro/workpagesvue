@@ -688,7 +688,6 @@ export default createStore({
               localStorage.setItem('currentUser', JSON.stringify(result.data));
               context.commit('SET_CURRENT_USER', JSON.stringify(result.data));
               this.state.loggedIn = true
-
               if (result.data[0].email_verified_at == null) {
                 // window.location.href = adminDashboardUrl + result.data[0].email;
                 router.push('/send-email');

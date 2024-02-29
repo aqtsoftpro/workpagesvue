@@ -523,7 +523,7 @@
                             </div>
                             <div class="company-details">
                                 <div class="name-location">
-                                    <h5>{{job.job_title}}1</h5>
+                                    <h5>{{job.job_title}}</h5>
                                     <!-- <p><router-link to="/company-details">{{job.company_name}}</router-link></p> -->
                                 </div>
                                 <!-- <div class="bookmark">

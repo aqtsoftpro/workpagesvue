@@ -217,63 +217,64 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: '/company/dashboard',
         component: CompanyDashboard,
-        meta: { requiresAuth: true, role: 'Employer', recruiter_dash: 'yes' }
+        meta: { requiresAuth: true, role: 'Employer' }
       },
       {
         path: '/company/profile',
         component: CompanyProfile,
-        meta: { requiresAuth: true, role: 'Employer', recruiter_dash: 'yes' }
+        meta: { requiresAuth: true, role: 'Employer' }
       },
       {
         path: '/company/job-list',
         component: CompanyJobList,
-        meta: { requiresAuth: true, role: 'Employer', recruiter_dash: 'yes' }
+        meta: { requiresAuth: true, role: 'Employer' }
       },
       {
         path: '/company/applications',
         component: CompanyApplicationList,
-        meta: { requiresAuth: true, role: 'Employer', recruiter_dash: 'yes' }
+        meta: { requiresAuth: true, role: 'Employer' }
       },
       {
         path: '/company/create-job',
         component: CreateJob,
-        meta: { requiresAuth: true, role: 'Employer', recruiter_dash: 'yes' }
+        meta: { requiresAuth: true, role: 'Employer' }
       },
       {
         path: '/company/update-job/:job_key/:job_slug',
         component: UpdateJob,
-        meta: { requiresAuth: true, role: 'Employer', recruiter_dash: 'yes' }
+        meta: { requiresAuth: true, role: 'Employer' }
       },      
       {
         path: '/company/plan',
         component: CompanyPlan,
-        meta: { requiresAuth: true, role: 'Employer', recruiter_dash: 'yes' }
+        meta: { requiresAuth: true, role: 'Employer' }
       },
       {
         path: '/company/settings',
         component: CompanySettings,
-        meta: { requiresAuth: true, role: 'Employer', recruiter_dash: 'yes' }
+        meta: { requiresAuth: true, role: 'Employer' }
       },
 
       {
         path: '/company/jobseekers',
         component: CompanySeekers,
-        meta: { requiresAuth: true, role: 'Employer', recruiter_dash: 'yes' }
+        meta: { requiresAuth: true, role: 'Employer' }
       },
 
       {
         path: '/company/post-job-ad',
         component: CreateAd,
-        meta: { requiresAuth: true, role: 'Employer', recruiter_dash: 'yes', allow_ads: 'yes' }
+        meta: { requiresAuth: true, role: 'Employer', allow_ads: 'yes' }
       },
 
       {
         path: '/company/ad-list',
         component: CompanyJobAd,
-        meta: { requiresAuth: true, role: 'Employer', recruiter_dash: 'yes', allow_ads: 'yes' }
+        meta: { requiresAuth: true, role: 'Employer', allow_ads: 'yes' }
       },
     ]
   },
+  // recruiter_dash: 'yes'
   {
     path: '/user',
     children: [
