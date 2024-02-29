@@ -47,9 +47,14 @@
                                             </div>
                                         </div>
                                     </div> -->
-                                    <div class="col-lg-12">
+                                    <div class="col-lg-12 mt-2">
                                         <div class="form-inner">
-                                            <button @click="ChangePassword" class="primry-btn-2" type="button">Update Your Password</button>
+                                            <button v-if="!isLoading" @click="ChangePassword" class="primry-btn-2" type="button">Update Your Password</button>
+                                            <button v-else class="primry-btn-2" type="button">
+                                                <span class="me-3 fs-6 text-white">Processing...</span>
+                                                <i class="fa fa-spinner fa-spin text-white" style="font-size:24px">
+                                                </i>
+                                            </button>
                                         </div>
                                     </div>
                                     <h6>Don’t have an account?<br>
@@ -88,7 +93,8 @@ import { mapGetters } from 'vuex';
                 email: '',
                 password: '',
                 token: '',
-            }
+            },
+            isLoading: false
         }
     },
     computed: {
@@ -103,24 +109,23 @@ import { mapGetters } from 'vuex';
     },
     methods: {
         ChangePassword() {
-            var credentials = {
-                'email': this.user.email,
-                'password': this.user.password,
-                'password_confirmation': this.user.confired_password,
-                'token': this.user.token,
-                'type': 'user',
-                'device_name': 'web app',
+            this.isLoading = true;
+            try {
+                var credentials = {
+                    'email': this.user.email,
+                    'password': this.user.password,
+                    'password_confirmation': this.user.confired_password,
+                    'token': this.user.token,
+                    'type': 'user',
+                    'device_name': 'web app',
+                }
+                this.$store.dispatch('passwordChange', credentials)
+
+            } catch (error) {
+                console.log(error);
+                
             }
-            this.$store.dispatch('passwordChange', credentials)
-            // if(this.user.email == 'company@demo.com' && this.user.password == '1234') {
-            //     router.push('/company/dashboard');
-            // } else if(this.user.email == 'user@demo.com' && this.user.password == '1234'){
-            //     router.push('/user/dashboard');
-            // } else {
-            //     toast.error("Login Error !", {
-            //         position: toast.POSITION.BOTTOM_RIGHT,
-            //     });
-            // }
+
         }
     },
     mounted() {

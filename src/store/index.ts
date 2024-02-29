@@ -535,9 +535,9 @@ export default createStore({
     },
 
     passwordChange(context, payload) {
-      axios.post(apiUrl + 'password/reset/', payload, {
+      axios.post(apiUrl + 'password/reset', payload, {
         headers: {
-          'Content-Type': 'multipart/form-data'
+          'Content-Type': 'application/json',
         },
 
       }).then(res => {
