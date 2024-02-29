@@ -72,6 +72,7 @@ export default createStore({
     companyDashCounts: [],
     advertisement: null,
     userDocuments: [],
+    resetEmail: null,
 
   },
   getters: {
@@ -139,6 +140,8 @@ export default createStore({
     companyDashCounts: state => state.companyDashCounts,
     advertisement: state => state.advertisement,
     userDocuments: state => state.userDocuments,
+    resetEmail: state => state.resetEmail,
+    
   },
   mutations: {
     SIGN_UP_USER(state, payload) {
@@ -332,6 +335,10 @@ export default createStore({
 
     SET_USER_DOCUMENTS(state, payload) {
       state.userDocuments = payload
+    },
+
+    SET_RESET_EMAIL(state, payload) {
+      state.resetEmail = payload
     },
 
   },
@@ -589,16 +596,20 @@ export default createStore({
     },
 
     getResetPage(context, payload) {
-      axios.get(apiUrl + 'reset-password/' + payload)
+      axios.post(apiUrl + 'reset-password', payload)
         .then(res => {
           let result = res
           console.log(result.data);
-          // context.commit('SET_RESET_TOKEN', result.data)
+          context.commit('SET_RESET_EMAIL', result.data)
         })
         .catch(err => {
+          // router.push('/login')
           toast.error(err.message, {
             position: toast.POSITION.BOTTOM_RIGHT
           })
+          window.setTimeout(() => {
+            router.push('/login')
+          }, 2000);
         })
     },
 

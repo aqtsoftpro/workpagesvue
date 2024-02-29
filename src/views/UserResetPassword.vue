@@ -94,7 +94,8 @@ import { mapGetters } from 'vuex';
     computed: {
         ...mapGetters([
             'token',
-            'currentUser'
+            'currentUser',
+            'resetEmail'
         ])
     },
     components: {
@@ -127,16 +128,20 @@ import { mapGetters } from 'vuex';
         let Script = document.createElement("script");
         Script.setAttribute("src", "/assets/js/main.js");
         document.head.appendChild(Script);
-
         const myToken = this.$route.params.tokenData;
-        
         this.user.token = myToken;
-
         const emailParam = this.$route.query.email;
-
-        this.user.email = emailParam;
+        this.$store.dispatch('getResetPage', {'token': myToken, 'email': emailParam});
 
     },
+
+    watch: {
+        resetEmail(){
+            this.user.email = this.resetEmail;
+        }
+    },
+
+
 })
 export default class Login extends Vue { }
 </script>
