@@ -67,7 +67,7 @@
                                 <!-- v-if="loggedIn && this.role == 'Job Seeker'" -->
                                 <li>
                                     <!-- <router-link to="/companies" @click="closeResponsiveMenu">Companies</router-link> -->
-                                    <a href="#" class="dropdown-toggle">Componies</a>
+                                    <a href="#" class="dropdown-toggle">Companies</a>
                                     <ul class="dropdown-menu">
                                         <li v-if="loggedIn && this.role == 'Employer'">
                                             <router-link to="/casual-portal" @click="closeResponsiveMenu">Casual Portal</router-link>
