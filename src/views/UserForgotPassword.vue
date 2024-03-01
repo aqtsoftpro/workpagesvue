@@ -23,7 +23,12 @@
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="form-inner">
-                                        <button @click="reset" class="primry-btn-2" type="button">Send Reset Request</button>
+                                        <button v-if="!isLoading" @click="reset" class="primry-btn-2" type="button">Send Reset Request</button>
+                                        <button v-else class="primry-btn-2" type="button">
+                                            <span class="me-3 fs-6 text-white">Processing...</span>
+                                            <i class="fa fa-spinner fa-spin text-white" style="font-size:24px">
+                                            </i>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -48,6 +53,7 @@ import { mapGetters } from 'vuex';
     data() {
         return {
             email: '',
+            isLoading: false,
         }
     },
     computed: {
@@ -60,11 +66,20 @@ import { mapGetters } from 'vuex';
     SignIn,
   },
   methods: {
-    reset() {
-        var credentials = {
-            'email': this.email,
+    async reset() {
+        try {
+            this.isLoading = true;
+            var credentials = {
+                'email': this.email,
+            }
+            await this.$store.dispatch('reset', credentials)
+            window.setTimeout(() => {
+                this.isLoading = false
+            }, 7000);
+        } catch (error) {
+            console.log(error);
         }
-        this.$store.dispatch('reset', credentials)
+
     }
   },
   mounted(){

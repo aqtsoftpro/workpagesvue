@@ -1,34 +1,34 @@
 <template>
     <div>
-          <!-- ========== Inner Banner Start============= -->
-          <div class="inner-banner">
-          <div class="container">
-              <div class="row">
-                  <div class="col-lg-12">
-                      <div class="banner-content text-center">
-                          <h1>Job Listing</h1>
-                          <span></span>
-                          <nav aria-label="breadcrumb">
-                              <ol class="breadcrumb">
-                                  <li class="breadcrumb-item"><router-link to="index.html">Home</router-link></li>
-                                  <li class="breadcrumb-item active" aria-current="page">Job Listing  </li>
-                              </ol>
-                          </nav>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-      <!-- ========== Inner Banner end============= -->
-      <!-- ========== Job Listing Start============= -->
-      <div class="job-listing-area pt-120 mb-120">
-          <div class="container">
-              <div class="row g-lg-4 gy-5">
-            
-                  <div class="col-lg-12 order-lg-2 order-1">
-                      <div class="job-listing-wrrap">
-                        <!-- {{ searchSeeker }} -->
-                          <!-- <div class="row g-4 mb-25">
+        <!-- ========== Inner Banner Start============= -->
+        <div class="inner-banner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="banner-content text-center">
+                            <h1>Casual Portal</h1>
+                            <span></span>
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><router-link to="index.html">Home</router-link></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Casual Portal </li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ========== Inner Banner end============= -->
+        <!-- ========== Job Listing Start============= -->
+        <div class="job-listing-area pt-120 mb-120">
+            <div class="container">
+                <div class="row g-lg-4 gy-5">
+
+                    <div class="col-lg-12 order-lg-2 order-1">
+                        <div class="job-listing-wrrap">
+                            <!-- {{ searchSeeker }} -->
+                            <!-- <div class="row g-4 mb-25">
                               <div class="col-lg-6 d-flex align-items-center">
                                   <p class="show-item">Showing results 10 in 200 jobs list</p>
                               </div>
@@ -69,66 +69,71 @@
                                   </div>
                               </div>
                           </div> -->
-                          <div class="row ">
-                              <div v-for="seeker in searchSeeker" :key="seeker.id" class="col-lg-12 mb-30">
-                                  <div class="job-listing-card">
-                                      <div class="job-top">
-                                          <div class="job-list-content">
-                                              <div class="company-area">
-                                                  <div class="logo">
-                                                          <img :src="(seeker.photo) ? seeker.photo : 'https://loremflickr.com/52/52/logo,organisation/all'" alt="">
-                                                  </div>
-                                                  <div class="company-details">
-                                                      <div class="name-location">
-                                                        <router-link :to="'job-seeker/'+seeker.id">
-                                                            <h5>{{ seeker.name }}</h5>
-                                                        </router-link>
-                                                        <p>{{ seeker.description }}</p>
-                                                          <!-- <h5><router-link :to="getJobDetail(seeker.job_key, seeker.job_slug)">{{ seeker.job_title }}</router-link></h5> -->
-                                                          <!-- <p><router-link :to="'/company-details?company_id=' + seeker.company_id">{{ seeker.company }}</router-link></p> -->
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                              <div class="job-discription">
-                                                  <ul>
-                                                      <li>
-                                                          <p><span class="title">Location:</span> {{ seeker.job_location?.name ?? 'No Location' }}</p>                                                
-                                                      </li>
-                                                      <li>
-                                                          <p><span class="title">Qualification:</span>{{ seeker.qualification?.name ?? 'No Qualification' }}</p>                                                
-                                                      </li>
-                                                  </ul>
-                                              </div>
-                                          </div>
-                                          <span>Total reviews: ({{ seeker.reviews.length }})</span>
-                                          <!-- <router-link v-if="loggedIn" to="/bookmark" class="bookmark">
+                            <div class="row ">
+                                <div v-for="seeker in companyUsers" :key="seeker.id" class="col-lg-12 mb-30">
+                                    <div class="job-listing-card">
+                                        <div class="job-top">
+                                            <div class="job-list-content">
+                                                <div class="company-area">
+                                                    <div class="logo">
+                                                        <img :src="(seeker.photo) ? seeker.photo : 'https://loremflickr.com/52/52/logo,organisation/all'"
+                                                            alt="">
+                                                    </div>
+                                                    <div class="company-details">
+                                                        <div class="name-location">
+                                                            <router-link :to="'job-seeker/' + seeker.id">
+                                                                <h5>{{ seeker.name }}</h5>
+                                                            </router-link>
+                                                            <p>{{ seeker.description }}</p>
+                                                            <!-- <h5><router-link :to="getJobDetail(seeker.job_key, seeker.job_slug)">{{ seeker.job_title }}</router-link></h5> -->
+                                                            <!-- <p><router-link :to="'/company-details?company_id=' + seeker.company_id">{{ seeker.company }}</router-link></p> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="job-discription">
+                                                    <ul>
+                                                        <li>
+                                                            <p><span class="title">Location:</span> {{
+                                                                seeker.job_location?.name ?? 'No Location' }}</p>
+                                                        </li>
+                                                        <li>
+                                                            <p><span class="title">Qualification:</span>{{
+                                                                seeker.qualification?.name ?? 'No Qualification' }}</p>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <span>Total reviews: ({{ seeker.reviews?.length ?? 0 }})</span>
+                                            <!-- <router-link v-if="loggedIn" to="/bookmark" class="bookmark">
                                               <i class="bi bi-bookmark-fill"></i>
                                           </router-link>
                                           <router-link v-else :to="{ name: 'login' }" class="bookmark">
                                               <i class="bi bi-bookmark-fill"></i>
                                           </router-link>                                         -->
-                                      </div>
-                                      <div class="job-type-apply">
-                                          <div class="job-type">
-                                              <!-- <span class="light-green">{{ seeker.working_mode  }}</span> -->
-                                              <!-- <span class="light-purple">Part Time</span>
+                                        </div>
+                                        <div class="job-type-apply">
+                                            <div class="job-type">
+                                                <!-- <span class="light-green">{{ seeker.working_mode  }}</span> -->
+                                                <!-- <span class="light-purple">Part Time</span>
                                               <span class="light-blue">Remote</span> -->
-                                              <span class="light-blue">{{ seeker.designation?? "No Designation" }}</span>
-                                          </div>
-                                          <!-- <div class="apply-btn" v-if="!isJobExpired(seeker.expiration)">
+                                                <span class="light-blue">{{ seeker.designation ?? "No Designation" }}</span>
+                                            </div>
+                                            <!-- <div class="apply-btn" v-if="!isJobExpired(seeker.expiration)">
                                               <router-link v-if="loggedIn" :to="getJobDetail(seeker.job_key, seeker.job_slug)"><span><img src="assets/images/icon/apply-ellipse.svg" alt=""></span>Apply Now</router-link>
                                               <router-link v-else :to="{ name: 'login'}"><span><img src="assets/images/icon/apply-ellipse.svg" alt=""></span>Login to apply</router-link>
                                           </div> -->
-                                          <div class="apply-btn">
-                                            <router-link :to="'job-seeker/'+seeker.id"><span><img src="assets/images/icon/apply-ellipse.svg" alt=""></span>Detail Job Seeker</router-link>
-                                          </div>
-                                          <!-- <div v-else class="apply-btn">
+                                            <div class="apply-btn">
+                                                <router-link :to="'job-seeker/' + seeker.id"><span><img
+                                                            src="assets/images/icon/apply-ellipse.svg" alt=""></span>Detail
+                                                    Job Seeker</router-link>
+                                            </div>
+                                            <!-- <div v-else class="apply-btn">
                                               <a href="#" class="text-danger"><span><img src="assets/images/icon/apply-ellipse.svg" alt=""></span>Expired...</a>
                                           </div> -->
-                                      </div>
-                                  </div>
-                              </div>
-                              <!-- <div class="col-lg-12 d-flex justify-content-center">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-lg-12 d-flex justify-content-center">
                                   <div class="pagination-area">
                                       <nav aria-label="...">
                                           <ul class="pagination">
@@ -141,95 +146,76 @@
                                       </nav>
                                   </div>
                               </div> -->
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-      <!-- ========== Job Listing e nd============= -->
-    </div>  
-  </template>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ========== Job Listing e nd============= -->
+    </div>
+</template>
   
-  <script lang="ts">
-  import { Options, Vue } from 'vue-class-component';
-  import { mapGetters } from 'vuex';
-  
-  @Options({
-    data(){
-      return {
-          jobs: []
-      }
+<script lang="ts">
+import { Options, Vue } from 'vue-class-component';
+import { mapGetters } from 'vuex';
+
+@Options({
+    data() {
+        return {
+            jobs: []
+        }
     },
     methods: {
-      getJobDetail(job_key:any, job_slug:any) {    
-        return {
-          path: '/job-details/'+job_key+'/'+job_slug
-          // path: '/job-details/${job_key}/${job_slug}'
-        };
-      },
-  
-      parsedExpirationDate(expirationDate:any) {
-        // Split the expiration date string into month, day, and year
-        const [month, day, year] = expirationDate.split(' ');
-        // Type annotation for monthMap
-        const monthMap: { [key: string]: number } = {
-          'Jan': 0, 'Feb': 1, 'Mar': 2, 'Apr': 3,
-          'May': 4, 'Jun': 5, 'Jul': 6, 'Aug': 7,
-          'Sep': 8, 'Oct': 9, 'Nov': 10, 'Dec': 11
-        };
-  
-        // Create and return a Date object using the parsed month, day, and year
-        return new Date(year, monthMap[month], parseInt(day, 10));
-      },
-      
-      isJobExpired(expirationDate: any) {
-        const today = new Date();
-        const expiration = this.parsedExpirationDate(expirationDate);
-        return expiration < today; // Returns true if the job is expired
-      }
-    },  
+        // getJobDetail(job_key: any, job_slug: any) {
+        //     return {
+        //         path: '/job-details/' + job_key + '/' + job_slug
+        //         // path: '/job-details/${job_key}/${job_slug}'
+        //     };
+        // },
+    },
     computed: {
-      ...mapGetters([
-          'searchResult',
-          'searchSeeker',
-          'loggedIn'
-      ]),
-      // parsedExpirationDate(): Date {
-      //   // Split the expiration date string into month, day, and year
-      //   const [month, day, year] = this.seeker.expiration.split(' ');
-      //   // Type annotation for monthMap
-      //   const monthMap: { [key: string]: number } = {
-      //     'Jan': 0, 'Feb': 1, 'Mar': 2, 'Apr': 3,
-      //     'May': 4, 'Jun': 5, 'Jul': 6, 'Aug': 7,
-      //     'Sep': 8, 'Oct': 9, 'Nov': 10, 'Dec': 11
-      //   };
-  
-      //   // Create and return a Date object using the parsed month, day, and year
-      //   return new Date(year, monthMap[month], parseInt(day, 10));
-      // },
-  
+        ...mapGetters([
+            'searchResult',
+            // 'searchSeeker',
+            'companyUsers',
+            'loggedIn'
+        ]),
+        // parsedExpirationDate(): Date {
+        //   // Split the expiration date string into month, day, and year
+        //   const [month, day, year] = this.seeker.expiration.split(' ');
+        //   // Type annotation for monthMap
+        //   const monthMap: { [key: string]: number } = {
+        //     'Jan': 0, 'Feb': 1, 'Mar': 2, 'Apr': 3,
+        //     'May': 4, 'Jun': 5, 'Jul': 6, 'Aug': 7,
+        //     'Sep': 8, 'Oct': 9, 'Nov': 10, 'Dec': 11
+        //   };
+
+        //   // Create and return a Date object using the parsed month, day, and year
+        //   return new Date(year, monthMap[month], parseInt(day, 10));
+        // },
+
     },
     mounted() {
-      let query = this.$route.query
-      this.$store.dispatch('searchJobs', query);
-      this.$store.dispatch('searchSeeker');
-      
+        let query = this.$route.query
+        this.$store.dispatch('searchJobs', query);
+        this.$store.dispatch('getCompanyUsers', '');
+
     },
     watch: {
-      searchResult(){
-          console.log(this.searchResult);
-          this.jobs = this.searchResult
-      },
-  
-      // activeJobs(): { expiration: string }[] {
-      //   const today = new Date();
-      //   return this.jobs.filter((job: { expiration: string }) => {
-      //     return this.parsedExpirationDate >= today;
-      //   });
-      // }
+        searchResult() {
+            console.log(this.searchResult);
+            this.jobs = this.searchResult
+        },
+
+        // activeJobs(): { expiration: string }[] {
+        //   const today = new Date();
+        //   return this.jobs.filter((job: { expiration: string }) => {
+        //     return this.parsedExpirationDate >= today;
+        //   });
+        // }
     }
-  })
-  export default class CompanySeekers extends Vue {}
-  </script>
+})
+export default class CompanySeekers extends Vue { }
+</script>
   

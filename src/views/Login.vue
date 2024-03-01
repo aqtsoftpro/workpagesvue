@@ -42,9 +42,7 @@
                                     <div class="form-inner">
                                         <button v-if="!isLoading" @click="login" class="primry-btn-2" type="button">LogIn</button>
                                         <button v-else class="primry-btn-2" type="button">
-                                            <span class="me-3 fs-6 text-white">Processing...</span>
-                                            <i class="fa fa-spinner fa-spin text-white ms-3" style="font-size:24px">
-                                            </i>
+                                            Processing... <i class="fa fa-spinner fa-spin text-white mt-0" style="font-size:20px"></i>
                                         </button>
                                     </div>
                                 </div>
@@ -106,7 +104,9 @@ import { mapGetters } from 'vuex';
         }
         try {
            await this.$store.dispatch('login', credentials)
-           this.isLoading = false;
+           window.setTimeout(() => {
+                this.isLoading = false;
+           }, 3000);
         } catch (error) {
             console.log(error);
         }

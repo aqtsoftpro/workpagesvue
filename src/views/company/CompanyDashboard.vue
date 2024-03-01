@@ -1,40 +1,42 @@
 <template>
-  <div>
-    <!-- ========== Dashboard Area end============= -->
-    <div class="dashboard-area company-dashboard pt-120 mb-120">
-        <div class="container">
-            <div class="row g-lg-4">
-                <company-menu />
-                 <!-- Company Menu Here -->
-                <div class="col-lg-12">
-                    <div class="dashboard-inner">
-                        <div class="author-and-action-btn-area two mb-40">
-                            <div class="author-area two">
-                                <div class="author-img">
-                                    <img width="200" v-if="company_logo"  :src="company_logo" />
-                                    <img v-else src="/assets/images/bg/company-img2.png" alt="">
+    <div>
+        <!-- ========== Dashboard Area end============= -->
+        <div class="dashboard-area company-dashboard pt-120 mb-120">
+            <div class="container">
+                <div class="row g-lg-4">
+                    <company-menu />
+                    <!-- Company Menu Here -->
+                    <div class="col-lg-12">
+                        <div class="dashboard-inner">
+                            <div class="author-and-action-btn-area two mb-40">
+                                <div class="author-area two">
+                                    <div class="author-img">
+                                        <img width="200" v-if="company_logo" :src="company_logo" />
+                                        <img v-else src="/assets/images/bg/company-img2.png" alt="">
+                                    </div>
+                                    <div class="author-content">
+                                        <span>Hello,</span>
+                                        <h4 v-if="this.user"> {{ user.name }} </h4>
+                                    </div>
                                 </div>
-                                <div class="author-content">
-                                    <span>Hello,</span>
-                                    <h4 v-if="this.user"> {{ user.name }} </h4>
-                                </div>
-                             </div>
 
-                             <!-- <div class="auth-area two">
+                                <!-- <div class="auth-area two">
                                 <router-link :to="'/job-seeker-list'">
                                 <h5>Company related jobseekers</h5>
                                 </router-link>
                              </div> -->
-                             
-                             <div class="action-btn-group">
-                                <ul>
-                                    <li><router-link to="/company/profile"><span><img src="/assets/images/icon/edit2.svg" alt=""></span>Edit Profile</router-link></li>
-                                </ul>
+
+                                <div class="action-btn-group">
+                                    <ul>
+                                        <li><router-link to="/company/profile"><span><img
+                                                        src="/assets/images/icon/edit2.svg" alt=""></span>Edit
+                                                Profile</router-link></li>
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
-                         <div class="counter-area">
-                            <div class="row g-4 justify-content-center mb-30">
-                                <!-- <div class="col-lg-3 col-sm-6">
+                            <div class="counter-area">
+                                <div class="row g-4 justify-content-center mb-30">
+                                    <!-- <div class="col-lg-3 col-sm-6">
                                     <div class="counter-single">
                                         <div class="counter-icon">
                                             <img src="/assets/images/icon/tt-applied.svg" alt="image">
@@ -50,75 +52,76 @@
                                         </div>
                                     </div>
                                 </div> -->
-                                <div class="col-lg-4 col-sm-6">
-                                    <div class="counter-single two">
-                                        <div class="counter-icon">
-                                            <img src="/assets/images/icon/save-job.svg" alt="image">
+                                    <div class="col-lg-4 col-sm-6">
+                                        <div class="counter-single two">
+                                            <div class="counter-icon">
+                                                <img src="/assets/images/icon/save-job.svg" alt="image">
+                                            </div>
+                                            <div class="coundown">
+                                                <p>Live Jobs</p>
+                                                <div class="d-flex align-items-center">
+                                                    <h3 class="odometer">
+                                                        {{ company?.data.live_jobs }}
+                                                    </h3>
+                                                    <span>+</span>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="coundown">
-                                            <p>Live Jobs</p>
-                                            <div class="d-flex align-items-center">
-                                                <h3 class="odometer">
-                                                    {{ company?.data.live_jobs }}
-                                                </h3>
-                                                <span>+</span>
+                                    </div>
+                                    <div class="col-lg-4 col-sm-6">
+                                        <div class="counter-single three">
+                                            <div class="counter-icon">
+                                                <img src="/assets/images/icon/pending-icon.svg" alt="image">
+                                            </div>
+                                            <div class="coundown">
+                                                <p>Pending Job</p>
+                                                <div class="d-flex align-items-center">
+                                                    <h3 class="odometer">
+                                                        {{ company?.data.pending_jobs }}
+                                                    </h3>
+                                                    <span>+</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-sm-6">
+                                        <div class="counter-single four">
+                                            <div class="counter-icon">
+                                                <img src="/assets/images/icon/closed-icon.svg" alt="image">
+                                            </div>
+                                            <div class="coundown">
+                                                <p>Closed Jobs</p>
+                                                <div class="d-flex align-items-center">
+                                                    <h3 class="odometer">
+                                                        {{ company?.data.closed_jobs }}
+                                                    </h3>
+                                                    <span>+</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-4 col-sm-6">
-                                    <div class="counter-single three">
-                                        <div class="counter-icon">
-                                            <img src="/assets/images/icon/pending-icon.svg" alt="image">
-                                        </div>
-                                        <div class="coundown">
-                                            <p>Pending Job</p>
-                                            <div class="d-flex align-items-center">
-                                                <h3 class="odometer">
-                                                    {{ company?.data.pending_jobs }}
-                                                </h3>
-                                                <span>+</span>
+                                <div class="row g-4 justify-content-cente">
+                                    <div class="col-lg-4 col-sm-6">
+                                        <div class="counter-single">
+                                            <div class="counter-icon">
+                                                <img src="/assets/images/icon/total-view-icon.svg" alt="image">
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-sm-6">
-                                    <div class="counter-single four">
-                                        <div class="counter-icon">
-                                            <img src="/assets/images/icon/closed-icon.svg" alt="image">
-                                        </div>
-                                        <div class="coundown">
-                                            <p>Closed Jobs</p>
-                                            <div class="d-flex align-items-center">
-                                                <h3 class="odometer">
-                                                    {{ company?.data.closed_jobs }}
-                                                </h3>
-                                                <span>+</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row g-4 justify-content-cente">
-                                <div class="col-lg-4 col-sm-6">
-                                    <div class="counter-single">
-                                        <div class="counter-icon">
-                                            <img src="/assets/images/icon/total-view-icon.svg" alt="image">
-                                        </div>
-                                        <div class="coundown">
-                                            <p>Total Reviews / Total Applied</p>
-                                            <div class="d-flex align-items-center">
-                                                <h3 class="odometer">
-                                                    <!-- <span></span><span></span> -->
-                                                </h3>
-                                                <span>{{companyCounts.reviews_count}}</span>/<span>{{ companyCounts.total_applied_job}}</span>
+                                            <div class="coundown">
+                                                <p>Total Reviews / Total Applied</p>
+                                                <div class="d-flex align-items-center">
+                                                    <h3 class="odometer">
+                                                        <!-- <span></span><span></span> -->
+                                                    </h3>
+                                                    <span>{{ companyCounts.reviews_count }}</span>/<span>{{
+                                                        companyCounts.total_applied_job }}</span>
 
-                                                <!-- <span>+</span> -->
+                                                    <!-- <span>+</span> -->
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <!-- <div class="col-lg-3 col-sm-6">
+                                    <!-- <div class="col-lg-3 col-sm-6">
                                     <div class="counter-single two">
                                         <div class="counter-icon">
                                             <img src="/assets/images/icon/follow-icon.svg" alt="image">
@@ -134,65 +137,70 @@
                                         </div>
                                     </div>
                                 </div> -->
-                                <div class="col-lg-4 col-sm-6">
-                                    <div class="counter-single three">
-                                        <div class="counter-icon">
-                                            <img src="/assets/images/icon/highlight-icon.svg" alt="image">
-                                        </div>
-                                        <div class="coundown">
-                                            <p>Highlighted Jobs</p>
-                                            <div class="d-flex align-items-center">
-                                                <h3 class="odometer">
-                                                    {{ companyCounts.highlighted_jobs }}
-                                                </h3>
-                                                <span>+</span>
+                                    <div class="col-lg-4 col-sm-6">
+                                        <div class="counter-single three">
+                                            <div class="counter-icon">
+                                                <img src="/assets/images/icon/highlight-icon.svg" alt="image">
+                                            </div>
+                                            <div class="coundown">
+                                                <p>Highlighted Jobs</p>
+                                                <div class="d-flex align-items-center">
+                                                    <h3 class="odometer">
+                                                        {{ companyCounts.highlighted_jobs }}
+                                                    </h3>
+                                                    <span>+</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-4 col-sm-6">
-                                    <div class="counter-single four">
-                                        <div class="counter-icon">
-                                            <img src="/assets/images/icon/featured-icon.svg" alt="image">
-                                        </div>
-                                        <div class="coundown">
-                                            <p>Our Followers</p>
-                                            <div class="d-flex align-items-center">
-                                                <h3 class="odometer">
-                                                    {{companyCounts.followers_count}}
-                                                </h3>
-                                                <span>+</span>
+                                    <div class="col-lg-4 col-sm-6">
+                                        <div class="counter-single four">
+                                            <div class="counter-icon">
+                                                <img src="/assets/images/icon/featured-icon.svg" alt="image">
+                                            </div>
+                                            <div class="coundown">
+                                                <p>Our Followers</p>
+                                                <div class="d-flex align-items-center">
+                                                    <h3 class="odometer">
+                                                        {{ companyCounts.followers_count }}
+                                                    </h3>
+                                                    <span>+</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="counter-area">
-                            <h6 class="text-center">Click here to get all jobseeker ralated to your company: <router-link class="primary-btn-2 lg-btn" :to="'/jobseekers'">job seeker</router-link></h6>
-                        </div>
-                        <div class="new-applied-job-area">
-                            <input type="hidden" :value="companyApplications">
-                            <h5>New Applied List:</h5>
-                            <div class="table-wrapper2">
-                                <table class="eg-table table category-table mb-0">
-                                    <tbody>
-                                        <tr v-for="application in newApplications" :key="application.id">
-                                            <td data-label="Candidate Name">
-                                                <div class="employee-info">
-                                                    <div class="employee-img">
-                                                        
-                                                        <img :src="application.job.company_logo" alt="">
-                                                    </div>
-                                                    <div class="employee-content">
-                                                        {{ application.user_name }}
-                                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">{{ application.job.job_title }}</button>
-                                                        <!-- Modal -->
-                                                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-hidden="true">
+                            <div class="counter-area">
+                                <h6 class="text-center">Click here to get all jobseeker ralated to your company:
+                                    <router-link class="primary-btn-2 lg-btn" :to="'jobseekers'">job seeker</router-link>
+                                </h6>
+                            </div>
+                            <div class="new-applied-job-area">
+                                <input type="hidden" :value="companyApplications">
+                                <h5>New Applied List:</h5>
+                                <div class="table-wrapper2">
+                                    <table class="eg-table table category-table mb-0">
+                                        <tbody>
+                                            <tr v-for="application in newApplications" :key="application.id">
+                                                <td data-label="Candidate Name">
+                                                    <div class="employee-info">
+                                                        <div class="employee-img">
+                                                            <img :src="application.job.company_logo" alt="">
+                                                        </div>
+                                                        <div class="employee-content">
+                                                            {{ application.user_name }}
+                                                            <button type="button" class="btn btn-primary"
+                                                                data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                                                @click="seekerDetail(application.user_id)">{{
+                                                                    application.job.job_title }}</button>
+                                                            <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="seekerDetail(application.user_id)">{{ application.job.job_title }}</button> -->
+                                                            <!-- Modal -->
+                                                            <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-hidden="true">
                                                             <div class="modal-dialog">
                                                                 <div class="row justify-content-center g-lg-4 gy-5 mb-90">
                                                                     <div class="col-lg-10">
-                                                                        <div class="resume-area">
+                                                                        <div v-if="cvStatus" class="resume-area">
                                                                             <div class="edit-resume-btn">
                                                                                 <a href="edit-profile.html">Edit Resume
                                                                                     <svg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
@@ -427,143 +435,182 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
+                                                                        <div class="resume-area">
+                                                                            this is just test
+                                                                        </div>
                                                                         <div class="dowunload-btn pt-50">
                                                                             <a class="primry-btn-2 lg-btn" href="#">Download CV</a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                        </div> -->
+                                                            <span><img src="/assets/images/icon/company-2.svg" alt="">{{
+                                                                application.job.location }}</span>
+                                                            <p><span>Applied On:</span> {{ application.applied_on }}</p>
+                                                            <p><span>Status:</span> {{ application.status_name }}</p>
                                                         </div>
-                                                        <span><img src="/assets/images/icon/company-2.svg" alt="">{{ application.job.location }}</span>
-                                                        <p><span>Applied On:</span> {{ application.applied_on }}</p>
-                                                        <p><span>Status:</span> {{ application.status_name }}</p>
                                                     </div>
-                                                </div>
-                                            </td>
-                                            <td data-label="Carrer Summary">
-                                                <div class="carrer-summary">
-                                                    <h6>Colliegate Ltd <span>(Teaching Assistant)</span></h6>
-                                                    <ul>
-                                                        <li><span>Experience:</span> {{ application.experience  }} Years</li>
-                                                        <li><span>Salary:</span> {{ application.job.currency }} {{ application.salary }} / {{ application.job.payment_mode  }}</li>
-                                                    </ul>
-                                                </div>
-                                            </td>
-                                            <td data-label="Actions">
-                                                <div class="action-btn-group">
-                                                    <ul>
-                                                        <li><router-link :to="{name: 'view-cv', query: { 'url': application.cv  }}"  class="review"><img src="/assets/images/icon/docs.svg" alt=""> View CV</router-link></li>
-                                                        <li v-if="application.status_name != 'Shortlisted'"><button @click="updateCandidateApplication('shortlist', application.id)" ><img src="/assets/images/icon/shortlist-icon.svg" alt=""> Shortlist</button></li>
-                                                        <li v-if="application.status_name != 'Rejected'"><button @click="updateCandidateApplication('reject', application.id)" class="reject"><img src="/assets/images/icon/rejected-icon.svg" alt=""> Reject</button></li>
-                                                        <li>
-                                                            
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                                </td>
+                                                <td data-label="Carrer Summary">
+                                                    <div class="carrer-summary">
+                                                        <h6>Colliegate Ltd <span>(Teaching Assistant)</span></h6>
+                                                        <ul>
+                                                            <li><span>Experience:</span> {{ application.experience }} Years
+                                                            </li>
+                                                            <li><span>Salary:</span> {{ application.job.currency }} {{
+                                                                application.salary }} / {{ application.job.payment_mode }}
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </td>
+                                                <td data-label="Actions">
+                                                    <div class="action-btn-group">
+                                                        <ul>
+                                                            <li>
+                                                                <button v-if="!cvClicked && (user?.sub_accesses[0].cv_credit > 0)" class="review" @click="downloadCv(application.cv)">
+                                                                    <img src="/assets/images/icon/docs.svg" alt=""> Download CV
+                                                                </button>
+                                                                <button v-if="cvClicked && (user?.sub_accesses[0].cv_credit > 0)" class="review" >
+                                                                    <img src="/assets/images/icon/docs.svg" alt=""> Downloading...
+                                                                </button>
+                                                            </li>
+                                                            <li v-if="application.status_name != 'Shortlisted'"><button
+                                                                    @click="updateCandidateApplication('shortlist', application.id)"><img
+                                                                        src="/assets/images/icon/shortlist-icon.svg" alt="">
+                                                                    Shortlist</button></li>
+                                                            <li v-if="application.status_name != 'Rejected'"><button
+                                                                    @click="updateCandidateApplication('reject', application.id)"
+                                                                    class="reject"><img
+                                                                        src="/assets/images/icon/rejected-icon.svg" alt="">
+                                                                    Reject</button></li>
+                                                        </ul>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- <button @click="showConfirm">Show Confirm Popup</button>
+                        <!-- <button @click="showConfirm">Show Confirm Popup</button>
                     <ConfirmPopup v-model="confirmVisible" :message="message" :header="header" @accept="onAccept" @reject="onReject" ></ConfirmPopup>
 
                     <ConfirmPopup></ConfirmPopup>
                     <Button @click="delete" icon="pi pi-check" label="Confirm">check</Button> -->
-                    <!-- <ConfirmPopup></ConfirmPopup>
+                        <!-- <ConfirmPopup></ConfirmPopup>
                     <button @click="confirm1($event)" icon="pi pi-check" label="Confirm">confirm</button>
                     <button @click="confirm2($event)" icon="pi pi-times" label="Delete" outlined severity="danger">deletes</button>
 
                     <ConfirmPopup :visible="confirmVisible"></ConfirmPopup> -->
+                    </div>
                 </div>
             </div>
         </div>
+        <!-- ========== Dashboard Area end============= -->
     </div>
-    <!-- ========== Dashboard Area end============= -->
-  </div>  
 </template>
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
 import CompanyMenu from './CompanyMenu.vue';
 import { mapGetters } from 'vuex';
+import axios from 'axios';
 // import ConfirmPopup  from "primevue/confirmpopup";
 // import useConfirm  from "primevue/useconfirm";
 
 @Options({
-  components: {
-    'company-menu': CompanyMenu,
-    // ConfirmPopup,
-    // useConfirm
-  },
-  data() {    
-    return {
-        user: null,
-        company_logo : null,
-        live_jobs: 20,
-        pending_jobs: 0,
-        closed_jobs: 0,
-        total_viewed: 0,
-        total_applied: 0,
-        highlighted_jobs: 0,
-        our_followers: 0,
-        applications: [],
-        shortlistConfirm: false,
-        shortlistMessage: "Are you sure?",
-        shortlistHeader: "Confirmation",
-        confirmVisible: true,
-        message: "Are you sure?",
-        header: "Confirmation",
-        companyCounts: {},
-    }  
-  },
-  computed: {
-    ...mapGetters([
-        'currentUser',
-        'companyApplications',
-        'company',
-        'companyDashCounts'
-    ]),
-    newApplications() {
-        console.log(this.applications);
-        return this.applications.filter((item:any) => item.status_id === 1);
+    components: {
+        'company-menu': CompanyMenu,
+        // ConfirmPopup,
+        // useConfirm
     },
+    data() {
+        return {
+            user: null,
+            company_logo: null,
+            live_jobs: 20,
+            pending_jobs: 0,
+            closed_jobs: 0,
+            total_viewed: 0,
+            total_applied: 0,
+            highlighted_jobs: 0,
+            our_followers: 0,
+            applications: [],
+            shortlistConfirm: false,
+            shortlistMessage: "Are you sure?",
+            shortlistHeader: "Confirmation",
+            confirmVisible: true,
+            message: "Are you sure?",
+            header: "Confirmation",
+            companyCounts: {},
+            cvStatus: false,
+            cvClicked: false,
+        }
+    },
+    computed: {
+        ...mapGetters([
+            'currentUser',
+            'companyApplications',
+            'company',
+            'companyDashCounts'
+        ]),
+        newApplications() {
+            console.log(this.applications);
+            return this.applications.filter((item: any) => item.status_id === 1);
+        },
 
-  },
-  async mounted() {
-    this.user = JSON.parse(this.currentUser)[0]
-    this.$store.dispatch('getUserInfo')
-    this.$store.dispatch('getCompanyApplications', this.user.company.id )
-    this.$store.dispatch('getCompany', this.user.id)
-    this.$store.dispatch('getCompanyUsers');
-    this.$store.dispatch('companyData');
-    this.company_logo = this.user.company.logo
-    // this.live_jobs = 
-    let Script = document.createElement("script");
-    Script.setAttribute("src", "/assets/js/main.js");
-    document.head.appendChild(Script);
-  },
-  methods: {
-    updateCandidateApplication(status:string, application_id:any) {
-      this.$store.dispatch('updateCandidateApplication', {status: status, application_id: application_id})
     },
-   
-  },
-  watch:{
-    companyApplications(){
-        this.applications = this.companyApplications.data
+    async mounted() {
+        this.user = JSON.parse(this.currentUser)[0]
+        this.$store.dispatch('getUserInfo')
+        this.$store.dispatch('getCompanyApplications', this.user.company.id)
+        this.$store.dispatch('getCompany', this.user.id)
+        this.$store.dispatch('getCompanyUsers');
+        this.$store.dispatch('companyData');
+        this.company_logo = this.user.company.logo
+        // this.live_jobs = 
+        let Script = document.createElement("script");
+        Script.setAttribute("src", "/assets/js/main.js");
+        document.head.appendChild(Script);
     },
-    company(){        
-        this.company_logo = this.company.data.logo
-        console.log(this.company.data.logo);
+    methods: {
+        updateCandidateApplication(status: string, application_id: any) {
+            this.$store.dispatch('updateCandidateApplication', { status: status, application_id: application_id })
+        },
+
+        seekerDetail(userId: any) {
+            this.cvStatus = true;
+            console.log(userId);
+        },
+
+        async downloadCv(cvUrl: any) {
+            this.cvClicked = true;
+            try {
+                await this.$store.dispatch('donwload', cvUrl);
+                window.setTimeout(() => {
+                    // window.open(cvUrl, '_blank');
+                    this.cvClicked = false;
+                }, 3000);
+            } catch (error) {
+                console.log(error);
+            }
+
+        }
     },
-    companyDashCounts(){
-        this.companyCounts = this.companyDashCounts
+    watch: {
+        companyApplications() {
+            this.applications = this.companyApplications.data
+        },
+        company() {
+            this.company_logo = this.company.data.logo
+            console.log(this.company.data.logo);
+        },
+        companyDashCounts() {
+            this.companyCounts = this.companyDashCounts
+        }
+
     }
-    
-  }
 })
-export default class CompanyDashboard extends Vue {}
+export default class CompanyDashboard extends Vue { }
 </script>

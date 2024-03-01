@@ -1789,7 +1789,9 @@ export default createStore({
         }
 
       }).then(res => {
-        context.commit('SET_COMPANY_USERS', JSON.stringify(res.data.user));
+        console.log(res.data);
+        
+        context.commit('SET_COMPANY_USERS', res.data);
       })
         .catch(err => {
           console.log(err);  
@@ -1905,6 +1907,29 @@ export default createStore({
         })
         .catch(err => {
           console.log(err);
+        })
+    },
+
+    donwload(context, payload) {
+      axios.post(apiUrl + 'download-cv', '', {
+        headers: {
+          'authorization': 'Bearer ' + localStorage.getItem('token')
+        },
+      })
+        .then(res => {  
+          const result = res.data     
+          toast.success(result.message, {
+            position: toast.POSITION.BOTTOM_RIGHT
+          })
+          window.setTimeout(() => {
+            window.open(payload, '_blank');
+          }, 3000);
+        })
+        .catch(err => {
+          console.log(err);
+          toast.error('Insufficient credit please upgrade plan', {
+            position: toast.POSITION.BOTTOM_RIGHT
+          })
         })
     },
 
