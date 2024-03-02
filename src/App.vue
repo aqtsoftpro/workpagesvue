@@ -261,27 +261,28 @@
                         </div>
                         <div class="menu-container">
                             <ul>
-                                <li><router-link to="/job-listing">Job Listing <i
+                                <li><router-link to="/about-us">About Us <i
                                             class='bx bx-up-arrow-alt'></i></router-link></li>
-                                <li><router-link to="/job-categories">Job Categories <i
+                                <li><router-link to="/terms-conditions">Terms & Conditions<i
                                             class='bx bx-up-arrow-alt'></i></router-link></li>
-                                <li><router-link to="/companies">Companies <i class='bx bx-up-arrow-alt'></i></router-link>
+                                <li><router-link to="/privacy-policy">Privacy & Policy<i
+                                            class='bx bx-up-arrow-alt'></i></router-link></li>
+                                <li><router-link to="/job-seeker-list">Candidate Listing <i class='bx bx-up-arrow-alt'></i></router-link>
                                 </li>
-
                             </ul>
                         </div>
                     </div>
                 </div>
-                <div v-if="role == 'Job Seeker'"
-                    class="col-lg-3 col-md-4 col-sm-6 mb--50 d-flex justify-content-md-center justify-content-sm-end justify-content-center">
+                <!-- v-if="role == 'Job Seeker'" -->
+                <div class="col-lg-3 col-md-4 col-sm-6 mb--50 d-flex justify-content-md-center justify-content-sm-end justify-content-center">
                     <div class="footer-widget">
                         <div class="widget-title">
                             <h5>For Candidate’s</h5>
                         </div>
                         <div class="menu-container">
                             <ul>
-                                <!-- <li><router-link to="/user/profile">Create Resume <i class='bx bx-up-arrow-alt'></i></router-link></li>
-                                <li><router-link to="/job-categories">Browse Categories <i class='bx bx-up-arrow-alt'></i></router-link></li> -->
+                                <li><router-link to="/user/profile">Create Resume <i class='bx bx-up-arrow-alt'></i></router-link></li>
+                                <li><router-link to="/job-categories">Browse Categories <i class='bx bx-up-arrow-alt'></i></router-link></li>
                                 <li><router-link to="/user/bookmarks">Save Jobs List <i
                                             class='bx bx-up-arrow-alt'></i></router-link></li>
                                 <li><router-link to="/job-listing">Browse Jobs <i
@@ -292,8 +293,8 @@
                         </div>
                     </div>
                 </div>
-                <div v-if="role == 'Employer'"
-                    class="col-lg-3 col-md-4 col-sm-6 mb--50 d-flex justify-content-lg-center justify-content-md-end justify-content-sm-start justify-content-center">
+                <!-- v-if="role == 'Employer'" -->
+                <div class="col-lg-3 col-md-4 col-sm-6 mb--50 d-flex justify-content-lg-center justify-content-md-end justify-content-sm-start justify-content-center">
                     <div class="footer-widget">
                         <div class="widget-title">
                             <h5>For Employer’s</h5>
@@ -316,7 +317,7 @@
                 </div>
                 <div
                     class="col-lg-3 col-md-4 col-sm-6 d-flex justify-content-lg-end justify-content-md-center justify-content-sm-end justify-content-center">
-                    <!--<div class="footer-widget four">
+                    <div class="footer-widget four">
                         <div class="widget-title">
                             <h5>Download App</h5>
                         </div>
@@ -330,11 +331,10 @@
                                 </li>
                             </ul>
                         </div>
-                    </div>-->
+                    </div>
                 </div>
             </div>
             <div class="footer-btm">
-
                 <div class="row align-items-center">
                     <div class="col-lg-6 d-flex justify-content-lg-start justify-content-center">
                         <div class="support">
@@ -360,7 +360,28 @@
                 <div class="row border-top align-items-center">
                     <div class="col-lg-6 d-flex  justify-content-lg-start justify-content-center">
                         <div class="copyright-area">
-                            <p>©Copyright {{ currentYear }} <router-link to="/">Workpages</router-link> </p>
+                            <p>©Copyright {{ currentYear }} <router-link to="contact-us" class="text-light">Workpages</router-link> </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 d-flex  justify-content-lg-end justify-content-center ">
+                        <div class="social-area">
+                            <ul>
+                                <li v-if="globalSettings['_social_media_facebook']">
+                                    <a v-bind:href="globalSettings['_social_media_facebook']" target="_blank"><i
+                                            class="bx bxl-facebook text-light"></i></a>
+                                </li>
+                                <li v-if="globalSettings['_social_media_twitter']">
+                                    <a v-bind:href="globalSettings['_social_media_twitter']" target="_blank"><i
+                                            class="bx bxl-twitter text-light"></i></a>
+                                </li>
+                                <li v-if="globalSettings['_social_media_linkedin']">
+                                    <a v-bind:href="globalSettings['_social_media_linkedin']" target="_blank"><i
+                                            class="bx bxl-linkedin text-light"></i></a>
+                                </li>
+                                <li v-if="globalSettings['_social_media_instagram']">
+                                    <a v-bind:href="globalSettings['_social_media_instagram']" target="_blank"><i class="bx bxl-instagram text-light"></i></a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>

@@ -52,7 +52,7 @@ import TermCondition from './TermsConditions.vue'; // @ is an alias to /src
     ])
   },
   mounted() {
-    this.$store.dispatch('getCMSPages', 'terms-conditions');
+    this.$store.dispatch('getCMSPages', {'page_slug': 'terms-conditions'});
     console.log('mounting');
   },
   watch: 

@@ -361,7 +361,9 @@ import Calendar from 'primevue/calendar';
       this.$store.dispatch('getQualifications', '')
       this.$store.dispatch('getCategories', '')
       this.$store.dispatch('getStates', '')
-      
+      if (this.user[0]?.roles[0]?.name !== 'Employer') {
+        window.history.back();
+      }
       let Script = document.createElement("script");
       Script.setAttribute("src", "/assets/js/main.js");
       document.head.appendChild(Script);
