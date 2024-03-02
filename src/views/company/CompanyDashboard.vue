@@ -468,10 +468,10 @@
                                                     <div class="action-btn-group">
                                                         <ul>
                                                             <li>
-                                                                <button v-if="!cvClicked && (user?.sub_accesses[0].cv_credit > 0)" class="review" @click="downloadCv(application.cv)">
+                                                                <button v-if="!cvClicked && (filteredSubAccesses[0].cv_credit > 0)" class="review" @click="downloadCv(application.cv)">
                                                                     <img src="/assets/images/icon/docs.svg" alt=""> Download CV
                                                                 </button>
-                                                                <button v-if="cvClicked && (user?.sub_accesses[0].cv_credit > 0)" class="review" >
+                                                                <button v-if="cvClicked && (filteredSubAccesses[0].cv_credit > 0)" class="review" >
                                                                     <img src="/assets/images/icon/docs.svg" alt=""> Downloading...
                                                                 </button>
                                                             </li>
@@ -518,6 +518,29 @@ import { mapGetters } from 'vuex';
 import axios from 'axios';
 // import ConfirmPopup  from "primevue/confirmpopup";
 // import useConfirm  from "primevue/useconfirm";
+interface SubAccess {
+  id: number;
+  subscription_id: number;
+  user_id: number;
+  post_for: number;
+  allow_ads: string;
+  allow_edits: string;
+  cv_access: number;
+  cv_credit: number;
+  msg_credit: number;
+  allow_ref: string;
+  allow_right: string;
+  allow_others: string;
+  h_s_screen: string;
+  allow_interview: string;
+  recruiter_dash: string;
+  casual_portal: string;
+  rec_support: string;
+  expired_at: string;
+  deleted_at: string | null;
+  created_at: string;
+  updated_at: string;
+}
 
 @Options({
     components: {
@@ -548,6 +571,7 @@ import axios from 'axios';
             cvClicked: false,
         }
     },
+
     computed: {
         ...mapGetters([
             'currentUser',
@@ -558,6 +582,10 @@ import axios from 'axios';
         newApplications() {
             console.log(this.applications);
             return this.applications.filter((item: any) => item.status_id === 1);
+        },
+
+        filteredSubAccesses(): SubAccess[] {
+            return this.user?.sub_accesses.filter((subAccess: SubAccess) => subAccess.cv_credit > 0);
         },
 
     },
@@ -608,6 +636,9 @@ import axios from 'axios';
         },
         companyDashCounts() {
             this.companyCounts = this.companyDashCounts
+        },
+        currentUser() {
+            this.user = JSON.parse(this.currentUser)[0]
         }
 
     }

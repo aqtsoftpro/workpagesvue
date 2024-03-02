@@ -297,7 +297,14 @@
                                         <td data-label="Actions">
                                             <div class="action-btn-group">
                                                 <ul>
-                                                    <li><router-link :to="{name: 'view-cv', query: { 'url': application.cv  }}"  class="review"><img src="/assets/images/icon/docs.svg" alt=""> View CV</router-link></li>
+                                                    <li>
+                                                        <button v-if="!cvClicked && (filteredSubAccesses[0].cv_credit > 0)" class="review" @click="downloadCv(application.cv)">
+                                                            <img src="/assets/images/icon/docs.svg" alt=""> Download CV
+                                                        </button>
+                                                        <button v-if="cvClicked && (filteredSubAccesses[0].cv_credit > 0)" class="review" >
+                                                            <img src="/assets/images/icon/docs.svg" alt=""> Downloading...
+                                                        </button>
+                                                    </li>
                                                     <li v-if="application.status_name != 'Shortlisted'"><button @click="updateCandidateApplication('shortlist', application.id)" ><img src="/assets/images/icon/shortlist-icon.svg" alt=""> Shortlist</button></li>
                                                     <li v-if="application.status_name != 'Rejected'"><button @click="updateCandidateApplication('reject', application.id)" class="reject"><img src="/assets/images/icon/rejected-icon.svg" alt=""> Reject</button></li>
                                                 </ul>
@@ -588,7 +595,14 @@
                                         <td data-label="Actions">
                                             <div class="action-btn-group">
                                                 <ul>
-                                                    <li><router-link :to="{name: 'view-cv', query: { 'url': application.cv  }}"  class="review"><img src="/assets/images/icon/docs.svg" alt=""> View CV</router-link></li>
+                                                    <li>
+                                                        <button v-if="!cvClicked && (filteredSubAccesses[0].cv_credit > 0)" class="review" @click="downloadCv(application.cv)">
+                                                            <img src="/assets/images/icon/docs.svg" alt=""> Download CV
+                                                        </button>
+                                                        <button v-if="cvClicked && (filteredSubAccesses[0].cv_credit > 0)" class="review" >
+                                                            <img src="/assets/images/icon/docs.svg" alt=""> Downloading...
+                                                        </button>
+                                                    </li>
                                                     <li v-if="application.status_name != 'Shortlisted'"><button @click="updateCandidateApplication('shortlist', application.id)" ><img src="/assets/images/icon/shortlist-icon.svg" alt=""> Shortlist</button></li>
                                                     <li v-if="application.status_name != 'Rejected'"><button @click="updateCandidateApplication('reject', application.id)" class="reject"><img src="/assets/images/icon/rejected-icon.svg" alt=""> Rejected</button></li>
                                                     <li>
@@ -624,6 +638,30 @@ import CompanyMenu from './CompanyMenu.vue';
 import { mapGetters } from 'vuex';
 import TabMenu from 'primevue/tabmenu';
 
+interface SubAccess {
+  id: number;
+  subscription_id: number;
+  user_id: number;
+  post_for: number;
+  allow_ads: string;
+  allow_edits: string;
+  cv_access: number;
+  cv_credit: number;
+  msg_credit: number;
+  allow_ref: string;
+  allow_right: string;
+  allow_others: string;
+  h_s_screen: string;
+  allow_interview: string;
+  recruiter_dash: string;
+  casual_portal: string;
+  rec_support: string;
+  expired_at: string;
+  deleted_at: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
 @Options({
   components: {
     'company-menu': CompanyMenu,
@@ -650,9 +688,10 @@ import TabMenu from 'primevue/tabmenu';
         header: "Confirmation",
         activeItem: 0, // Initial active tab
         items: [
-        { label: 'Shortlisted', value: '0' },
-        { label: 'Rejected', value: '1' },
-      ],
+            { label: 'Shortlisted', value: '0' },
+            { label: 'Rejected', value: '1' },
+        ],
+        cvClicked: false,
     }  
   },
   computed: {
@@ -666,6 +705,9 @@ import TabMenu from 'primevue/tabmenu';
     },
     rejectedApplications() {
       return this.applications.filter((item:any) => item.status_id === 5);
+    },
+    filteredSubAccesses(): SubAccess[] {
+        return this.user?.sub_accesses.filter((subAccess: SubAccess) => subAccess.cv_credit > 0);
     },
     // ne() {
     //   return this.applications.filter((item:any) => item.status_id === 5);
@@ -697,8 +739,20 @@ import TabMenu from 'primevue/tabmenu';
         console.log(event);
         this.activeItem = event.index;
         console.log(this.activeItem);
+    },
+
+    async downloadCv(cvUrl: any) {
+        this.cvClicked = true;
+        try {
+            await this.$store.dispatch('donwload', cvUrl);
+            window.setTimeout(() => {
+                // window.open(cvUrl, '_blank');
+                this.cvClicked = false;
+            }, 3000);
+        } catch (error) {
+            console.log(error);
+        }
     }
-   
   },
   watch:{
     companyApplications(){

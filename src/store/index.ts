@@ -1933,6 +1933,26 @@ export default createStore({
         })
     },
 
+    sendMessage(context, payload) {
+      axios.post(apiUrl + 'send-sms', payload, {
+        headers: {
+          'authorization': 'Bearer ' + localStorage.getItem('token')
+        },
+      })
+        .then(res => {  
+          const result = res.data     
+          toast.success(result.message, {
+            position: toast.POSITION.BOTTOM_RIGHT
+          })
+        })
+        .catch(err => {
+          console.log(err);
+          toast.error(err.message, {
+            position: toast.POSITION.BOTTOM_RIGHT
+          })
+        })
+    },
+
   },
   modules: {
   }

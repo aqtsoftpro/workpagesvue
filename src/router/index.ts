@@ -69,7 +69,9 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/casual-portal',
     name: 'casual-portal',
-    component: CasualPortal
+    // component: CasualPortal
+    component: CompanySeekers,
+    meta: { requiresAuth: true, role: 'Employer' }
   },
   {
     path: '/charity-partner',
@@ -189,7 +191,7 @@ const routes: Array<RouteRecordRaw> = [
     path: '/job-seeker-list',
     name: 'job-seeker-list',
     component: JobSeekerList,
-    // meta: { requiresAuth: true, role: 'Employer', recruiter_dash: 'yes' }
+    meta: { requiresAuth: true, role: 'Employer' }
   },
 
   {
