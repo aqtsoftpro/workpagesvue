@@ -25,9 +25,8 @@
                                     <tr v-for="application in shortlistedApplications" :key="application.id" >
                                         <td  data-label="Candidate Name">
                                             <div class="employee-info">
-                                                <div class="employee-img">
-                                                    
-                                                    <img :src="application.job.company_logo" alt="">
+                                                <div class="employee-img">    
+                                                    <img :src="application.user?.photo" alt="">
                                                 </div>
                                                 <div class="employee-content">
                                                     {{ application.user_name }}
@@ -297,7 +296,7 @@
                                         <td data-label="Actions">
                                             <div class="action-btn-group">
                                                 <ul>
-                                                    <li>
+                                                    <li  v-if="this.user.sub_accesses.length > 0">
                                                         <button v-if="!cvClicked && (filteredSubAccesses[0].cv_credit > 0)" class="review" @click="downloadCv(application.cv)">
                                                             <img src="/assets/images/icon/docs.svg" alt=""> Download CV
                                                         </button>
@@ -595,7 +594,7 @@
                                         <td data-label="Actions">
                                             <div class="action-btn-group">
                                                 <ul>
-                                                    <li>
+                                                    <li v-if="this.user.sub_accesses.length > 0">
                                                         <button v-if="!cvClicked && (filteredSubAccesses[0].cv_credit > 0)" class="review" @click="downloadCv(application.cv)">
                                                             <img src="/assets/images/icon/docs.svg" alt=""> Download CV
                                                         </button>
@@ -701,10 +700,10 @@ interface SubAccess {
         'company'
     ]),
     shortlistedApplications() {
-      return this.applications.filter((item:any) => item.status_id === 3);
+      return this.applications.filter((item:any) => item.status_id == 3);
     },
     rejectedApplications() {
-      return this.applications.filter((item:any) => item.status_id === 5);
+      return this.applications.filter((item:any) => item.status_id == 5);
     },
     filteredSubAccesses(): SubAccess[] {
         return this.user?.sub_accesses.filter((subAccess: SubAccess) => subAccess.cv_credit > 0);

@@ -10,9 +10,9 @@
                             <div class="title">
                                 <h4>Latest Job List:</h4>
                             </div>
-                            <div class="job-post-btn">
+                            <!-- <div class="job-post-btn">
                                 <router-link to="/company/ad-list" class="primry-btn-2">Job Advertisement List</router-link>
-                            </div>
+                            </div> -->
                             <div class="job-post-btn">
                                 <router-link to="/company/create-job" class="primry-btn-2">Create Job Post</router-link>
                             </div>
@@ -99,7 +99,7 @@
                                         </div>
                                     </td>
                                     <td data-label="Applications">
-                                        <span class="total-number">0</span>
+                                        <span class="total-number">{{ job.applications_count ?? 0 }}</span>
                                     </td>
                                     <td data-label="Matched">
                                         <span class="total-number light-orange">0</span>
@@ -108,7 +108,7 @@
                                         <span class="total-number">700</span>
                                     </td> -->
                                     <td data-label="Viewed">
-                                        <span class="total-number light-yellow">0</span>
+                                        <span class="total-number light-yellow">{{ job.view_jobs_count ?? 0 }}</span>
                                     </td>
                                     <td data-label="Not Viewed">
                                         <span class="total-number deep-pink">0</span>

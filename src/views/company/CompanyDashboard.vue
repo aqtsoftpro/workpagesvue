@@ -173,7 +173,7 @@
                             </div>
                             <div class="counter-area">
                                 <h6 class="text-center">Click here to get all jobseeker ralated to your company:
-                                    <router-link class="primary-btn-2 lg-btn" :to="'jobseekers'">job seeker</router-link>
+                                    <router-link class="primary-btn-2 lg-btn" to="/job-seeker-list">Job Seeker</router-link>
                                 </h6>
                             </div>
                             <div class="new-applied-job-area">
@@ -186,7 +186,7 @@
                                                 <td data-label="Candidate Name">
                                                     <div class="employee-info">
                                                         <div class="employee-img">
-                                                            <img :src="application.job.company_logo" alt="">
+                                                            <img :src="application.user?.photo" alt="">
                                                         </div>
                                                         <div class="employee-content">
                                                             {{ application.user_name }}
