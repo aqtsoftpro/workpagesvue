@@ -1464,7 +1464,7 @@ export default createStore({
 
 
     getJobDetail(context, payload) {
-      axios.post(apiUrl + 'jobDetail/' + payload, {
+      axios.post(apiUrl + 'jobDetail/' + payload, '',{
         headers: {
           'authorization': 'Bearer ' + localStorage.getItem('token')
         }

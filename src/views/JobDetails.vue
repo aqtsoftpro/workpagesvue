@@ -358,7 +358,7 @@
 import { Options, Vue } from 'vue-class-component';
 import JobDetail from '../views/JobDetails.vue'; // @ is an alias to /src
 import { mapState } from 'vuex';
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
 @Options({
   components: {
@@ -393,24 +393,31 @@ import { useRoute } from 'vue-router'
         'jobDetail',
         'relatedJobs',
         'currentUser',
-        'candidateAppliedOnJob'
+        'candidateAppliedOnJob',
+        'loggedIn'
       ]),
 
   },
   mounted(){
     const route = useRoute()
-    this.$store.dispatch('getJobDetail', route.params.job_key)
-    this.$store.dispatch('relatedJobs', '')
-    this.user = JSON.parse(this.currentUser)[0]
-    this.role = this.user.roles[0].name
-    this.currentUri = window.location.href;
-    console.log(this.user.id);
-    this.application.user_id = JSON.parse(this.currentUser)[0].id
-    const applied_job = {
-        user_id: this.user.id,
-        job_id: this.current_job.id,
-    };
-    this.$store.dispatch('getCandidateAppliedOnJob', applied_job)
+    if (this.loggedIn) {
+        this.$store.dispatch('getJobDetail', route.params.job_key)
+        this.$store.dispatch('relatedJobs', '')
+        this.user = JSON.parse(this.currentUser)[0]
+        this.role = this.user.roles[0].name
+        this.currentUri = window.location.href;
+        console.log(this.user.id);
+        this.application.user_id = JSON.parse(this.currentUser)[0].id
+        const applied_job = {
+            user_id: this.user.id,
+            job_id: this.current_job.id,
+        };
+        this.$store.dispatch('getCandidateAppliedOnJob', applied_job)
+    }
+    else {
+        useRouter().push('/login');
+    }
+
 
     let Script = document.createElement("script");
       Script.setAttribute("src", "/assets/js/main.js");
@@ -511,18 +518,21 @@ import { useRoute } from 'vue-router'
   watch: {
     
     jobDetail(){
-          this.current_job = this.jobDetail
-          this.application.job_id = this.current_job.id
-          this.application.company_id = this.current_job.company_id
-      },
-    relatedJobs(){
-          this.jobs = this.relatedJobs
-      },
-      candidateAppliedOnJob(){
-          this.user_current_job_applied = this.candidateAppliedOnJob.applied_status
-      },  
+        if (this.loggedIn) {
+            this.current_job = this.jobDetail
+            this.application.job_id = this.current_job.id
+            this.application.company_id = this.current_job.company_id
+        } else {
+            useRouter().push('/login');
+        }
 
-     
+    },
+    relatedJobs(){
+        this.jobs = this.relatedJobs
+    },
+    candidateAppliedOnJob(){
+        this.user_current_job_applied = this.candidateAppliedOnJob.applied_status
+    },
   }
 })
 export default class JobDetails extends Vue {}
