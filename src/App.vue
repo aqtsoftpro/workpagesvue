@@ -79,7 +79,7 @@
                                         Partner</router-link>
                                 </li>
                                 <li>
-                                    <router-link to="/plans" @click="closeResponsiveMenu">Price</router-link>
+                                    <router-link to="/plans" @click="closeResponsiveMenu">Pricing</router-link>
                                 </li>
 
                                 <!-- <li>

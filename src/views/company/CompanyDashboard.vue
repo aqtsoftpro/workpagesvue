@@ -177,11 +177,11 @@
                                 </h6>
                             </div>
                             <div class="new-applied-job-area">
-                                <input type="hidden" :value="companyApplications">
+                                <!-- <input type="hidden" :value="companyApplications"> -->
                                 <h5>New Applied List:</h5>
                                 <div class="table-wrapper2">
                                     <table class="eg-table table category-table mb-0">
-                                        <tbody>
+                                        <tbody v-if="newApplications.length > 0">
                                             <tr v-for="application in newApplications" :key="application.id">
                                                 <td data-label="Candidate Name">
                                                     <div class="employee-info">
@@ -467,7 +467,7 @@
                                                 <td data-label="Actions">
                                                     <div class="action-btn-group">
                                                         <ul>
-                                                            <li>
+                                                            <li v-if="this.user.sub_accesses.length > 0">
                                                                 <button v-if="!cvClicked && (filteredSubAccesses[0].cv_credit > 0)" class="review" @click="downloadCv(application.cv)">
                                                                     <img src="/assets/images/icon/docs.svg" alt=""> Download CV
                                                                 </button>
@@ -579,13 +579,13 @@ interface SubAccess {
             'company',
             'companyDashCounts'
         ]),
+
         newApplications() {
-            console.log(this.applications);
-            return this.applications.filter((item: any) => item.status_id === 1);
+            return this.applications.filter((item: any) => item.status_id == 1);
         },
 
         filteredSubAccesses(): SubAccess[] {
-            return this.user?.sub_accesses.filter((subAccess: SubAccess) => subAccess.cv_credit > 0);
+            return this.user.sub_accesses ?? this.user.sub_accesses.filter((subAccess: SubAccess) => subAccess.cv_credit > 0);
         },
 
     },
@@ -639,7 +639,10 @@ interface SubAccess {
         },
         currentUser() {
             this.user = JSON.parse(this.currentUser)[0]
-        }
+        },
+        // applications() {
+        //     this.applications.filter((item: any) => item.status_id === 1);
+        // }
 
     }
 })

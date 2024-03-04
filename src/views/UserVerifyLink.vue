@@ -1,16 +1,21 @@
 <template>
     <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="banner-content text-center">
+                        <h2>Thank you for verification</h2>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- ========== Login Area end============= -->
         <div class="login-area pt-120 mb-120">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="form-wrapper">
-                            <div class="form-title">
-                                <h3>Resend Email Link!</h3>
-                                {{ verifyMail }}
-                                <span></span>
-                            </div>
+                        <!-- <div class="form-wrapper">
                             <form>
                                 <div class="row">
                                     <div class="col-lg-12">
@@ -31,7 +36,7 @@
                                     </div>
                                 </div>
                             </form>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -54,7 +59,8 @@ import { mapGetters } from 'vuex';
                 email: '',
                 password: '',
                 token: '',
-            }
+            },
+            sessionData: '',
         }
     },
     computed: {
@@ -97,17 +103,12 @@ import { mapGetters } from 'vuex';
             'signature': this.$route.query.signature
         }      
         this.$store.dispatch('verifyEmail', credentials)
-        // let Script = document.createElement("script");
-        // Script.setAttribute("src", "/assets/js/main.js");
-        // document.head.appendChild(Script);
+
+        this.sessionData = sessionStorage.getItem('email_status');
         
         console.log(this.$route.params);
         console.log(this.$route.query);
         
-        // const myToken = this.$route.params.tokenData;
-        // this.user.token = myToken;
-        // const emailParam = this.$route.query.email;
-        // this.user.email = emailParam;
     },
 })
 export default class Login extends Vue { }

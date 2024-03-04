@@ -7,7 +7,8 @@
                     <div class="col-lg-12">
                         <div class="form-wrapper">
                             <div class="form-title">
-                                <h3>Resend Email Link!</h3>
+                                <h3 v-if="sessionData">{{ sessionData }}!</h3>
+                                <h3 v-else>Resend Email Link!</h3>
                                 <span></span>
                             </div>
                             <form>
@@ -18,12 +19,6 @@
                                             <div class="d-flex">
                                                 <span class="title fw-bold">Email: <h5>{{ JSON.parse(currentUser)[0].email }}</h5></span>
                                             </div>
-                                            
-                                            <!-- <div class="input-area">
-                                                <img src="assets/images/icon/email-2.svg" alt="">
-                                                <input v-model="email" type="email" id="email" name="email"
-                                                    placeholder="info@example.com" disabled>
-                                            </div> -->
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
@@ -64,6 +59,7 @@ import { mapGetters } from 'vuex';
                 token: '',
             },
             isLoading: false,
+            sessionData: '',
         }
     },
     computed: {
@@ -74,6 +70,9 @@ import { mapGetters } from 'vuex';
     },
     components: {
         SignIn,
+    },
+    mounted() {
+        this.sessionData = sessionStorage.getItem('email_status');
     },
     methods: {
         ChangePassword() {
@@ -86,9 +85,7 @@ import { mapGetters } from 'vuex';
                 'device_name': 'web app',
             }
             this.$store.dispatch('passwordChange', credentials)
-
         },
-
         resendEmail() {
             this.isLoading = true;
             try {

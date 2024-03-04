@@ -47,11 +47,10 @@
                                         </div>
                                         <p>{{ point.title }}</p>
                                     </li>
-                                    <li>
+                                    <!-- <li>
                                         <div class="icon">
                                             <span v-if="plan.post_for > 0" style="color: rgb(255, 215, 0); margin-right: 1em;">&#10004;</span>
                                             <span v-else style="color: rgb(255, 215, 0); margin-right: 1em;">&#10006;</span>
-                                            <!-- <img src="assets/images/icon/check-icon.svg" alt=""> -->
                                         </div>
                                         <p>Your ad will be posted for {{ plan.post_for?? "30" }} days</p>
                                     </li>
@@ -59,7 +58,6 @@
                                         <div class="icon">
                                             <span v-if="plan.allow_ads == 'yes'" style="color: rgb(255, 215, 0); margin-right: 1em;">&#10004;</span>
                                             <span v-else style="color: rgb(255, 215, 0); margin-right: 1em;">&#10006;</span>
-                                            <!-- <img src="assets/images/icon/check-icon.svg" alt=""> -->
                                         </div>
                                         <p>Unlimited ads</p>
                                     </li>
@@ -67,37 +65,8 @@
                                         <div class="icon">
                                             <span v-if="plan.allow_ads == 'yes'" style="color: rgb(255, 215, 0); margin-right: 1em;">&#10004;</span>
                                             <span v-else style="color: rgb(255, 215, 0); margin-right: 1em;">&#10006;</span>
-                                            <!-- <img src="assets/images/icon/check-icon.svg" alt=""> -->
                                         </div>
                                         <p>Unlimited edits</p>
-                                    </li>
-                                    <li v-for="point in plan.keypoints">
-                                        <div class="icon">
-                                            <span style="color: rgb(255, 215, 0); margin-right: 1em;">{{ point.icon }}</span>
-                                            <!-- <img :src="point.icon==null ? 'assets/images/icon/check-icon.svg' : point.icon" alt=""> -->
-                                            <!-- <i class="fa-regular fa-circle-check"></i> -->
-                                        </div>
-                                        <p>{{ point.detail }}</p>
-                                    </li>
-                                    <!-- <li>
-                                        <div class="icon"><img src="assets/images/icon/check-icon.svg" alt=""></div>
-                                        <p>Resume and cover letter review and editing services.</p>
-                                    </li>
-                                    <li>
-                                        <div class="icon"><img src="assets/images/icon/check-icon.svg" alt=""></div>
-                                        <p>Priority access to job listings and job seekers.</p>
-                                    </li>
-                                    <li>
-                                        <div class="icon"><img src="assets/images/icon/check-icon.svg" alt=""></div>
-                                        <p>Job displayed for &nbsp;<span>35 days.</span></p>
-                                    </li>
-                                    <li>
-                                        <div class="icon"><img src="assets/images/icon/check-icon.svg" alt=""></div>
-                                        <p>A dedicated account manager or career counselor.</p>
-                                    </li>
-                                    <li>
-                                        <div class="icon"><img src="assets/images/icon/check-icon.svg" alt=""></div>
-                                        <p><span>Premium</span>&nbsp; support always.</p>
                                     </li> -->
                                 </ul>
                             </div>

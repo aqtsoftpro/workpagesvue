@@ -638,8 +638,12 @@ export default createStore({
 
     verifyEmail(context, payload) {
       axios.post(apiUrl + 'verify-mail', payload).then(async res => {
-        console.log(res);
-        await this.dispatch('getUserInfo', payload.type)
+        toast.success(res.data.message, {
+          position: toast.POSITION.BOTTOM_RIGHT,
+        });
+        window.setTimeout(() => {
+          this.dispatch('getUserInfo', payload.type)
+        }, 3000);
 
         // if (res.data.status == 'error') {
         //   toast.error(res.data.message, {
@@ -700,10 +704,12 @@ export default createStore({
               context.commit('SET_CURRENT_USER', JSON.stringify(result.data));
               this.state.loggedIn = true
               if (result.data[0].email_verified_at == null) {
+                sessionStorage.setItem('email_status', 'A verification email has been sent');
                 // window.location.href = adminDashboardUrl + result.data[0].email;
                 router.push('/send-email');
               }
               else {
+                sessionStorage.removeItem('email_status');
                 router.push('/user/dashboard');
               }
 
@@ -719,20 +725,23 @@ export default createStore({
 
               if (result.data[0].email_verified_at == null) {
                 // window.location.href = adminDashboardUrl + result.data[0].email;
+                sessionStorage.setItem('email_status', 'A verification email has been sent');
                 router.push('/send-email');
               }
               else {
+                sessionStorage.removeItem('email_status');
                 router.push('/company/dashboard');
               }
-
             }
             else if (result.data[0].roles[0].name == 'Super Admin') {
 
               if (result.data[0].email_verified_at == null) {
+                sessionStorage.setItem('email_status', 'A verification email has been sent');
                 window.location.href = adminDashboardUrl + result.data[0].email;
                 // router.push('/send-email');
               }
               else {
+                sessionStorage.removeItem('email_status');
                 window.location.href = adminDashboardUrl + result.data[0].email;
               }
             }
