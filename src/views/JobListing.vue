@@ -253,7 +253,6 @@ import { apiUrl, adminDashboardUrl, adminDashboardDomain } from '../utils/config
     filterJobs()
         {
             this.isLoading = true; // Show loader
-
             const jobCategories = this.jobCategoryFilter;
             const jobTypes = this.JobTypeFilter;
             const priceRange = this.SalaryRangeFilter;
@@ -280,8 +279,6 @@ import { apiUrl, adminDashboardUrl, adminDashboardDomain } from '../utils/config
             const JobPostedOn = this.JobPostedOnFilter;
 
             const pageId = event.page;
-
-
             
             this.fetchListing(jobCategories, jobTypes, priceRange, JobPostedOn, pageId);
 

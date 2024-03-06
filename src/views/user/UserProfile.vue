@@ -29,9 +29,9 @@
                                                 <img src="/assets/images/icon/language-2.svg" alt="">
                                                 <select class="form-select" v-model="user.gender">
                                                     <option value="">Select Gender</option>
-                                                    <option value="male" v-bind:selected="user.gender =='male'">Male</option>
-                                                    <option value="female"  v-bind:selected="user.gender =='female'">Female</option>
-                                                    <option value="unspecified"  v-bind:selected="user.gender =='unspecified'">Un Specified</option>
+                                                    <option value="male" :selected="user.gender =='male'">Male</option>
+                                                    <option value="female"  :selected="user.gender =='female'">Female</option>
+                                                    <option value="unspecified"  :selected="user.gender =='unspecified'">Un Specified</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -69,7 +69,7 @@
                                                 md:w-24rem" /> -->
                                                 <select class="form-select" v-model="user.suburb_id">
                                                     <option value="">Select Suburb</option>
-                                                    <option v-for="subrub in subrubsList" :value="subrub.id" v-bind:selected="user.suburb_id == subrub.id">{{ subrub.name }}</option>
+                                                    <option v-for="subrub in subrubsList" :value="subrub.id" :selected="user.suburb_id == subrub.id">{{ subrub.name }}</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -109,7 +109,7 @@
                                                 md:w-24rem" /> -->
                                                 <select class="form-select" v-model="user.current_job_location_id">
                                                     <option value="">Select Location</option>
-                                                    <option v-for="location in locationsOptions" :value="location.id" v-bind:selected="user.current_job_location_id == location.id">{{ location.name }}</option>
+                                                    <option v-for="location in locationsOptions" :value="location.id" :selected="user.current_job_location_id == location.id">{{ location.name }}</option>
                                                 </select>                                                
                                             </div>
                                         </div>
@@ -131,7 +131,7 @@
                                                 md:w-24rem"/> -->
                                                 <select class="form-select" v-model="user.designation_id">
                                                     <option value="">Select Designation</option>
-                                                    <option v-for="designation in designationsOptions" :value="designation.id" v-bind:selected="user.designation_id == designation.id">{{ designation.name }}</option>
+                                                    <option v-for="designation in designationsOptions" :value="designation.id" :selected="user.designation_id == designation.id">{{ designation.name }}</option>
                                                 </select>                                                
                                             </div>
                                         </div>
@@ -153,7 +153,7 @@
                                                 md:w-24rem"/> -->
                                                 <select class="form-select" v-model="user.qualification_id">
                                                     <option value="">Select Qualification</option>
-                                                    <option v-for="qualification in qualificationsOptions" :value="qualification.id" v-bind:selected="user.qualification_id == qualification.id">{{ qualification.name }}</option>
+                                                    <option v-for="qualification in qualificationsOptions" :value="qualification.id" :selected="user.qualification_id == qualification.id">{{ qualification.name }}</option>
                                                 </select>  
                                             </div>
                                         </div>
@@ -236,7 +236,7 @@
 
                                                 <select class="form-select" v-model="otherDetail.country_id">
                                                     <option value="">Select Country</option>
-                                                    <option v-for="location in locationsOptions" :value="location.id" v-bind:selected="otherDetail.country_id == location.id">{{ location.name }}</option>
+                                                    <option v-for="location in locationsOptions" :value="location.id" :selected="otherDetail.country_id == location.id">{{ location.name }}</option>
                                                 </select>  
 
                                             </div>
@@ -280,7 +280,12 @@
                                     </div> -->
                                     <div class="col-md-12">
                                         <div class="form-inner">
-                                            <button @click="updateUserDetail" class="primry-btn-2 lg-btn w-unset" type="button">Update Detail</button>
+                                            <button v-if="!otherDetail.loading" @click="updateUserDetail" class="primry-btn-2 lg-btn w-unset" type="button">Update Detail</button>
+                                            <button v-else class="primry-btn-2 lg-btn w-unset" type="button">
+                                                <span class="me-3 fs-6 text-white">Processing...</span>
+                                                <i class="fa fa-spinner fa-spin text-white ms-3" style="font-size:24px">
+                                                </i>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -415,6 +420,7 @@ import moment from 'moment';
             profile_status: null,
             is_available: null,
             intro_video: null,
+            loading: false
         },
 
         qualificationsOptions: [],
@@ -477,8 +483,17 @@ import moment from 'moment';
         this.$store.dispatch('updateUserSocials', this.social)
     },
 
-    updateUserDetail(){
-        this.$store.dispatch('updateUserDetail', this.otherDetail)
+    async updateUserDetail(){
+        this.otherDetail.loading = true;
+        try {
+            await this.$store.dispatch('updateUserDetail', this.otherDetail);
+            window.setTimeout(() => {
+                this.otherDetail.loading = false;
+            }, 1000);
+        } catch (error) {
+            console.log(error);
+            
+        }
     },
 
     handlePhotoUpload(event:any){

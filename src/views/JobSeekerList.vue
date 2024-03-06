@@ -95,8 +95,7 @@
                                         </div>
                                         <form class="profile-form">
                                             <div class="section-title2">
-                                                <h5>To: {{ smsForm.full_name }}</h5>
-                                            </div>
+                                                <h5>To: {{ smsForm.full_name }} Phone: {{ smsForm.receiver_number?.toString().slice(-4) ?? "Not exists" }}</h5>                                            </div>
                                             <div class="row" >
                                                 <div class="col-md-12">
                                                     <div class="form-inner mb-25">
@@ -116,9 +115,9 @@
                                                 </div>
                                                 <div class="col-md-12">
                                                     <div class="form-inner">
-                                                        <button v-if="!isLoading"
+                                                        <button v-if="!isLoading && smsForm.receiver_number"
                                                             class="primry-btn-2 lg-btn w-unset" type="button" @click="sendMessage">Send SMS</button>
-                                                        <button v-else class="primry-btn-2 lg-btn w-unset" type="button">
+                                                        <button v-if="isLoading" class="primry-btn-2 lg-btn w-unset" type="button">
                                                             <span class="me-3 fs-6 text-white">Processing...</span>
                                                             <i class="fa fa-spinner fa-spin text-white ms-3"
                                                                 style="font-size:24px">
@@ -258,6 +257,7 @@
             this.smsForm.full_name = seeker.name;
             this.smsForm.receiver_number = seeker.phone;
             this.showForm = true;
+            window.scrollTo(0, 0);
         },
         closeForm() {
             this.smsForm.user_id = '';
@@ -271,6 +271,7 @@
             this.mailForm.user_id = seeker.id;
             this.mailForm.full_name = seeker.name;
             this.mailFormShow = true;
+            window.scrollTo(0, 0);
         },
         closeMailForm() {
             this.mailForm.user_id = '';

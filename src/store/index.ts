@@ -829,7 +829,7 @@ export default createStore({
       }).then(res => {
           console.log(payload);
           let result = res
-          context.commit('SET_USER_DETAILS', result.data)
+          this.dispatch('getUserDetails', '');
           toast.success(res.data.message, {
             position: toast.POSITION.BOTTOM_RIGHT
           })
