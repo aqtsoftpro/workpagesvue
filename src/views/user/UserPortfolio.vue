@@ -10,14 +10,14 @@
               <div class="section-title">
                 <h5>My Portfolio</h5>
                 <button v-if="!showForm" class="primry-btn-2 lg-btn float-end" @click="addNewItem">
-                  Add New Item
+                  Add Portfolio
                 </button>
                 <button v-if="showForm" class="primry-btn-2 lg-btn float-end" @click="cancelForm">
-                  Cancel Form
+                  Cancel
                 </button>
               </div>
 
-              <form v-if="showForm" id="myForm" class="edit-profile-form profile-form mb-4" enctype="multipart/form-data">
+              <form v-if="showForm && !showPortfolio" id="myForm" class="edit-profile-form profile-form mb-4" enctype="multipart/form-data">
 
                 <div class="row">
                   <div class="col-md-12">
@@ -191,7 +191,7 @@
                   </div>
                 </div> -->
               </form>
-              <div v-if="showPortfolio" class="edit-profile-form profile-form mb-4">
+              <div v-if="showPortfolio && !showForm" class="edit-profile-form profile-form mb-4">
                 <div class="row">
                   <div class="col-md-12">
                     <div class="card">
@@ -337,7 +337,8 @@
                       <td data-label="Job Title">
                         <div class="company-info">
                           <div class="logo">
-                            <img :src="portfolio.portfolio_images[0]?.image" alt="">
+                            <img v-if="portfolio.portfolio_images[0]?.image" :src="portfolio.portfolio_images[0]?.image" alt="">
+                            <img v-else src="/assets/images/bg/company-logo/company-06.png" alt="">
                           </div>
                           <div class="company-details">
                             <span>{{ portfolio.title }}</span>
@@ -502,6 +503,7 @@ import moment from 'moment';
 
     addNewItem() {
       this.showForm = true;
+      this.showPortfolio = false;
       this.portfolio.title = '';
       this.portfolio.description = '';
       this.portfolio.url = '';
