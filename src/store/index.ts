@@ -1792,7 +1792,7 @@ export default createStore({
     },
 
     getCompanyUsers(context, payload) {
-      axios.get(apiUrl + 'company-users', {
+      axios.post(apiUrl + 'company-users', payload, {
         headers: {
           authorization: 'Bearer ' + localStorage.getItem('token'),
         }
@@ -1822,7 +1822,7 @@ export default createStore({
     },
 
     searchSeeker(context, payload) {
-      axios.get(apiUrl + 'search-seeker', {
+      axios.post(apiUrl + 'search-seeker', payload, {
         headers: {
           authorization: 'Bearer ' + localStorage.getItem('token'),
         }
@@ -1944,6 +1944,26 @@ export default createStore({
 
     sendMessage(context, payload) {
       axios.post(apiUrl + 'send-sms', payload, {
+        headers: {
+          'authorization': 'Bearer ' + localStorage.getItem('token')
+        },
+      })
+        .then(res => {  
+          const result = res.data     
+          toast.success(result.message, {
+            position: toast.POSITION.BOTTOM_RIGHT
+          })
+        })
+        .catch(err => {
+          console.log(err);
+          toast.error(err.message, {
+            position: toast.POSITION.BOTTOM_RIGHT
+          })
+        })
+    },
+
+    sendEmail(context, payload) {
+      axios.post(apiUrl + 'send-email', payload, {
         headers: {
           'authorization': 'Bearer ' + localStorage.getItem('token')
         },

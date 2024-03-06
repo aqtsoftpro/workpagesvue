@@ -26,8 +26,13 @@
                 <div class="row g-lg-4 gy-5">
                     <div class="col-lg-12 order-lg-2 order-1">
                         <div class="job-listing-wrrap">
-                            <div v-if="!showForm" class="row ">
-                                <div v-for="seeker in companyUsers" :key="seeker.id" class="col-lg-12 mb-30">
+                            <div v-if="!showForm && !mailFormShow" class="row ">
+                                <div v-if="pageLoading" class="p-5">
+                                    <div class="d-flex justify-content-center py-5">
+                                        <ProgressSpinner  />
+                                    </div>
+                                </div>
+                                <div v-for="seeker in jobSeekers" :key="seeker.id" class="col-lg-12 mb-30">
                                     <div class="job-listing-card">
                                         <div class="job-top">
                                             <div class="job-list-content">
@@ -63,7 +68,8 @@
                                         <div class="job-type-apply">
                                             <div class="job-type">
                                                 <span class="light-blue">{{ seeker.designation ?? "No Designation" }}</span>
-                                                <button class="primry-btn-2 p-1 px-3" @click="openForm(seeker)">Create Sms</button>
+                                                <button class="primry-btn-2 p-1 px-3" @click="openForm(seeker)">Send Sms</button>
+                                                <button class="primry-btn-2 p-1 px-3" @click="openMailForm(seeker)">Send Email</button>
                                             </div>
 
                                             <div class="apply-btn">
@@ -74,6 +80,10 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="col-lg-12 d-flex justify-content-center">
+                                    <Paginator v-model:first="currentPage" :rows="rowsPerPage" :totalRecords="totalPages" @page="handlePageChange">
+                                    </Paginator>
                                 </div>
                             </div>
                             <div v-if="showForm" class="row">
@@ -124,6 +134,54 @@
                                     </div>
                                 </div>
                             </div>
+                            <div v-if="mailFormShow" class="row">
+                                <div class="col-12">
+                                    <div class="form-wrapper">
+                                        <div class="section-title text-center">
+                                            <h4>Send Email </h4>
+                                            <div class="dash"></div>
+                                        </div>
+                                        <form class="profile-form">
+                                            <div class="section-title2">
+                                                <h5>To: {{ mailForm.full_name }}</h5>
+                                            </div>
+                                            <div class="row" >
+                                                <div class="col-md-12">
+                                                    <div class="form-inner mb-25">
+                                                        <label for="subject">Subject *</label>
+                                                        <div class="input-area">
+                                                            <img src="/assets/images/icon/company-2.svg" alt="">
+                                                            <input v-model="mailForm.subject" type="text" id="subject"
+                                                                name="subject">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-inner mb-25">
+                                                        <label for="mailBody">Message Body*</label>
+                                                            <textarea v-model="mailForm.body" id="mailBody" placeholder="Write here..."></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-inner">
+                                                        <button v-if="!isLoading"
+                                                            class="primry-btn-2 lg-btn w-unset" type="button" @click="sendEmail">Send Mail</button>
+                                                        <button v-else class="primry-btn-2 lg-btn w-unset" type="button">
+                                                            <span class="me-3 fs-6 text-white">Processing...</span>
+                                                            <i class="fa fa-spinner fa-spin text-white ms-3"
+                                                                style="font-size:24px">
+                                                            </i>
+                                                        </button>
+
+                                                        <button v-if="!isLoading"
+                                                            class="primry-btn-2 lg-btn w-unset float-end" type="button" @click="closeMailForm">Cancel</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -135,9 +193,15 @@
   
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
+import ProgressSpinner from 'primevue/progressspinner';
+import Paginator from 'primevue/paginator';
 import { mapGetters } from 'vuex';
 
 @Options({
+    components: {
+        ProgressSpinner,
+        Paginator  
+    },
     data() {
         return {
             jobs: [],
@@ -148,8 +212,20 @@ import { mapGetters } from 'vuex';
                 receiver_number: '',
                 full_name: '',
             },
+                mailForm: {
+                user_id: '',
+                subject: '',
+                body: '',
+                full_name: '',
+            },
             showForm: false,
+            mailFormShow: false,
             isLoading: false,
+            jobSeekers: [],
+            currentPage : 1,
+            totalPages : 0,
+            rowsPerPage : 10,
+            pageLoading: false,
         }
     },
     methods: {
@@ -175,6 +251,40 @@ import { mapGetters } from 'vuex';
                 this.closeForm;
             }, 3000);
         },
+        openMailForm(seeker: any) {
+            this.mailForm.user_id = seeker.id;
+            this.mailForm.full_name = seeker.name;
+            this.mailFormShow = true;
+        },
+        closeMailForm() {
+            this.mailForm.user_id = '';
+            this.mailForm.subject = '';
+            this.mailForm.body = '';
+            this.mailForm.full_name = '';
+            this.mailFormShow = false;
+        },
+
+        async handlePageChange(event:any) {
+            this.pageLoading = true; // Show loader
+            const pageId = event.page;
+            try {
+                await this.$store.dispatch('getCompanyUsers', {'pageId': pageId});
+                window.setTimeout(() => {
+                    this.pageLoading = false; // Show loader
+                }, 1000);
+            } catch (error) {
+                console.log(error); 
+            }
+        },
+
+        async sendEmail() {
+            this.isLoading = true;
+            await this.$store.dispatch('sendEmail', this.mailForm);
+            window.setTimeout(() => {
+                this.isLoading = false;
+                this.closeMailForm;
+            }, 6000);
+        },
 
     },
     computed: {
@@ -195,6 +305,9 @@ import { mapGetters } from 'vuex';
         searchResult() {
             console.log(this.searchResult);
             this.jobs = this.searchResult
+        },
+        companyUsers() {
+            this.jobSeekers = this.companyUsers.Listing;
         },
 
     }
