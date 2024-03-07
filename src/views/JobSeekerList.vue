@@ -95,28 +95,18 @@
                                         </div>
                                         <form class="profile-form">
                                             <div class="section-title2">
-                                                <h5>To: {{ smsForm.full_name }} Phone: {{ smsForm.receiver_number?.toString().slice(-4) ?? "Not exists" }}</h5>                                            </div>
+                                                <h5>To: {{ smsForm.full_name }} Phone: {{ smsForm.last_four ?? "Not exists" }}</h5>                                            </div>
                                             <div class="row" >
                                                 <div class="col-md-12">
                                                     <div class="form-inner mb-25">
-                                                        <label for="subject">Subject *</label>
-                                                        <div class="input-area">
-                                                            <img src="/assets/images/icon/company-2.svg" alt="">
-                                                            <input v-model="smsForm.subject" type="text" id="subject"
-                                                                name="subject">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <div class="form-inner mb-25">
                                                         <label for="message">Message *</label>
-                                                            <textarea v-model="smsForm.message" id="message" placeholder="Message"></textarea>
+                                                            <textarea v-model="smsForm.message" id="message" placeholder="Message" :disabled="smsForm.last_four == null"></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">
                                                     <div class="form-inner">
-                                                        <button v-if="!isLoading && smsForm.receiver_number"
-                                                            class="primry-btn-2 lg-btn w-unset" type="button" @click="sendMessage">Send SMS</button>
+                                                        <button v-if="!isLoading"
+                                                            class="primry-btn-2 lg-btn w-unset" type="button" @click="sendMessage" :disabled="smsForm.last_four == null">Send SMS</button>
                                                         <button v-if="isLoading" class="primry-btn-2 lg-btn w-unset" type="button">
                                                             <span class="me-3 fs-6 text-white">Processing...</span>
                                                             <i class="fa fa-spinner fa-spin text-white ms-3"
@@ -210,6 +200,7 @@
             message: '',
             receiver_number: '',
             full_name: '',
+            last_four: null,
           },
 
           mailForm: {
@@ -256,6 +247,7 @@
             this.smsForm.user_id = seeker.id;
             this.smsForm.full_name = seeker.name;
             this.smsForm.receiver_number = seeker.phone;
+            this.smsForm.last_four = seeker.phone?.toString().slice(-4) ?? null;
             this.showForm = true;
             window.scrollTo(0, 0);
         },

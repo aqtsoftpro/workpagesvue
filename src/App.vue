@@ -65,14 +65,16 @@
                                     <router-link to="/about-us" @click="closeResponsiveMenu">About Us</router-link>
                                 </li>
                                 <!-- v-if="loggedIn && this.role == 'Job Seeker'" -->
-                                <li>
+                                <li v-if="loggedIn && this.role == 'Employer'">
+                                    <router-link to="/casual-portal" @click="closeResponsiveMenu">Casual Portal</router-link>
+
                                     <!-- <router-link to="/companies" @click="closeResponsiveMenu">Companies</router-link> -->
-                                    <a href="#" class="dropdown-toggle">Companies</a>
+                                    <!-- <a href="#" class="dropdown-toggle">Companies</a>
                                     <ul class="dropdown-menu">
                                         <li v-if="loggedIn && this.role == 'Employer'">
                                             <router-link to="/casual-portal" @click="closeResponsiveMenu">Casual Portal</router-link>
                                         </li>
-                                    </ul>
+                                    </ul> -->
                                 </li>
                                 <li>
                                     <router-link to="/charity-partner" @click="closeResponsiveMenu">Charity
