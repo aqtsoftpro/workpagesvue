@@ -304,8 +304,17 @@
                                                             <img src="/assets/images/icon/docs.svg" alt=""> Downloading...
                                                         </button>
                                                     </li>
-                                                    <li v-if="application.status_name != 'Shortlisted'"><button @click="updateCandidateApplication('shortlist', application.id)" ><img src="/assets/images/icon/shortlist-icon.svg" alt=""> Shortlist</button></li>
-                                                    <li v-if="application.status_name != 'Rejected'"><button @click="updateCandidateApplication('reject', application.id)" class="reject"><img src="/assets/images/icon/rejected-icon.svg" alt=""> Reject</button></li>
+                                                    <li v-if="application.status_name != 'Shortlisted'">
+                                                        <button v-if="!isLoading" @click="updateCandidateApplication('shortlist', application.id)" >
+                                                            <img src="/assets/images/icon/shortlist-icon.svg" alt=""> Shortlist</button>
+                                                            <button v-else >processing...</button>
+                                                    </li>
+
+                                                    <li v-if="application.status_name != 'Rejected'">
+                                                        <button v-if="!isLoading" @click="updateCandidateApplication('reject', application.id)" class="reject">
+                                                            <img src="/assets/images/icon/rejected-icon.svg" alt=""> Reject</button>
+                                                        <button v-else >processing...</button>
+                                                    </li>
                                                 </ul>
                                             </div>
                                         </td>
@@ -602,7 +611,12 @@
                                                             <img src="/assets/images/icon/docs.svg" alt=""> Downloading...
                                                         </button>
                                                     </li>
-                                                    <li v-if="application.status_name != 'Shortlisted'"><button @click="updateCandidateApplication('shortlist', application.id)" ><img src="/assets/images/icon/shortlist-icon.svg" alt=""> Shortlist</button></li>
+                                                    <li v-if="application.status_name != 'Shortlisted'">
+                                                        <button v-if="!isLoading" @click="updateCandidateApplication('shortlist', application.id)" >
+                                                            <img src="/assets/images/icon/shortlist-icon.svg" alt=""> Shortlist
+                                                        </button>
+                                                        <button v-else>processing...</button>
+                                                    </li>
                                                     <li v-if="application.status_name != 'Rejected'"><button @click="updateCandidateApplication('reject', application.id)" class="reject"><img src="/assets/images/icon/rejected-icon.svg" alt=""> Rejected</button></li>
                                                     <li>
                                                         <button @click="deleteCandidateApplication(application.id)" class="reject"><img src="/assets/images/icon/rejected-icon.svg" alt=""> Delete</button>
@@ -691,6 +705,7 @@ interface SubAccess {
             { label: 'Rejected', value: '1' },
         ],
         cvClicked: false,
+        isLoading: false,
     }  
   },
   computed: {
@@ -727,8 +742,16 @@ interface SubAccess {
     // console.log(this.companyApplications);
   },
   methods: {
-    updateCandidateApplication(status:string, application_id:any) {
-      this.$store.dispatch('updateCandidateApplication', {status: status, application_id: application_id})
+    async updateCandidateApplication(status:string, application_id:any) {
+        this.isLoading = true;
+        try {
+            await this.$store.dispatch('updateCandidateApplication', {status: status, application_id: application_id});
+            window.setTimeout(() => {
+                this.isLoading = false;
+            }, 6000);
+        } catch (error) {
+            
+        }
     },
     deleteCandidateApplication(application_id:any) {
       this.$store.dispatch('deleteCandidateApplication', {application_id: application_id})
