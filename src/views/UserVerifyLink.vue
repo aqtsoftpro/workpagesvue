@@ -96,18 +96,15 @@ import { mapGetters } from 'vuex';
         }
     },
     mounted() {
-        var credentials = {
-            'id': this.$route.params.id,
-            'token': this.$route.params.token,
-            'expires': this.$route.query.expires,
-            'signature': this.$route.query.signature
-        }      
-        this.$store.dispatch('verifyEmail', credentials)
-
-        this.sessionData = sessionStorage.getItem('email_status');
-        
-        console.log(this.$route.params);
-        console.log(this.$route.query);
+            var credentials = {
+                'userId': this.$route.query.userId,
+                'token': this.$route.query.token,
+                'expired': this.$route.query.expired,
+            }    
+            this.$store.dispatch('verifyEmail', credentials)
+            this.sessionData = sessionStorage.getItem('email_status');
+            console.log(this.$route.params);
+            console.log(this.$route.query);
         
     },
 })

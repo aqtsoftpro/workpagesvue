@@ -471,7 +471,7 @@ import moment from 'moment';
             await this.$store.dispatch('updateProfile', this.user);
             window.setTimeout(() => {
                 this.isLoading = false
-            }, 3000)
+            }, 6000)
         } catch (error) {
             console.log(error);
             
