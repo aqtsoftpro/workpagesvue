@@ -135,7 +135,7 @@
                             </div>
                             <div class="counter-area">
                                 <h6 class="text-center">Click here to get all jobseeker ralated to your company:
-                                    <router-link class="primary-btn-2 lg-btn" to="/job-seeker-list">Job Seeker</router-link>
+                                    <router-link class="primary-btn-2 lg-btn" to="/company/jobseekers">Job Seeker</router-link>
                                 </h6>
                             </div>
                             <div class="new-applied-job-area">

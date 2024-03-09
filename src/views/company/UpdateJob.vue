@@ -5,7 +5,6 @@
                 <company-menu />
                 <div class="col-lg-12">
                     <div class="my-profile-inner ">
-                        
                         <div class="form-wrapper">
                             <div class="section-title two">
                                 <h5>Update Job</h5>
@@ -21,7 +20,7 @@
                                             <label for="job_title">Job Title*</label>
                                             <div class="input-area">
                                                 <img src="/assets/images/icon/company-2.svg" alt="">
-                                                <input v-model="jobForm.job_title" type="text" id="job_title" name="job_title">
+                                                <input v-model="jobForm.job_title" type="text" id="job_title" name="job_title" :disabled="!editTitle">
                                             </div>
                                         </div>
                                     </div>
@@ -38,59 +37,9 @@
                                                 ref="language"
                                                 optionLabel="name" 
                                                 optionValue="id"
+                                                :disabled="!editTitle"
                                                 class="w-full 
                                                 md:w-14rem" />
-                                                <!-- <Field
-                                                    v-slot="{ field, handleChange }"
-                                                    v-model="job_types"
-                                                    name="job_types"
-                                                    
-                                                >
-                                                <Dropdown
-                                                    :options="jobTypes"
-                                                    option-value="id"
-                                                    option-label="name"
-                                                    placeholder="Select Job Type"
-                                                    v-bind="field"
-                                                    @update:modelValue="handleChange"
-                                                    class="w-full md:w-14rem"
-                                                />
-                                                </Field>
-                                                <Dropdown
-            v-bind="type"
-            v-model=this.jobForm.job_type_id 
-            :options="jobTypes"
-            optionLabel="name"
-            optionValue="value"
-            class="w-full md:w-14rem"
-            placeholder="Select a type"
-            
-          /> -->
-                                                <!-- <Field
-                                                    v-slot="{ field, handleChange }"
-                                                    v-model="campaign"
-                                                    name="campaign"
-                                                    :rules="isRequired"
-                                                    >
-                                                    <Dropdown
-                                                        :options="jobTypes"
-                                                        option-value="id"
-                                                        option-label="name"
-                                                        placeholder="Choose a campaign"
-                                                        v-bind="field"
-                                                        @update:modelValue="handleChange"
-                                                    />
-                                                </Field> -->
-                                                <!-- <Dropdown 
-                                                @change="changeJobType"
-                                                v-model=this.jobForm.job_type_id 
-                                                :options="jobTypes" 
-                                                placeholder="Select Job Type"
-                                                ref="language"
-                                                optionLabel="name" 
-                                                optionValue="id"
-                                                class="w-full 
-                                                md:w-14rem" /> -->
                                             </div>
                                             <!-- <ErrorMessage class="text-danger" name="job_types" /> -->
                                         </div>
@@ -108,6 +57,7 @@
                                                 placeholder="Select Working Mode"
                                                 optionLabel="name" 
                                                 optionValue="id"
+                                                :disabled="!editTitle"
                                                 class="w-full 
                                                 md:w-14rem" />
                                             </div>
@@ -126,6 +76,7 @@
                                                 placeholder="Select Payment Mode"
                                                 optionLabel="name" 
                                                 optionValue="id"
+                                                :disabled="!editTitle"
                                                 class="w-full 
                                                 md:w-14rem" />
                                             </div>
@@ -144,6 +95,7 @@
                                                 placeholder="Select Qualification"
                                                 optionLabel="name" 
                                                 optionValue="id"
+                                                :disabled="!editTitle"
                                                 class="w-full 
                                                 md:w-14rem" />
                                             </div>
@@ -162,6 +114,7 @@
                                                 placeholder="Select Gender"
                                                 optionLabel="name" 
                                                 optionValue="id"
+                                                :disabled="!editTitle"
                                                 class="w-full 
                                                 md:w-14rem" />
                                             </div>
@@ -180,6 +133,7 @@
                                                 placeholder="Select Job Category"
                                                 optionLabel="name" 
                                                 optionValue="id" 
+                                                :disabled="!editCategory"
                                                 class="w-full 
                                                 md:w-14rem" />
                                             </div>
@@ -188,13 +142,13 @@
                                     <div class="col-md-12">
                                         <div class="form-inner mb-25">
                                             <label for="description">Job Description*</label>
-                                                <textarea v-model="jobForm.job_description" id="description" placeholder="Job Description"></textarea>
+                                                <textarea v-model="jobForm.job_description" id="description" :disabled="!editBody" placeholder="Job Description"></textarea>
                                         </div>
                                     </div>       
                                     <div class="col-md-12">
                                         <div class="form-inner mb-25">
                                             <label for="description">Job Responsibilities*</label>
-                                                <textarea v-model="jobForm.job_responsibilities" placeholder="Job Responsibilities"></textarea>
+                                                <textarea v-model="jobForm.job_responsibilities" :disabled="!editBody" placeholder="Job Responsibilities"></textarea>
                                         </div>
                                     </div>                                                                                                             
                                     <div class="col-md-3">
@@ -202,7 +156,7 @@
                                             <label for="vacancy">Vacancies</label>
                                             <div class="input-area">
                                                 <img src="/assets/images/icon/company-2.svg" alt="">
-                                                <input v-model="jobForm.vacancy" type="text" id="vacancy" name="companyname" placeholder="Number of vacancies">
+                                                <input v-model="jobForm.vacancy" type="text" :disabled="!editBody" id="vacancy" name="companyname" placeholder="Number of vacancies">
                                             </div>
                                         </div>
                                     </div>                                                                  
@@ -211,7 +165,7 @@
                                             <label for="experience">Experience (Years)</label>
                                             <div class="input-area">
                                                 <img src="/assets/images/icon/company-2.svg" alt="">
-                                                <input v-model="jobForm.experience" type="text" id="experience" name="experience" placeholder="1 year">
+                                                <input v-model="jobForm.experience" type="text" id="experience" :disabled="!editBody" name="experience" placeholder="1 year">
                                             </div>
                                         </div>
                                     </div>   
@@ -220,7 +174,7 @@
                                             <label for="salary_from">Salary (from)</label>
                                             <div class="input-area">
                                                 <img src="/assets/images/icon/company-2.svg" alt="">
-                                                <input v-model="jobForm.salary_from" type="text" id="salary_from" name="salary_from" placeholder="Salary from">
+                                                <input v-model="jobForm.salary_from" type="text" :disabled="!editBody" id="salary_from" name="salary_from" placeholder="Salary from">
                                             </div>
                                         </div>
                                     </div> 
@@ -229,7 +183,7 @@
                                             <label for="salary_from">Salary (to)</label>
                                             <div class="input-area">
                                                 <img src="/assets/images/icon/company-2.svg" alt="">
-                                                <input v-model="jobForm.salary_to" type="text" id="salary_to" name="salary_to" placeholder="Salary to">
+                                                <input v-model="jobForm.salary_to" type="text" :disabled="!editBody" id="salary_to" name="salary_to" placeholder="Salary to">
                                             </div>
                                         </div>
                                     </div> 
@@ -238,7 +192,7 @@
                                             <label for="salary_from">Job Expiery</label>
                                             <div class="input-area">
                                                 <img src="/assets/images/icon/company-2.svg" alt="">
-                                                <Calendar v-model="jobForm.expiration" dateFormat="dd/mm/yy" />
+                                                <Calendar v-model="jobForm.expiration" dateFormat="dd/mm/yy" :disabled="!editBody" />
                                             </div>
                                         </div>
                                     </div>                                                                                                                                                                                                                                            
@@ -252,7 +206,6 @@
                                             </button>
                                         </div>
                                     </div> 
-
                                 </div>
                             </form>
                         </div>
@@ -312,6 +265,12 @@ import { useRoute } from 'vue-router'
             expiration: null,
             isLoading: false,
         },
+        user: null,
+        permission: null,
+        editTitle: false,
+        editCategory: false,
+        editBody: false,
+        // editTitle: false,
         currentCompany: [],
         genders: [
             {id:'Any', name: 'Any'},
@@ -399,11 +358,17 @@ import { useRoute } from 'vue-router'
     this.$store.dispatch('getJobDetail', route.params.job_key)
     this.$store.dispatch('getJobTypes', '')
     this.$store.dispatch('getQualifications', '')
-      this.$store.dispatch('getCategories', '')
-
-      let Script = document.createElement("script");
-      Script.setAttribute("src", "/assets/js/main.js");
-      document.head.appendChild(Script);
+    this.$store.dispatch('getCategories', '')
+    this.user = JSON.parse(this.currentUser)[0];
+    this.permission = this.user.sub_accesses[0] ?? null;
+    if (this.permission !== null) {
+       this.permission.edit_title == 'yes' ? this.editTitle = true : this.editTitle = false;
+       this.permission.edit_categ == 'yes' ? this.editCategory = true : this.editCategory = false;
+       this.permission.edit_body == 'yes' ? this.editBody = true : this.editBody = false;
+    }
+    let Script = document.createElement("script");
+    Script.setAttribute("src", "/assets/js/main.js");
+    document.head.appendChild(Script);
   }    
   ,
   watch :{

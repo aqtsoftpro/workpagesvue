@@ -6,12 +6,12 @@
               <div class="row">
                   <div class="col-lg-12">
                       <div class="banner-content text-center">
-                          <h1>Job Seeker Listing</h1>
+                          <h1>Casual Portal</h1>
                           <span></span>
                           <nav aria-label="breadcrumb">
                               <ol class="breadcrumb">
                                   <li class="breadcrumb-item"><router-link to="index.html">Home</router-link></li>
-                                  <li class="breadcrumb-item active" aria-current="page">Job Seeker Listing</li>
+                                  <li class="breadcrumb-item active" aria-current="page">Casual Portal</li>
                               </ol>
                           </nav>
                       </div>
@@ -62,7 +62,11 @@
                                                   </ul>
                                               </div>
                                           </div>
-                                          <span>Total reviews: ({{ seeker.reviews.length }})</span>
+                                          <div class="msg-btn col">
+                                            <span>Total reviews: ({{ seeker.reviews.length }})</span>
+                                            <span @click="openForm(seeker)">Send Sms</span>
+                                            <!-- <button class="primry-btn-2 p-1 px-3 mb-2" @click="openForm(seeker)">Send Sms</button> -->
+                                          </div>
                                       </div>
                                       <div class="job-type-apply">
                                             <div class="job-type">
@@ -70,12 +74,16 @@
                                                 <button class="primry-btn-2 p-1 px-3" @click="openForm(seeker)">Send Sms</button>
                                                 <button class="primry-btn-2 p-1 px-3" @click="openMailForm(seeker)">Send Email</button>
                                             </div>
-
                                             <div class="apply-btn">
+                                            <div class="msg-btn">
+                                                <span @click="openMailForm(seeker)">Send Email</span>
+
+                                                <!-- <button class="primry-btn-2 p-1 px-3 mb-2 me-0" @click="openMailForm(seeker)">Send Email</button> -->
                                                 <router-link :to="'job-seeker/' + seeker.id">
                                                     <span><img src="assets/images/icon/apply-ellipse.svg" alt=""></span>
                                                     Detail Job Seeker
                                                 </router-link>
+                                            </div>
                                             </div>
                                         </div>
                                   </div>
@@ -161,7 +169,6 @@
                                                                 style="font-size:24px">
                                                             </i>
                                                         </button>
-
                                                         <button v-if="!isLoading"
                                                             class="primry-btn-2 lg-btn w-unset float-end" type="button" @click="closeMailForm">Cancel</button>
                                                     </div>

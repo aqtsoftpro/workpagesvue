@@ -32,7 +32,7 @@
                                             <label>Company Type*</label>
                                             <div class="input-area">
                                                 <img src="/assets/images/icon/category-2.svg" alt="">
-                                                <Dropdown 
+                                                <!-- <Dropdown 
                                                 @change="changeCompanyType"
                                                 v-model=userForm.company_type_id 
                                                 :options="companyTypes" 
@@ -42,11 +42,11 @@
                                                 placeholder="Select Company Type" 
                                                 class="w-full 
                                                 md:w-24rem"
-                                                 />
-                                                 <!-- <select class="form-select" v-model="this.userForm.company_type_id" @change="changeCompanyType">
-                                                    <option value="">Select Company Type</option>
+                                                 /> -->
+                                                 <select class="form-select" v-model="userForm.company_type_id" @change="changeCompanyType">
+                                                    <option value="">Select Company Type*</option>
                                                     <option v-for="companyType in companyTypes" :value="companyType.id">{{ companyType.name }}</option>
-                                                </select> -->
+                                                </select>
                                             </div>
                                         </div>
                                     </div>

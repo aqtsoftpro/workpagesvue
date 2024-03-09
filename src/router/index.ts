@@ -70,7 +70,7 @@ const routes: Array<RouteRecordRaw> = [
     path: '/casual-portal',
     name: 'casual-portal',
     // component: CasualPortal
-    component: CompanySeekers,
+    component: JobSeekerList,
     meta: { requiresAuth: true, role: 'Employer', 'sub_access': true, casual_portal: 'yes' }
   },
   {
@@ -191,7 +191,7 @@ const routes: Array<RouteRecordRaw> = [
     path: '/job-seeker-list',
     name: 'job-seeker-list',
     component: JobSeekerList,
-    meta: { requiresAuth: true, role: 'Employer', 'sub_access': true,}
+    meta: { requiresAuth: true, role: 'Employer', 'sub_access': true, casual_portal: 'yes'}
   },
 
   {
@@ -229,7 +229,7 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: '/company/job-list',
         component: CompanyJobList,
-        meta: { requiresAuth: true, role: 'Employer', 'sub_access': true, allow_ads: 'yes' }
+        // meta: { requiresAuth: true, role: 'Employer', 'sub_access': true, allow_ads: 'yes' }
       },
       {
         path: '/company/applications',
@@ -378,7 +378,7 @@ router.beforeEach((to, from, next) => {
     }
 
     //Check if the user has the required role for the route
-    if (currentUser[0].sub_accesses.length == 0 && to.meta.sub_access == true) {
+    if (currentUser[0].sub_accesses?.length == 0 && to.meta.sub_access == true) {
       // User doesn't have the required role, redirect to unauthorized page or handle accordingly
       toast.error('Please purchase a plan to get access', {
         position: toast.POSITION.BOTTOM_RIGHT,
