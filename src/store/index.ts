@@ -141,7 +141,7 @@ export default createStore({
     advertisement: state => state.advertisement,
     userDocuments: state => state.userDocuments,
     resetEmail: state => state.resetEmail,
-    
+
   },
   mutations: {
     SIGN_UP_USER(state, payload) {
@@ -467,10 +467,10 @@ export default createStore({
         })
     },
 
-    async companyFreeTrial(context, payload){
+    async companyFreeTrial(context, payload) {
       try {
-          await this.dispatch('zeroSubscribe', {'package': payload.planId,});
-          this.dispatch('getUserInfo', payload.type);
+        await this.dispatch('zeroSubscribe', { 'package': payload.planId, });
+        this.dispatch('getUserInfo', payload.type);
       } catch (error) {
         console.log(error);
       }
@@ -615,7 +615,7 @@ export default createStore({
 
 
 
-  login(context, payload) {
+    login(context, payload) {
       axios.post(apiUrl + 'workpages/login', payload)
         .then(async res => {
           if (res.data.status == 'error') {
@@ -696,61 +696,61 @@ export default createStore({
           }
         }
         ).then(res => {
-            let result = res
-            console.log(result.data[0])
-            if (result.data[0].roles[0].name == 'Job Seeker') {
+          let result = res
+          console.log(result.data[0])
+          if (result.data[0].roles[0].name == 'Job Seeker') {
 
-              localStorage.setItem('currentUser', JSON.stringify(result.data));
-              context.commit('SET_CURRENT_USER', JSON.stringify(result.data));
-              this.state.loggedIn = true
-              if (result.data[0].email_verified_at == null) {
-                sessionStorage.setItem('email_status', 'A verification email has been sent');
-                // window.location.href = adminDashboardUrl + result.data[0].email;
-                router.push('/send-email');
-              }
-              else {
-                sessionStorage.removeItem('email_status');
-                router.push('/user/dashboard');
-              }
-
-
-            }
-            else if (result.data[0].roles[0].name == 'Employer') {
-
-              localStorage.setItem('currentUser', JSON.stringify(result.data));
-              context.commit('SET_CURRENT_USER', JSON.stringify(result.data));
-              this.state.loggedIn = true
-
-              this.dispatch('getCompany', result.data[0].id);
-
-              if (result.data[0].email_verified_at == null) {
-                // window.location.href = adminDashboardUrl + result.data[0].email;
-                sessionStorage.setItem('email_status', 'A verification email has been sent');
-                router.push('/send-email');
-              }
-              else {
-                sessionStorage.removeItem('email_status');
-                router.push('/company/dashboard');
-              }
-            }
-            else if (result.data[0].roles[0].name == 'Super Admin') {
-
-              if (result.data[0].email_verified_at == null) {
-                sessionStorage.setItem('email_status', 'A verification email has been sent');
-                window.location.href = adminDashboardUrl + result.data[0].email;
-                // router.push('/send-email');
-              }
-              else {
-                sessionStorage.removeItem('email_status');
-                window.location.href = adminDashboardUrl + result.data[0].email;
-              }
+            localStorage.setItem('currentUser', JSON.stringify(result.data));
+            context.commit('SET_CURRENT_USER', JSON.stringify(result.data));
+            this.state.loggedIn = true
+            if (result.data[0].email_verified_at == null) {
+              sessionStorage.setItem('email_status', 'A verification email has been sent');
+              // window.location.href = adminDashboardUrl + result.data[0].email;
+              router.push('/send-email');
             }
             else {
-              toast.error('You cannot assign admin role!', {
-                position: toast.POSITION.BOTTOM_RIGHT,
-              });
+              sessionStorage.removeItem('email_status');
+              router.push('/user/dashboard');
             }
-          })
+
+
+          }
+          else if (result.data[0].roles[0].name == 'Employer') {
+
+            localStorage.setItem('currentUser', JSON.stringify(result.data));
+            context.commit('SET_CURRENT_USER', JSON.stringify(result.data));
+            this.state.loggedIn = true
+
+            this.dispatch('getCompany', result.data[0].id);
+
+            if (result.data[0].email_verified_at == null) {
+              // window.location.href = adminDashboardUrl + result.data[0].email;
+              sessionStorage.setItem('email_status', 'A verification email has been sent');
+              router.push('/send-email');
+            }
+            else {
+              sessionStorage.removeItem('email_status');
+              router.push('/company/dashboard');
+            }
+          }
+          else if (result.data[0].roles[0].name == 'Super Admin') {
+
+            if (result.data[0].email_verified_at == null) {
+              sessionStorage.setItem('email_status', 'A verification email has been sent');
+              window.location.href = adminDashboardUrl + result.data[0].email;
+              // router.push('/send-email');
+            }
+            else {
+              sessionStorage.removeItem('email_status');
+              window.location.href = adminDashboardUrl + result.data[0].email;
+            }
+          }
+          else {
+            toast.error('You cannot assign admin role!', {
+              position: toast.POSITION.BOTTOM_RIGHT,
+            });
+          }
+        })
       } catch (err) {
         toast.error('Login Error!', {
           position: toast.POSITION.BOTTOM_RIGHT,
@@ -792,7 +792,7 @@ export default createStore({
         })
     },
 
-    
+
 
 
 
@@ -818,7 +818,7 @@ export default createStore({
           });
         })
     },
-    
+
 
     updateUserDetail(context, payload) {
       axios.post(apiUrl + 'user-detail', payload, {
@@ -827,18 +827,18 @@ export default createStore({
           'authorization': 'Bearer ' + localStorage.getItem('token')
         }
       }).then(res => {
-          console.log(payload);
-          let result = res
-          this.dispatch('getUserDetails', '');
-          toast.success(res.data.message, {
-            position: toast.POSITION.BOTTOM_RIGHT
-          })
-
-        }).catch(err => {
-          toast.error(err.message, {
-            position: toast.POSITION.BOTTOM_RIGHT,
-          });
+        console.log(payload);
+        let result = res
+        this.dispatch('getUserDetails', '');
+        toast.success(res.data.message, {
+          position: toast.POSITION.BOTTOM_RIGHT
         })
+
+      }).catch(err => {
+        toast.error(err.message, {
+          position: toast.POSITION.BOTTOM_RIGHT,
+        });
+      })
     },
 
 
@@ -849,40 +849,40 @@ export default createStore({
           'authorization': 'Bearer ' + localStorage.getItem('token')
         },
       }).then(res => {
-          console.log(payload);
-          let result = res
-          context.commit('SET_USER_DETAILS', result.data.user_detail);
-          context.commit('SET_USER_DOCUMENTS', result.data.documents);
-          toast.success(res.data.message, {
-            position: toast.POSITION.BOTTOM_RIGHT
-          })
-
-        }).catch(err => {
-          toast.error(err.message, {
-            position: toast.POSITION.BOTTOM_RIGHT,
-          });
+        console.log(payload);
+        let result = res
+        context.commit('SET_USER_DETAILS', result.data.user_detail);
+        context.commit('SET_USER_DOCUMENTS', result.data.documents);
+        toast.success(res.data.message, {
+          position: toast.POSITION.BOTTOM_RIGHT
         })
+
+      }).catch(err => {
+        toast.error(err.message, {
+          position: toast.POSITION.BOTTOM_RIGHT,
+        });
+      })
     },
 
 
-    documentStore(context, payload){
+    documentStore(context, payload) {
       axios.post(apiUrl + 'user-document', payload, {
         headers: {
           'Content-Type': 'multipart/form-data',
           'authorization': 'Bearer ' + localStorage.getItem('token')
         }
       }).then(res => {
-          console.log(payload);
-          let result = res
-          // context.commit('SET_USER_DETAILS', result.data)
-          toast.success(result.data.message, {
-            position: toast.POSITION.BOTTOM_RIGHT
-          })
-        }).catch(err => {
-          toast.error(err.message, {
-            position: toast.POSITION.BOTTOM_RIGHT,
-          });
+        console.log(payload);
+        let result = res
+        // context.commit('SET_USER_DETAILS', result.data)
+        toast.success(result.data.message, {
+          position: toast.POSITION.BOTTOM_RIGHT
         })
+      }).catch(err => {
+        toast.error(err.message, {
+          position: toast.POSITION.BOTTOM_RIGHT,
+        });
+      })
     },
 
     updateUserPortfolio(context, payload) {
@@ -1230,23 +1230,23 @@ export default createStore({
 
     getJobsByCompany(context, payload) {
       axios.post(apiUrl + 'getJobs/' + payload.company_id)
-      .then(res => {
-        console.log(res);
-        context.commit('SET_SEARCH_RESULT', res.data);
-      })
+        .then(res => {
+          console.log(res);
+          context.commit('SET_SEARCH_RESULT', res.data);
+        })
     },
 
     addPartner(context, payload) {
       axios.post(apiUrl + 'storePartner', payload)
-      .then(res => {
-        console.log(res);
-        toast.success(res.data.message, {
-          position: toast.POSITION.BOTTOM_RIGHT,
+        .then(res => {
+          console.log(res);
+          toast.success(res.data.message, {
+            position: toast.POSITION.BOTTOM_RIGHT,
+          })
+          // window.setTimeout(() => {
+          //   router.push({ path: '/company/job-list' });
+          // }, 2000);
         })
-        // window.setTimeout(() => {
-        //   router.push({ path: '/company/job-list' });
-        // }, 2000);
-      })
     },
 
     // getJobs/{comapny_id}
@@ -1473,7 +1473,7 @@ export default createStore({
 
 
     getJobDetail(context, payload) {
-      axios.post(apiUrl + 'jobDetail/' + payload, '',{
+      axios.post(apiUrl + 'jobDetail/' + payload, '', {
         headers: {
           'authorization': 'Bearer ' + localStorage.getItem('token')
         }
@@ -1754,39 +1754,39 @@ export default createStore({
           'authorization': 'Bearer ' + localStorage.getItem('token')
         }
       }).then(response => {
-          context.commit('SET_SUBSCRIPTIONS', response.data);
-          try {
-            axios.post(apiUrl + 'workpages/getUser', { token: localStorage.getItem('token') }, {
-              headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('token')
+        context.commit('SET_SUBSCRIPTIONS', response.data);
+        try {
+          axios.post(apiUrl + 'workpages/getUser', { token: localStorage.getItem('token') }, {
+            headers: {
+              'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+          }).then(res => {
+            let result = res
+            console.log(result.data[0])
+            if (result.data[0].roles[0].name == 'Employer') {
+
+              localStorage.setItem('currentUser', JSON.stringify(result.data));
+              context.commit('SET_CURRENT_USER', JSON.stringify(result.data));
+              this.state.loggedIn = true
+              this.dispatch('getCompany', result.data[0].id);
+              if (result.data[0].email_verified_at == null) {
+                // window.location.href = adminDashboardUrl + result.data[0].email;
+                sessionStorage.setItem('email_status', 'A verification email has been sent');
+                router.push('/send-email');
               }
-            }).then(res => {
-                let result = res
-                console.log(result.data[0])
-                if (result.data[0].roles[0].name == 'Employer') {
-    
-                  localStorage.setItem('currentUser', JSON.stringify(result.data));
-                  context.commit('SET_CURRENT_USER', JSON.stringify(result.data));
-                  this.state.loggedIn = true
-                  this.dispatch('getCompany', result.data[0].id);
-                  if (result.data[0].email_verified_at == null) {
-                    // window.location.href = adminDashboardUrl + result.data[0].email;
-                    sessionStorage.setItem('email_status', 'A verification email has been sent');
-                    router.push('/send-email');
-                  }
-                }
-                else {
-                  toast.error('You cannot assign admin role!', {
-                    position: toast.POSITION.BOTTOM_RIGHT,
-                  });
-                }
-              })
-          } catch (err) {
-            toast.error('Login Error!', {
-              position: toast.POSITION.BOTTOM_RIGHT,
-            });
-          }
-        })
+            }
+            else {
+              toast.error('You cannot assign admin role!', {
+                position: toast.POSITION.BOTTOM_RIGHT,
+              });
+            }
+          })
+        } catch (err) {
+          toast.error('Login Error!', {
+            position: toast.POSITION.BOTTOM_RIGHT,
+          });
+        }
+      })
         .catch(err => {
           console.log(err);
 
@@ -1828,12 +1828,12 @@ export default createStore({
 
       }).then(res => {
         console.log(res.data);
-        
+
         context.commit('SET_COMPANY_USERS', res.data);
       })
         .catch(err => {
-          console.log(err);  
-      })
+          console.log(err);
+        })
     },
 
     getUserDetail(context, payload) {
@@ -1846,8 +1846,8 @@ export default createStore({
         context.commit('SET_JOB_SEEKER', res.data);
       })
         .catch(err => {
-          console.log(err);  
-      })
+          console.log(err);
+        })
     },
 
     searchSeeker(context, payload) {
@@ -1860,8 +1860,8 @@ export default createStore({
         context.commit('SET_JOB_SEEKERS', res.data);
       })
         .catch(err => {
-          console.log(err);  
-      })
+          console.log(err);
+        })
     },
 
     companyData(context, payload) {
@@ -1874,11 +1874,11 @@ export default createStore({
         context.commit('SET_COMPANY_COUNTS', res.data);
       })
         .catch(err => {
-          console.log(err);  
-      })
+          console.log(err);
+        })
     },
 
-    
+
 
     storeJobAd(context, payload) {
       axios.post(apiUrl + 'store-job-ad', payload, {
@@ -1898,7 +1898,7 @@ export default createStore({
     },
 
     updateJobAd(context, payload) {
-      axios.post(apiUrl + 'update-job-ad/'+payload.ad_id, payload, {
+      axios.post(apiUrl + 'update-job-ad/' + payload.ad_id, payload, {
         headers: {
           'authorization': 'Bearer ' + localStorage.getItem('token')
         },
@@ -1939,11 +1939,12 @@ export default createStore({
         headers: {
           'authorization': 'Bearer ' + localStorage.getItem('token')
         },
-      }).then(res => {
-          toast.success(res.data.message, {
-            position: toast.POSITION.BOTTOM_RIGHT,
-          })
-        })
+      }).then(result => {
+        toast.success(result.data.message, {
+          position: toast.POSITION.BOTTOM_RIGHT,
+        });
+        this.dispatch('companySubscriptions');
+      })
         .catch(err => {
           console.log(err);
 
@@ -1951,12 +1952,12 @@ export default createStore({
     },
 
     getJobAd(context, payload) {
-      axios.get(apiUrl + 'get-advertise/'+payload.ad_id, {
+      axios.get(apiUrl + 'get-advertise/' + payload.ad_id, {
         headers: {
           'authorization': 'Bearer ' + localStorage.getItem('token')
         },
       })
-        .then(res => {       
+        .then(res => {
           context.commit('SET_ADVERTISEMENT', res.data)
         })
         .catch(err => {
@@ -1970,8 +1971,8 @@ export default createStore({
           'authorization': 'Bearer ' + localStorage.getItem('token')
         },
       })
-        .then(res => {  
-          const result = res.data     
+        .then(res => {
+          const result = res.data
           toast.success(result.message, {
             position: toast.POSITION.BOTTOM_RIGHT
           })
@@ -1993,8 +1994,8 @@ export default createStore({
           'authorization': 'Bearer ' + localStorage.getItem('token')
         },
       })
-        .then(res => {  
-          const result = res.data     
+        .then(res => {
+          const result = res.data
           toast.success(result.message, {
             position: toast.POSITION.BOTTOM_RIGHT
           })
@@ -2013,8 +2014,8 @@ export default createStore({
           'authorization': 'Bearer ' + localStorage.getItem('token')
         },
       })
-        .then(res => {  
-          const result = res.data     
+        .then(res => {
+          const result = res.data
           toast.success(result.message, {
             position: toast.POSITION.BOTTOM_RIGHT
           })

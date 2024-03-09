@@ -42,7 +42,7 @@
                                         <button class="status yellow-color" @click="getReceipt(subscription.receipt_url)">{{ subscription.stripe_status==""? 'Pending': subscription.stripe_status}} <i class="bi bi-download"></i></button>
                                     </td>
                                     <td class="action">
-                                        <button class="status yellow-color" @click="unsubscribe(subscription.receipt_url)">Unsubscribe the pacakage</button>
+                                        <button class="status yellow-color" @click="unsubscribe({'subscription_id': subscription.id})">Unsubscribe</button>
                                     </td>
                                 </tr>
                                 <tr v-else >
@@ -170,8 +170,8 @@ import CompanyMenu from './CompanyMenu.vue'
         // window.open("https://www.w3schools.com");
     },
 
-    unsubscribe(subscription: any){
-        console.log(subscription);
+    unsubscribe(subscription: any){        
+        this.$store.dispatch('unSubscribe', subscription)
     },
   },
   async mounted() {
