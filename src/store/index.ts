@@ -474,7 +474,6 @@ export default createStore({
       } catch (error) {
         console.log(error);
       }
-      
 
     },
 
@@ -509,6 +508,7 @@ export default createStore({
         // Handle the error, show a message, or perform any other actions
       }
     },
+
 
     updateProfile(context, payload) {
       axios.post(apiUrl + 'user/' + payload.id, payload, {
@@ -1753,10 +1753,39 @@ export default createStore({
         headers: {
           'authorization': 'Bearer ' + localStorage.getItem('token')
         }
-      })
-        .then(res => {
-          // console.log(res);
-          context.commit('SET_SUBSCRIPTIONS', res.data);
+      }).then(response => {
+          context.commit('SET_SUBSCRIPTIONS', response.data);
+          try {
+            axios.post(apiUrl + 'workpages/getUser', { token: localStorage.getItem('token') }, {
+              headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+              }
+            }).then(res => {
+                let result = res
+                console.log(result.data[0])
+                if (result.data[0].roles[0].name == 'Employer') {
+    
+                  localStorage.setItem('currentUser', JSON.stringify(result.data));
+                  context.commit('SET_CURRENT_USER', JSON.stringify(result.data));
+                  this.state.loggedIn = true
+                  this.dispatch('getCompany', result.data[0].id);
+                  if (result.data[0].email_verified_at == null) {
+                    // window.location.href = adminDashboardUrl + result.data[0].email;
+                    sessionStorage.setItem('email_status', 'A verification email has been sent');
+                    router.push('/send-email');
+                  }
+                }
+                else {
+                  toast.error('You cannot assign admin role!', {
+                    position: toast.POSITION.BOTTOM_RIGHT,
+                  });
+                }
+              })
+          } catch (err) {
+            toast.error('Login Error!', {
+              position: toast.POSITION.BOTTOM_RIGHT,
+            });
+          }
         })
         .catch(err => {
           console.log(err);
@@ -1895,6 +1924,22 @@ export default createStore({
         },
       })
         .then(res => {
+          toast.success(res.data.message, {
+            position: toast.POSITION.BOTTOM_RIGHT,
+          })
+        })
+        .catch(err => {
+          console.log(err);
+
+        })
+    },
+
+    unSubscribe(context, payload) {
+      axios.post(apiUrl + 'unsubscribe', payload, {
+        headers: {
+          'authorization': 'Bearer ' + localStorage.getItem('token')
+        },
+      }).then(res => {
           toast.success(res.data.message, {
             position: toast.POSITION.BOTTOM_RIGHT,
           })

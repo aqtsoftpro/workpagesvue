@@ -10,9 +10,7 @@
                                 <h4>Plan & Invoice List:</h4>
                             </div>
                             <div class="job-post-btn">
-                                <!-- <a class="primry-btn-2" href="job-post.html">Upgrade Plan</a> -->
                                 <router-link class="primry-btn-2" to="/plans">Upgrade Plan</router-link>
-
                             </div>
                         </div>
                         <table class="eg-table table plan-invoice-table mb-0">
@@ -24,6 +22,7 @@
                                     <th>Amount</th>
                                     <th>Payment Through</th>
                                     <th>Payment Status</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>   
                             <tbody>
@@ -41,6 +40,9 @@
                                             {{ subscription.stripe_status==""? 'Pending': subscription.stripe_status}} <i class="bi bi-download ms-5"></i>
                                         </a> -->
                                         <button class="status yellow-color" @click="getReceipt(subscription.receipt_url)">{{ subscription.stripe_status==""? 'Pending': subscription.stripe_status}} <i class="bi bi-download"></i></button>
+                                    </td>
+                                    <td class="action">
+                                        <button class="status yellow-color" @click="unsubscribe(subscription.receipt_url)">Unsubscribe the pacakage</button>
                                     </td>
                                 </tr>
                                 <tr v-else >
@@ -167,10 +169,13 @@ import CompanyMenu from './CompanyMenu.vue'
         window.open(url);
         // window.open("https://www.w3schools.com");
     },
+
+    unsubscribe(subscription: any){
+        console.log(subscription);
+    },
   },
   async mounted() {
     this.$store.dispatch('companySubscriptions')
-    // this.subscriptions = this.companySubscriptions;
     console.log(this.companySubscriptions);
   },
 })
