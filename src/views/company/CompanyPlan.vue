@@ -10,7 +10,7 @@
                                 <h4>Plan & Invoice List:</h4>
                             </div>
                             <div class="job-post-btn">
-                                <router-link class="primry-btn-2" to="/plans">Upgrade Plan</router-link>
+                                <router-link class="primry-btn-2" to="/plans">{{ companySubscriptions.length > 0 ? 'Upgrade Plan': 'Purchase Plan' }}</router-link>
                             </div>
                         </div>
                         <table class="eg-table table plan-invoice-table mb-0">
@@ -31,7 +31,7 @@
                                     <td data-label="Date">{{ formatDate(subscription.created_at) }}</td>
                                     <td data-label="Package"><button class="eg-btn light-sky-btn">{{ subscription.package.name }}</button></td>
                                     <td data-label="Amount">${{ subscription.stripe_price }}</td>
-                                    <td data-label="Payment Through">{{ subscription.package.stripe_price_id?? 'Offline Method' }}</td>
+                                    <td data-label="Payment Through">{{ subscription.package.stripe_price_id ? subscription.brand+ ' card - '+subscription.last_4 : 'Offline Method' }}</td>
                                     <td data-label="Payment Status">
                                         <!-- <router-link v-if="subscription.receipt_url" class="status yellow-color" :to="subscription.receipt_url" target="_blank">
                                             {{ subscription.stripe_status==""? 'Pending': subscription.stripe_status}} <i class="bi bi-download ms-5"></i>

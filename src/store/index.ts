@@ -76,6 +76,7 @@ export default createStore({
     resetEmail: null,
     shortListedApps: [],
     rejectedApps: [],
+    activeSub: null,
 
   },
   getters: {
@@ -147,6 +148,7 @@ export default createStore({
     loginUser: state=> state.loginUser,
     shortListedApps: state=> state.shortListedApps,
     rejectedApps: state=> state.rejectedApps,
+    activeSub: state=> state.activeSub,
 
   },
   mutations: {
@@ -358,6 +360,12 @@ export default createStore({
     SET_REJECTED(state, payload) {
       state.rejectedApps = payload
     },
+
+    SET_ACTIVE_SUB(state, payload) {
+      state.activeSub = payload
+    },
+
+    
 
   },
   actions: {
@@ -2125,6 +2133,20 @@ export default createStore({
         })
     },
 
+    getAciveSub(context, payload) {
+      axios.get(apiUrl + 'get-active-sub',
+      {
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem('token')
+        }
+      })
+      .then(res => {
+        let result = res.data
+        context.commit('SET_ACTIVE_SUB', result.data)
+      }).catch(err => {
+        console.log(err);
+      })
+    },
   },
   modules: {
   }
