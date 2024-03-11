@@ -42,7 +42,8 @@
                                         <button class="status yellow-color" @click="getReceipt(subscription.receipt_url)">{{ subscription.stripe_status==""? 'Pending': subscription.stripe_status}} <i class="bi bi-download"></i></button>
                                     </td>
                                     <td class="action">
-                                        <button class="status yellow-color" @click="unsubscribe({'subscription_id': subscription.id})">Unsubscribe</button>
+                                        <span v-if="subscription.status == 'unsubscribed'" class="badge bg-danger">Unsubscribed</span>
+                                        <button v-else class="status yellow-color" @click="unsubscribe({'subscription_id': subscription.id})">Unsubscribe</button>
                                     </td>
                                 </tr>
                                 <tr v-else >

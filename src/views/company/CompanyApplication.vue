@@ -32,7 +32,7 @@
                                                     {{ application.user_name }}
                                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">{{ application.job.job_title }}</button>
                                                     <!-- Modal -->
-                                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-hidden="true">
+                                                    <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-hidden="true">
                                                         <div class="modal-dialog">
                                                             <div class="row justify-content-center g-lg-4 gy-5 mb-90">
                                                                 <div class="col-lg-10">
@@ -277,7 +277,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    </div> -->
                                                     <span><img src="/assets/images/icon/company-2.svg" alt="">{{ application.job.location }}</span>
                                                     <p><span>Applied On:</span> {{ application.applied_on }}</p>
                                                     <p><span>Status:</span> {{ application.status_name }}</p>
@@ -296,22 +296,22 @@
                                         <td data-label="Actions">
                                             <div class="action-btn-group">
                                                 <ul>
-                                                    <li  v-if="this.user.sub_accesses.length > 0">
-                                                        <button v-if="!cvClicked && (filteredSubAccesses[0].cv_credit > 0)" class="review" @click="downloadCv(application.cv)">
+                                                    <li  v-if="this.permission !== null">
+                                                        <button v-if="!application.isLoading && (this.permission?.cv_credit > 0)" class="review" @click="downloadCv(application)">
                                                             <img src="/assets/images/icon/docs.svg" alt=""> Download CV
                                                         </button>
-                                                        <button v-if="cvClicked && (filteredSubAccesses[0].cv_credit > 0)" class="review" >
+                                                        <button v-if="application.isLoading && (this.permission?.cv_credit > 0)" class="review" >
                                                             <img src="/assets/images/icon/docs.svg" alt=""> Downloading...
                                                         </button>
                                                     </li>
                                                     <li v-if="application.status_name != 'Shortlisted'">
-                                                        <button v-if="!isLoading" @click="updateCandidateApplication('shortlist', application.id)" >
+                                                        <button v-if="!application.editClicked" @click="updateCandidateApplication('shortlist', application)" >
                                                             <img src="/assets/images/icon/shortlist-icon.svg" alt=""> Shortlist</button>
                                                             <button v-else >processing...</button>
                                                     </li>
 
                                                     <li v-if="application.status_name != 'Rejected'">
-                                                        <button v-if="!isLoading" @click="updateCandidateApplication('reject', application.id)" class="reject">
+                                                        <button v-if="!application.editClicked" @click="updateCandidateApplication('reject', application)" class="reject">
                                                             <img src="/assets/images/icon/rejected-icon.svg" alt=""> Reject</button>
                                                         <button v-else >processing...</button>
                                                     </li>
@@ -328,18 +328,18 @@
                         <div class="table-wrapper2">
                             <table class="eg-table table category-table mb-0">
                                 <tbody>
-                                    <tr v-if="this.shortListedApps.length > 0" v-for="application in rejectedApplications" :key="application.id">
+                                    
+                                    <tr v-if="this.rejectedApplications.length > 0" v-for="application in rejectedApplications" :key="application.id">
                                         <td data-label="Candidate Name">
                                             <div class="employee-info">
-                                                <div class="employee-img">
-                                                    
-                                                    <img :src="application.job.company_logo" alt="">
+                                                <div class="employee-img">    
+                                                    <img :src="application.user?.photo" alt="">
                                                 </div>
                                                 <div class="employee-content">
                                                     {{ application.user_name }} 
                                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">{{ application.job.job_title }}</button>
                                                     <!-- Modal -->
-                                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-hidden="true">
+                                                    <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-hidden="true">
                                                         <div class="modal-dialog">
                                                             <div class="row justify-content-center g-lg-4 gy-5 mb-90">
                                                                 <div class="col-lg-10">
@@ -584,7 +584,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    </div> -->
                                                     <span><img src="/assets/images/icon/company-2.svg" alt="">{{ application.job.location }}</span>
                                                     <p><span>Applied On:</span> {{ application.applied_on }}</p>
                                                     <p><span>Status:</span> {{ application.status_name }}</p>
@@ -603,21 +603,26 @@
                                         <td data-label="Actions">
                                             <div class="action-btn-group">
                                                 <ul>
-                                                    <li v-if="this.user.sub_accesses.length > 0">
-                                                        <button v-if="!cvClicked && (filteredSubAccesses[0].cv_credit > 0)" class="review" @click="downloadCv(application.cv)">
+                                                    <li v-if="this.permission !== null">
+                                                        <button v-if="!application.isLoading && (this.permission?.cv_credit > 0)" class="review" @click="downloadCv(application)">
                                                             <img src="/assets/images/icon/docs.svg" alt=""> Download CV
                                                         </button>
-                                                        <button v-if="cvClicked && (filteredSubAccesses[0].cv_credit > 0)" class="review" >
+                                                        <button v-if="application.isLoading && (this.permission?.cv_credit > 0)" class="review" >
                                                             <img src="/assets/images/icon/docs.svg" alt=""> Downloading...
                                                         </button>
                                                     </li>
                                                     <li v-if="application.status_name != 'Shortlisted'">
-                                                        <button v-if="!isLoading" @click="updateCandidateApplication('shortlist', application.id)" >
+                                                        <button v-if="!application.editClicked" @click="updateCandidateApplication('shortlist', application)" >
                                                             <img src="/assets/images/icon/shortlist-icon.svg" alt=""> Shortlist
                                                         </button>
                                                         <button v-else>processing...</button>
                                                     </li>
-                                                    <li v-if="application.status_name != 'Rejected'"><button @click="updateCandidateApplication('reject', application.id)" class="reject"><img src="/assets/images/icon/rejected-icon.svg" alt=""> Rejected</button></li>
+                                                    <li v-if="application.status_name != 'Rejected'">
+                                                        <button v-if="!application.editClicked" @click="updateCandidateApplication('reject', application)" class="reject">
+                                                            <img src="/assets/images/icon/rejected-icon.svg" alt=""> Rejected
+                                                        </button>
+                                                        <button v-else>processing...</button>
+                                                    </li>
                                                     <li>
                                                         <button @click="deleteCandidateApplication(application.id)" class="reject"><img src="/assets/images/icon/rejected-icon.svg" alt=""> Delete</button>
                                                     </li>
@@ -708,6 +713,7 @@ interface SubAccess {
         isLoading: false,
         shortlistedApplications: [],
         rejectedApplications: [],
+        permission: null,
     }
   
   },
@@ -718,6 +724,7 @@ interface SubAccess {
         'company',
         'shortListedApps',
         'rejectedApps',
+        'loginUser'
     ]),
     // shortlistedApplications() {
     //   return this.applications.filter((item:any) => item.status_id == 3);
@@ -726,13 +733,16 @@ interface SubAccess {
     //   return this.applications.filter((item:any) => item.status_id == 5);
     // },
     filteredSubAccesses(): SubAccess[] {
-        return this.user?.sub_accesses.filter((subAccess: SubAccess) => subAccess.cv_credit > 0);
+        return this.user?.sub_accesses.filter((subAccess: SubAccess) => subAccess?.cv_credit > 0);
     },
 
 
   },
   async mounted() {
+    await this.$store.dispatch('getCurrentUser')
+
     this.user = JSON.parse(this.currentUser)[0]
+    this.permission = this.user.sub_accesses ? this.user.sub_accesses[0] : null;
     this.$store.dispatch('getCompanyApplications', this.user.company.id )
     this.$store.dispatch('getShortlisted', this.user.company.id )
     this.$store.dispatch('getRejected', this.user.company.id )
@@ -746,12 +756,12 @@ interface SubAccess {
     // console.log(this.companyApplications);
   },
   methods: {
-    async updateCandidateApplication(status:string, application_id:any) {
-        this.isLoading = true;
+    async updateCandidateApplication(status:string, application:any) {
+        application.editClicked = true;
         try {
-            await this.$store.dispatch('updateCandidateApplication', {status: status, application_id: application_id});
+            await this.$store.dispatch('updateCandidateApplication', {status: status, application_id: application.id});
             window.setTimeout(() => {
-                this.isLoading = false;
+                application.editClicked = false;
             }, 6000);
         } catch (error) {
             
@@ -764,16 +774,15 @@ interface SubAccess {
     onTabChange(event:any) {
         console.log(event);
         this.activeItem = event.index;
-        console.log(this.activeItem);
     },
 
-    async downloadCv(cvUrl: any) {
-        this.cvClicked = true;
+    async downloadCv(application: any) {
+        application.isLoading = true;
         try {
-            await this.$store.dispatch('donwload', cvUrl);
+            await this.$store.dispatch('donwload', application.cv);
             window.setTimeout(() => {
                 // window.open(cvUrl, '_blank');
-                this.cvClicked = false;
+                application.isLoading = false;
             }, 3000);
         } catch (error) {
             console.log(error);
@@ -790,11 +799,23 @@ interface SubAccess {
         console.log(this.company.data.logo);
     },
     shortListedApps() {
-        this.shortlistedApplications = this.shortListedApps;
+        this.shortlistedApplications = this.shortListedApps.map((item : any) => ({
+            ...item,
+            isLoading: false,    
+            editClicked: false
+        }));
     },
     rejectedApps() {
-        this.rejectedApplications = this.rejectedApps
-    }
+        this.rejectedApplications = this.rejectedApps.map((item : any) => ({
+            ...item,
+            isLoading: false,   
+            editClicked: false
+        }));
+    },
+    currentUser() {
+        this.user = JSON.parse(this.currentUser)[0]
+        this.permission = this.user.sub_accesses ? this.user.sub_accesses[0] : null;
+    },
   }
 })
 export default class CompanyDashboard extends Vue {}

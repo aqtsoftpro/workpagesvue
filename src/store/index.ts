@@ -784,13 +784,13 @@ export default createStore({
           }
         }
         ).then(res => {
-          let result = res
-          console.log(result.data[0])
-          localStorage.setItem('currentUser', JSON.stringify(result.data));
+          let result = res.data[0]
+          localStorage.setItem('currentUser', JSON.stringify(res.data));
           context.commit('SET_LOGIN_USER', JSON.stringify(result.data));
           this.state.loggedIn = true
         })
       } catch (err) {
+        console.log(err);
         // toast.error('Login Error!', {
         //   position: toast.POSITION.BOTTOM_RIGHT,
         // });
@@ -1716,7 +1716,8 @@ export default createStore({
           toast.success(res.data.message, {
             position: toast.POSITION.BOTTOM_RIGHT,
           })
-          this.dispatch('getCompanyApplications', res.data.data.company_id);
+          this.dispatch('getShortlisted', res.data.data.company_id);
+          this.dispatch('getRejected', res.data.data.company_id);
         })
     },
     deleteCandidateApplication(context, payload) {
@@ -2098,6 +2099,29 @@ export default createStore({
         })
         .catch(err => {
           console.log(err);
+        })
+    },
+
+    deleteJob(context, payload) {
+      axios.post(apiUrl + 'job/' + payload.id, payload,{
+        headers: {
+          authorization: 'Bearer ' + localStorage.getItem('token'),
+          'Content-Type': 'multipart/form-data'
+        },
+        params: {
+          _method: "delete"
+        }
+
+      }).then(res => {
+        toast.success(res.data.message, {
+          position: toast.POSITION.BOTTOM_RIGHT,
+        })
+        this.dispatch('getCompanyJobs', '');
+      })
+        .catch(err => {
+          toast.error(err.message, {
+            position: toast.POSITION.BOTTOM_RIGHT,
+          })
         })
     },
 

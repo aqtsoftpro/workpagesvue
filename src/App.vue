@@ -544,15 +544,14 @@ Vue.prototype.$globalVar = "Shared Data";
     },
     mounted() {
         if (this.loggedIn) {
+            this.$store.dispatch('getCurrentUser');
             this.user = JSON.parse(this.currentUser)[0]
             this.role = this.user.roles[0].name
             console.log(this.role);
-            this.permission = this.user.sub_accesses[0] ?? null;
+            this.permission = this.user.sub_accesses ? this.user.sub_accesses[0] : null;
         }
         this.$store.dispatch('getGlobalVariables');
         this.$store.dispatch('getTopCompanies');
-        this.$store.dispatch('getCurrentUser');
-        this.$store.dispatch('loginUser');
         // if(!this.loggedIn){
         //     this.$router.push('/')
         // } else {
@@ -584,18 +583,18 @@ Vue.prototype.$globalVar = "Shared Data";
             if (this.loggedIn) {
                 this.user = JSON.parse(this.currentUser)[0]
                 this.role = this.user.roles[0].name
-                this.permission = this.user.sub_accesses[0] ?? null;
+                this.permission = this.user.sub_accesses ? this.user.sub_accesses[0] : null;
                 console.log(this.role);
             }
         },
 
-        loginUser() {
-            if (this.loggedIn) {
-                this.user = this.loginUser;
-                this.permission = this.user.sub_accesses[0] ?? null;
-                console.log(this.role);
-            }
-        }
+        // loginUser() {
+        //     if (this.loggedIn) {
+        //         this.user = this.loginUser;
+        //         this.permission = this.user.sub_accesses ? this.user.sub_accesses[0] : null;
+        //         console.log(this.role);
+        //     }
+        // }
     }
 })
 export default class App extends Vue { }
