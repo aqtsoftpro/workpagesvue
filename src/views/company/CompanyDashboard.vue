@@ -133,11 +133,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="counter-area">
+                            <!-- <div class="counter-area">
                                 <h6 class="text-center">Click here to get all jobseeker ralated to your company:
                                     <router-link class="primary-btn-2 lg-btn" to="/company/jobseekers">Job Seeker</router-link>
                                 </h6>
-                            </div>
+                            </div> -->
                             <div class="new-applied-job-area">
                                 <!-- <input type="hidden" :value="companyApplications"> -->
                                 <h5>New Applied List:</h5>
@@ -188,13 +188,13 @@
                                                                 </button>
                                                             </li>
                                                             <li v-if="application.status_name != 'Shortlisted'">
-                                                                <button v-if="!isLoading" @click="updateCandidateApplication('shortlist', application.id)"><img
+                                                                <button v-if="!application.isLoading" @click="updateCandidateApplication('shortlist', application)"><img
                                                                         src="/assets/images/icon/shortlist-icon.svg" alt="">
                                                                     Shortlist</button>
                                                                     <button v-else>processing...</button>
                                                             </li>
-                                                            <li v-if="application.status_name != 'Rejected'"><button v-if="!isLoading"
-                                                                    @click="updateCandidateApplication('reject', application.id)"
+                                                            <li v-if="application.status_name != 'Rejected'"><button v-if="!application.isLoading"
+                                                                    @click="updateCandidateApplication('reject', application)"
                                                                     class="reject"><img
                                                                         src="/assets/images/icon/rejected-icon.svg" alt="">
                                                                     Reject</button>
@@ -288,9 +288,12 @@ interface SubAccess {
         ]),
 
         newApplications() {
-            return this.applications.filter((item: any) => item.status_id == 1);
+            return this.applications.filter((item: any) => item.status_id == 1).map((item : any) => ({
+                ...item,
+                isLoading: false
+            }));
         },
-
+        
         filteredSubAccesses(): SubAccess[] {
             return this.user.sub_accesses ?? this.user.sub_accesses.filter((subAccess: SubAccess) => subAccess.cv_credit > 0);
         },
@@ -310,10 +313,10 @@ interface SubAccess {
         document.head.appendChild(Script);
     },
     methods: {
-        async updateCandidateApplication(status: string, application_id: any) {
-            this.isLoading = true;
+        async updateCandidateApplication(status: string, application: any) {
+            application.isLoading = true;
             try {
-                await this.$store.dispatch('updateCandidateApplication', { status: status, application_id: application_id });
+                await this.$store.dispatch('updateCandidateApplication', { status: status, application_id: application.id });
                 window.setTimeout(() => {
                     this.isLoading = false;
                 }, 6000);

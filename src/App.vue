@@ -64,8 +64,9 @@
                                 <li>
                                     <router-link to="/about-us" @click="closeResponsiveMenu">About Us</router-link>
                                 </li>
+                                <!-- {{ console.log(permission)  }} -->
                                 <!-- v-if="loggedIn && this.role == 'Job Seeker'" -->
-                                <li v-if="loggedIn && this.role == 'Employer'">
+                                <li v-if="loggedIn && this.role == 'Employer' && this.permission?.casual_portal == 'yes'" >
                                     <router-link to="/casual-portal" @click="closeResponsiveMenu">Casual Portal</router-link>
 
                                     <!-- <router-link to="/companies" @click="closeResponsiveMenu">Companies</router-link> -->
@@ -180,7 +181,7 @@
                                     </div>
                                 </li>
                                 <li v-if="loggedIn" class="d-md-flex d-none">
-                                    
+
                                     <div class="sign-in-btn">
                                         <router-link v-if="this.role == 'Job Seeker'" class="primry-btn-1 user-btn-custom"
                                             :to="{ path: '/user/dashboard' }">
@@ -493,6 +494,7 @@ Vue.prototype.$globalVar = "Shared Data";
             newletter: {
                 newsletter_email: '',
             },
+            permission: null,
             // isLoading: true,
         }
     },
@@ -501,7 +503,8 @@ Vue.prototype.$globalVar = "Shared Data";
             'currentUser',
             'loggedIn',
             'globalVariables',
-            'topCompanies'
+            'topCompanies',
+            'loginUser',
         ])
     },
 
@@ -544,9 +547,12 @@ Vue.prototype.$globalVar = "Shared Data";
             this.user = JSON.parse(this.currentUser)[0]
             this.role = this.user.roles[0].name
             console.log(this.role);
+            this.permission = this.user.sub_accesses[0] ?? null;
         }
         this.$store.dispatch('getGlobalVariables');
         this.$store.dispatch('getTopCompanies');
+        this.$store.dispatch('getCurrentUser');
+        this.$store.dispatch('loginUser');
         // if(!this.loggedIn){
         //     this.$router.push('/')
         // } else {
@@ -578,6 +584,15 @@ Vue.prototype.$globalVar = "Shared Data";
             if (this.loggedIn) {
                 this.user = JSON.parse(this.currentUser)[0]
                 this.role = this.user.roles[0].name
+                this.permission = this.user.sub_accesses[0] ?? null;
+                console.log(this.role);
+            }
+        },
+
+        loginUser() {
+            if (this.loggedIn) {
+                this.user = this.loginUser;
+                this.permission = this.user.sub_accesses[0] ?? null;
                 console.log(this.role);
             }
         }

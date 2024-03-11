@@ -15,6 +15,7 @@ export default createStore({
     userSocials: {},
     userDetails: {},
     userPortfolio: [],
+    loginUser: [],
     token: (localStorage.getItem('token')) ? localStorage.getItem('token') : null,
     loggedIn: (localStorage.getItem('token')) ? true : false,
     designations: [],
@@ -73,6 +74,8 @@ export default createStore({
     advertisement: null,
     userDocuments: [],
     resetEmail: null,
+    shortListedApps: [],
+    rejectedApps: [],
 
   },
   getters: {
@@ -141,6 +144,9 @@ export default createStore({
     advertisement: state => state.advertisement,
     userDocuments: state => state.userDocuments,
     resetEmail: state => state.resetEmail,
+    loginUser: state=> state.loginUser,
+    shortListedApps: state=> state.shortListedApps,
+    rejectedApps: state=> state.rejectedApps,
 
   },
   mutations: {
@@ -158,6 +164,10 @@ export default createStore({
     },
     SET_CURRENT_USER(state, payload) {
       state.currentUser = payload
+    },
+
+    SET_LOGIN_USER(state, payload) {
+      state.loginUser = payload
     },
     SET_TOKEN(state, payload) {
       state.token = payload
@@ -339,6 +349,14 @@ export default createStore({
 
     SET_RESET_EMAIL(state, payload) {
       state.resetEmail = payload
+    },
+
+    SET_SHORT_LISTED(state, payload) {
+      state.shortListedApps = payload
+    },
+
+    SET_REJECTED(state, payload) {
+      state.rejectedApps = payload
     },
 
   },
@@ -755,6 +773,27 @@ export default createStore({
         toast.error('Login Error!', {
           position: toast.POSITION.BOTTOM_RIGHT,
         });
+      }
+    },
+
+    getCurrentUser(context, payload){
+      try {
+        axios.post(apiUrl + 'workpages/getUser', { token: localStorage.getItem('token') }, {
+          headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
+          }
+        }
+        ).then(res => {
+          let result = res
+          console.log(result.data[0])
+          localStorage.setItem('currentUser', JSON.stringify(result.data));
+          context.commit('SET_LOGIN_USER', JSON.stringify(result.data));
+          this.state.loggedIn = true
+        })
+      } catch (err) {
+        // toast.error('Login Error!', {
+        //   position: toast.POSITION.BOTTOM_RIGHT,
+        // });
       }
     },
 
@@ -2025,6 +2064,40 @@ export default createStore({
           toast.error(err.message, {
             position: toast.POSITION.BOTTOM_RIGHT
           })
+        })
+    },
+
+    getShortlisted(context, payload) {
+      axios.get(apiUrl + 'shortlisted?company_id=' + payload, {
+        headers: {
+          'authorization': 'Bearer ' + localStorage.getItem('token')
+        }
+      })
+        .then(res => {
+          const result = res.data.data
+          console.log(result);
+          
+          context.commit('SET_SHORT_LISTED', result)
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    },
+
+    getRejected(context, payload) {
+      axios.get(apiUrl + 'rejected?company_id=' + payload, {
+        headers: {
+          'authorization': 'Bearer ' + localStorage.getItem('token')
+        }
+      })
+        .then(res => {
+          const result = res.data.data
+          console.log(result);
+          
+          context.commit('SET_REJECTED', result)
+        })
+        .catch(err => {
+          console.log(err);
         })
     },
 

@@ -62,11 +62,10 @@
                                                   </ul>
                                               </div>
                                           </div>
-                                          <div class="msg-btn col">
+                                          <!-- <div class="msg-btn col">
                                             <span>Total reviews: ({{ seeker.reviews.length }})</span>
                                             <span @click="openForm(seeker)">Send Sms</span>
-                                            <!-- <button class="primry-btn-2 p-1 px-3 mb-2" @click="openForm(seeker)">Send Sms</button> -->
-                                          </div>
+                                          </div> -->
                                       </div>
                                       <div class="job-type-apply">
                                             <div class="job-type">
@@ -76,8 +75,6 @@
                                             </div>
                                             <div class="apply-btn">
                                             <div class="msg-btn">
-                                                <span @click="openMailForm(seeker)">Send Email</span>
-
                                                 <!-- <button class="primry-btn-2 p-1 px-3 mb-2 me-0" @click="openMailForm(seeker)">Send Email</button> -->
                                                 <router-link :to="'job-seeker/' + seeker.id">
                                                     <span><img src="assets/images/icon/apply-ellipse.svg" alt=""></span>

@@ -22,7 +22,7 @@
                         <div class="table-wrapper2">
                             <table class="eg-table table category-table mb-0">
                                 <tbody>
-                                    <tr v-for="application in shortlistedApplications" :key="application.id" >
+                                    <tr v-if="shortlistedApplications.length > 0" v-for="application in shortlistedApplications" :key="application.id" >
                                         <td  data-label="Candidate Name">
                                             <div class="employee-info">
                                                 <div class="employee-img">    
@@ -328,7 +328,7 @@
                         <div class="table-wrapper2">
                             <table class="eg-table table category-table mb-0">
                                 <tbody>
-                                    <tr v-for="application in rejectedApplications" :key="application.id">
+                                    <tr v-if="this.shortListedApps.length > 0" v-for="application in rejectedApplications" :key="application.id">
                                         <td data-label="Candidate Name">
                                             <div class="employee-info">
                                                 <div class="employee-img">
@@ -706,32 +706,36 @@ interface SubAccess {
         ],
         cvClicked: false,
         isLoading: false,
-    }  
+        shortlistedApplications: [],
+        rejectedApplications: [],
+    }
+  
   },
   computed: {
     ...mapGetters([
         'currentUser',
         'companyApplications',
-        'company'
+        'company',
+        'shortListedApps',
+        'rejectedApps',
     ]),
-    shortlistedApplications() {
-      return this.applications.filter((item:any) => item.status_id == 3);
-    },
-    rejectedApplications() {
-      return this.applications.filter((item:any) => item.status_id == 5);
-    },
+    // shortlistedApplications() {
+    //   return this.applications.filter((item:any) => item.status_id == 3);
+    // },
+    // rejectedApplications() {
+    //   return this.applications.filter((item:any) => item.status_id == 5);
+    // },
     filteredSubAccesses(): SubAccess[] {
         return this.user?.sub_accesses.filter((subAccess: SubAccess) => subAccess.cv_credit > 0);
     },
-    // ne() {
-    //   return this.applications.filter((item:any) => item.status_id === 5);
-    // },
 
 
   },
   async mounted() {
     this.user = JSON.parse(this.currentUser)[0]
     this.$store.dispatch('getCompanyApplications', this.user.company.id )
+    this.$store.dispatch('getShortlisted', this.user.company.id )
+    this.$store.dispatch('getRejected', this.user.company.id )
     this.$store.dispatch('getCompany', this.user.id)
     this.company_logo = this.user.company.logo
     this.applications = this.companyApplications.data
@@ -781,10 +785,16 @@ interface SubAccess {
         console.log(this.companyApplications.data);
         this.applications = this.companyApplications.data
     },
-    company(newValue){        
+    company(){        
         this.company_logo = this.company.data.logo
         console.log(this.company.data.logo);
     },
+    shortListedApps() {
+        this.shortlistedApplications = this.shortListedApps;
+    },
+    rejectedApps() {
+        this.rejectedApplications = this.rejectedApps
+    }
   }
 })
 export default class CompanyDashboard extends Vue {}
