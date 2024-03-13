@@ -504,7 +504,6 @@ Vue.prototype.$globalVar = "Shared Data";
             'loggedIn',
             'globalVariables',
             'topCompanies',
-            'loginUser',
         ])
     },
 
@@ -587,14 +586,6 @@ Vue.prototype.$globalVar = "Shared Data";
                 console.log(this.role);
             }
         },
-
-        // loginUser() {
-        //     if (this.loggedIn) {
-        //         this.user = this.loginUser;
-        //         this.permission = this.user.sub_accesses ? this.user.sub_accesses[0] : null;
-        //         console.log(this.role);
-        //     }
-        // }
     }
 })
 export default class App extends Vue { }

@@ -62,10 +62,7 @@
                                                   </ul>
                                               </div>
                                           </div>
-                                          <!-- <div class="msg-btn col">
-                                            <span>Total reviews: ({{ seeker.reviews.length }})</span>
-                                            <span @click="openForm(seeker)">Send Sms</span>
-                                          </div> -->
+                                          <span>Total reviews: ({{ seeker.reviews.length }})</span>
                                       </div>
                                       <div class="job-type-apply">
                                             <div class="job-type">
@@ -73,14 +70,15 @@
                                                 <button class="primry-btn-2 p-1 px-3" @click="openForm(seeker)">Send Sms</button>
                                                 <button class="primry-btn-2 p-1 px-3" @click="openMailForm(seeker)">Send Email</button>
                                             </div>
+                                            
                                             <div class="apply-btn">
-                                            <div class="msg-btn">
-                                                <!-- <button class="primry-btn-2 p-1 px-3 mb-2 me-0" @click="openMailForm(seeker)">Send Email</button> -->
-                                                <router-link :to="'job-seeker/' + seeker.id">
-                                                    <span><img src="assets/images/icon/apply-ellipse.svg" alt=""></span>
-                                                    Detail Job Seeker
-                                                </router-link>
-                                            </div>
+                                                <div class="msg-btn">
+                                                    <!-- <button class="primry-btn-2 p-1 px-3 mb-2 me-0" @click="openMailForm(seeker)">Send Email</button> -->
+                                                    <router-link :to="'job-seeker/' + seeker.id">
+                                                        <span><img src="assets/images/icon/apply-ellipse.svg" alt=""></span>
+                                                        Detail Job Seeker
+                                                    </router-link>
+                                                </div>
                                             </div>
                                         </div>
                                   </div>

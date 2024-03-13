@@ -12,7 +12,7 @@
                                 <div class="author-area two">
                                     <div class="author-img">
                                         <img width="200" v-if="company_logo" :src="company_logo" />
-                                        <img v-else src="/assets/images/bg/company-img2.png" alt="">
+                                        <img v-else src="/assets/images/icon/user-2.svg" alt="">
                                     </div>
                                     <div class="author-content">
                                         <span>Hello,</span>
@@ -148,7 +148,11 @@
                                                 <td data-label="Candidate Name">
                                                     <div class="employee-info">
                                                         <div class="employee-img">
-                                                            <img :src="application.user?.photo" alt="">
+                                                            <router-link :to="'/job-seeker/'+application.user?.id">
+                                                                <img v-if="application.user?.photo" :src="application.user?.photo" alt="">
+                                                                <img v-else src="/assets/images/icon/user-2.svg" alt="">
+                                                            </router-link> 
+                                                            <!-- <img :src="application.user?.photo" alt=""> -->
                                                         </div>
                                                         <div class="employee-content">
                                                             {{ application.user_name }}
@@ -157,8 +161,9 @@
                                                                 @click="seekerDetail(application.user_id)">{{
                                                                     application.job.job_title }}</button>
 
-                                                            <span><img src="/assets/images/icon/company-2.svg" alt="">{{
-                                                                application.job.location }}</span>
+                                                            <!-- <span><img src="/assets/images/icon/company-2.svg" alt="">{{
+                                                                application.job.location }}</span> -->
+                                                            <span>Total reviews: ({{ application.user.reviews.length }})</span>
                                                             <p><span>Applied On:</span> {{ application.applied_on }}</p>
                                                             <p><span>Status:</span> {{ application.status_name }}</p>
                                                         </div>

@@ -333,7 +333,12 @@ import Calendar from 'primevue/calendar';
     },
 
     async createJob(){
+        // Assuming expiration is your date string
+        let expiration = this.jobForm.expiration;
+        let expirationDate = new Date(expiration);
+        expirationDate.setDate(expirationDate.getDate() + 1);
         this.isLoading = true;
+        this.jobForm.expiration = expirationDate;
         console.log(this.jobForm);
         try {
           await this.$store.dispatch('createJob', this.jobForm);
