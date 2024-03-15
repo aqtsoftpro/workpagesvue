@@ -163,15 +163,15 @@
 
                                                             <!-- <span><img src="/assets/images/icon/company-2.svg" alt="">{{
                                                                 application.job.location }}</span> -->
-                                                            <span>Total reviews: ({{ application.user.reviews.length }})</span>
-                                                            <p><span>Applied On:</span> {{ application.applied_on }}</p>
-                                                            <p><span>Status:</span> {{ application.status_name }}</p>
+                                                            <span>Total reviews: ({{ application.user?.reviews?.length ?? 0 }})</span>
+                                                            <p><span>Applied On:</span> {{ application.applied_on ?? ''}}</p>
+                                                            <p><span>Status:</span> {{ application.status_name ?? 'No Status' }}</p>
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td data-label="Carrer Summary">
                                                     <div class="carrer-summary">
-                                                        <h6>Colliegate Ltd <span>(Teaching Assistant)</span></h6>
+                                                        <h6>{{application.user?.designtion?.name ?? 'No Current Designation'}} <span>({{ application.user?.job_location?.name ?? 'No Location' }})</span></h6>
                                                         <ul>
                                                             <li><span>Experience:</span> {{ application.experience }} Years
                                                             </li>

@@ -62,7 +62,7 @@
                                             <label for="pphonenumber">Primary Number*</label>
                                             <div class="input-area">
                                                 <img src="assets/images/icon/phone-2.svg" alt="">
-                                                <input type="text" id="pphonenumber" name="pphonenumber" placeholder="+880-17 *** *** **">
+                                                <input type="text" v-model="userMeta.primary_number" id="pphonenumber" name="pphonenumber" placeholder="+880-17 *** *** **">
                                             </div>
                                         </div>
                                     </div>
@@ -71,7 +71,7 @@
                                             <label for="sphonenumber">Secondary Number*</label>
                                             <div class="input-area">
                                                 <img src="assets/images/icon/phone-2.svg" alt="">
-                                                <input type="text" id="sphonenumber" name="sphonenumber" placeholder="+880-17 *** *** **">
+                                                <input type="text" v-model="userMeta.secondary_number" id="sphonenumber" name="sphonenumber" placeholder="+880-17 *** *** **">
                                             </div>
                                         </div>
                                     </div>
@@ -80,7 +80,7 @@
                                             <label for="pemail">Primary Email*</label>
                                             <div class="input-area">
                                                 <img src="assets/images/icon/email-2.svg" alt="">
-                                                <input type="text" id="pemail" name="pemail" placeholder="info@example.com">
+                                                <input type="text"  v-model="userMeta.primary_email" id="pemail" name="pemail" placeholder="info@example.com">
                                             </div>
                                         </div>
                                     </div>
@@ -89,7 +89,7 @@
                                             <label for="semail">Secondary Email*</label>
                                             <div class="input-area">
                                                 <img src="assets/images/icon/email-2.svg" alt="">
-                                                <input type="text" id="semail" name="semail" placeholder="info@example.com">
+                                                <input type="text"  v-model="userMeta.secondary_email" id="semail" name="semail" placeholder="info@example.com">
                                             </div>
                                         </div>
                                     </div>
@@ -108,17 +108,14 @@
                                             <label for="location">Get Location*</label>
                                             <div class="input-area">
                                                 <img src="assets/images/icon/map-2.svg" alt="">
-                                                <input type="text" id="location" name="location" @change="loadGoogleMap" placeholder="Mirpur-12, Block-C, Road-3/20, Dhaka">
+                                                <input type="text" id="location" name="location" v-model="userMeta.company_address" @change="loadGoogleMap" placeholder="Mirpur-12, Block-C, Road-3/20, Dhaka">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                        <div class="location-map mb-35">
                                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d116795.52186985579!2d90.31523677800563!3d23.82357482672597!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c14c8682a473%3A0xa6c74743d52adb88!2sEgens%20Lab!5e0!3m2!1sen!2sbd!4v1673956671914!5m2!1sen!2sbd" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
-                                            
                                             <iframe :src="mapAddress" width="600" height="450"></iframe>
-
                                        </div>
                                     </div>
                                 </div>
@@ -202,12 +199,25 @@ import InputSwitch from 'primevue/inputswitch';
                 user_id: '',
             },
             userMeta: {
+                user_id: '',
                 jobs_applications_email_alert: '',
                 company_address: '',
+                primary_number: '',
+                secondary_number: '',
+                primary_email: '',
+                secondary_email: '',
+
+                // user_id: '',
+                // company_address: '',
+
+                // application_shortlisted_email_alert: '',
+                // application_rejected_email_alert: '',
+                // resume_visibility: '',
+                // disable_account: ''
             },
             jobsApplicationsEmailAlert: false,
             mapAddress:'',
-
+            isLoading: false,
 
         }
     },
@@ -221,7 +231,7 @@ import InputSwitch from 'primevue/inputswitch';
         console.log(this.changepass);
         this.$store.dispatch('updatePassword', this.changepass)
     },
-    updateSettings(event:any) {
+    updateSettings(event: any) {
         if (this.jobsApplicationsEmailAlert) 
             {
                 this.userMeta.jobs_applications_email_alert = true
@@ -230,10 +240,10 @@ import InputSwitch from 'primevue/inputswitch';
             {
                 this.userMeta.jobs_applications_email_alert = false 
             }
+            this.$store.dispatch('updateUserMeta', this.userMeta)
         // this.$store.dispatch('updatePassword', this.changepass)
     },
     loadGoogleMap() {
-
         const encodedAddress = encodeURIComponent('Hathi Chowk Road, Saddar, Rawalpindi');
         console.log(encodedAddress);
         this.mapAddress = 'https://www.google.com/maps/embed?pb='+encodedAddress;
@@ -245,7 +255,14 @@ import InputSwitch from 'primevue/inputswitch';
   mounted() {
         this.user = JSON.parse(this.currentUser)[0]
         this.changepass.user_id = this.user.id
-        
+        this.userMeta.user_id = this.user.id
+        this.userMeta.primary_number = this.user.userMeta?.primary_number;
+        this.userMeta.secondary_number = this.user.userMeta?.secondary_number;
+        this.userMeta.primary_email = this.user.userMeta?.primary_email;
+        this.userMeta.secondary_email = this.user.userMeta?.secondary_email;
+        this.userMeta.resume_visibility = this.user.userMeta?.resume_visibility;
+        this.userMeta.company_address = this.user.userMeta?.company_address;
+        this.userMeta.disable_account = this.user.userMeta?.disable_account == 1? true: false;
         // this.jobsApplicationsEmailAlert = true;
         // typeof yourVariable !== "undefined" && yourVariable === true
         if (typeof this.user.userMeta.jobs_applications_email_alert !== 'undefined' && this.user.userMeta.jobs_applications_email_alert === 'true') 

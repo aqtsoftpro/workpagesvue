@@ -87,7 +87,7 @@
                                             <label>Qualification Required*</label>
                                             <div class="input-area">
                                                 <img src="/assets/images/icon/category-2.svg" alt="">
-                                                <Dropdown 
+                                                <!-- <Dropdown 
                                                 @change="changeQualification"
                                                 v-model=this.jobForm.qualification_id 
                                                 :options="qualifications" 
@@ -97,7 +97,12 @@
                                                 optionValue="id"
                                                 :disabled="!editTitle"
                                                 class="w-full 
-                                                md:w-14rem" />
+                                                md:w-14rem" /> -->
+
+                                                <select class="form-select me-1" v-model="this.jobForm.qualification_id" @change="changeQualification" :disabled="!editTitle">
+                                                    <option value="">Select Qualification</option>
+                                                    <option v-for="qualification in qualifications" :value="qualification.id" >{{ qualification.name }}</option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div> 
@@ -125,7 +130,7 @@
                                             <label>Job Category</label>
                                             <div class="input-area">
                                                 <img src="/assets/images/icon/category-2.svg" alt="">
-                                                <Dropdown 
+                                                <!-- <Dropdown 
                                                 @change="changeCategory"
                                                 v-model=this.jobForm.category_id
                                                 :options="categories" 
@@ -135,7 +140,13 @@
                                                 optionValue="id" 
                                                 :disabled="!editCategory"
                                                 class="w-full 
-                                                md:w-14rem" />
+                                                md:w-14rem" /> -->
+
+                                                <select class="form-select me-1" v-model="this.jobForm.category_id" @change="changeCategory" :disabled="!editCategory">
+                                                    <option value="">Select Job Category</option>
+                                                    <option v-for="category in categories" :value="category.id" >{{ category.name }}</option>
+                                                </select>
+
                                             </div>
                                         </div>
                                     </div>                                                                                                  
