@@ -66,14 +66,28 @@
                                   </ul>
                               </div>
                           </div>
-                          <span>Job Seeker Resume/CV:</span>
-                          <br>
                       </div>
                       <div class="card">
-                        <!-- <img v-if="isImage(jobSeekerDetail.photo)" :src="jobSeekerDetail.photo" alt="" srcset="" style=""> -->
-                        <iframe :src="jobSeekerDetail.photo" frameborder="0" height="690"></iframe>
-
-                        <!-- <embed src="https://www.clickdimensions.com/links/TestPDFfile.pdf" type="application/pdf" width="100%" height="600px" /> -->
+                        <div class="card-body">
+                            <div class="card-title">
+                                <h4>Job Seeker Detail:</h4>
+                            </div>
+                            <div class="row">
+                                <div v-for="document in jobSeekerDetail.documents" class="col-md-6">
+                                    <span class="fw-bold">
+                                        {{ document.title }}
+                                    </span>
+                                    <br>
+                                    <span>
+                                        {{ document.detail }}
+                                    </span>
+                                    <br>
+                                    <a :href="document.file_path" target="_blank" download > 
+                                        <img src="/assets/images/icon/down.svg" alt="" width="30">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
 
                       </div>
                   </div>
@@ -245,7 +259,8 @@
                 user_id: '',
                 review: null,
                 rating: 5,
-          },    
+          }, 
+          permission: null,
       }
     },
     computed: {
@@ -263,6 +278,7 @@
             this.user = JSON.parse(this.currentUser)[0]
             this.role = this.user.roles[0].id
             this.reviewForm.user_id = route.params.id
+            this.permission = this.user.sub_accesses[0] ?? null;
             console.log(this.user.id);
         }
     },

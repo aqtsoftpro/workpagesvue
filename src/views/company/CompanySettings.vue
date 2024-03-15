@@ -168,7 +168,13 @@
                             </div>
                             <div class="col-md-12 pt-50">
                                 <div class="form-inner">
-                                    <button @click="updateSettings" class="primry-btn-2 lg-btn w-unset" type="button">Update Change</button>
+                                    <button v-if="!isLoading" @click="updateSettings" class="primry-btn-2 lg-btn w-unset" type="button">Update Change</button>
+                                    <button v-else class="primry-btn-2 lg-btn w-unset" type="button">
+                                        <span class="me-3 fs-6 text-white">Processing...</span>
+                                        <i class="fa fa-spinner fa-spin text-white ms-3"
+                                            style="font-size:24px">
+                                        </i>
+                                    </button>
                                 </div>
                             </div>
                         </form>
@@ -206,14 +212,6 @@ import InputSwitch from 'primevue/inputswitch';
                 secondary_number: '',
                 primary_email: '',
                 secondary_email: '',
-
-                // user_id: '',
-                // company_address: '',
-
-                // application_shortlisted_email_alert: '',
-                // application_rejected_email_alert: '',
-                // resume_visibility: '',
-                // disable_account: ''
             },
             jobsApplicationsEmailAlert: false,
             mapAddress:'',
@@ -231,7 +229,8 @@ import InputSwitch from 'primevue/inputswitch';
         console.log(this.changepass);
         this.$store.dispatch('updatePassword', this.changepass)
     },
-    updateSettings(event: any) {
+    async updateSettings(event: any) {
+        this.isLoading = true;
         if (this.jobsApplicationsEmailAlert) 
             {
                 this.userMeta.jobs_applications_email_alert = true
@@ -240,7 +239,16 @@ import InputSwitch from 'primevue/inputswitch';
             {
                 this.userMeta.jobs_applications_email_alert = false 
             }
-            this.$store.dispatch('updateUserMeta', this.userMeta)
+            try {
+                await this.$store.dispatch('updateUserMeta', this.userMeta);
+                window.setTimeout(() => {
+                    this.isLoading = false;
+                }, 2000);
+            } catch (error) {
+                window.setTimeout(() => {
+                    this.isLoading = false;
+                }, 2000);
+            }
         // this.$store.dispatch('updatePassword', this.changepass)
     },
     loadGoogleMap() {
