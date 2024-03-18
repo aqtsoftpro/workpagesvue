@@ -23,7 +23,7 @@
       <!-- ========== Job Details Start============= -->
       <div class="job-details-pages pt-120 mb-120">
         <!-- {{ jobSeekerDetail }} -->
-          <div class="container" v-if="jobSeekerDetail">
+          <div class="container" v-if="jobSeekerData">
               <!-- {{ job_seeker_detail }} -->
               <div class="row g-lg-4 gy-5">
                   <div class="col-lg-8">
@@ -31,14 +31,14 @@
                           <div class="job-list-content">
                               <div class="company-area">
                                   <div class="logo">
-                                      <img width="200" v-if="jobSeekerDetail.photo"  :src="jobSeekerDetail.photo" />
+                                      <img width="200" v-if="jobSeekerData.photo"  :src="jobSeekerData.photo" />
                                       <!-- <img v-else src="/assets/images/bg/company-logo/company-01.png" alt=""> -->
                                   </div>
                                   <div class="company-details">
                                       <div class="name-location">
-                                          <h5><a href="#">{{ jobSeekerDetail.name }}</a></h5>
-                                          <!-- {{ jobSeekerDetail.id }} -->
-                                          <p>{{jobSeekerDetail.description}}</p>
+                                          <h5><a href="#">{{ jobSeekerData.name }}</a></h5>
+                                          <!-- {{ jobSeekerData.id }} -->
+                                          <p>{{jobSeekerData.description}}</p>
                                       </div>
                                   </div>
                               </div>
@@ -46,22 +46,22 @@
                                   <ul class="one">
                                       <li>
                                           <img src="/assets/images/icon/map-2.svg" alt="">
-                                          <p><span class="title">Location:</span> {{ jobSeekerDetail.location?.name }}</p>
+                                          <p><span class="title">Location:</span> {{ jobSeekerData.location?.name }}</p>
                                       </li>
                                       <li>
                                           <img src="/assets/images/icon/category-2.svg" alt="">
-                                          <p><span class="title">Designation:</span> {{ jobSeekerDetail.designation?.name }}</p>
+                                          <p><span class="title">Designation:</span> {{ jobSeekerData.designation?.name }}</p>
                                       </li>
                                   </ul>
                                   <ul>
                                       <li>
                                           <img src="/assets/images/icon/company-2.svg" alt="">
-                                          <p><span class="title">Qualification:</span> {{ jobSeekerDetail.qualification?.name }}</p>
+                                          <p><span class="title">Qualification:</span> {{ jobSeekerData.qualification?.name }}</p>
                                       </li>
                                       <li>
                                           <!-- <img src="/assets/images/icon/salary-2.svg" alt=""> -->
                                           <img src="/assets/images/icon/map-2.svg" alt="">
-                                          <p><span class="title">Current Job Location:</span> {{ jobSeekerDetail.job_location?.name }}</p>
+                                          <p><span class="title">Current Job Location:</span> {{ jobSeekerData.job_location?.name }}</p>
                                       </li>
                                   </ul>
                               </div>
@@ -72,8 +72,8 @@
                             <div class="card-title">
                                 <h4>Job Seeker Detail:</h4>
                             </div>
-                            <div v-if="permission" class="row">
-                                <div v-for="document in jobSeekerDetail.documents" class="col-md-6 my-5">
+                            <div v-if="permission" class="row" style="height: 40em; overflow-y: scroll !important;">
+                                <div v-for="document in jobSeekerData.documents" class="col-md-6 my-5">
                                     <div class="d-flex flex-column border border-1 bg-light p-3" style="border-radius: 8px !important;">
                                         <span class="fw-bold text-center">
                                             {{ document.title }}
@@ -201,10 +201,10 @@
                 <div class="row mt-5">
                     <div class="col-lg-12">
                         <div class="section-title">
-                            <h4>Reviews ({{ jobSeekerDetail.reviews?.length }}):</h4>
+                            <h4>Reviews ({{ jobSeekerData.reviews?.length }}):</h4>
                         </div>
                         <div class="be-comment-block">
-                            <div class="be-comment" v-for="item in jobSeekerDetail.reviews">
+                            <div class="be-comment" v-for="item in jobSeekerData.reviews">
                                 <div class="be-img-comment">
                                     <a href="blog-detail-2.html">
                                         <!-- <img v-if="checkReviewImageExists(item.author_image)" :src="item.author_image"
@@ -273,6 +273,7 @@
                 rating: 5,
           }, 
           permission: null,
+          jobSeekerData: null,
       }
     },
     computed: {
@@ -293,6 +294,7 @@
             this.permission = this.user.sub_accesses[0] ?? null;
             console.log(this.user.id);
         }
+        this.jobSeekerData = this.jobSeekerDetail
     },
 
     methods: {
@@ -309,11 +311,13 @@
 
         async createReview() {
             console.log(this.reviewForm);
+            const route = useRoute()
             try {
                 await this.$store.dispatch('createUserReview', this.reviewForm);
                 window.setTimeout(() => {
                     this.reviewForm.review = '';
                     this.reviewForm.rating = 5;
+                    this.$store.dispatch('getUserDetail', route.params.id)
                 }, 1000);
             } catch (error) {
                 console.log(error);
@@ -321,6 +325,12 @@
             }
         },
     },
+
+    watch: {
+        jobSeekerDetail() {
+            this.jobSeekerData = this.jobSeekerDetail;
+        }
+    }
 
 
   })

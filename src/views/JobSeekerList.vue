@@ -47,7 +47,7 @@
                                                         <router-link :to="'job-seeker/'+seeker.id">
                                                             <h5>{{ seeker.name }}</h5>
                                                         </router-link>
-                                                        <p>{{ seeker.description }}</p>
+                                                        <div>{{ seeker.description }}</div>
                                                       </div>
                                                   </div>
                                               </div>
