@@ -67,28 +67,40 @@
                               </div>
                           </div>
                       </div>
-                      <div class="card">
+                      <div class="card" style="height: 45em !important;">
                         <div class="card-body">
                             <div class="card-title">
                                 <h4>Job Seeker Detail:</h4>
                             </div>
-                            <div class="row">
-                                <div v-for="document in jobSeekerDetail.documents" class="col-md-6">
-                                    <span class="fw-bold">
-                                        {{ document.title }}
-                                    </span>
-                                    <br>
-                                    <span>
-                                        {{ document.detail }}
-                                    </span>
-                                    <br>
-                                    <a :href="document.file_path" target="_blank" download > 
-                                        <img src="/assets/images/icon/down.svg" alt="" width="30">
-                                    </a>
+                            <div v-if="permission" class="row">
+                                <div v-for="document in jobSeekerDetail.documents" class="col-md-6 my-5">
+                                    <div class="d-flex flex-column border border-1 bg-light p-3" style="border-radius: 8px !important;">
+                                        <span class="fw-bold text-center">
+                                            {{ document.title }}
+                                        </span>
+                                        <br>
+                                        <span>
+                                            {{ document.detail }}
+                                        </span>
+                                        <br>
+                                        <div class="d-flex justify-content-end">
+                                            <a v-if="document.title == 'Work Rights' && permission.allow_right == 'yes'" :href="document.file_path" target="_blank" download> 
+                                                <img src="/assets/images/icon/down.svg" alt="" width="30">
+                                            </a>
+                                            <a v-if="document.title == 'Licence' && permission.allow_others == 'yes'" :href="document.file_path" target="_blank" download> 
+                                                <img src="/assets/images/icon/down.svg" alt="" width="30">
+                                            </a>
+                                            <a v-if="document.title == 'Qualifications' && permission.allow_others == 'yes'" :href="document.file_path" target="_blank" download> 
+                                                <img src="/assets/images/icon/down.svg" alt="" width="30">
+                                            </a>
+                                            <a v-if="document.title == 'Experience Letter' && permission.allow_others == 'yes'" :href="document.file_path" target="_blank" download> 
+                                                <img src="/assets/images/icon/down.svg" alt="" width="30">
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
                       </div>
                   </div>
                   <div class="col-lg-4">
