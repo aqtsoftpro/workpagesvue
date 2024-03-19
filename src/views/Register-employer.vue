@@ -67,7 +67,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-inner">
                                                     <label for="password2">Confirm Password*</label>
-                                                    <input v-model="confirm_password" type="password" name="confirmpassword" id="password2" placeholder="Confirm Password" />
+                                                    <input v-model="password_confirmation" type="password" name="confirmpassword" id="password2" placeholder="Confirm Password" />
                                                     <i class="bi bi-eye-slash" id="togglePassword2"></i>
                                                 </div>
                                             </div>
@@ -211,6 +211,7 @@
                                                             optionValue="id"
                                                             placeholder="Select Language" 
                                                             class="w-full"
+                                                            :rules="companyType"
                                                             
                                                             />
 <!-- 
@@ -268,7 +269,7 @@
                                                     <label for="retype_password">Confirm Password*</label>
                                                     <input 
                                                         name="retype_password"
-                                                        v-model="confirm_password" 
+                                                        v-model="employerForm.password_confirmation" 
                                                         type="password"
                                                         id="retype_password"
                                               
@@ -376,10 +377,11 @@ import Dropdown from 'primevue/dropdown';
             suburb_id: null,
             email: null,
             password: null,
-            type: 'employer'
+            type: 'employer',
+            password_confirmation: null,
             
         },
-        confirm_password: null,
+        password_confirmation: null,
         isLoading: false,
    
     }  
@@ -462,8 +464,8 @@ import Dropdown from 'primevue/dropdown';
         //     console.log(password_check);
         // }
         // // const password_check = document.getElementById('password').value;
-        // const retype_password_check = this.$refs.confirm_password;
-        // // let retype_password_check = this.confirm_password;
+        // const retype_password_check = this.$refs.password_confirmation;
+        // // let retype_password_check = this.password_confirmation;
         // // let password_check = this.password;
         // // console.log(password_check.value);
         // // console.log(password_check);
@@ -484,9 +486,14 @@ import Dropdown from 'primevue/dropdown';
                 try {
                     this.$store.dispatch('signUpCompany', this.employerForm);
                     // this.isLoading = false;
+                    window.setTimeout(() => {
+                        this.isLoading = false;
+                    }, 5000);
                 } catch (error) {
                     console.log(error);
-                    // this.isLoading = false;
+                    window.setTimeout(() => {
+                        this.isLoading = false;
+                    }, 3000);
                 }
         },
         changeCompanyType(event:any){

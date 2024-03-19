@@ -76,7 +76,7 @@
                                                             optionValue="id"
                                                             placeholder="Select Suburb" 
                                                             class="w-full"
-                                                            />
+                                                            required />
                                                     </div>
                                                 </div>
                                             </div>
@@ -91,7 +91,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-inner">
                                                     <label for="password2">Confirm Password*</label>
-                                                    <input v-model="confirm_password" type="password" name="confirmpassword" id="password2" placeholder="Confirm Password" />
+                                                    <input v-model="userForm.password_confirmation" type="password" name="confirmpassword" id="password2" placeholder="Confirm Password" />
                                                     <i class="bi bi-eye-slash" id="togglePassword2"></i>
                                                 </div>
                                             </div>
@@ -221,7 +221,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-inner">
                                                     <label for="password4">Confirm Password*</label>
-                                                    <input v-model="confirm_password" type="password" name="confirmpassword" id="password4" placeholder="Confirm Password" />
+                                                    <input v-model="password_confirmation" type="password" name="confirmpassword" id="password4" placeholder="Confirm Password" />
                                                     <i class="bi bi-eye-slash" id="togglePassword4"></i>
                                                 </div>
                                             </div>
@@ -339,6 +339,7 @@ function getMimeType(file:any, fallback = null) {
                 username: null,
                 email: null,
                 password: null,
+                password_confirmation: null,
                 type: 'user',
                 device_name: 'web app',
             },
@@ -353,7 +354,7 @@ function getMimeType(file:any, fallback = null) {
                 type: 'employer',
                 device_name: 'web app',      
             },
-            confirm_password: null,
+            password_confirmation: null,
             isLoading: false,
         }  
     },
@@ -369,8 +370,13 @@ function getMimeType(file:any, fallback = null) {
             this.isLoading = true;
             try {
                 await this.$store.dispatch('signUpUser', this.userForm)
-                // this.isLoading = false;
+                window.setTimeout(() => {
+                    this.isLoading = false;
+                }, 3000);
             } catch (error) {
+                window.setTimeout(() => {
+                    this.isLoading = false;
+                }, 3000);
                 console.log(error);
             }
         },
@@ -380,7 +386,13 @@ function getMimeType(file:any, fallback = null) {
             try {
                 this.$store.dispatch('signUpUser', this.employerForm)
                 // this.isLoading = false;
+                window.setTimeout(() => {
+                    this.isLoading = false;
+                }, 3000);
             } catch (error) {
+                window.setTimeout(() => {
+                    this.isLoading = false;
+                }, 3000);
                 console.log(error);
             }
         },
