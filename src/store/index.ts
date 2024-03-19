@@ -433,9 +433,32 @@ export default createStore({
         .then(res => {
           console.log(res);
           if (res.data.status == 'error') {
-            toast.error(res.data.message, {
-              position: toast.POSITION.BOTTOM_RIGHT,
-            })
+
+            if (res.data.data.first_name) {
+              toast.error(res.data.data.first_name , {
+                position: toast.POSITION.BOTTOM_RIGHT,
+              });
+            }
+            if (res.data.data.last_name) {
+              toast.error(res.data.data.last_name , {
+                position: toast.POSITION.BOTTOM_RIGHT,
+              });
+            }
+            if (res.data.data.email) {
+              toast.error(res.data.data.email , {
+                position: toast.POSITION.BOTTOM_RIGHT,
+              });
+            }
+            if (res.data.data.password) {
+              toast.error(res.data.data.password , {
+                position: toast.POSITION.BOTTOM_RIGHT,
+              });
+            }
+            if (res.data.data.suburb_id) {
+              toast.error(res.data.data.suburb_id , {
+                position: toast.POSITION.BOTTOM_RIGHT,
+              });
+            }
           }
           else {
             toast.success(res.data.message, {
@@ -468,13 +491,13 @@ export default createStore({
           console.log(res.data.status);
           if (res.data.status == 'error') {
             if (res.data.data.first_name) {
-              toast.error(res.data.data.name , {
+              toast.error(res.data.data.first_name , {
                 position: toast.POSITION.BOTTOM_RIGHT,
               });
             }
 
             if (res.data.data.last_name) {
-              toast.error(res.data.data.name , {
+              toast.error(res.data.data.last_name , {
                 position: toast.POSITION.BOTTOM_RIGHT,
               });
             }
