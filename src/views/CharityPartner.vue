@@ -1,7 +1,7 @@
 <template>
   <div>
         <!-- ========== Inner Banner Start============= -->
-        <div class="inner-banner">
+        <div class="inner-banner" :style="bgImage">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -109,11 +109,13 @@ import PrivacyPolicy from './PrivacyPolicy.vue'; // @ is an alias to /src
         address: '',
       },
       isLoading: false,
+      bgImage: '',
     }
   },
   computed: {
     ...mapGetters([
         'cmsPages',
+        'globalVariables'
     ])
   },
   mounted() {
@@ -121,6 +123,7 @@ import PrivacyPolicy from './PrivacyPolicy.vue'; // @ is an alias to /src
         'page_slug': 'privacy-policy',
     }
     this.$store.dispatch('getCMSPages', credentials);
+    this.$store.dispatch('getGlobalVariables');
   },
   watch: {
     cmsPages()
@@ -128,6 +131,10 @@ import PrivacyPolicy from './PrivacyPolicy.vue'; // @ is an alias to /src
       this.cmsPageInfo = this.cmsPages
       console.log(this.cmsPages);
     },
+
+    globalVariables() {
+      this.bgImage = 'background-image: url('+this.globalVariables._banner_image+')';
+    }
   },
   methods: {
     charityPartner() {

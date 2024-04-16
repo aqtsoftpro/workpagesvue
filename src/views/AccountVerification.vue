@@ -1,7 +1,7 @@
 <template>
   <div>
         <!-- ========== Inner Banner Start============= -->
-        <div class="inner-banner">
+        <div class="inner-banner" :style="bgImage">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -44,16 +44,23 @@ import AccountVerify from './AccountVerification.vue'; // @ is an alias to /src
 
   },
   data(){
-
+    return {
+        bgImage: '',
+    }
   },
   computed: {
-
+    ...mapGetters([
+        'cmsPages',
+        'globalVariables'
+    ])
   },
   mounted() {
-
+    this.$store.dispatch('getGlobalVariables');
   },
   watch: {
- 
+    globalVariables() {
+      this.bgImage = 'background-image: url('+this.globalVariables._banner_image+')';
+    }
   }
 })
 export default class AccountVerification extends Vue {}

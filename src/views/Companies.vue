@@ -1,7 +1,7 @@
 <template>
   <div>
         <!-- ========== Inner Banner Start============= -->
-        <div class="inner-banner">
+        <div class="inner-banner" :style="bgImage">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -69,15 +69,10 @@
                                                 <span class="qty">({{ category.counts }})</span>
                                             </label>
                                         </li>
-                                     
                                     </ul>
-                                    
                                 </div>
                             </div>
                         </div>
-                        
-     
-             
                     </div>
                 </div>
                 <div class="col-lg-8 order-lg-2 order-1">
@@ -86,9 +81,6 @@
                             <div class="col-lg-6 d-flex align-items-center">
                                 <p class="show-item">Showing results 10 in {{ totalPages }} jobs list</p>
                             </div>
-
-
-
                         </div>
                         <div class="row g-4 mb-70">
                             <div v-if="isLoading">
@@ -127,8 +119,6 @@
                                     </div>
                                 </div>
                             </div>
-                            
-                       
                         </div>
                         <div class="row">
                             <div class="col-lg-12 d-flex justify-content-center">
@@ -184,6 +174,7 @@ import { apiUrl, adminDashboardUrl, adminDashboardDomain } from '../utils/config
         currentPage : 1,
         totalPages : 0,
         rowsPerPage : 10,
+        bgImage: '',
     }
   },
   computed: {
@@ -191,12 +182,14 @@ import { apiUrl, adminDashboardUrl, adminDashboardDomain } from '../utils/config
         'companiesListing',
         'companyTypeFilters',
         'companyLocationFilters',
+        'globalVariables',
     ])
   },
   mounted(){
     this.$store.dispatch('getCompaniesListing', '');
     this.$store.dispatch('getFilterTypeofCompanies', '');
     this.$store.dispatch('getFilterLocationCompanies', '');
+    this.$store.dispatch('getGlobalVariables');
     // console.log(this.companies);
 
     let Script = document.createElement("script");
@@ -260,6 +253,9 @@ import { apiUrl, adminDashboardUrl, adminDashboardDomain } from '../utils/config
         this.companies = this.companiesListing.Listing;
         console.log(this.companies);
         this.totalPages =  this.companiesListing.count
+    },
+    globalVariables() {
+      this.bgImage = 'background-image: url('+this.globalVariables._banner_image+')';
     }
   }
   

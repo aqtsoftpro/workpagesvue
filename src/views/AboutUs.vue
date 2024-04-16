@@ -1,7 +1,7 @@
 <template>
   <div>
         <!-- ========== Inner Banner Start============= -->
-        <div class="inner-banner">
+        <div class="inner-banner" :style="bgImage">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -46,11 +46,13 @@ import PrivacyPolicy from './PrivacyPolicy.vue'; // @ is an alias to /src
     return {
       cmsPageInfo: null,
       isLoading: false,
+      bgImage: '',
     }
   },
   computed: {
     ...mapGetters([
         'cmsPages',
+        'globalVariables'
     ])
   },
   mounted() {
@@ -58,7 +60,7 @@ import PrivacyPolicy from './PrivacyPolicy.vue'; // @ is an alias to /src
         'page_slug': 'about-us',
     }
     this.$store.dispatch('getCMSPages', credentials);
-    console.log('mounting');
+    this.$store.dispatch('getGlobalVariables');
     // console.log(this.meta.roles);
     
   },
@@ -71,6 +73,10 @@ import PrivacyPolicy from './PrivacyPolicy.vue'; // @ is an alias to /src
           this.isLoading = false;
       }, 5000);
     },
+
+    globalVariables() {
+      this.bgImage = 'background-image: url('+this.globalVariables._banner_image+')';
+    }
   }
 })
 export default class PrivacyPolicies extends Vue {}

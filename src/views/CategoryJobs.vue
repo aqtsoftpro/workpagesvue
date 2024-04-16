@@ -1,7 +1,7 @@
 <template>
     <div>
           <!-- ========== Inner Banner Start============= -->
-          <div class="inner-banner">
+          <div class="inner-banner" :style="bgImage">
           <div class="container">
               <div class="row">
                   <div class="col-lg-12">
@@ -157,7 +157,8 @@ import { useRoute } from 'vue-router'
   },
   data(){
     return {
-        jobs: []
+        jobs: [],
+        bgImage: '',
     }
   },
   computed: {
@@ -166,14 +167,15 @@ import { useRoute } from 'vue-router'
     // ]),
     ...mapGetters([
         'job',
-        'loggedIn'
+        'loggedIn',
+        'globalVariables'
     ]),
   },
   mounted(){
     const route = useRoute()
     console.log(route.params.cat_slug)
     this.$store.dispatch('getCategoryJobs', route.params.cat_slug)
-
+    this.$store.dispatch('getGlobalVariables');
   },
   methods: {
     getJobDetail(job_key:any, job_slug:any) {    
@@ -206,6 +208,9 @@ import { useRoute } from 'vue-router'
   watch: {
     job(){
         this.jobs = this.job
+    },
+    globalVariables() {
+      this.bgImage = 'background-image: url('+this.globalVariables._banner_image+')';
     }
   }
 })

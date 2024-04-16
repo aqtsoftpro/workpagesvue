@@ -1,7 +1,7 @@
 <template>
     <div>
         <!-- ========== Inner Banner Start============= -->
-        <div class="inner-banner">
+        <div class="inner-banner" :style="bgImage">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
@@ -141,6 +141,7 @@ import { mapGetters } from 'vuex';
             },
             showForm: false,
             isLoading: false,
+            bgImage: '',
         }
     },
     methods: {
@@ -174,7 +175,8 @@ import { mapGetters } from 'vuex';
             'searchResult',
             // 'searchSeeker',
             'companyUsers',
-            'loggedIn'
+            'loggedIn',
+            'globalVariables'
         ]),
 
     },
@@ -182,12 +184,17 @@ import { mapGetters } from 'vuex';
         let query = this.$route.query
         this.$store.dispatch('searchJobs', query);
         this.$store.dispatch('getCompanyUsers', '');
+        this.$store.dispatch('getGlobalVariables');
     },
     watch: {
         searchResult() {
             console.log(this.searchResult);
             this.jobs = this.searchResult
         },
+
+        globalVariables() {
+            this.bgImage = 'background-image: url('+this.globalVariables._banner_image+')';
+        }
 
     }
 })
