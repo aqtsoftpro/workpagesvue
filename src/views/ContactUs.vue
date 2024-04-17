@@ -1,7 +1,7 @@
 <template>
   <div>
         <!-- ========== Inner Banner Start============= -->
-        <div class="inner-banner">
+        <div class="inner-banner" :style="bgImage">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -187,7 +187,8 @@ import 'vue3-toastify/dist/index.css';
         return {
             globalSettings: [],
             formData: {},
-            loading: false
+            loading: false,
+            bgImage: '',
         }
     },
     computed: {
@@ -240,12 +241,14 @@ import 'vue3-toastify/dist/index.css';
         'page_slug': 'contact',
     }
     this.$store.dispatch('getCMSPages', credentials);
+    this.$store.dispatch('getGlobalVariables');
   },
   watch: {
         globalVariables() {
+            this.bgImage = 'background-image: url('+this.globalVariables._banner_image+')';
             this.globalSettings = this.globalVariables;
             console.log(this.globalSettings);
-        }
+        },
     }
 
 })

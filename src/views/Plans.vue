@@ -1,7 +1,7 @@
 <template>
     <div>
         <!-- ========== Inner Banner Start============= -->
-        <div class="inner-banner">
+        <div class="inner-banner" :style="bgImage">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
@@ -47,96 +47,8 @@
                                         </div>
                                         <p>{{ point.title }}</p>
                                     </li>
-                                    <!-- <li>
-                                        <div class="icon">
-                                            <span v-if="plan.post_for > 0" style="color: rgb(255, 215, 0); margin-right: 1em;">&#10004;</span>
-                                            <span v-else style="color: rgb(255, 215, 0); margin-right: 1em;">&#10006;</span>
-                                        </div>
-                                        <p>Your ad will be posted for {{ plan.post_for?? "30" }} days</p>
-                                    </li>
-                                    <li>
-                                        <div class="icon">
-                                            <span v-if="plan.allow_ads == 'yes'" style="color: rgb(255, 215, 0); margin-right: 1em;">&#10004;</span>
-                                            <span v-else style="color: rgb(255, 215, 0); margin-right: 1em;">&#10006;</span>
-                                        </div>
-                                        <p>Unlimited ads</p>
-                                    </li>
-                                    <li>
-                                        <div class="icon">
-                                            <span v-if="plan.allow_ads == 'yes'" style="color: rgb(255, 215, 0); margin-right: 1em;">&#10004;</span>
-                                            <span v-else style="color: rgb(255, 215, 0); margin-right: 1em;">&#10006;</span>
-                                        </div>
-                                        <p>Unlimited edits</p>
-                                    </li> -->
                                 </ul>
                             </div>
-                            <!-- <div class="primry-btn-2 custom-btn lg-btn mx-4 py-2">
-                                <h5 class="title ms-4">
-                                    ---Access Permission Area---
-                                </h5>
-                            </div>
-                            <div class="mt-4">
-                                <ul class="priceing-list h-fix">
-                                    <li>
-                                        <div class="icon">
-                                            <span v-if="plan.post_for > 0" style="color: rgb(255, 215, 0); margin-right: 1em;">&#10004;</span>
-                                            <span v-else style="color: rgb(255, 215, 0); margin-right: 1em;">&#10006;</span>
-                                        </div>
-                                        <p>Your ad will be posted for {{ plan.post_for?? "30" }} days</p>
-                                    </li>
-                                    <li>
-                                        <div class="icon">
-                                            <span v-if="plan.allow_ads == 'yes'" style="color: rgb(255, 215, 0); margin-right: 1em;">&#10004;</span>
-                                            <span v-else style="color: rgb(255, 215, 0); margin-right: 1em;">&#10006;</span>
-                                        </div>
-                                        <p>Unlimited ads</p>
-                                    </li>
-                                    <li>
-                                        <div class="icon">
-                                            <span v-if="plan.allow_edits == 'yes'" style="color: rgb(255, 215, 0); margin-right: 1em;">&#10004;</span>
-                                            <span v-else style="color: rgb(255, 215, 0); margin-right: 1em;">&#10006;</span>
-                                        </div>
-                                        <p>Can change body of your ads after publishing</p>
-                                    </li>
-                                    <li>
-                                        <div class="icon">
-                                            <span v-if="plan.allow_edits == 'yes'" style="color: rgb(255, 215, 0); margin-right: 1em;">&#10004;</span>
-                                            <span v-else style="color: rgb(255, 215, 0); margin-right: 1em;">&#10006;</span>
-                                        </div>
-                                        <p>Unlimited edits</p>
-                                    </li>
-                                    <li>
-                                        <div class="icon">
-                                            <span v-if="plan.cv_access == 'yes'" style="color: rgb(255, 215, 0); margin-right: 1em;">&#10004;</span>
-                                            <span v-else style="color: rgb(255, 215, 0); margin-right: 1em;">&#10006;</span>
-                                        </div>
-                                        <p>CV Access</p>
-                                    </li>
-                                    <li>
-                                        <div class="icon">
-                                            <span v-if="plan.allow_edits == 'yes'" style="color: rgb(255, 215, 0); margin-right: 1em;">&#10004;</span>
-                                            <span v-else style="color: rgb(255, 215, 0); margin-right: 1em;">&#10006;</span>
-                                        </div>
-                                        <p>Pause the ads</p>
-                                    </li>
-                                    <li>
-                                        <div class="icon">
-                                            <span v-if="plan.allow_edits == 'yes'" style="color: rgb(255, 215, 0); margin-right: 1em;">&#10004;</span>
-                                            <span v-else style="color: rgb(255, 215, 0); margin-right: 1em;">&#10006;</span>
-                                        </div>
-                                        <p>Delete the ads</p>
-                                    </li>
-                                    <li>
-                                        <div class="icon">
-                                            <span v-if="plan.allow_edits == 'yes'" style="color: rgb(255, 215, 0); margin-right: 1em;">&#10004;</span>
-                                            <span v-else style="color: rgb(255, 215, 0); margin-right: 1em;">&#10006;</span>
-                                        </div>
-                                        <p>Close the ads</p>
-                                    </li>
-                                </ul>
-                            </div> -->
-
-
                             <div class="d-flex justify-content-center mt-5">
                                 <!-- :disabled="plan.id == this.activePlanId" -->
                                 <button v-if="this.activePlanId == null && !plan.isLoading && plan.price > 0"@click="checkout(plan)" class="primry-btn-2 custom-btn lg-btn" type="button" >{{ this.loggedIn == true ? 'Buy Now':'Login To Buy'}} </button>
@@ -150,137 +62,44 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="col-lg-4 col-md-6">
-                        <div class="pricing-plan-card2">
-                            <h4>Select An Add-On</h4>
-                            <div class="scrolling-wrapper">
-                                <div class="pricing-mathord mb-40">
-                                    <div class="title-and-btn">
-                                        <div class="title">
-                                            <h5>Featured Jobs</h5>
-                                            <h6>(Start $8 + VAT)</h6>
-                                        </div>
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault1">
-                                        </div>
-                                    </div>
-                                    <ul class="priceing-list">
-                                        <li>
-                                            <div class="icon"><img src="assets/images/icon/check-icon.svg" alt="">
-                                            </div>
-                                            <p>You can create &nbsp;<span>4 job post.</span></p>
-                                        </li>
-                                        <li>
-                                            <div class="icon"><img src="assets/images/icon/check-icon.svg" alt="">
-                                            </div>
-                                            <p>Resume and cover letter review and editing services.</p>
-                                        </li>
-                                        <li>
+                    <div v-for="(plan, index) in allPlans" class="col-lg-4 col-md-6">
+                        <div class="pricing-plan-card1" :class="{'bg-card1': index % 2 === 0, 'bg-card2': index % 2 !== 0 }" style="height: 50em;">
+                            <div class="pricing-plan-header">
+                                <div class="starting-form">
+                                    <span v-if="plan.main_icon == '' || plan.main_icon == null" ><img src="assets/images/icon/price-star.svg" alt=""> {{ plan.name }}</span>
+                                    <span v-else  ><i style="color: #e59a22;">{{ plan.main_icon }}</i style="color: yellowgreen;"> {{ plan.name }}</span>
+                                </div>
+                                <div class="preview-btn">
+                                    <a href="#">Preview Sample</a>
+                                </div>
+                            </div>
+                            <div class="price-area">
+                                <h3>${{ plan.price }} / <span>Per Job +VAT</span></h3>
+                            </div>
+                            <div class="">
+                                <ul class="priceing-list h-fix mb-4">
+                                    <li v-for="point in plan.keypoints">
                                             <div class="icon">
-                                                <i class="fa-regular fa-circle-check"></i>
-                                            </div>
-                                            <p>Job displayed for &nbsp;<span>1 weeks.</span></p>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="pricing-mathord mb-40">
-                                    <div class="title-and-btn">
-                                        <div class="title">
-                                            <h5>Starting + Jobs</h5>
-                                            <h6>(Start $10 + VAT)</h6>
+                                            <span v-if="point.icon !== null || point.icon !== ''" style="color: rgb(255, 215, 0); margin-right: 1em;">{{ point.icon }}</span>
+                                            <span v-else style="color: rgb(255, 215, 0); margin-right: 1em;">&#10006;</span>
                                         </div>
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault2">
-                                        </div>
-                                    </div>
-                                    <ul class="priceing-list">
-                                        <li>
-                                            <div class="icon"><img src="assets/images/icon/check-icon.svg" alt="">
-                                            </div>
-                                            <p>You can create &nbsp;<span>4 job post.</span></p>
-                                        </li>
-                                        <li>
-                                            <div class="icon"><img src="assets/images/icon/check-icon.svg" alt="">
-                                            </div>
-                                            <p>Resume and cover letter review and editing services.</p>
-                                        </li>
-                                        <li>
-                                            <div class="icon"><img src="assets/images/icon/check-icon.svg" alt="">
-                                            </div>
-                                            <p>Job displayed for &nbsp;<span>1 weeks.</span></p>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="pricing-mathord">
-                                    <div class="title-and-btn">
-                                        <div class="title">
-                                            <h5>Featured Jobs</h5>
-                                            <h6>(Start $8 + VAT)</h6>
-                                        </div>
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault4">
-                                        </div>
-                                    </div>
-                                    <ul class="priceing-list">
-                                        <li>
-                                            <div class="icon"><img src="assets/images/icon/check-icon.svg" alt="">
-                                            </div>
-                                            <p>You can create &nbsp;<span>4 job post.</span></p>
-                                        </li>
-                                        <li>
-                                            <div class="icon"><img src="assets/images/icon/check-icon.svg" alt="">
-                                            </div>
-                                            <p>Resume and cover letter review and editing services.</p>
-                                        </li>
-                                        <li>
-                                            <div class="icon"><img src="assets/images/icon/check-icon.svg" alt="">
-                                            </div>
-                                            <p>Job displayed for &nbsp;<span>1 weeks.</span></p>
-                                        </li>
-                                    </ul>
-                                </div>
+                                        <p>{{ point.title }}</p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="d-flex justify-content-center mt-5">
+                                <!-- :disabled="plan.id == this.activePlanId" -->
+                                <button v-if="this.activePlanId == null && !plan.isLoading && plan.price > 0"@click="checkout(plan)" class="primry-btn-2 custom-btn lg-btn" type="button" >{{ this.loggedIn == true ? 'Buy Now':'Login To Buy'}} </button>
+                                <button v-if="this.activePlanId !== null && !plan.isLoading && plan.price > 0 && this.activePlanId == plan.id" class="primry-btn-2 custom-btn lg-btn" type="button" disabled>Subscribed </button>
+                                <button v-if="!plan.isLoading && plan.price <= 0" @click="zeroSubscribe(plan)" class="primry-btn-2 custom-btn lg-btn" type="button" >{{ this.loggedIn == true ? 'Buy Now':'Login To Buy'}} </button>
+                                <button v-if="plan.isLoading" class="primry-btn-2 custom-btn lg-btn" type="button">
+                                    <span class="me-3 fs-6 text-white">Processing...</span>
+                                    <i class="fa fa-spinner fa-spin text-white ms-3" style="font-size:24px">
+                                    </i>
+                                </button>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="pricing-plan-card3">
-                            <h4>Order Summary</h4>
-                            <div class="job-qty-area">
-                                <h6>Job Quantity</h6>
-                                <div class="quantity d-flex align-items-center">
-                                    <div class="quantity-nav nice-number d-flex align-items-center">
-                                        <input type="number" value="1" min="1">
-                                    </div>
-                                </div>
-                            </div>
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td>Post jobs (02x$20)</td>
-                                        <td>$40</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Featured Job </td>
-                                        <td>$8</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Sub Total</td>
-                                        <td>$28</td>
-                                    </tr>
-                                    <tr>
-                                        <td>VAT (5%)</td>
-                                        <td>$2</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Total</td>
-                                        <td>= $30</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <h3 class="total-price">$30</h3>
-                            <button class="primry-btn-2 lg-btn" type="submit">Buy Now</button>
-                        </div>
-                    </div> -->
                 </div>
                 <div class="row">
                     <div class="col-lg-12">
@@ -316,6 +135,113 @@
             </div>
         </div>
         <!-- ========== Pricing Plan End============= -->
+
+        <div class="home2-feedback-area mb-120 pt-3" style="background-color: #010536;">
+            <div class="container" >
+                <div class="row mb-60">
+                    <div class="col-12 d-flex justify-content-center">
+                        <div class="section-title1 text-center" style="color: aqua !important;">
+                            <h2 style="color: aqua !important;">Feedback Of <span>Users</span></h2>
+                            <p style="color: aqua !important;">  To choose your trending job dream &amp; to make future bright.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="swiper home2-feedback-slider">
+                        <div class="swiper-wrapper">
+                            <div v-for="(plan, index) in allPlans" class="pricing-plan-area pt-120 mb-120 swiper-slide">
+                                <div class="container">
+                                    <div class="row g-4 mb-70 justify-content-center align-items-center">
+                                        <div class="col-lg-4 col-md-4">
+                                            <div class="pricing-plan-card1" :class="{'bg-card1': index % 2 === 0, 'bg-card2': index % 2 !== 0 }" style="height: 50em;">
+                                                <div class="pricing-plan-header">
+                                                    <div class="starting-form">
+                                                        <span v-if="plan.main_icon == '' || plan.main_icon == null" ><img src="assets/images/icon/price-star.svg" alt=""> {{ plan.name }}</span>
+                                                        <span v-else  ><i style="color: #e59a22;">{{ plan.main_icon }}</i style="color: yellowgreen;"> {{ plan.name }}</span>
+                                                    </div>
+                                                    <div class="preview-btn">
+                                                        <a href="#">Preview Sample</a>
+                                                    </div>
+                                                </div>
+                                                <div class="price-area">
+                                                    <h3>${{ plan.price }} / <span>Per Job +VAT</span></h3>
+                                                </div>
+                                                <div class="">
+                                                    <ul class="priceing-list h-fix mb-4">
+                                                        <li v-for="point in plan.keypoints">
+                                                                <div class="icon">
+                                                                <span v-if="point.icon !== null || point.icon !== ''" style="color: rgb(255, 215, 0); margin-right: 1em;">{{ point.icon }}</span>
+                                                                <span v-else style="color: rgb(255, 215, 0); margin-right: 1em;">&#10006;</span>
+                                                            </div>
+                                                            <p>{{ point.title }}</p>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="d-flex justify-content-center mt-5">
+                                                    <!-- :disabled="plan.id == this.activePlanId" -->
+                                                    <button v-if="this.activePlanId == null && !plan.isLoading && plan.price > 0"@click="checkout(plan)" class="primry-btn-2 custom-btn lg-btn" type="button" >{{ this.loggedIn == true ? 'Buy Now':'Login To Buy'}} </button>
+                                                    <button v-if="this.activePlanId !== null && !plan.isLoading && plan.price > 0 && this.activePlanId == plan.id" class="primry-btn-2 custom-btn lg-btn" type="button" disabled>Subscribed </button>
+                                                    <button v-if="!plan.isLoading && plan.price <= 0" @click="zeroSubscribe(plan)" class="primry-btn-2 custom-btn lg-btn" type="button" >{{ this.loggedIn == true ? 'Buy Now':'Login To Buy'}} </button>
+                                                    <button v-if="plan.isLoading" class="primry-btn-2 custom-btn lg-btn" type="button">
+                                                        <span class="me-3 fs-6 text-white">Processing...</span>
+                                                        <i class="fa fa-spinner fa-spin text-white ms-3" style="font-size:24px">
+                                                        </i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div v-for="(plan, index) in allPlans" class="pricing-plan-area pt-120 mb-120 swiper-slide">
+                                <div class="container">
+                                    <div class="row g-4 mb-70 justify-content-center align-items-center">
+                                        <div class="col-lg-4 col-md-4">
+                                            <div class="pricing-plan-card1" :class="{'bg-card1': index % 2 === 0, 'bg-card2': index % 2 !== 0 }" style="height: 50em;">
+                                                <div class="pricing-plan-header">
+                                                    <div class="starting-form">
+                                                        <span v-if="plan.main_icon == '' || plan.main_icon == null" ><img src="assets/images/icon/price-star.svg" alt=""> {{ plan.name }}</span>
+                                                        <span v-else  ><i style="color: #e59a22;">{{ plan.main_icon }}</i style="color: yellowgreen;"> {{ plan.name }}</span>
+                                                    </div>
+                                                    <div class="preview-btn">
+                                                        <a href="#">Preview Sample</a>
+                                                    </div>
+                                                </div>
+                                                <div class="price-area">
+                                                    <h3>${{ plan.price }} / <span>Per Job +VAT</span></h3>
+                                                </div>
+                                                <div class="">
+                                                    <ul class="priceing-list h-fix mb-4">
+                                                        <li v-for="point in plan.keypoints">
+                                                                <div class="icon">
+                                                                <span v-if="point.icon !== null || point.icon !== ''" style="color: rgb(255, 215, 0); margin-right: 1em;">{{ point.icon }}</span>
+                                                                <span v-else style="color: rgb(255, 215, 0); margin-right: 1em;">&#10006;</span>
+                                                            </div>
+                                                            <p>{{ point.title }}</p>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="d-flex justify-content-center mt-5">
+                                                    <!-- :disabled="plan.id == this.activePlanId" -->
+                                                    <button v-if="this.activePlanId == null && !plan.isLoading && plan.price > 0"@click="checkout(plan)" class="primry-btn-2 custom-btn lg-btn" type="button" >{{ this.loggedIn == true ? 'Buy Now':'Login To Buy'}} </button>
+                                                    <button v-if="this.activePlanId !== null && !plan.isLoading && plan.price > 0 && this.activePlanId == plan.id" class="primry-btn-2 custom-btn lg-btn" type="button" disabled>Subscribed </button>
+                                                    <button v-if="!plan.isLoading && plan.price <= 0" @click="zeroSubscribe(plan)" class="primry-btn-2 custom-btn lg-btn" type="button" >{{ this.loggedIn == true ? 'Buy Now':'Login To Buy'}} </button>
+                                                    <button v-if="plan.isLoading" class="primry-btn-2 custom-btn lg-btn" type="button">
+                                                        <span class="me-3 fs-6 text-white">Processing...</span>
+                                                        <i class="fa fa-spinner fa-spin text-white ms-3" style="font-size:24px">
+                                                        </i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>            
+            </div>
+        </div>
     </div>
 </template>
 <style>
@@ -388,6 +314,7 @@ interface Plan {
             // allPlans: [],
             isLoading: false,
             activePlanId: null,
+            bgImage: '',
         }
     },
     async created() {
@@ -402,6 +329,7 @@ interface Plan {
             'allPlans',
             'loggedIn',
             'activeSub',
+            'globalVariables'
         ]),
     },
     mounted() {
@@ -409,6 +337,7 @@ interface Plan {
         if (this.loggedIn == true ) {
             this.$store.dispatch('getAciveSub');
         }
+        this.$store.dispatch('getGlobalVariables');
     },
 
     methods: {
@@ -439,6 +368,9 @@ interface Plan {
         activeSub() {
             this.activePlanId = this.activeSub?.package_id ?? null;
         },
+        globalVariables() {
+            this.bgImage = 'background-image: url('+this.globalVariables._banner_image+')';
+        }
     }
 })
 export default class Plans extends Vue { }

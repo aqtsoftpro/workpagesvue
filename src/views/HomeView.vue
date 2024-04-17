@@ -9,6 +9,9 @@
 
             <div class="container">
                 <div class="row">
+<!--                     
+                    <h2>Featured data</h2>
+                    {{ featured_companies }} -->
                     <div class="col-lg-12">
                         <div class="hero-content">
 
@@ -627,6 +630,67 @@
         </div>
     </div>
     <!-- ========== Home Two Working-Process End============= -->
+
+    <!-- ========== Home Two Job list strat============= -->
+    <div class="home2-job-list-area mb-120">
+        <div class="container">
+            <div class="row mb-60">
+                <div class="col-12 d-flex flex-wrap align-items-end justify-content-md-between justify-content-start gap-3">
+                    <div class="section-title1">
+                        <h2>WORKPAGES <span>Featured</span> Companies</h2>
+                        <p>To choose your trending company dream &amp; to make future bright.</p>
+                    </div>
+                    <!-- <div class="explore-btn">
+                        <router-link to="/job-listing">Explore More <span><img src="assets/images/icon/explore-elliose.svg" alt=""></span></router-link>
+                    </div> -->
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="home2-feedback-area mb-120">
+                    <div class="container">
+                        <!-- <div class="row mb-60">
+                            <div class="col-12 d-flex justify-content-center">
+                                <div class="section-title1 text-center">
+                                    <h2>Feedback Of <span>Users</span></h2>
+                                    <p>To choose your trending job dream &amp; to make future bright.</p>
+                                </div>
+                            </div>
+                        </div> -->
+                        <div class="row">
+                            <div class="swiper home2-feedback-slider">
+                                <div class="swiper-wrapper" style="background-color: aliceblue;">
+                                    <div v-if="featured_companies" v-for="company in featured_companies" :key="company.id" class="swiper-slide" style="background-color: aliceblue;">
+                                        <div class="feedback-wrap" style="background-color: aliceblue;">
+                                            <router-link :to="getCompanyDetail(company.id)">
+                                                <div class="author-img">
+                                                    <img :src="(company.cover_photo) ? company.cover_photo : '/assets/images/bg/company-logo/company-01.png'" alt="">
+                                                    <!-- <div class="quoat-icon">
+                                                        <img src="assets/images/icon/feedback-quoat1.svg" alt="">
+                                                    </div> -->
+                                                </div>
+                                                <div class="feedback-content">
+                                                    <p>{{ company.name }}</p>
+                                                    <span class="fw-bold">Total Reviews: ({{  company.reviews_count }})</span>
+                                                    <div>{{ company.about }}</div>
+                                                </div>
+                                                <div class="athor-review-content">
+                                                    <div class="author-content">
+                                                        <!-- <h5>Total Reviews: ({{  company.reviews_count }})</h5> -->
+                                                        <!-- <span>{{ company.about }}</span> -->
+                                                    </div>
+                                                </div>
+                                            </router-link>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>            
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ========== Home Two Job list End============= -->
     <!-- ========== Home Two Featured Jobs Start============= -->
     <div class="home2-featured-area mb-120">
         <div class="container">
@@ -814,7 +878,6 @@
             </div>
             
             <div class="row">
-                
                 <div class="swiper home2-feedback-slider">
                     <div class="swiper-wrapper">
                         <div v-for="testimonial in home_testimonials" :key="testimonial.id" class="swiper-slide">
@@ -847,6 +910,8 @@
             
         </div>
     </div>
+
+
     <!-- <swiper-container slides-per-view="1" speed="500" loop="true" css-mode="true">
   <swiper-slide>Slide 1</swiper-slide>
   <swiper-slide>Slide 2</swiper-slide>
@@ -1015,7 +1080,6 @@ import { mapGetters } from 'vuex';
   },
   computed: {
     ...mapGetters([
-
         'globalVariables',
         'categories',
         'states',
@@ -1027,10 +1091,9 @@ import { mapGetters } from 'vuex';
         'testimonials',        
         'jobs',
         'cmsPages',
-        'loggedIn'
-                
-        
-        
+        'loggedIn',
+        'featuredCompanies',
+        'allPlans'        
     ]),
     numbers() {
       // Generate an array of numbers from 1 to the specified limit
@@ -1063,9 +1126,10 @@ import { mapGetters } from 'vuex';
         featured_jobs:[],
         top_companies: [],
         home_testimonials: [],
-
         jobs_list: [],
         rating_limit: 5,
+        featured_companies: [],
+        
     }
   },
   methods: {
@@ -1134,6 +1198,7 @@ import { mapGetters } from 'vuex';
     this.$store.dispatch('getFeaturedJobs', '');
     this.$store.dispatch('getTopCompanies', '');
     this.$store.dispatch('getTestimonials', '');
+    this.$store.dispatch('getFeaturedCompanies', '');
     var credentials = {
         'page_slug': 'home',
     }
@@ -1194,6 +1259,10 @@ import { mapGetters } from 'vuex';
     testimonials(){
         this.home_testimonials = this.testimonials
     },
+
+    featuredCompanies(){
+        this.featured_companies = this.featuredCompanies;
+    }
 
   },
  

@@ -27,6 +27,7 @@ export default createStore({
     trending_jobs_categories: [],
     company: null,
     companies: [],
+    featuredCompanies: [],
     topCompanies: [],
     companiesListing: [],
     companyTypes: [],
@@ -96,6 +97,7 @@ export default createStore({
     trending_jobs_categories: state => state.trending_jobs_categories,
     company: state => state.company,
     companies: state => state.companies,
+    featuredCompanies: state => state.featuredCompanies,
     topCompanies: state => state.topCompanies,
     companiesListing: state => state.companiesListing,
     companyTypes: state => state.companyTypes,
@@ -200,6 +202,9 @@ export default createStore({
     },
     SET_COMPANIES(state, payload) {
       state.companies = payload
+    },
+    SET_FEATURED_COMPANIES(state, payload) {
+      state.featuredCompanies = payload
     },
     SET_TOP_COMPANIES(state, payload) {
       state.topCompanies = payload
@@ -784,7 +789,6 @@ export default createStore({
             this.state.loggedIn = true
             if (result.data[0].email_verified_at == null) {
               sessionStorage.setItem('email_status', 'A verification email has been sent');
-              // window.location.href = adminDashboardUrl + result.data[0].email;
               router.push('/send-email');
             }
             else {
@@ -803,7 +807,6 @@ export default createStore({
             this.dispatch('getCompany', result.data[0].id);
 
             if (result.data[0].email_verified_at == null) {
-              // window.location.href = adminDashboardUrl + result.data[0].email;
               sessionStorage.setItem('email_status', 'A verification email has been sent');
               router.push('/send-email');
             }
@@ -812,20 +815,20 @@ export default createStore({
               router.push('/company/dashboard');
             }
           }
-          else if (result.data[0].roles[0].name == 'Super Admin') {
+          // else if (result.data[0].roles[0].name == 'Super Admin') {
 
-            if (result.data[0].email_verified_at == null) {
-              sessionStorage.setItem('email_status', 'A verification email has been sent');
-              window.location.href = adminDashboardUrl + result.data[0].email;
-              // router.push('/send-email');
-            }
-            else {
-              sessionStorage.removeItem('email_status');
-              window.location.href = adminDashboardUrl + result.data[0].email;
-            }
-          }
+          //   if (result.data[0].email_verified_at == null) {
+          //     sessionStorage.setItem('email_status', 'A verification email has been sent');
+          //     // window.location.href = adminDashboardUrl + result.data[0].email;
+          //     // router.push('/send-email');
+          //   }
+          //   else {
+          //     sessionStorage.removeItem('email_status');
+          //     window.location.href = adminDashboardUrl + result.data[0].email;
+          //   }
+          // }
           else {
-            toast.error('You cannot assign admin role!', {
+            toast.error('You cannot assign '+ result.data[0].roles[0].name +' role!', {
               position: toast.POSITION.BOTTOM_RIGHT,
             });
           }
@@ -1384,6 +1387,19 @@ export default createStore({
         .then(res => {
           let result = res
           context.commit('SET_TOP_COMPANIES', result.data)
+        })
+        .catch(err => {
+          toast.error(err.message, {
+            position: toast.POSITION.BOTTOM_RIGHT
+          })
+        })
+    },
+
+    getFeaturedCompanies(context, payload) {
+      axios.get(apiUrl + 'featured-companies')
+        .then(res => {
+          let result = res
+          context.commit('SET_FEATURED_COMPANIES', result.data)
         })
         .catch(err => {
           toast.error(err.message, {

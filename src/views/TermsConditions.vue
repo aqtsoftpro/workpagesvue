@@ -1,7 +1,7 @@
 <template>
   <div>
         <!-- ========== Inner Banner Start============= -->
-        <div class="inner-banner">
+        <div class="inner-banner" :style="bgImage">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -43,26 +43,30 @@ import TermCondition from './TermsConditions.vue'; // @ is an alias to /src
   data(){
     return {
       cmsPageInfo: null,
+      bgImage: '',
     }
   },
   computed: {
     ...mapGetters([
         'cmsPages',
-
+        'globalVariables',
     ])
   },
   mounted() {
     this.$store.dispatch('getCMSPages', {'page_slug': 'terms-conditions'});
     console.log('mounting');
+    this.$store.dispatch('getGlobalVariables');
   },
   watch: 
   {
     cmsPages(){
+      this.cmsPageInfo = this.cmsPages
+      console.log(this.cmsPages);
+    },
 
-          this.cmsPageInfo = this.cmsPages
-          console.log(this.cmsPages);
-          
-      },
+    globalVariables() {
+      this.bgImage = 'background-image: url('+this.globalVariables._banner_image+')';
+    }
       
   }
 })

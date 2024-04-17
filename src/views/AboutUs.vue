@@ -73,9 +73,8 @@ import PrivacyPolicy from './PrivacyPolicy.vue'; // @ is an alias to /src
           this.isLoading = false;
       }, 5000);
     },
-
     globalVariables() {
-      this.bgImage = 'background-image: url('+this.globalVariables._banner_image+')';
+      this.bgImage = 'background-image: url('+this.globalVariables._banner_image+'); color: '+this.globalVariables._banner_text_color+'!important;';
     }
   }
 })

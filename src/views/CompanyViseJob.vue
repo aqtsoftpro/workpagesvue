@@ -1,7 +1,7 @@
 <template>
   <div>
         <!-- ========== Inner Banner Start============= -->
-        <div class="inner-banner">
+        <div class="inner-banner" :style="bgImage">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -152,7 +152,8 @@ import Jobs from '../views/JobListing.vue'; // @ is an alias to /src
   },
   data(){
     return {
-        jobs: []
+        jobs: [],
+        bgImage: '',
     }
   },
   methods: {
@@ -186,7 +187,8 @@ import Jobs from '../views/JobListing.vue'; // @ is an alias to /src
   computed: {
     ...mapGetters([
         'searchResult',
-        'loggedIn'
+        'loggedIn',
+        'globalVariables'
     ]),
     // parsedExpirationDate(): Date {
     //   // Split the expiration date string into month, day, and year
@@ -206,13 +208,17 @@ import Jobs from '../views/JobListing.vue'; // @ is an alias to /src
   mounted() {
     let params = this.$route.params
     console.log('this parameters are params', params);
-    
     this.$store.dispatch('getJobsByCompany', params);
+    this.$store.dispatch('getGlobalVariables');
   },
   watch: {
     searchResult(){
         console.log(this.searchResult);
         this.jobs = this.searchResult
+    },
+
+    globalVariables() {
+      this.bgImage = 'background-image: url('+this.globalVariables._banner_image+')';
     },
 
     // activeJobs(): { expiration: string }[] {
