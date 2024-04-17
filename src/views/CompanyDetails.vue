@@ -301,8 +301,7 @@ import { useRoute } from 'vue-router';
                 user_id: '',
                 review: null,
             },
-
-
+            textColor: '',
         }
     },
     methods: {

@@ -6,12 +6,12 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="banner-content text-center">
-                        <h1>Company Listing</h1>
+                        <h1 :style="textColor">Company Listing</h1>
                         <span></span>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><router-link to="">Home</router-link></li>
-                                <li class="breadcrumb-item active" aria-current="page">Company Listing</li>
+                                <li class="breadcrumb-item" :style="textColor"><router-link to="" :style="textColor">Home</router-link></li>
+                                <li class="breadcrumb-item active" :style="textColor" aria-current="page">Company Listing</li>
                             </ol>
                         </nav>
                     </div>
@@ -175,6 +175,7 @@ import { apiUrl, adminDashboardUrl, adminDashboardDomain } from '../utils/config
         totalPages : 0,
         rowsPerPage : 10,
         bgImage: '',
+        textColor: '',
     }
   },
   computed: {
@@ -256,6 +257,7 @@ import { apiUrl, adminDashboardUrl, adminDashboardDomain } from '../utils/config
     },
     globalVariables() {
       this.bgImage = 'background-image: url('+this.globalVariables._banner_image+')';
+      this.textColor = 'color: '+this.globalVariables._banner_text_color+' !important;';
     }
   }
   

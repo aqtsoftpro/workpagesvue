@@ -6,12 +6,12 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="banner-content text-center">
-                        <h1>Contact</h1>
+                        <h1 :style="textColor">Contact</h1>
                         <span></span>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Contact</li>
+                                <li class="breadcrumb-item" :style="textColor"><a :style="textColor" href="index.html">Home</a></li>
+                                <li class="breadcrumb-item active" :style="textColor" aria-current="page">Contact</li>
                             </ol>
                         </nav>
                     </div>
@@ -189,6 +189,7 @@ import 'vue3-toastify/dist/index.css';
             formData: {},
             loading: false,
             bgImage: '',
+            textColor: '',
         }
     },
     computed: {
@@ -246,8 +247,8 @@ import 'vue3-toastify/dist/index.css';
   watch: {
         globalVariables() {
             this.bgImage = 'background-image: url('+this.globalVariables._banner_image+')';
+            this.textColor = 'color: '+this.globalVariables._banner_text_color+' !important;';
             this.globalSettings = this.globalVariables;
-            console.log(this.globalSettings);
         },
     }
 

@@ -6,12 +6,12 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="banner-content text-center">
-                        <h1>About Us</h1>
+                        <h1 :style="textColor">About Us</h1>
                         <span></span>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><router-link to="index.html">Home</router-link></li>
-                                <li class="breadcrumb-item active" aria-current="page">About Us  </li>
+                                <li class="breadcrumb-item" :style="textColor"><router-link to="index.html" :style="textColor">Home</router-link></li>
+                                <li class="breadcrumb-item active" aria-current="page" :style="textColor">About Us  </li>
                             </ol>
                         </nav>
                     </div>
@@ -47,6 +47,7 @@ import PrivacyPolicy from './PrivacyPolicy.vue'; // @ is an alias to /src
       cmsPageInfo: null,
       isLoading: false,
       bgImage: '',
+      textColor: '',
     }
   },
   computed: {
@@ -75,6 +76,7 @@ import PrivacyPolicy from './PrivacyPolicy.vue'; // @ is an alias to /src
     },
     globalVariables() {
       this.bgImage = 'background-image: url('+this.globalVariables._banner_image+'); color: '+this.globalVariables._banner_text_color+'!important;';
+      this.textColor = 'color: '+this.globalVariables._banner_text_color+' !important;'
     }
   }
 })

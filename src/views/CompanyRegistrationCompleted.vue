@@ -6,12 +6,12 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="banner-content text-center">
-                        <h1>Employer Registration Completed</h1>
+                        <h1 :style="textColor">Employer Registration Completed</h1>
                         <span></span>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><router-link to="index.html">Home</router-link></li>
-                                <li class="breadcrumb-item active" aria-current="page">Employer Registration Completed </li>
+                                <li class="breadcrumb-item" :style="textColor"><router-link to="index.html" :style="textColor">Home</router-link></li>
+                                <li class="breadcrumb-item active"  :style="textColor" aria-current="page">Employer Registration Completed </li>
                             </ol>
                         </nav>
                     </div>

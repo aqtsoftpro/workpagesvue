@@ -60,7 +60,8 @@ import { mapGetters } from 'vuex';
             user: {
                 email: '',
                 password: '',
-            }
+            },
+            textColor: '',
         }
     },
     computed: {

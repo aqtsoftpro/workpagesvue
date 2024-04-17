@@ -6,12 +6,12 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="banner-content text-center">
-                        <h1>Job Listing</h1>
+                        <h1 :style="textColor">Job Listing</h1>
                         <span></span>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><router-link to="index.html">Home</router-link></li>
-                                <li class="breadcrumb-item active" aria-current="page">Job Listing  </li>
+                                <li class="breadcrumb-item" :style="textColor"><router-link to="index.html" :style="textColor">Home</router-link></li>
+                                <li class="breadcrumb-item active" :style="textColor" aria-current="page">Job Listing  </li>
                             </ol>
                         </nav>
                     </div>
@@ -154,6 +154,7 @@ import Jobs from '../views/JobListing.vue'; // @ is an alias to /src
     return {
         jobs: [],
         bgImage: '',
+        textColor: '',
     }
   },
   methods: {
@@ -219,6 +220,7 @@ import Jobs from '../views/JobListing.vue'; // @ is an alias to /src
 
     globalVariables() {
       this.bgImage = 'background-image: url('+this.globalVariables._banner_image+')';
+      this.textColor = 'color: '+this.globalVariables._banner_text_color+' !important;';
     },
 
     // activeJobs(): { expiration: string }[] {

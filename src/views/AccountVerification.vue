@@ -6,12 +6,12 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="banner-content text-center">
-                        <h1>Account Verification</h1>
+                        <h1 :style="textColor">Account Verification</h1>
                         <span></span>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><router-link to="index.html">Home</router-link></li>
-                                <li class="breadcrumb-item active" aria-current="page">Account Verification </li>
+                                <li class="breadcrumb-item" :style="textColor"><router-link to="index.html" :style="textColor">Home</router-link></li>
+                                <li class="breadcrumb-item active" :style="textColor" aria-current="page">Account Verification </li>
                             </ol>
                         </nav>
                     </div>
@@ -46,6 +46,7 @@ import AccountVerify from './AccountVerification.vue'; // @ is an alias to /src
   data(){
     return {
         bgImage: '',
+        textColor: '',
     }
   },
   computed: {
@@ -60,6 +61,7 @@ import AccountVerify from './AccountVerification.vue'; // @ is an alias to /src
   watch: {
     globalVariables() {
       this.bgImage = 'background-image: url('+this.globalVariables._banner_image+')';
+      this.textColor = 'color: '+this.globalVariables._banner_text_color+' !important;'
     }
   }
 })

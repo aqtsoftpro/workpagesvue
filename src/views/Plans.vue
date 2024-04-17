@@ -6,12 +6,12 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="banner-content text-center">
-                            <h1>Pricing Plan</h1>
+                            <h1 :style="textColor">Pricing Plan</h1>
                             <span></span>
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Pricing Plan</li>
+                                    <li class="breadcrumb-item" :style="textColor"><a href="index.html" :style="textColor">Home</a></li>
+                                    <li class="breadcrumb-item active" :style="textColor" aria-current="page">Pricing Plan</li>
                                 </ol>
                             </nav>
                         </div>
@@ -315,6 +315,7 @@ interface Plan {
             isLoading: false,
             activePlanId: null,
             bgImage: '',
+            textColor: '',
         }
     },
     async created() {
@@ -370,6 +371,7 @@ interface Plan {
         },
         globalVariables() {
             this.bgImage = 'background-image: url('+this.globalVariables._banner_image+')';
+            this.textColor = 'color: '+this.globalVariables._banner_text_color+' !important;';
         }
     }
 })

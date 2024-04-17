@@ -6,12 +6,12 @@
               <div class="row">
                   <div class="col-lg-12">
                       <div class="banner-content text-center">
-                          <h1>Job Details</h1>
+                          <h1 :style="textColor">Job Details</h1>
                           <span></span>
                           <nav aria-label="breadcrumb">
                               <ol class="breadcrumb">
-                                  <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                  <li class="breadcrumb-item active" aria-current="page">Job Details</li>
+                                  <li class="breadcrumb-item" :style="textColor"><a href="index.html" :style="textColor">Home</a></li>
+                                  <li class="breadcrumb-item active" :style="textColor" aria-current="page">Job Details</li>
                               </ol>
                           </nav>
                       </div>
@@ -159,6 +159,7 @@ import { useRoute } from 'vue-router'
     return {
         jobs: [],
         bgImage: '',
+        textColor: '',
     }
   },
   computed: {
@@ -211,6 +212,7 @@ import { useRoute } from 'vue-router'
     },
     globalVariables() {
       this.bgImage = 'background-image: url('+this.globalVariables._banner_image+')';
+      this.textColor = 'color: '+this.globalVariables._banner_text_color+' !important;';
     }
   }
 })

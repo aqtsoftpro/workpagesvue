@@ -6,12 +6,12 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="banner-content text-center">
-                            <h1>Casual Portal</h1>
+                            <h1 :style="textColor">Casual Portal</h1>
                             <span></span>
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><router-link to="index.html">Home</router-link></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Casual Portal </li>
+                                    <li class="breadcrumb-item" :style="textColor"><router-link to="index.html" :style="textColor">Home</router-link></li>
+                                    <li class="breadcrumb-item active" :style="textColor" aria-current="page">Casual Portal </li>
                                 </ol>
                             </nav>
                         </div>
@@ -142,6 +142,7 @@ import { mapGetters } from 'vuex';
             showForm: false,
             isLoading: false,
             bgImage: '',
+            textColor: '',
         }
     },
     methods: {
@@ -194,6 +195,7 @@ import { mapGetters } from 'vuex';
 
         globalVariables() {
             this.bgImage = 'background-image: url('+this.globalVariables._banner_image+')';
+            this.textColor = 'color: '+this.globalVariables._banner_text_color+' !important;'
         }
 
     }

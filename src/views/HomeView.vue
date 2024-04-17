@@ -1125,6 +1125,7 @@ import { mapGetters } from 'vuex';
         jobs_list: [],
         rating_limit: 5,
         featured_companies: [],
+        textColor: '',
         
     }
   },
@@ -1225,6 +1226,7 @@ import { mapGetters } from 'vuex';
             this.slider_search_panel_margin_top = this.globalVariables._search_panel_margin_top;
             this.slider_search_panel_margin_bottom = this.globalVariables._search_panel_margin_bottom;
             this.slider_text_color = this.globalVariables._slider_text_color;
+            this.textColor = 'color: '+this.globalVariables._banner_text_color+' !important;';
         },
     categories(){
         this.search_category = this.categories
