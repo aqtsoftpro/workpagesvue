@@ -17,9 +17,9 @@
 
                             <span v-if="slider_content" v-html="slider_content" :style="{ color: slider_text_color }"></span>
 
-                            <div v-else class="blur">
+                            <!-- <div v-else class="blur">
                                 <div class="spin-loader"></div>
-                            </div>
+                            </div> -->
                             <!-- <h1><span>Search now </span> to find your new job opportunity</h1> -->
                             <!-- <h1>1020+ <span>Category</span> Job’s Here</h1> -->
                             <!-- <p>Don’t forget to create your profile and let employers find you and contact you directly! </p> -->

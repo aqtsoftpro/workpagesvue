@@ -495,7 +495,7 @@ Vue.prototype.$globalVar = "Shared Data";
                 newsletter_email: '',
             },
             permission: null,
-            // isLoading: true,
+            isLoading: false,
         }
     },
     computed: {
