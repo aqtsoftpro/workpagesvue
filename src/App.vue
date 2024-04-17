@@ -8,7 +8,6 @@
                         <router-link to="/"><img alt="image" class="img-fluid"
                                 src="/assets/images/work-pages-logo-cropped.png" width="250"></router-link>
                     </div>
-
                     <div class="top-bar-right">
                         <div class="social-area">
                             <ul>
@@ -30,7 +29,6 @@
                             </ul>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>

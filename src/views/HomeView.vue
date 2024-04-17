@@ -6,7 +6,6 @@
             <!-- <div class="spin-loader"></div> -->
 
             <!-- <div :class="{ 'blur': isLoading }"> -->
-
             <div class="container">
                 <div class="row">
                     <!--                     
@@ -89,9 +88,9 @@
                 </div>
             </div>
         </div>
-        <div v-else class="blur">
+        <!-- <div v-else class="blur">
             <div class="spin-loader"></div>
-        </div>
+        </div> -->
     </div>
 
     <!-- <div class="hero2">
@@ -799,10 +798,7 @@
         
                 <div class="slick-wrapper">
                     <div id="slick11" ref="slickContainer">
-                    
-                       
                         <div v-for="top_company in top_companies"  class="slide-item">
-
                             <div class="recruters-card">
                                 <div class="company-area">
                                     <div class="logo">
