@@ -9,7 +9,7 @@
 
             <div class="container">
                 <div class="row">
-<!--                     
+                    <!--                     
                     <h2>Featured data</h2>
                     {{ featured_companies }} -->
                     <div class="col-lg-12">
@@ -1103,7 +1103,7 @@ import { mapGetters } from 'vuex';
   },
   data() {
     return {
-        isLoading: true,
+        isLoading: false,
         slider_img: '',
         slider_content: '',
         slider_search_panel_margin_top: '',
@@ -1188,7 +1188,7 @@ import { mapGetters } from 'vuex';
 
   },
   mounted(){
-
+    this.isLoading = true;
     this.$store.dispatch('getGlobalVariables', '');
     this.$store.dispatch('getCategories', '');
     this.$store.dispatch('getStates', ''); 
@@ -1216,6 +1216,10 @@ import { mapGetters } from 'vuex';
     Script.setAttribute("src", "/assets/js/main.js");
     document.head.appendChild(Script);
 
+    window.setTimeout(() => {
+        this.isLoading = false;
+    }, 4000);
+
   },
   watch: {
     globalVariables() {
@@ -1225,9 +1229,6 @@ import { mapGetters } from 'vuex';
             this.slider_search_panel_margin_top = this.globalVariables._search_panel_margin_top;
             this.slider_search_panel_margin_bottom = this.globalVariables._search_panel_margin_bottom;
             this.slider_text_color = this.globalVariables._slider_text_color;
-            window.setTimeout(() => {
-                this.isLoading = false;
-            }, 2000);
         },
     categories(){
         this.search_category = this.categories
@@ -1265,8 +1266,6 @@ import { mapGetters } from 'vuex';
     }
 
   },
- 
-
 
 })
 export default class HomeView extends Vue {}
