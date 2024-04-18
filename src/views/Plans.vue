@@ -27,10 +27,10 @@
         <div class="pricing-plan-area pt-120 mb-120">
             <div class="container">
                 <div class="row g-4 mb-70 justify-content-center align-items-center">
-                    <Splide :options="{ type: 'loop', perPage: 3 }" aria-label="My Favorite Images">
+                    <Splide :options="{ type: 'loop', perPage: 3, pagination:false }" aria-label="My Favorite Images">
                         <SplideSlide v-for="(plan, index) in allPlans">
-                            <div class="col-lg-11 col-md-11">
-                                <div class="pricing-plan-card1" :class="{'bg-card1': index % 2 === 0, 'bg-card2': index % 2 !== 0 }" style="height: 50em;">
+                            <div class="col-lg-12 col-md-12">
+                                <div class="pricing-plan-card1 mx-2" :class="{'bg-card1': index % 2 === 0, 'bg-card2': index % 2 !== 0 }" style="height: 50em;">
                                     <div class="pricing-plan-header">
                                         <div class="starting-form">
                                             <span v-if="plan.main_icon == '' || plan.main_icon == null" ><img src="assets/images/icon/price-star.svg" alt=""> {{ plan.name }}</span>

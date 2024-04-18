@@ -645,7 +645,7 @@
                 </div>
             </div>
             <div class="row g-4">
-                <Splide :options="{ type: 'loop', perPage: 3, rewind: true, pagination:false }" aria-label="My Favorite Images">
+                <Splide :options="{ type: 'loop', perPage: 3, rewind: true, pagination:false, autoplay:playing, start: 0, arrow:true,}" aria-label="My Favorite Images">
                     <SplideSlide v-if="featured_companies" v-for="company in featured_companies" :key="company.id">
                         <div class="col-xl-12 col-lg-12">
                             <div class="job-list-card mx-1" style="min-height: 34rem !important;" >
@@ -658,34 +658,29 @@
                                     <div class="company-details d-flex justify-content-center align-items-center">
                                         <div class="name-location">
                                             <h5 class="text-center">{{company.name}}</h5>
-                                            <span class="text-center fw-bold">Total Reviews: ({{  company.reviews_count }})</span>
+                                            <div class="text-center" style="text-align: center !important;">Total Reviews: ({{  company.reviews_count }})</div>
                                         </div>
                                     </div>
                                     <br>
-                                    <div v-if="company.about" class="text-center">
+                                    <div v-if="company.about" class="text-center mb-auto">
                                         {{ company.about?.substring(0, 200)+"..." }}
                                     </div>
-                                    <div v-else class="text-center">
+                                    <div v-else class="text-center mb-auto">
                                         No detail found...
                                     </div>
-                                    
-                                    <div class="navbar navbar-expand-lg mt-4">
-                                        <div class="navbar-collapse">
-                                            <ul class="navbar-nav unorder">
-                                                <li class="nav-item list-item">
-                                                    <a :href="company.facebook" target="_blank"><i
-                                                        class="bx bxl-facebook"></i></a>
-                                                </li>
-                                                <li class="nav-item list-item">
-                                                    <a :href="company.twitter" target="_blank"><i
-                                                        class="bx bxl-twitter"></i></a>
-                                                </li>
-                                                <li class="nav-item list-item">
-                                                    <a :href="company.linkedin" target="_blank"><i
-                                                        class="bx bxl-linkedin"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                </div>
+                                <div class="d-flex justify-content-center align-items-center" style=" position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);">
+                                    <div class="bg-light mx-2" style="border-radius: 50%; width: 50px; height:50px; padding: auto; display: flex; justify-content: center; align-items: center;">
+                                        <a :href="company.facebook" target="_blank"><i
+                                                    class="bx bxl-facebook"></i></a>
+                                    </div>
+                                    <div class="bg-light mx-2" style="border-radius: 50%; width: 50px; height:50px; padding: auto; display: flex; justify-content: center; align-items: center;">
+                                        <a :href="company.twitter" target="_blank"><i
+                                                    class="bx bxl-twitter"></i></a>
+                                    </div>
+                                    <div class="bg-light mx-2" style="border-radius: 50%; width: 50px; height:50px; padding: auto; display: flex; justify-content: center; align-items: center;">
+                                        <a :href="company.linkedin" target="_blank"><i
+                                                    class="bx bxl-linkedin"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -801,7 +796,6 @@
                 </div>
             </div>
             <div class="row">
-        
                 <div class="slick-wrapper">
                     <div id="slick11" ref="slickContainer">
                         <div v-for="top_company in top_companies"  class="slide-item">
@@ -829,12 +823,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
-                        </div>
-
-    
-                    
-                        
+                        </div>                        
                     </div>
                 </div>
                 <!-- <div class="slick-wrapper">
@@ -1078,7 +1067,7 @@ ul {
     background-color: rgba(135, 227, 243, 0.364) !important;
     border-radius: 50% !important;
     padding: 1em !important;
-    margin: 5px !important;
+    margin-left: 5px !important;
 }
 
 .navbar-collapse {
@@ -1086,6 +1075,14 @@ ul {
     justify-content: center !important;
     align-items: center !important;
 }
+
+
+/* cursor: pointer;
+    position: absolute;
+    top: calc(50% - 30px);
+    z-index: 1;
+    right: -29px;
+    color: #d1dae1 !important; */
 
 </style>
 
@@ -1245,6 +1242,20 @@ import '@splidejs/vue-splide/css';
     window.setTimeout(() => {
         this.isLoading = false;
     }, 4000);
+
+    // new Splide( '.splide', {
+    //     classes: {
+    //             // Add classes for arrows.
+    //         arrows: 'splide__arrows your-class-arrows',
+    //         arrow : 'splide__arrow your-class-arrow',
+    //         prev  : 'splide__arrow--prev your-class-prev',
+    //         next  : 'splide__arrow--next your-class-next',
+
+    //         // Add classes for pagination.
+    //         pagination: 'splide__pagination your-class-pagination', // container
+    //         page      : 'splide__pagination__page your-class-page', // each button
+    //     },
+    // } )
 
   },
   watch: {
