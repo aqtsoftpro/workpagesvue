@@ -19,87 +19,55 @@
                 </div>
             </div>
         </div>
+
+
+
         <!-- ========== Inner Banner end============= -->
         <!-- ========== Pricing Plan Start============= -->
         <div class="pricing-plan-area pt-120 mb-120">
             <div class="container">
                 <div class="row g-4 mb-70 justify-content-center align-items-center">
-                    <div v-for="(plan, index) in allPlans" class="col-lg-4 col-md-6">
-                        <div class="pricing-plan-card1" :class="{'bg-card1': index % 2 === 0, 'bg-card2': index % 2 !== 0 }" style="height: 50em;">
-                            <div class="pricing-plan-header">
-                                <div class="starting-form">
-                                    <span v-if="plan.main_icon == '' || plan.main_icon == null" ><img src="assets/images/icon/price-star.svg" alt=""> {{ plan.name }}</span>
-                                    <span v-else  ><i style="color: #e59a22;">{{ plan.main_icon }}</i style="color: yellowgreen;"> {{ plan.name }}</span>
-                                </div>
-                                <div class="preview-btn">
-                                    <a href="#">Preview Sample</a>
-                                </div>
-                            </div>
-                            <div class="price-area">
-                                <h3>${{ plan.price }} / <span>Per Job +VAT</span></h3>
-                            </div>
-                            <div class="">
-                                <ul class="priceing-list h-fix mb-4">
-                                    <li v-for="point in plan.keypoints">
-                                            <div class="icon">
-                                            <span v-if="point.icon !== null || point.icon !== ''" style="color: rgb(255, 215, 0); margin-right: 1em;">{{ point.icon }}</span>
-                                            <span v-else style="color: rgb(255, 215, 0); margin-right: 1em;">&#10006;</span>
+                    <Splide :options="{ type: 'loop', perPage: 3 }" aria-label="My Favorite Images">
+                        <SplideSlide v-for="(plan, index) in allPlans">
+                            <div class="col-lg-11 col-md-11">
+                                <div class="pricing-plan-card1" :class="{'bg-card1': index % 2 === 0, 'bg-card2': index % 2 !== 0 }" style="height: 50em;">
+                                    <div class="pricing-plan-header">
+                                        <div class="starting-form">
+                                            <span v-if="plan.main_icon == '' || plan.main_icon == null" ><img src="assets/images/icon/price-star.svg" alt=""> {{ plan.name }}</span>
+                                            <span v-else  ><i style="color: #e59a22;">{{ plan.main_icon }}</i style="color: yellowgreen;"> {{ plan.name }}</span>
                                         </div>
-                                        <p>{{ point.title }}</p>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="d-flex justify-content-center mt-5">
-                                <!-- :disabled="plan.id == this.activePlanId" -->
-                                <button v-if="this.activePlanId == null && !plan.isLoading && plan.price > 0"@click="checkout(plan)" class="primry-btn-2 custom-btn lg-btn" type="button" >{{ this.loggedIn == true ? 'Buy Now':'Login To Buy'}} </button>
-                                <button v-if="this.activePlanId !== null && !plan.isLoading && plan.price > 0 && this.activePlanId == plan.id" class="primry-btn-2 custom-btn lg-btn" type="button" disabled>Subscribed </button>
-                                <button v-if="!plan.isLoading && plan.price <= 0" @click="zeroSubscribe(plan)" class="primry-btn-2 custom-btn lg-btn" type="button" >{{ this.loggedIn == true ? 'Buy Now':'Login To Buy'}} </button>
-                                <button v-if="plan.isLoading" class="primry-btn-2 custom-btn lg-btn" type="button">
-                                    <span class="me-3 fs-6 text-white">Processing...</span>
-                                    <i class="fa fa-spinner fa-spin text-white ms-3" style="font-size:24px">
-                                    </i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div v-for="(plan, index) in allPlans" class="col-lg-4 col-md-6">
-                        <div class="pricing-plan-card1" :class="{'bg-card1': index % 2 === 0, 'bg-card2': index % 2 !== 0 }" style="height: 50em;">
-                            <div class="pricing-plan-header">
-                                <div class="starting-form">
-                                    <span v-if="plan.main_icon == '' || plan.main_icon == null" ><img src="assets/images/icon/price-star.svg" alt=""> {{ plan.name }}</span>
-                                    <span v-else  ><i style="color: #e59a22;">{{ plan.main_icon }}</i style="color: yellowgreen;"> {{ plan.name }}</span>
+                                        <!-- <div class="preview-btn">
+                                            <a href="#">Preview Sample</a>
+                                        </div> -->
+                                    </div>
+                                    <div class="price-area">
+                                        <h3>${{ plan.price }} / <span>Per Job +VAT</span></h3>
+                                    </div>
+                                    <div class="">
+                                        <ul class="priceing-list h-fix mb-4">
+                                            <li v-for="point in plan.keypoints">
+                                                    <div class="icon">
+                                                    <span v-if="point.icon !== null || point.icon !== ''" style="color: rgb(255, 215, 0); margin-right: 1em;">{{ point.icon }}</span>
+                                                    <span v-else style="color: rgb(255, 215, 0); margin-right: 1em;">&#10006;</span>
+                                                </div>
+                                                <p>{{ point.title }}</p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="d-flex justify-content-center mt-5">
+                                        <button v-if="this.activePlanId == null && !plan.isLoading && plan.price > 0"@click="checkout(plan)" class="primry-btn-2 custom-btn lg-btn" type="button" >{{ this.loggedIn == true ? 'Buy Now':'Login To Buy'}} </button>
+                                        <button v-if="this.activePlanId !== null && !plan.isLoading && plan.price > 0 && this.activePlanId == plan.id" class="primry-btn-2 custom-btn lg-btn" type="button" disabled>Subscribed </button>
+                                        <button v-if="!plan.isLoading && plan.price <= 0" @click="zeroSubscribe(plan)" class="primry-btn-2 custom-btn lg-btn" type="button" >{{ this.loggedIn == true ? 'Buy Now':'Login To Buy'}} </button>
+                                        <button v-if="plan.isLoading" class="primry-btn-2 custom-btn lg-btn" type="button">
+                                            <span class="me-3 fs-6 text-white">Processing...</span>
+                                            <i class="fa fa-spinner fa-spin text-white ms-3" style="font-size:24px">
+                                            </i>
+                                        </button>
+                                    </div>
                                 </div>
-                                <div class="preview-btn">
-                                    <a href="#">Preview Sample</a>
-                                </div>
                             </div>
-                            <div class="price-area">
-                                <h3>${{ plan.price }} / <span>Per Job +VAT</span></h3>
-                            </div>
-                            <div class="">
-                                <ul class="priceing-list h-fix mb-4">
-                                    <li v-for="point in plan.keypoints">
-                                            <div class="icon">
-                                            <span v-if="point.icon !== null || point.icon !== ''" style="color: rgb(255, 215, 0); margin-right: 1em;">{{ point.icon }}</span>
-                                            <span v-else style="color: rgb(255, 215, 0); margin-right: 1em;">&#10006;</span>
-                                        </div>
-                                        <p>{{ point.title }}</p>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="d-flex justify-content-center mt-5">
-                                <!-- :disabled="plan.id == this.activePlanId" -->
-                                <button v-if="this.activePlanId == null && !plan.isLoading && plan.price > 0"@click="checkout(plan)" class="primry-btn-2 custom-btn lg-btn" type="button" >{{ this.loggedIn == true ? 'Buy Now':'Login To Buy'}} </button>
-                                <button v-if="this.activePlanId !== null && !plan.isLoading && plan.price > 0 && this.activePlanId == plan.id" class="primry-btn-2 custom-btn lg-btn" type="button" disabled>Subscribed </button>
-                                <button v-if="!plan.isLoading && plan.price <= 0" @click="zeroSubscribe(plan)" class="primry-btn-2 custom-btn lg-btn" type="button" >{{ this.loggedIn == true ? 'Buy Now':'Login To Buy'}} </button>
-                                <button v-if="plan.isLoading" class="primry-btn-2 custom-btn lg-btn" type="button">
-                                    <span class="me-3 fs-6 text-white">Processing...</span>
-                                    <i class="fa fa-spinner fa-spin text-white ms-3" style="font-size:24px">
-                                    </i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                        </SplideSlide>
+                    </Splide>
                 </div>
                 <div class="row">
                     <div class="col-lg-12">
@@ -135,116 +103,9 @@
             </div>
         </div>
         <!-- ========== Pricing Plan End============= -->
-
-        <div class="home2-feedback-area mb-120 pt-3" style="background-color: #010536;">
-            <div class="container" >
-                <div class="row mb-60">
-                    <div class="col-12 d-flex justify-content-center">
-                        <div class="section-title1 text-center" style="color: aqua !important;">
-                            <h2 style="color: aqua !important;">Feedback Of <span>Users</span></h2>
-                            <p style="color: aqua !important;">  To choose your trending job dream &amp; to make future bright.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="swiper home2-feedback-slider">
-                        <div class="swiper-wrapper">
-                            <div v-for="(plan, index) in allPlans" class="pricing-plan-area pt-120 mb-120 swiper-slide">
-                                <div class="container">
-                                    <div class="row g-4 mb-70 justify-content-center align-items-center">
-                                        <div class="col-lg-4 col-md-4">
-                                            <div class="pricing-plan-card1" :class="{'bg-card1': index % 2 === 0, 'bg-card2': index % 2 !== 0 }" style="height: 50em;">
-                                                <div class="pricing-plan-header">
-                                                    <div class="starting-form">
-                                                        <span v-if="plan.main_icon == '' || plan.main_icon == null" ><img src="assets/images/icon/price-star.svg" alt=""> {{ plan.name }}</span>
-                                                        <span v-else  ><i style="color: #e59a22;">{{ plan.main_icon }}</i style="color: yellowgreen;"> {{ plan.name }}</span>
-                                                    </div>
-                                                    <div class="preview-btn">
-                                                        <a href="#">Preview Sample</a>
-                                                    </div>
-                                                </div>
-                                                <div class="price-area">
-                                                    <h3>${{ plan.price }} / <span>Per Job +VAT</span></h3>
-                                                </div>
-                                                <div class="">
-                                                    <ul class="priceing-list h-fix mb-4">
-                                                        <li v-for="point in plan.keypoints">
-                                                                <div class="icon">
-                                                                <span v-if="point.icon !== null || point.icon !== ''" style="color: rgb(255, 215, 0); margin-right: 1em;">{{ point.icon }}</span>
-                                                                <span v-else style="color: rgb(255, 215, 0); margin-right: 1em;">&#10006;</span>
-                                                            </div>
-                                                            <p>{{ point.title }}</p>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="d-flex justify-content-center mt-5">
-                                                    <!-- :disabled="plan.id == this.activePlanId" -->
-                                                    <button v-if="this.activePlanId == null && !plan.isLoading && plan.price > 0"@click="checkout(plan)" class="primry-btn-2 custom-btn lg-btn" type="button" >{{ this.loggedIn == true ? 'Buy Now':'Login To Buy'}} </button>
-                                                    <button v-if="this.activePlanId !== null && !plan.isLoading && plan.price > 0 && this.activePlanId == plan.id" class="primry-btn-2 custom-btn lg-btn" type="button" disabled>Subscribed </button>
-                                                    <button v-if="!plan.isLoading && plan.price <= 0" @click="zeroSubscribe(plan)" class="primry-btn-2 custom-btn lg-btn" type="button" >{{ this.loggedIn == true ? 'Buy Now':'Login To Buy'}} </button>
-                                                    <button v-if="plan.isLoading" class="primry-btn-2 custom-btn lg-btn" type="button">
-                                                        <span class="me-3 fs-6 text-white">Processing...</span>
-                                                        <i class="fa fa-spinner fa-spin text-white ms-3" style="font-size:24px">
-                                                        </i>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div v-for="(plan, index) in allPlans" class="pricing-plan-area pt-120 mb-120 swiper-slide">
-                                <div class="container">
-                                    <div class="row g-4 mb-70 justify-content-center align-items-center">
-                                        <div class="col-lg-4 col-md-4">
-                                            <div class="pricing-plan-card1" :class="{'bg-card1': index % 2 === 0, 'bg-card2': index % 2 !== 0 }" style="height: 50em;">
-                                                <div class="pricing-plan-header">
-                                                    <div class="starting-form">
-                                                        <span v-if="plan.main_icon == '' || plan.main_icon == null" ><img src="assets/images/icon/price-star.svg" alt=""> {{ plan.name }}</span>
-                                                        <span v-else  ><i style="color: #e59a22;">{{ plan.main_icon }}</i style="color: yellowgreen;"> {{ plan.name }}</span>
-                                                    </div>
-                                                    <div class="preview-btn">
-                                                        <a href="#">Preview Sample</a>
-                                                    </div>
-                                                </div>
-                                                <div class="price-area">
-                                                    <h3>${{ plan.price }} / <span>Per Job +VAT</span></h3>
-                                                </div>
-                                                <div class="">
-                                                    <ul class="priceing-list h-fix mb-4">
-                                                        <li v-for="point in plan.keypoints">
-                                                                <div class="icon">
-                                                                <span v-if="point.icon !== null || point.icon !== ''" style="color: rgb(255, 215, 0); margin-right: 1em;">{{ point.icon }}</span>
-                                                                <span v-else style="color: rgb(255, 215, 0); margin-right: 1em;">&#10006;</span>
-                                                            </div>
-                                                            <p>{{ point.title }}</p>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="d-flex justify-content-center mt-5">
-                                                    <!-- :disabled="plan.id == this.activePlanId" -->
-                                                    <button v-if="this.activePlanId == null && !plan.isLoading && plan.price > 0"@click="checkout(plan)" class="primry-btn-2 custom-btn lg-btn" type="button" >{{ this.loggedIn == true ? 'Buy Now':'Login To Buy'}} </button>
-                                                    <button v-if="this.activePlanId !== null && !plan.isLoading && plan.price > 0 && this.activePlanId == plan.id" class="primry-btn-2 custom-btn lg-btn" type="button" disabled>Subscribed </button>
-                                                    <button v-if="!plan.isLoading && plan.price <= 0" @click="zeroSubscribe(plan)" class="primry-btn-2 custom-btn lg-btn" type="button" >{{ this.loggedIn == true ? 'Buy Now':'Login To Buy'}} </button>
-                                                    <button v-if="plan.isLoading" class="primry-btn-2 custom-btn lg-btn" type="button">
-                                                        <span class="me-3 fs-6 text-white">Processing...</span>
-                                                        <i class="fa fa-spinner fa-spin text-white ms-3" style="font-size:24px">
-                                                        </i>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>            
-            </div>
-        </div>
     </div>
 </template>
-<style>
+<style scoped>
     .custom-btn {
     border-radius: 50px !important;
     }
@@ -291,13 +152,16 @@
     .bg-card2 {
         background-color: rgb(252, 250, 252) !important;
     }
-
 </style>
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
 import PlansListing from '../views/JobListing.vue'; // @ is an alias to /src
 import { mapGetters } from 'vuex';
 import { loadStripe } from '@stripe/stripe-js';
+import { Splide, SplideSlide } from '@splidejs/vue-splide';
+import '@splidejs/vue-splide/css';
+// import '../../public/assets/js/crousel.js'; // Adjust the path if necessary
+
 
 interface Plan {
     id: number;
@@ -323,6 +187,8 @@ interface Plan {
     },
     components: {
         PlansListing,
+        Splide,
+        SplideSlide,
     },
 
     computed: {
@@ -340,7 +206,6 @@ interface Plan {
         }
         this.$store.dispatch('getGlobalVariables');
     },
-
     methods: {
         checkout(plan: Plan) {
             plan.isLoading = true;

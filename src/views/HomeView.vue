@@ -520,7 +520,7 @@
                             <span>Urgent</span>
                         </div> -->
                         <div class="company-area">
-                            <div class="logo">
+                            <div class="company-logo">
                                 <img :src="(job.company_logo) ? job.company_logo : '/assets/images/bg/company-logo/company-01.png'" alt="">
                             </div>
                             <div class="company-details">
@@ -645,47 +645,53 @@
                 </div>
             </div>
             <div class="row g-4">
-                <div class="home2-feedback-area mb-120">
-                    <div class="container">
-                        <!-- <div class="row mb-60">
-                            <div class="col-12 d-flex justify-content-center">
-                                <div class="section-title1 text-center">
-                                    <h2>Feedback Of <span>Users</span></h2>
-                                    <p>To choose your trending job dream &amp; to make future bright.</p>
+                <Splide :options="{ type: 'loop', perPage: 3, rewind: true, pagination:false }" aria-label="My Favorite Images">
+                    <SplideSlide v-if="featured_companies" v-for="company in featured_companies" :key="company.id">
+                        <div class="col-xl-12 col-lg-12">
+                            <div class="job-list-card mx-1" style="min-height: 34rem !important;" >
+                                <div class="company-area d-flex justify-content-center align-items-center" >
+                                    <div class="company-logo">
+                                        <img :src="(company.logo) ? company.logo : '/assets/images/bg/company-logo/company-01.png'" alt="">
+                                    </div>
                                 </div>
-                            </div>
-                        </div> -->
-                        <div class="row">
-                            <div class="swiper home2-feedback-slider">
-                                <div class="swiper-wrapper" style="background-color: aliceblue;">
-                                    <div v-if="featured_companies" v-for="company in featured_companies" :key="company.id" class="swiper-slide" style="background-color: aliceblue;">
-                                        <div class="feedback-wrap" style="background-color: aliceblue;">
-                                            <router-link :to="getCompanyDetail(company.id)">
-                                                <div class="author-img">
-                                                    <img :src="(company.cover_photo) ? company.cover_photo : '/assets/images/bg/company-logo/company-01.png'" alt="">
-                                                    <!-- <div class="quoat-icon">
-                                                        <img src="assets/images/icon/feedback-quoat1.svg" alt="">
-                                                    </div> -->
-                                                </div>
-                                                <div class="feedback-content">
-                                                    <p>{{ company.name }}</p>
-                                                    <span class="fw-bold">Total Reviews: ({{  company.reviews_count }})</span>
-                                                    <div>{{ company.about }}</div>
-                                                </div>
-                                                <div class="athor-review-content">
-                                                    <div class="author-content">
-                                                        <!-- <h5>Total Reviews: ({{  company.reviews_count }})</h5> -->
-                                                        <!-- <span>{{ company.about }}</span> -->
-                                                    </div>
-                                                </div>
-                                            </router-link>
+                                <div class="job-discription">
+                                    <div class="company-details d-flex justify-content-center align-items-center">
+                                        <div class="name-location">
+                                            <h5 class="text-center">{{company.name}}</h5>
+                                            <span class="text-center fw-bold">Total Reviews: ({{  company.reviews_count }})</span>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div v-if="company.about" class="text-center">
+                                        {{ company.about?.substring(0, 200)+"..." }}
+                                    </div>
+                                    <div v-else class="text-center">
+                                        No detail found...
+                                    </div>
+                                    
+                                    <div class="navbar navbar-expand-lg mt-4">
+                                        <div class="navbar-collapse">
+                                            <ul class="navbar-nav unorder">
+                                                <li class="nav-item list-item">
+                                                    <a :href="company.facebook" target="_blank"><i
+                                                        class="bx bxl-facebook"></i></a>
+                                                </li>
+                                                <li class="nav-item list-item">
+                                                    <a :href="company.twitter" target="_blank"><i
+                                                        class="bx bxl-twitter"></i></a>
+                                                </li>
+                                                <li class="nav-item list-item">
+                                                    <a :href="company.linkedin" target="_blank"><i
+                                                        class="bx bxl-linkedin"></i></a>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>            
-                    </div>
-                </div>
+                        </div>
+                    </SplideSlide>
+                </Splide>
             </div>
         </div>
     </div>
@@ -1053,6 +1059,34 @@
 ul {
     padding-left: 1rem !important;
 }
+
+.splide__arrow--prev{
+    left: -1em !important;
+}
+
+.splide__arrow--next{
+    right: -1em !important;
+}
+
+.company-logo img{
+    border-radius: 50%;
+    height: 12em !important;
+    width: 12em !important;
+} 
+
+.job-discription .unorder .list-item {
+    background-color: rgba(135, 227, 243, 0.364) !important;
+    border-radius: 50% !important;
+    padding: 1em !important;
+    margin: 5px !important;
+}
+
+.navbar-collapse {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
 </style>
 
 <script lang="ts">
@@ -1060,19 +1094,14 @@ import { Options, Vue } from 'vue-class-component';
 import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
 import Dropdown from 'primevue/dropdown';
 import { mapGetters } from 'vuex';
-// import Swiper from 'swiper';
-
-// import 'vue-slick-carousel/dist/vue-slick-carousel.css';
-// import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css';
-// import { VueSlickCarousel } from 'vue-slick-carousel';
-// import VueSlickCarousel from 'vue-slick-carousel'
-
-// import $ from "jquery";
+import { Splide, SplideSlide } from '@splidejs/vue-splide';
+import '@splidejs/vue-splide/css';
 
 @Options({
   components: {
     Dropdown,
-
+    Splide,
+    SplideSlide,
   },
   computed: {
     ...mapGetters([
