@@ -645,45 +645,47 @@
                 </div>
             </div>
             <div class="row g-4">
-                <Splide :options="{ type: 'loop', perPage: 3, rewind: true, pagination:false, autoplay:playing, start: 0, arrow:true,}" aria-label="My Favorite Images">
+                <Splide :options="sliderOptions" aria-label="My Favorite Images">
                     <SplideSlide v-if="featured_companies" v-for="company in featured_companies" :key="company.id">
                         <div class="col-xl-12 col-lg-12">
-                            <div class="job-list-card mx-1" style="min-height: 34rem !important;" >
-                                <div class="company-area d-flex justify-content-center align-items-center" >
-                                    <div class="company-logo">
-                                        <img :src="(company.logo) ? company.logo : '/assets/images/bg/company-logo/company-01.png'" alt="">
-                                    </div>
-                                </div>
-                                <div class="job-discription">
-                                    <div class="company-details d-flex justify-content-center align-items-center">
-                                        <div class="name-location">
-                                            <h5 class="text-center">{{company.name}}</h5>
-                                            <div class="text-center" style="text-align: center !important;">Total Reviews: ({{  company.reviews_count }})</div>
+                            <div class="job-list-card mx-1" :style="cardHeight" >
+                                <router-link :to="getCompanyDetail(company.id)">
+                                    <div class="company-area d-flex justify-content-center align-items-center" >
+                                        <div class="company-logo">
+                                                <img :src="(company.logo) ? company.logo : '/assets/images/bg/company-logo/company-01.png'" alt="">
                                         </div>
                                     </div>
-                                    <br>
-                                    <div v-if="company.about" class="text-center mb-auto">
-                                        {{ company.about?.substring(0, 200)+"..." }}
+                                    <div class="job-discription">
+                                        <div class="company-details d-flex justify-content-center align-items-center">
+                                            <div class="name-location">
+                                                <h5 class="text-center">{{company.name}}</h5>
+                                                <div class="text-center" style="text-align: center !important;">Total Reviews: ({{  company.reviews_count }})</div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div v-if="company.about" class="text-center mb-auto">
+                                            {{ company.about?.substring(0, 120)+"..." }}
+                                        </div>
+                                        <div v-else class="text-center mb-auto">
+                                            No detail found...
+                                        </div>
                                     </div>
-                                    <div v-else class="text-center mb-auto">
-                                        No detail found...
+                                    <div class="d-flex justify-content-center align-items-center" style=" position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);">
+                                        <div class="mx-2 social-slider-icons" style="background-color: #195C9D !important;">
+                                            <a :href="company.facebook" target="_blank"><i
+                                                        class="bx bxl-facebook text-light "></i></a>
+                                        </div>
+                                        <div class="mx-2 social-slider-icons" style="background-color: black !important;" >
+                                            <a :href="company.twitter" target="_blank">
+                                                <img src="assets/images/icon/twitter-x.svg" width="32" height="32" >
+                                            </a>
+                                        </div>
+                                        <div class="mx-2 social-slider-icons" style="background-color: #0073AF !important;" >
+                                            <a :href="company.linkedin" target="_blank"><i
+                                                        class="bx bxl-linkedin text-light "></i></a>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="d-flex justify-content-center align-items-center" style=" position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);">
-                                    <div class="mx-2 social-slider-icons" style="background-color: #195C9D !important;">
-                                        <a :href="company.facebook" target="_blank"><i
-                                                    class="bx bxl-facebook text-light "></i></a>
-                                    </div>
-                                    <div class="mx-2 social-slider-icons" style="background-color: aliceblue !important;" >
-                                        <a :href="company.twitter" target="_blank">
-                                            <img src="assets/images/icon/twitter-x.svg" width="85" height="85" >
-                                        </a>
-                                    </div>
-                                    <div class="mx-2 social-slider-icons" style="background-color: #0073AF !important;" >
-                                        <a :href="company.linkedin" target="_blank"><i
-                                                    class="bx bxl-linkedin text-light "></i></a>
-                                    </div>
-                                </div>
+                                </router-link>
                             </div>
                         </div>
                     </SplideSlide>
@@ -1168,6 +1170,19 @@ import '@splidejs/vue-splide/css';
         rating_limit: 5,
         featured_companies: [],
         textColor: '',
+
+        sliderOptions: 
+        { 
+            type: 'loop', 
+            perPage: 3, 
+            rewind: true, 
+            pagination:false, 
+            autoplay: true, 
+            start: 0, 
+            arrow:true,
+        },
+
+        cardHeight: 'min-height: 36rem !important;',
         
     }
   },
@@ -1225,6 +1240,19 @@ import '@splidejs/vue-splide/css';
         return expiration < today; // Returns true if the job is expired
     },
 
+    updatePerPage() {
+        // Adjust perPage based on screen width.
+        if (window.innerWidth < 992) {
+            this.sliderOptions.perPage = 1;
+        } else if (window.innerWidth < 1300) {
+            this.sliderOptions.perPage = 2;
+        } else if (window.innerWidth < 1800) {
+            this.sliderOptions.perPage = 3;
+        }  else {
+            this.sliderOptions.perPage = 4; // Default value
+        }
+    },
+
   },
   mounted(){
     this.isLoading = true;
@@ -1242,6 +1270,9 @@ import '@splidejs/vue-splide/css';
         'page_slug': 'home',
     }
     this.$store.dispatch('getCMSPages', credentials);
+
+    window.addEventListener('resize', this.updatePerPage);
+    this.updatePerPage();
 
 
     // this.$store.dispatch('getCategories', '');
@@ -1317,7 +1348,9 @@ import '@splidejs/vue-splide/css';
 
     featuredCompanies(){
         this.featured_companies = this.featuredCompanies;
-    }
+    },
+
+
 
   },
 
