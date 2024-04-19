@@ -490,7 +490,7 @@
                 </div>
                 
                 <div class="col-lg-12 d-flex justify-content-center pt-3">
-                    <div class="explore-btn">
+                    <div class="">
                         <router-link to="/job-categories"><span style="color: aliceblue !important;">Explore More</span> <span><img src="assets/images/icon/explore-elliose.svg" alt=""></span></router-link>
                     </div>
                 </div>
