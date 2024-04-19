@@ -651,8 +651,9 @@
                             <div class="job-list-card mx-1" :style="cardHeight" >
                                 <router-link :to="getCompanyDetail(company.id)">
                                     <div class="company-area d-flex justify-content-center align-items-center" >
+                                        
                                         <div class="company-logo">
-                                                <img :src="(company.logo) ? company.logo : '/assets/images/bg/company-logo/company-01.png'" alt="">
+                                                <img :src="(company.logo) ? company.logo : '/assets/images/icon/demo-company.jpeg'" alt="">
                                         </div>
                                     </div>
                                     <div class="job-discription">
@@ -703,7 +704,7 @@
                         <h2>Our <span>Featured </span> Jobs</h2>
                         <p>To choose your trending job dream &amp; to make future bright.</p>
                     </div>
-                    <div class="explore-btn">
+                    <div>
                         <router-link to="/featured-jobs" style="color: aliceblue !important;">Explore More <span><img src="assets/images/icon/explore-elliose.svg" alt=""></span></router-link>
                     </div>
                 </div>
@@ -1088,10 +1089,6 @@ ul {
    justify-content: center; 
    background-color:rgb(203, 243, 240) !important; 
    align-items: center;
-}
-
-.explore-btn a {
-    color: aliceblue !important;
 }
 
 
