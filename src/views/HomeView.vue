@@ -491,7 +491,7 @@
                 
                 <div class="col-lg-12 d-flex justify-content-center pt-3">
                     <div class="explore-btn">
-                        <router-link to="/job-categories">Explore More <span><img src="assets/images/icon/explore-elliose.svg" alt=""></span></router-link>
+                        <router-link to="/job-categories"><span style="color: aliceblue !important;">Explore More</span> <span><img src="assets/images/icon/explore-elliose.svg" alt=""></span></router-link>
                     </div>
                 </div>
 
@@ -670,17 +670,18 @@
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-center align-items-center" style=" position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);">
-                                    <div class="mx-2 social-slider-icons">
+                                    <div class="mx-2 social-slider-icons" style="background-color: #195C9D !important;">
                                         <a :href="company.facebook" target="_blank"><i
-                                                    class="bx bxl-facebook"></i></a>
+                                                    class="bx bxl-facebook text-light "></i></a>
                                     </div>
-                                    <div class="mx-2 social-slider-icons">
-                                        <a :href="company.twitter" target="_blank"><i
-                                                    class="bx bxl-twitter"></i></a>
+                                    <div class="mx-2 social-slider-icons" style="background-color: aliceblue !important;" >
+                                        <a :href="company.twitter" target="_blank">
+                                            <img src="assets/images/icon/twitter-x.svg" width="85" height="85" >
+                                        </a>
                                     </div>
-                                    <div class="mx-2 social-slider-icons">
+                                    <div class="mx-2 social-slider-icons" style="background-color: #0073AF !important;" >
                                         <a :href="company.linkedin" target="_blank"><i
-                                                    class="bx bxl-linkedin"></i></a>
+                                                    class="bx bxl-linkedin text-light "></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -1085,6 +1086,10 @@ ul {
    justify-content: center; 
    background-color:rgb(203, 243, 240) !important; 
    align-items: center;
+}
+
+.explore-btn a {
+    color: aliceblue !important;
 }
 
 

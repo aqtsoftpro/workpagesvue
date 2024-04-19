@@ -74,6 +74,12 @@
                                                 <textarea v-model="userForm.address" id="description" placeholder="Address"></textarea>
                                         </div>
                                     </div>
+                                    <div class="col-md-12">
+                                        <div class="form-inner mb-25">
+                                            <label for="about">Comapany Detail*</label>
+                                                <textarea v-model="userForm.about" id="description" placeholder="Company detail..."></textarea>
+                                        </div>
+                                    </div>
                                     <div class="col-md-6">
                                         <div class="form-inner mb-25">
                                             <label for="location">State*</label>
@@ -293,6 +299,7 @@ import Company from './index.vue';
             location_id: 2,
             state_id: null,
             address:null,
+            about: null,
             logo: null,
             cover_photo: null,
             owner: null,
@@ -305,7 +312,7 @@ import Company from './index.vue';
             linkedin: null,
             pinterest: null,
             dribble: null,
-            behance: null
+            behance: null,
         },
         user: null,
         logoVisible : true,
