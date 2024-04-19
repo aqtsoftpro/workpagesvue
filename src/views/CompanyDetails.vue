@@ -50,7 +50,8 @@
                             <div class="col-lg-8">
                                 <div class="company-details-content">
                                     <h5>About Company</h5>
-                                    <p>{{ company.about }}</p>
+                                    <div v-if="company.about">{{ company.about }}</div>
+                                    <div v-else>No detail found...</div>
                                     <br>
                                     <span><b>{{ company.location }}</b></span>
                                     <br><br>

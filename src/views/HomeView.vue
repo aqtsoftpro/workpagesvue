@@ -670,15 +670,15 @@
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-center align-items-center" style=" position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);">
-                                    <div class="bg-light mx-2" style="border-radius: 50%; width: 50px; height:50px; padding: auto; display: flex; justify-content: center; align-items: center;">
+                                    <div class="mx-2 social-slider-icons">
                                         <a :href="company.facebook" target="_blank"><i
                                                     class="bx bxl-facebook"></i></a>
                                     </div>
-                                    <div class="bg-light mx-2" style="border-radius: 50%; width: 50px; height:50px; padding: auto; display: flex; justify-content: center; align-items: center;">
+                                    <div class="mx-2 social-slider-icons">
                                         <a :href="company.twitter" target="_blank"><i
                                                     class="bx bxl-twitter"></i></a>
                                     </div>
-                                    <div class="bg-light mx-2" style="border-radius: 50%; width: 50px; height:50px; padding: auto; display: flex; justify-content: center; align-items: center;">
+                                    <div class="mx-2 social-slider-icons">
                                         <a :href="company.linkedin" target="_blank"><i
                                                     class="bx bxl-linkedin"></i></a>
                                     </div>
@@ -701,7 +701,7 @@
                         <p>To choose your trending job dream &amp; to make future bright.</p>
                     </div>
                     <div class="explore-btn">
-                        <router-link to="/featured-jobs">Explore More <span><img src="assets/images/icon/explore-elliose.svg" alt=""></span></router-link>
+                        <router-link to="/featured-jobs" style="color: aliceblue !important;">Explore More <span><img src="assets/images/icon/explore-elliose.svg" alt=""></span></router-link>
                     </div>
                 </div>
             </div>
@@ -1074,6 +1074,17 @@ ul {
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
+}
+
+.social-slider-icons {
+   border-radius: 50%; 
+   width: 50px; 
+   height:50px; 
+   padding: auto; 
+   display: flex; 
+   justify-content: center; 
+   background-color:rgb(203, 243, 240) !important; 
+   align-items: center;
 }
 
 
