@@ -490,8 +490,8 @@
                 </div>
                 
                 <div class="col-lg-12 d-flex justify-content-center pt-3">
-                    <div class="">
-                        <router-link to="/job-categories"><span style="color: aliceblue !important;">Explore More</span> <span><img src="assets/images/icon/explore-elliose.svg" alt=""></span></router-link>
+                    <div class="explore-btn">
+                        <router-link to="/job-categories">Explore More <span><img src="assets/images/icon/explore-elliose.svg" alt=""></span></router-link>
                     </div>
                 </div>
 
@@ -509,7 +509,7 @@
                         <p>To choose your trending job dream &amp; to make future bright.</p>
                     </div>
                     <div class="explore-btn">
-                        <router-link to="/job-listing">Explore More <span><img src="assets/images/icon/explore-elliose.svg" alt=""></span></router-link>
+                        <router-link to="/job-listing"><p style="color: aliceblue; margin-top: 1em;">Explore More</p> <span><img src="assets/images/icon/explore-elliose.svg" alt=""></span></router-link>
                     </div>
                 </div>
             </div>
@@ -704,8 +704,8 @@
                         <h2>Our <span>Featured </span> Jobs</h2>
                         <p>To choose your trending job dream &amp; to make future bright.</p>
                     </div>
-                    <div>
-                        <router-link to="/featured-jobs" style="color: aliceblue !important;">Explore More <span><img src="assets/images/icon/explore-elliose.svg" alt=""></span></router-link>
+                    <div class="explore-btn" >
+                        <router-link to="/featured-jobs">Explore More <span><img src="assets/images/icon/explore-elliose.svg" alt=""></span></router-link>
                     </div>
                 </div>
             </div>
