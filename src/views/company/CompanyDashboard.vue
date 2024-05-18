@@ -12,7 +12,7 @@
                                 <div class="author-area two">
                                     <div class="author-img">
                                         <img width="200" v-if="company_logo" :src="company_logo" />
-                                        <img v-else src="/assets/images/icon/user-2.svg" alt="">
+                                        <img v-else src="/assets/images/icon/demo-company.jpeg" alt="">
                                     </div>
                                     <div class="author-content">
                                         <span>Hello,</span>

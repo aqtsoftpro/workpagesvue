@@ -15,7 +15,7 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="form-inner mb-25">
-                                            <label for="email">Click here to send email again to verify link</label>
+                                            <!-- <label for="email">Click here to send email again to verify link</label> -->
                                             <div class="d-flex">
                                                 <span class="title fw-bold">Email: <h5>{{ JSON.parse(currentUser)[0].email }}</h5></span>
                                             </div>
@@ -23,8 +23,10 @@
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-inner">
-                                            <button v-if="!this.isLoading" @click="resendEmail" class="primry-btn-2" type="button">Send Verify Request
-                                                Again</button>
+                                            <button v-if="!this.isLoading" @click="resendEmail"
+                                                class="primry-btn-2" type="button">
+                                                Send verification request again
+                                            </button>
                                             <button v-else class="primry-btn-2" type="button">
                                                 <span class="me-3 fs-6 text-white">Processing...</span>
                                                 <i class="fa fa-spinner fa-spin text-white ms-3" style="font-size:24px">

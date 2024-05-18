@@ -496,7 +496,7 @@ i.bx {
 
 .select2-selection{
     height: 48px;
-    border: 1px solid rgba(0, 167, 172, 0.12) !important;
+    border: 1px solid rgba(1, 5, 54, 0.12) !important;
     border-radius: 5px !important;
     .select2-search__field{
         min-height: unset !important;
@@ -7905,7 +7905,7 @@ header.style-7 {
     }
     form{
         background: #FFFFFF;
-        border: 1px solid rgba(0, 167, 172, 0.12);
+        border: 1px solid rgba(1, 5, 54, 0.12);
         border-radius: 10px;     
         padding: 50px 70px; 
         .w-unset{
@@ -8265,7 +8265,7 @@ header.style-7 {
             }
             textarea{
                 width: 100%;
-                border: 1px solid rgba(0, 167, 172, 0.12);
+                border: 1px solid rgba(1, 5, 54, 0.12);
                 border-radius: 5px;
                 min-height: 150px;
                 padding: 20px;
@@ -8299,7 +8299,7 @@ header.style-7 {
             }
             input{
                 background: #FFFFFF;
-                border: 1px solid rgba(0, 167, 172, 0.12);
+                border: 1px solid rgba(1, 5, 54, 0.12);
                 border-radius: 5px;
                 display: block;
                 width: 100%;
@@ -8364,7 +8364,7 @@ header.style-7 {
             }
             .input-area{
                 background: #FFFFFF;
-                border: 1px solid rgba(0, 167, 172, 0.12);
+                border: 1px solid rgba(1, 5, 54, 0.12);
                 border-radius: 5px;
                 height: 50px;
                 padding-left: 20px;
@@ -8559,7 +8559,7 @@ header.style-7 {
         .login-difarent-way{
             padding-top: 30px;
             a{
-                border: 1px solid rgba(0, 167, 172, 0.12);
+                border: 1px solid rgba(1, 5, 54, 0.12);
                 border-radius: 5px;
                 display: flex;
                 align-items: center;
@@ -8975,7 +8975,7 @@ header.style-7 {
         .single-widget{
             .dashboard-menu{
                 background: #FFFFFF;
-                border: 1px solid rgba(0, 167, 172, 0.12);
+                border: 1px solid rgba(1, 5, 54, 0.12);
                 border-radius: 5px;
                 ul{
                     margin: 0;
@@ -9330,7 +9330,7 @@ header.style-7 {
         margin-bottom: 60px;
         .counter-single{
             background: #FFFFFF;
-            border: 1px solid rgba(0, 167, 172, 0.12);
+            border: 1px solid rgba(1, 5, 54, 0.12);
             border-radius: 5px;
             padding: 25px 15px;
             display: flex;
@@ -9588,7 +9588,7 @@ header.style-7 {
     }
     .filter-wrapper{
         background: #FFFFFF;
-        border: 1px solid rgba(0, 167, 172, 0.12);
+        border: 1px solid rgba(1, 5, 54, 0.12);
         border-radius: 5px; 
         padding: 30px;
         margin-bottom: 30px;
@@ -9824,7 +9824,7 @@ header.style-7 {
         }
         .transparent-btn{
             background-color: transparent;
-            border: 1px solid rgba(0, 167, 172, 0.3);
+            border: 1px solid rgba(1, 5, 54, 0.3);
             color: var(--primary-color1);
             border-radius: 5px;
             &:hover{
@@ -9882,14 +9882,14 @@ header.style-7 {
             }
             tr{
                 background: #FFFFFF;
-                border: 1px solid rgba(0, 167, 172, 0.12); 
+                border: 1px solid rgba(1, 5, 54, 0.12); 
                 @include md-down-device(){
                     display: block;
                     width: 100%;
                     margin-bottom: 20px;
                 }
                 td{
-                    border: 1px solid rgba(0, 167, 172, 0.12); 
+                    border: 1px solid rgba(1, 5, 54, 0.12); 
                     text-align: center;
                     vertical-align: middle;
                     font-family: var(--font-work-sans);
@@ -10262,7 +10262,7 @@ header.style-7 {
 }
 .feature-card2{
     background: #FFFFFF;
-    border: 1px solid rgba(0, 167, 172, 0.3);
+    border: 1px solid rgba(1, 5, 54, 0.3);
     border-radius: 5px;
     transition: 0.35s;
     padding-left: 25px;
@@ -10402,7 +10402,7 @@ header.style-7 {
                 min-width: 28px;
                 height: 28px;  
                 line-height: 28px;
-                border: 1px solid rgba(0, 167, 172, 0.3);
+                border: 1px solid rgba(1, 5, 54, 0.3);
                 background-color: var(--white);              
                 border-radius: 50%;
                 display: flex;
@@ -10576,7 +10576,7 @@ header.style-7 {
 
 .resume-area{
     background: #FFFFFF;
-    border: 1px solid rgba(0, 167, 172, 0.12);
+    border: 1px solid rgba(1, 5, 54, 0.12);
     border-radius: 5px;
     padding: 50px 65px;
     position: relative;
@@ -10715,7 +10715,7 @@ header.style-7 {
                     span{
                         height: 24px;
                         width: 24px;
-                        border: 1px solid rgba(0, 167, 172, 0.3);
+                        border: 1px solid rgba(1, 5, 54, 0.3);
                         border-radius: 50%;
                         display: flex;
                         align-items: center;
@@ -12104,7 +12104,7 @@ header.style-7 {
             width: 28px;
             height: 28px;  
             line-height: 28px;
-            border: 1px solid rgba(0, 167, 172, 0.3);    
+            border: 1px solid rgba(1, 5, 54, 0.3);    
             background: var(--white);           
             border-radius: 50%;
             display: flex;
@@ -13199,7 +13199,7 @@ header.style-7 {
 
 .company-listing-card2{
     background: #FFFFFF;
-    border: 1px solid rgba(0, 167, 172, 0.3);
+    border: 1px solid rgba(1, 5, 54, 0.3);
     border-radius: 5px;
     transition: 0.35s;
     padding-left: 15px;
@@ -15103,7 +15103,7 @@ header.style-7 {
     }
     
     .pricing-plan-card2{
-        border: 1px solid rgba(0, 167, 172, 0.12);
+        border: 1px solid rgba(1, 5, 54, 0.12);
         border-radius: 5px;  
         background: rgba(#FFF2E8, 0.7); 
         padding: 60px 15px 60px 50px;
@@ -15218,7 +15218,7 @@ header.style-7 {
     }
     .pricing-plan-card3{
         background: #EFF5F9;
-        border: 1px solid rgba(0, 167, 172, 0.12);
+        border: 1px solid rgba(1, 5, 54, 0.12);
         border-radius: 5px;
         padding: 90px 50px;
         @include xxl-device(){
@@ -16429,7 +16429,7 @@ header.style-7 {
                 width: 28px;
                 height: 28px;  
                 line-height: 28px;
-                border: 1px solid rgba(0, 167, 172, 0.3);           
+                border: 1px solid rgba(1, 5, 54, 0.3);           
                 border-radius: 50%;
                 display: flex;
                 align-items: center;
@@ -17176,7 +17176,7 @@ header.style-7 {
  Home two Category
 =======================================*/
 .single-category2{
-    border: 1px solid rgba(0, 167, 172, 0.3);
+    border: 1px solid rgba(1, 5, 54, 0.3);
     border-radius: 5px; 
     display: flex;
     align-items: center;
@@ -17694,7 +17694,7 @@ header.style-7 {
     }
     .recruters-card{
         background-color: #fff;
-        border: 1px solid rgba(0, 167, 172, 0.3);
+        border: 1px solid rgba(1, 5, 54, 0.3);
         border-radius: 5px;
         transition: 0.35s;
         padding: 35px;
@@ -19005,7 +19005,7 @@ header.style-7 {
     }
     .feedback-wrap{
         background: #FFFFFF;
-        border: 1px solid rgba(0, 167, 172, 0.12);
+        border: 1px solid rgba(1, 5, 54, 0.12);
         border-radius: 20px;
         padding: 50px 30px;
         text-align: center;
@@ -19201,7 +19201,7 @@ header.style-7 {
 
 .home4-recent-article-wrap{
     .recent-article-img{
-        border: 1px solid rgba(0, 167, 172, 0.12);
+        border: 1px solid rgba(1, 5, 54, 0.12);
         border-radius: 20px;  
         transition: 0.35s;
         overflow: hidden;
@@ -19294,16 +19294,16 @@ header.style-7 {
     background-color: var(--white);
 }
 .note-editor.note-airframe, .note-editor.note-frame {
-    border: 1px solid rgba(0, 167, 172, 0.12);
+    border: 1px solid rgba(1, 5, 54, 0.12);
 }
 .note-editor.note-airframe .note-statusbar, .note-editor.note-frame .note-statusbar {
-    background-color: rgba(0, 167, 172, 0.12);
-    border-top: 1px solid rgba(0, 167, 172, 0.12);
+    background-color: rgba(1, 5, 54, 0.12);
+    border-top: 1px solid rgba(1, 5, 54, 0.12);
 }
 .note-editor{
     .note-toolbar{
-        background-color: rgba(0, 167, 172, 0.12);
-        border-color: rgba(0, 167, 172, 0.12);
+        background-color: rgba(1, 5, 54, 0.12);
+        border-color: rgba(1, 5, 54, 0.12);
         .note-dropdown-menu, .note-popover .popover-content .note-dropdown-menu {
             min-width: 200px;
             a{
@@ -19316,7 +19316,7 @@ header.style-7 {
             line-height: 1.5;
             width: unset;
             background-color: #fff;
-            border-color: rgba(0, 167, 172, 0.12);
+            border-color: rgba(1, 5, 54, 0.12);
             i {
                 position: relative;
                 right: unset;
@@ -19679,7 +19679,7 @@ header.style-7 {
                 height: 72px;
                 width: 32px;
                 background: #020B0D;
-                border: 1px solid rgba(0, 167, 172, 0.3);
+                border: 1px solid rgba(1, 5, 54, 0.3);
                 border-radius: 37px;
                 display: flex;
                 align-items: center;
@@ -21166,7 +21166,7 @@ header.style-7 {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border-bottom: 1px solid rgba(0, 167, 172, 0.12);
+            border-bottom: 1px solid rgba(1, 5, 54, 0.12);
             @include md-down-device(){
                 flex-wrap: wrap;
             }
@@ -21250,7 +21250,7 @@ header.style-7 {
             }
         }
         .counter-single{
-            border: 1px solid rgba(0, 167, 172, 0.12);
+            border: 1px solid rgba(1, 5, 54, 0.12);
             border-radius: 5px; 
             padding: 25px 15px;  
             text-align: center;
@@ -21717,7 +21717,7 @@ header.style-7 {
             }
             tr{
                 background: #FFFFFF;
-                border: 1px solid rgba(0, 167, 172, 0.12); 
+                border: 1px solid rgba(1, 5, 54, 0.12); 
                 margin-bottom: 5px;
                 @include md-down-device(){
                     display: block;
@@ -22195,7 +22195,7 @@ header.style-7 {
         }
         .transparent-btn{
             background-color: transparent;
-            border: 1px solid rgba(0, 167, 172, 0.3);
+            border: 1px solid rgba(1, 5, 54, 0.3);
             color: var(--primary-color1);
             border-radius: 5px;
             &:hover{
@@ -22227,7 +22227,7 @@ header.style-7 {
         align-items: center;
         justify-content: space-between;
         background: #FFFFFF;
-        border: 1px solid rgba(0, 167, 172, 0.12);
+        border: 1px solid rgba(1, 5, 54, 0.12);
         border-radius: 5px; 
         padding: 15px 20px; 
         @include md-down-device(){
@@ -22398,7 +22398,7 @@ header.style-7 {
             }
             .payment-mathord{
                 background: #FFFFFF;
-                border: 1px solid rgba(0, 167, 172, 0.12);
+                border: 1px solid rgba(1, 5, 54, 0.12);
                 border-radius: 5px;  
                 padding: 20px 50px;  
                 height: 100%;

@@ -47,7 +47,7 @@
                                     <div class="col-md-12 pt-10">
                                         <div class="form-inner">
                                             <button @click="updatePassword" class="primry-btn-1 lg-btn w-unset" :disabled="!confirmPass || !validPass"
-                                                type="button">Update Change</button>
+                                                type="button">Save Changes</button>
                                         </div>
                                     </div>
                                 </div>
@@ -114,18 +114,26 @@
                                                 <h6>Your profile satatus</h6>
                                             </div>
                                             <div class="form-check form-switch">
-                                                <InputSwitch v-model="profile_status" @change="updateStatus({'profile_status':profile_status == true ? 'opened': 'closed'})"/>
+                                                <InputSwitch v-model="profile_status" :pt="{ slider: 'my-switch-slider' }" @change="updateStatus({'profile_status':profile_status == true ? 'opened': 'closed'})"/>
                                             </div>
                                         </div>
                                         <div class="single-permission mb-2">
                                             <div class="title">
-                                                <h6>Are you available for interview ?</h6>
+                                                <h6>Are you available to interview ?</h6>
                                             </div>
                                             <div class="form-check form-switch">
-                                                <InputSwitch v-model="is_available" @change="updateAvailable({'is_available':is_available == true ? 'yes' : 'no'})" />
+                                                <InputSwitch v-model="is_available" :pt="{ slider: 'my-switch-slider' }" @change="updateAvailable({'is_available':is_available == true ? 'yes' : 'no'})" />
                                             </div>
                                         </div>
                                         <div class="single-permission mb-2">
+                                            <div class="title">
+                                                <h6>Receive application & update notification </h6>
+                                            </div>
+                                            <div class="form-check form-switch">
+                                                <InputSwitch :pt="{ slider: 'my-switch-slider' }"  v-model="applicationShortlistedEmailAlert" />
+                                            </div>
+                                        </div>
+                                        <!-- <div class="single-permission mb-2">
                                             <div class="title">
                                                 <h6>Application Shortlisted Email Alert</h6>
                                             </div>
@@ -140,7 +148,7 @@
                                             <div class="form-check form-switch">
                                                 <InputSwitch v-model="applicationRejectedEmailAlert" />
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <!-- <div class="single-permission mb-30">
                                             <div class="title">
                                                 <h6>Resume Visibility</h6>
@@ -152,8 +160,7 @@
                                         <div class="single-permission mb-3">
                                             <div class="title">
                                                 <h6>Disable Account</h6>
-                                                <p>If you log in again you will able to see all the match jobs and get all
-                                                    information.</p>
+                                                <p>If you log in again you will be able to see all previous information.</p>
                                             </div>
                                             <div class="form-check form-switch">
                                                 <InputSwitch v-model="disableAccount" />
@@ -174,7 +181,7 @@
                             <div class="col-md-12 pt-50">
                                 <div class="form-inner">
                                     <button v-if="!isLoading" @click="updateSettings" class="primry-btn-2 lg-btn w-unset"
-                                        type="button">Update Change</button>
+                                        type="button">Save Changes</button>
                                     <button v-else class="primry-btn-2 lg-btn w-unset" type="button">
                                         <span class="me-3 fs-6 text-white">Processing...</span>
                                         <i class="fa fa-spinner fa-spin text-white ms-3" style="font-size:24px">
@@ -185,7 +192,7 @@
                         </form>
                     </div>
 
-                    <div class="form-wrapper mt-5">
+                    <!-- <div class="form-wrapper mt-5">
                         <form class="profile-form">
                             <div class="section-title2">
                                 <h5 class="d-flex align-items-baseline gap-1"><img
@@ -203,20 +210,17 @@
                                         <div class="form-inner mb-25">
                                             <label for="password">Document Name</label>
                                             <div class="input-area">
-                                                <!-- @change="setTitle" -->
                                                 <img src="/assets/images/icon/education.svg" alt="" width="16">
                                                 <Dropdown v-model=documentForm.title :options="documents" @change="setTitle"
                                                     ref="suburb_id" optionLabel="name" optionValue="name"
                                                     placeholder="Select Title" class="w-full 
                                                 md:w-24rem" />
-                                                <!-- <input v-model="changepass.password" type="password" name="password" id="password" placeholder="Password"> -->
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-inner mb-25">
                                             <label for="password2">Document Detail*</label>
-                                            <!-- <img src="/assets/images/icon/lock-2.svg" alt=""> -->
                                             <textarea v-model="documentForm.detail"></textarea>
                                         </div>
                                     </div>
@@ -244,12 +248,32 @@
                                 </div>
                             </div>
                         </form>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
     </div>
 </template>
+
+<style>
+
+/* .p-inputswitch .p-highlight .p-inputswitch-slider {
+    background: #010536 !important;
+} */
+
+/* .p-inputswitch:not(.p-disabled):has(.p-inputswitch-input:hover).p-highlight .p-inputswitch-slider {
+    background: #010536 !important;
+} */
+
+.my-switch-slider {
+  background-color: #010536 !important;
+}
+
+.my-switch-slider input[type="checkbox"]:checked {
+    background: #010536;
+}
+
+</style>
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
@@ -330,7 +354,7 @@ import Dropdown from 'primevue/dropdown';
         async updateSettings(event: any) {
             this.isLoading = true;
             this.userMeta.application_shortlisted_email_alert = this.applicationShortlistedEmailAlert ? true : false;
-            this.userMeta.application_rejected_email_alert = this.applicationRejectedEmailAlert ? true : false;
+            this.userMeta.application_rejected_email_alert = this.applicationShortlistedEmailAlert ? true : false;
             this.userMeta.resume_visibility = this.resumeVisibility ? true : false;
             this.userMeta.disable_account = this.disableAccount ? true : false;
             try {

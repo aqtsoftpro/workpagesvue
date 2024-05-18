@@ -11,98 +11,8 @@
                             <span></span>
                         </div>
                         <div class="register-tab">
-                            <!-- <nav>
-                                <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                  <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Candidate</button>
-                                  <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Company</button>
-                                </div>
-                              </nav> -->
                               <div class="tab-content" id="nav-tabContent">
-                                <!-- <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"> 
-                                    <form>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-inner mb-25">
-                                                    <label for="firstname1">First Name*</label>
-                                                    <div class="input-area">
-                                                        <img src="assets/images/icon/user-2.svg" alt="">
-                                                        <input v-model="userForm.first_name" type="text" id="firstname1" name="firstname1" placeholder="Mr. Robert">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-inner mb-25">
-                                                    <label for="lastname1">Last Name*</label>
-                                                    <div class="input-area">
-                                                        <img src="assets/images/icon/user-2.svg" alt="">
-                                                        <input v-model="userForm.last_name" type="text" id="lastname1" name="lastname1" placeholder="Jonson">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-inner mb-25">
-                                                    <label for="username">User Name*</label>
-                                                    <div class="input-area">
-                                                        <img src="assets/images/icon/user-2.svg" alt="">
-                                                        <input v-model="userForm.username" type="text" id="username" name="username" placeholder="robertjonson">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-inner mb-25">
-                                                    <label for="email">Email*</label>
-                                                    <div class="input-area">
-                                                        <img src="assets/images/icon/email-2.svg" alt="">
-                                                        <input v-model="userForm.email" type="text" id="email" name="email" placeholder="info@example.com">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-inner mb-25">
-                                                    <label for="password">Password*</label>
-                                                    <input v-model="userForm.password" type="password" name="password" id="password" placeholder="Password" />
-                                                    <i class="bi bi-eye-slash" id="togglePassword"></i>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-inner">
-                                                    <label for="password2">Confirm Password*</label>
-                                                    <input v-model="password_confirmation" type="password" name="confirmpassword" id="password2" placeholder="Confirm Password" />
-                                                    <i class="bi bi-eye-slash" id="togglePassword2"></i>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="form-agreement form-inner d-flex justify-content-between flex-wrap">
-                                                    <div class="form-group two">
-                                                        <input type="checkbox" id="html1">
-                                                        <label for="html1">Here, I will agree company terms & conditions.</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="form-inner">
-                                                    <button @click="createUser" class="primry-btn-2" type="button">Sign Up</button>
-                                                </div>
-                                            </div>
-                                            <h6>Already have an account? <router-link to="/login"> Login</router-link> Here</h6>
-                                            <div class="login-difarent-way">
-                                                <div class="row g-4">
-                                                    <div class="col-md-6">
-                                                        <a href="https://myaccount.google.com/"><img src="assets/images/icon/google1.svg" alt="">Log in with Google</a>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <a href="https://www.facebook.com/"><img src="assets/images/icon/facebook1.svg" alt="">Log in with Facebook</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div> -->
-                                <!-- <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab"> -->
-                                    <!-- <Form @submit="createEmployer()"> -->
-                                    <form @submit.prevent="createEmployer()"  >
-
-                                        
+                                   <form @submit.prevent="createEmployer()"  >                                   
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-inner mb-25">
@@ -116,12 +26,7 @@
                                                         placeholder="Mr. Robert"
                                                         :rules="firstName"
                                                         /> 
-                                                    </div>
-
-                                                    <!-- <Field name="first_name" v-model="employerForm.first_name"  type="text" class="form-control" :class="{ 'is-invalid': errors.employerForm.first_name }" />
-                                                        <div class="invalid-feedback">{{errors.employerForm.first_name}}</div> -->
-
-              
+                                                    </div>              
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -136,16 +41,12 @@
                                                             id="last_name"  
                                                             placeholder="Jonson"
                                                             :rules="lastName" 
+                                                            @change="fillOther"
                                                         />
-
-
-
-                        
                                                     </div>
-                                                    <!-- <ErrorMessage class="text-danger" name="last_name" /> -->
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
+                                            <!-- <div class="col-md-6">
                                                 <div class="form-inner mb-25">
                                                     <label for="username">User Name*</label>
                                                     <div class="input-area">
@@ -159,9 +60,8 @@
                                                             :rules="userName"
                                                             />
                                                     </div>
-                                                    <!-- <ErrorMessage class="text-danger" name="username" /> -->
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <div class="col-md-6">
                                                 <div class="form-inner mb-25">
                                                     <label for="email">Email*</label>
@@ -173,7 +73,8 @@
                                                         type="email"
                                                         id="email" 
                                                         placeholder="robert@gmail.com"
-                                                        :rules="validateEmail" 
+                                                        :rules="validateEmail"
+                                                        @change="setUserName"
                                                         />
                                                     </div>
                                                     <!-- <ErrorMessage class="text-danger" name="email" /> -->
@@ -209,31 +110,18 @@
                                                             ref="companyType"
                                                             optionLabel="name" 
                                                             optionValue="id"
-                                                            placeholder="Select Language" 
+                                                            placeholder="Industry Type" 
                                                             class="w-full"
                                                             :rules="companyType"
-                                                            
                                                             />
-<!-- 
-                                                        <Field
-                                                            name="company_type_id" 
-                                                            as="select" 
-                                                            class=""
-                                                            v-model=this.employerForm.company_type_id
-                                                            :rules="companyType" >
-                                                            <option value="">Select Company Type</option>
-                                                            <option v-for="companyType in companyTypes" :key="companyType.id" :value="companyType.id">{{ companyType.name }}</option>
-                                                        </Field>     -->
                                                     </div>
-                                                    <!-- <ErrorMessage class="text-danger" name="company_type" /> -->
                                                 </div>
                                             </div>
-                                            <div class="col-md-12">
+                                            <div class="col-md-6">
                                                 <div class="form-inner mb-25">
                                                     <label for="email">Suburb</label>
                                                     <div class="input-area">
                                                         <img src="assets/images/icon/loction.svg" alt="">
-                                                        <!-- <input v-model="userForm.suburb_id" type="text" id="suburns" name="suburb" placeholder="Select Suburb"> -->
                                                         <Dropdown
                                                             name="suburb_id"
                                                             @change="changeSuburb"
@@ -248,6 +136,12 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="col-md-12">
+                                                <div class="form-inner mb-25">
+                                                    <label>Address</label>
+                                                    <textarea v-model="employerForm.address"></textarea>
+                                                </div>
+                                            </div>
                                             <div class="col-md-6">
                                                 <div class="form-inner mb-25">
                                                     <label for="password">Password*</label>
@@ -258,10 +152,13 @@
                                                         id="password" 
                                                         placeholder="Password"
                                                         ref="password_comp"
-                                                        :rules="passWord" 
+                                                        :rules="passWord"
+                                                        @change="passCheck"
                                                     />
+                                                    <!-- @change="passCheck" -->
                                                     <i class="bi bi-eye-slash" id="togglePassword3"></i>
                                                 </div>
+                                                <span v-if="!validPass" style="color: red !important; font-size: small !important; position: relative; left: 5px; top: -1.4rem !important;">{{ validationMessage }}</span>
                                                 <!-- <ErrorMessage class="text-danger" name="password" /> -->
                                             </div>
                                             <div class="col-md-6">
@@ -275,18 +172,20 @@
                                               
                                                         placeholder="Confirm Password"
                                                         :rules="RetypePassWord"
+                                                        @change="isConfirm"
                                                         
                                                     />
                                                     <i class="bi bi-eye-slash" id="togglePassword4"></i>
                                                 </div>
+                                                <span v-if="!confirmPass" style="color: red !important; font-size: small !important; position: relative; left: 5px; top: 3px !important;">{{ confirmText }}</span>
                                                 <!-- <ErrorMessage class="text-danger"  id="password-mismatched" name="retype_password" /> -->
                                    
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="form-agreement form-inner d-flex justify-content-between flex-wrap">
                                                     <div class="form-group two">
-                                                        <input type="checkbox" id="html">
-                                                        <label for="html">Here, I will agree company terms & conditions.</label>
+                                                        <input type="checkbox" v-model="is_agree" id="html">
+                                                        <label for="html">By registering, you acknowledge and agree to our terms and conditions</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -294,7 +193,9 @@
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="form-inner">
-                                                    <button v-if="!isLoading" @click="createEmployer" class="primry-btn-2" type="button">Sign Up</button>
+                                                    <button v-if="!isLoading" @click="createEmployer" class="primry-btn-2" type="button"
+                                                    :disabled="!validPass || !confirmPass || !is_agree"
+                                                    >Sign Up</button>
                                                     <button v-else class="primry-btn-2" type="button">
                                                         <span class="me-3 fs-6 text-white">Processing...</span>
                                                         <i class="fa fa-spinner fa-spin text-white" style="font-size:24px">
@@ -360,6 +261,11 @@ import Dropdown from 'primevue/dropdown';
   },
   data() {
     return {
+        validPass: true,
+        validationMessage:"",
+        confirmPass: true,
+        confirmText: "",
+        is_agree: false,
         userForm: {
             first_name: null,
             last_name: null,
@@ -379,6 +285,7 @@ import Dropdown from 'primevue/dropdown';
             password: null,
             type: 'employer',
             password_confirmation: null,
+            address: null,
             
         },
         password_confirmation: null,
@@ -446,10 +353,31 @@ import Dropdown from 'primevue/dropdown';
         },
 
         passWord(value:any) {
-        if (!value) {
-            return 'Password required';
-        }
-        return true;
+            if (!value) {
+                return 'Password required';
+            }
+
+            const password = this.userForm.password;
+            const minLength = /(?=.{8,})/;
+            const hasUpperCase = /(?=.*[A-Z])/;
+            const hasNumber = /(?=.*[0-9])/;
+            const hasSpecialChar = /(?=.*[!@#$%^&*])/;
+            if (!minLength.test(password)) {
+                this.validPass = false;
+                this.validationMessage = 'Password must be at least 8 characters long.';
+            } else if (!hasUpperCase.test(password)) {
+                this.validPass = false;
+                this.validationMessage = 'Password must contain at least one uppercase letter.';
+            } else if (!hasNumber.test(password)) {
+                this.validPass = false;
+                this.validationMessage = 'Password must contain at least one number.';
+            } else if (!hasSpecialChar.test(password)) {
+                this.validPass = false;
+                this.validationMessage = 'Password must contain at least one special character.';
+            } else {
+                this.validPass = true;
+                return true;
+            }
         },
 
         RetypePassWord(value:any) {
@@ -501,6 +429,51 @@ import Dropdown from 'primevue/dropdown';
         },
         changeSuburb(event:any){
             this.userForm.suburb_id = event.value
+        },
+
+        fillOther() {
+            // Remove all spaces from first_name and last_name
+            const firstNameNoSpaces = this.employerForm.first_name.replace(/\s+/g, '');
+            const lastNameNoSpaces = this.employerForm.last_name.replace(/\s+/g, '');
+            this.employerForm.email = firstNameNoSpaces + lastNameNoSpaces + '@example.com';
+            this.employerForm.username = this.employerForm.email;
+        },
+
+        setUserName() {
+            this.employerForm.username = this.employerForm.email
+        },
+
+        passCheck() {
+            const password = this.employerForm.password;
+            const minLength = /(?=.{8,})/;
+            const hasUpperCase = /(?=.*[A-Z])/;
+            const hasNumber = /(?=.*[0-9])/;
+            const hasSpecialChar = /(?=.*[!@#$%^&*])/;
+            if (!minLength.test(password)) {
+                this.validPass = false;
+                this.validationMessage = 'Password must be at least 8 characters long.';
+            } else if (!hasUpperCase.test(password)) {
+                this.validPass = false;
+                this.validationMessage = 'Password must contain at least one uppercase letter.';
+            } else if (!hasNumber.test(password)) {
+                this.validPass = false;
+                this.validationMessage = 'Password must contain at least one number.';
+            } else if (!hasSpecialChar.test(password)) {
+                this.validPass = false;
+                this.validationMessage = 'Password must contain at least one special character.';
+            } else {
+                this.validPass = true;
+            }
+        },
+
+        isConfirm() {
+            if (this.employerForm.password !== this.employerForm.password_confirmation) {
+                this.confirmPass = false;
+                this.confirmText = 'Confirm passwor should match with password. '
+            }
+            else {
+                this.confirmPass = true;
+            }
         },
     },
   mounted() 

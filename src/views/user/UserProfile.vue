@@ -7,15 +7,15 @@
                     <div class="my-profile-inner">
                         
                         <div class="form-wrapper mb-60">
-                            <div class="section-title">
+                            <!-- <div class="section-title">
                                 <h5>My Profile</h5>
-                            </div>
+                            </div> -->
                             <form class="profile-form">
                                 <div class="row">
                                                                         
                                     <div class="col-md-6">
                                         <div class="form-inner mb-25">
-                                            <label>full Name*</label>
+                                            <label>Full Name*</label>
                                             <div class="input-area">
                                                 <img src="/assets/images/icon/user-2.svg" alt="">
                                                 <input v-model="user.name" type="text" >
@@ -24,21 +24,21 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-inner mb-25">
-                                            <label>Gender*</label>
+                                            <label>Gender</label>
                                             <div class="input-area">
                                                 <img src="/assets/images/icon/language-2.svg" alt="">
                                                 <select class="form-select" v-model="user.gender">
                                                     <option value="">Select Gender</option>
                                                     <option value="male" :selected="user.gender =='male'">Male</option>
                                                     <option value="female"  :selected="user.gender =='female'">Female</option>
-                                                    <option value="unspecified"  :selected="user.gender =='unspecified'">Un Specified</option>
+                                                    <option value="unspecified"  :selected="user.gender =='unspecified'">Unspecified</option>
                                                 </select>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-inner mb-25">
-                                            <label>Your DOB*</label>
+                                            <label>Your DOB</label>
                                             <div class="input-area">
                                                 <img src="/assets/images/icon/clock-2.svg " alt="">
                                                 <Calendar v-model="user.dob"  :maxDate="maxDate"   />
@@ -48,29 +48,31 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-inner mb-50">
-                                            <label>Complete Address</label>
+                                            <label>Street</label>
                                             <textarea v-model="user.address"></textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-inner mb-25">
-                                            <label>Subrub</label>
+                                            <label>Suburb</label>
                                             <div class="input-area">
                                                 <img src="/assets/images/icon/company-2.svg" alt="">
-                                                <!-- <Dropdown 
-                                                v-model=this.user.suburb_id                                       
-                                                :options="subrubsList"
-                                                @change="changeSuburb"
-                                                ref="suburb_id"
-                                                optionLabel="name" 
-                                                optionValue="id"
-                                                placeholder="Select Suburb"
-                                                class="w-full 
-                                                md:w-24rem" /> -->
                                                 <select class="form-select" v-model="user.suburb_id">
                                                     <option value="">Select Suburb</option>
                                                     <option v-for="subrub in subrubsList" :value="subrub.id" :selected="user.suburb_id == subrub.id">{{ subrub.name }}</option>
                                                 </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-inner mb-25">
+                                            <label>Country</label>
+                                            <div class="input-area">
+                                                <img src="/assets/images/icon/company-2.svg" alt="">
+                                                <select class="form-select" v-model="user.current_job_location_id">
+                                                    <option value="">Select Location</option>
+                                                    <option v-for="location in locationsOptions" :value="location.id" :selected="user.current_job_location_id == location.id">{{ location.name }}</option>
+                                                </select>                                                
                                             </div>
                                         </div>
                                     </div>
@@ -94,43 +96,11 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-inner mb-25">
-                                            <label>Current Job Place</label>
-                                            <div class="input-area">
-                                                <img src="/assets/images/icon/company-2.svg" alt="">
-                                                <!-- <Dropdown 
-                                                v-model=this.user.current_job_location_id                                       
-                                                :options="locationsOptions"
-                                                @change="changeLocation"
-                                                ref="location"
-                                                optionLabel="name" 
-                                                optionValue="id"
-                                                placeholder="Select Location"
-                                                class="w-full 
-                                                md:w-24rem" /> -->
-                                                <select class="form-select" v-model="user.current_job_location_id">
-                                                    <option value="">Select Location</option>
-                                                    <option v-for="location in locationsOptions" :value="location.id" :selected="user.current_job_location_id == location.id">{{ location.name }}</option>
-                                                </select>                                                
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-inner mb-25">
-                                            <label>Designation*</label>
+                                            <label>Job Title*</label>
                                             <div class="input-area">
                                                 <img src="/assets/images/icon/designation-2.svg" alt="">
-                                                <!-- <Dropdown 
-                                                v-model=this.user.designation_id                                        
-                                                :options="designationsOptions"
-                                                @change="changeDesignation"
-                                                ref="designation"
-                                                optionLabel="name" 
-                                                optionValue="id"
-                                                placeholder="Select Designation"
-                                                class="w-full 
-                                                md:w-24rem"/> -->
                                                 <select class="form-select" v-model="user.designation_id">
-                                                    <option value="">Select Designation</option>
+                                                    <option value="">Select Job Title</option>
                                                     <option v-for="designation in designationsOptions" :value="designation.id" :selected="user.designation_id == designation.id">{{ designation.name }}</option>
                                                 </select>                                                
                                             </div>
@@ -138,21 +108,11 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-inner mb-25">
-                                            <label>Qualification*</label>
+                                            <label>Education</label>
                                             <div class="input-area">
                                                 <img src="/assets/images/icon/qualification-2.svg" alt="">
-                                                <!-- <Dropdown 
-                                                v-model=this.user.qualification_id                                       
-                                                :options="qualificationsOptions"
-                                                @change="changeQualification"
-                                                ref="qualification"
-                                                optionLabel="name" 
-                                                optionValue="id"
-                                                placeholder="Select Qualification"
-                                                class="w-full 
-                                                md:w-24rem"/> -->
                                                 <select class="form-select" v-model="user.qualification_id">
-                                                    <option value="">Select Qualification</option>
+                                                    <option value="">Select Education</option>
                                                     <option v-for="qualification in qualificationsOptions" :value="qualification.id" :selected="user.qualification_id == qualification.id">{{ qualification.name }}</option>
                                                 </select>  
                                             </div>
@@ -160,7 +120,7 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-inner mb-50">
-                                            <label>Description</label>
+                                            <label>Description - Write a brief summary about you</label>
                                             <textarea v-model="user.description"></textarea>
                                         </div>
                                     </div>
@@ -189,7 +149,6 @@
 
                                     <div class="col-md-12">
                                         <div class="form-inner">
-                                            <!-- <span class="fa-spinner"></span> -->
                                             <button v-if="!isLoading" @click="updateProfile" class="primry-btn-2 lg-btn w-unset" type="button">Update Profile
                                             </button>
                                             <button v-else class="primry-btn-2 lg-btn w-unset" type="button">
@@ -197,6 +156,65 @@
                                                 <i class="fa fa-spinner fa-spin text-white ms-3" style="font-size:24px">
                                                 </i>
                                             </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="form-wrapper mt-5">
+                            <form class="profile-form">
+                                <div class="section-title2">
+                                    <h5 class="d-flex align-items-baseline gap-1"><img
+                                            src="assets/images/icon/profile-settings.svg" alt=""> Upload Documents </h5>
+                                </div>
+                                <div class="change-password-area mb-40">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="info-title">
+                                                <h6>You can upload your all leagal documents here</h6>
+                                                <div class="dash"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-inner mb-25">
+                                                <label >Document Name</label>
+                                                <div class="input-area">
+                                                    <img src="/assets/images/icon/education.svg" alt="" width="16">
+                                                    <Dropdown v-model=documentForm.title :options="documents" @change="setTitle"
+                                                        ref="suburb_id" optionLabel="name" optionValue="name"
+                                                        placeholder="Select Title" class="w-full 
+                                                    md:w-24rem" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-inner mb-25">
+                                                <label for="password2">Document Detail*</label>
+                                                <!-- <img src="/assets/images/icon/lock-2.svg" alt=""> -->
+                                                <textarea v-model="documentForm.detail"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-inner mb-25">
+                                                <label for="password2">Upload File*</label>
+                                                <div class="input-area">
+                                                    <img src="/assets/images/icon/create-resume.svg" alt="" width="16">
+                                                    <input type="file" @change="fileHandle" placeholder="upload file" />
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 pt-10">
+                                            <div class="form-inner">
+                                                <button v-if="!isLoading" @click="documentStore"
+                                                    class="primry-btn-2 lg-btn w-unset" type="button">Save Changes</button>
+                                                <button v-else class="primry-btn-2 lg-btn w-unset" type="button">
+                                                    <span class="me-3 fs-6 text-white">Processing...</span>
+                                                    <i class="fa fa-spinner fa-spin text-white ms-3" style="font-size:24px">
+                                                    </i>
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -211,73 +229,13 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-inner mb-25">
-                                            <label>User Active Job</label>
-                                            <div class="input-area">
-                                                <img src="/assets/images/icon/job2.svg" alt="" width="16">
-                                                <input type="text" v-model="otherDetail.active_job" placeholder="Job Name">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-inner mb-25">
-                                            <label>Nationality</label>
-                                            <div class="input-area">
-                                                <img src="/assets/images/icon/nid.svg" alt="">
-                                                <!-- <Dropdown 
-                                                v-model=otherDetail.country_id                                     
-                                                :options="locationsOptions"
-                                                @change="changeLocation"
-                                                ref="location"
-                                                optionLabel="name" 
-                                                optionValue="id"
-                                                placeholder="Select Location"
-                                                class="w-full 
-                                                md:w-24rem" /> -->
-
-                                                <select class="form-select" v-model="otherDetail.country_id">
-                                                    <option value="">Select Country</option>
-                                                    <option v-for="location in locationsOptions" :value="location.id" :selected="otherDetail.country_id == location.id">{{ location.name }}</option>
-                                                </select>  
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- <div class="col-md-6">
-                                        <div class="form-inner mb-25">
-                                            <label>Profile Status</label>
-                                            <div class="input-area">
-                                                <img src="/assets/images/icon/linkedin-2.svg" alt="">
-                                                <input type="text" v-model="otherDetail.profile_status" placeholder="https://example-linkedin.com">
-                                            </div>
-                                        </div>
-                                    </div> -->
-                                    <!-- <div class="col-md-6">
-                                        <div class="form-inner mb-25">
-                                            <label>Pinterest</label>
-                                            <div class="input-area">
-                                                <img src="/assets/images/icon/pinterest-2.svg" alt="">
-                                                <input type="text" v-model="otherDetail.is_available" placeholder="https://example-pinterest.com">
-                                            </div>
-                                        </div>
-                                    </div> -->
-                                    <div class="col-md-6">
-                                        <div class="form-inner mb-25">
                                             <label>Introduction Short video</label>
                                             <div class="input-area">
                                                 <img src="/assets/images/icon/devlopment-06.svg" alt="" width="16">
-                                                <input type="file" @change="otherFileHandle" placeholder="https://example-dribbble.com">
+                                                <input type="file" @change="otherFileHandle" placeholder="https://example-instagram.com">
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- <div class="col-md-6">
-                                        <div class="form-inner mb-50">
-                                            <label>Behance</label>
-                                            <div class="input-area">
-                                                <img src="/assets/images/icon/behance-2.svg" alt="">
-                                                <input type="text" v-model="social.behance" placeholder="https://example-behance.com">
-                                            </div>
-                                        </div>
-                                    </div> -->
                                     <div class="col-md-12">
                                         <div class="form-inner">
                                             <button v-if="!otherDetail.loading" @click="updateUserDetail" class="primry-btn-2 lg-btn w-unset" type="button">Update Detail</button>
@@ -327,10 +285,10 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-inner mb-25">
-                                            <label>Dribbble</label>
+                                            <label>Instagram</label>
                                             <div class="input-area">
-                                                <img src="/assets/images/icon/dribble-2.svg" alt="">
-                                                <input type="text" v-model="social.dribbble" placeholder="https://example-dribbble.com">
+                                                <img src="/assets/images/icon/instagram.svg" alt="" width="16">
+                                                <input type="text" v-model="social.instagram" placeholder="https://example-instagram.com">
                                             </div>
                                         </div>
                                     </div>
@@ -410,7 +368,7 @@ import moment from 'moment';
             twitter: null,
             linkedin: null,
             pinterest: null,
-            dribbble: null,
+            instagram: null,
             behance: null,
         },
 
@@ -430,6 +388,19 @@ import moment from 'moment';
         logoVisible : true,
         isLoading: false,
         subrubsList: [],
+
+        documents: [
+            { id: 1, name: 'Work Rights' },
+            { id: 2, name: 'Licence' },
+            { id: 3, name: 'Qualifications' },
+            { id: 4, name: 'Experience Letter' }
+        ],
+
+        documentForm: {
+            title: '',
+            detail: '',
+            file_path: ''
+        },
     }
   },
   created() {
@@ -508,6 +479,22 @@ import moment from 'moment';
       this.otherDetail.intro_video = file;
       console.log('no data found');
     },
+
+    documentStore() {
+        this.$store.dispatch('documentStore', this.documentForm)
+        this.documentForm.title = ''
+        this.documentForm.file_path = ''
+        this.documentForm.detail = ''
+    },
+
+    fileHandle(event: any) {
+        const file = event.target.files[0];
+        console.log(event);
+        this.documentForm.file_path = file;
+        console.log('no data found');
+    },
+
+
   },
   mounted() {
         // this.$store.dispatch('getUserInfo')
