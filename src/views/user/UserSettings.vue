@@ -23,10 +23,11 @@
                                             <label for="password">New Password*</label>
                                             <div class="input-area">
                                                 <img src="assets/images/icon/lock-2.svg" alt="">
-                                                <input v-model="changepass.password" type="password" name="password"
+                                                <input v-model="changepass.password" type="password" name="password" @change="passCheck"
                                                     id="password" placeholder="Password">
                                                 <i class="bi bi-eye-slash" id="togglePassword"></i>
                                             </div>
+                                            <span v-if="!validPass" style="color: red !important; font-size: small !important; position: relative; left: 5px; top: 0.2rem !important;">{{ validationMessage }}</span>
 
                                         </div>
                                     </div>
@@ -35,16 +36,17 @@
                                             <label for="password2">Confirm Password*</label>
                                             <div class="input-area">
                                                 <img src="assets/images/icon/lock-2.svg" alt="">
-                                                <input type="password" name="confirmpassword" id="password2"
+                                                <input type="password" name="confirmpassword" v-model="confirm_pass" id="password2" @change="isConfirm"
                                                     placeholder="Confirm Password" />
                                                 <i class="bi bi-eye-slash" id="togglePassword2"></i>
                                             </div>
+                                            <span v-if="!confirmPass" style="color: red !important; font-size: small !important; position: relative; left: 5px; top: 3px !important;">{{ confirmText }}</span>
 
                                         </div>
                                     </div>
                                     <div class="col-md-12 pt-10">
                                         <div class="form-inner">
-                                            <button @click="updatePassword" class="primry-btn-1 lg-btn w-unset"
+                                            <button @click="updatePassword" class="primry-btn-1 lg-btn w-unset" :disabled="!confirmPass || !validPass"
                                                 type="button">Update Change</button>
                                         </div>
                                     </div>
@@ -268,6 +270,11 @@ import Dropdown from 'primevue/dropdown';
                 password: '',
                 user_id: '',
             },
+            confirm_pass: '',
+            validPass: true,
+            validationMessage:"",
+            confirmPass: true,
+            confirmText: "",
             userMeta: {
                 user_id: '',
                 company_address: '',
@@ -315,6 +322,10 @@ import Dropdown from 'primevue/dropdown';
         updatePassword() {
             console.log(this.changepass);
             this.$store.dispatch('updatePassword', this.changepass)
+            window.setTimeout(() => {
+                this.changepass.password = '';
+                this.confirm_pass = '';
+            }, 3000);
         },
         async updateSettings(event: any) {
             this.isLoading = true;
@@ -341,6 +352,39 @@ import Dropdown from 'primevue/dropdown';
 
         deletUser() {
             this.$store.dispatch('deletUser', this.userMeta.user_id)
+        },
+
+        passCheck() {
+            const password = this.changepass.password;
+            const minLength = /(?=.{8,})/;
+            const hasUpperCase = /(?=.*[A-Z])/;
+            const hasNumber = /(?=.*[0-9])/;
+            const hasSpecialChar = /(?=.*[!@#$%^&*])/;
+            if (!minLength.test(password)) {
+                this.validPass = false;
+                this.validationMessage = 'Password must be at least 8 characters long.';
+            } else if (!hasUpperCase.test(password)) {
+                this.validPass = false;
+                this.validationMessage = 'Password must contain at least one uppercase letter.';
+            } else if (!hasNumber.test(password)) {
+                this.validPass = false;
+                this.validationMessage = 'Password must contain at least one number.';
+            } else if (!hasSpecialChar.test(password)) {
+                this.validPass = false;
+                this.validationMessage = 'Password must contain at least one special character.';
+            } else {
+                this.validPass = true;
+            }
+        },
+
+        isConfirm() {
+            if (this.changepass.password !== this.confirm_pass) {
+                this.confirmPass = false;
+                this.confirmText = 'Confirm passwor should match with password. '
+            }
+            else {
+                this.confirmPass = true;
+            }
         },
 
         setTitle(event: any) {

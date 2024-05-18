@@ -29,7 +29,7 @@
                                                     <label for="firstname1">First Name*</label>
                                                     <div class="input-area">
                                                         <img src="assets/images/icon/user-2.svg" alt="">
-                                                        <input v-model="userForm.first_name" type="text" id="firstname1" name="firstname1" placeholder="Mr. Robert">
+                                                        <input v-model="userForm.first_name" type="text" id="firstname1" name="firstname1" placeholder="Mr. Robert" >
                                                     </div>
                                                 </div>
                                             </div>
@@ -38,29 +38,29 @@
                                                     <label for="lastname1">Last Name*</label>
                                                     <div class="input-area">
                                                         <img src="assets/images/icon/user-2.svg" alt="">
-                                                        <input v-model="userForm.last_name" type="text" id="lastname1" name="lastname1" placeholder="Jonson">
+                                                        <input v-model="userForm.last_name" type="text" id="lastname1" name="lastname1" placeholder="Jonson" @change="fillOther">
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
+                                            <!-- <div class="col-md-6">
                                                 <div class="form-inner mb-25">
                                                     <label for="username">User Name*</label>
                                                     <div class="input-area">
                                                         <img src="assets/images/icon/user-2.svg" alt="">
-                                                        <input v-model="userForm.username" type="text" id="username" name="username" placeholder="robertjonson">
+                                                        <input v-model="userForm.username" type="text" id="username" name="username" placeholder="robertjonson" >
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <div class="col-md-6">
                                                 <div class="form-inner mb-25">
                                                     <label for="email">Email*</label>
                                                     <div class="input-area">
                                                         <img src="assets/images/icon/email-2.svg" alt="">
-                                                        <input v-model="userForm.email" type="text" id="email" name="email" placeholder="info@example.com">
+                                                        <input v-model="userForm.email" type="email" id="email" name="email" placeholder="robertjonson@example.com" @change="setUserName">
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-12">
+                                            <div class="col-md-6">
                                                 <div class="form-inner mb-25">
                                                     <label for="email">Suburb</label>
                                                     <div class="input-area">
@@ -84,16 +84,18 @@
                                             <div class="col-md-6">
                                                 <div class="form-inner mb-25">
                                                     <label for="password">Password*</label>
-                                                    <input v-model="userForm.password" type="password" name="password" id="password" placeholder="Password" />
+                                                    <input v-model="userForm.password" type="password" name="password" id="password" placeholder="Password" @change="passCheck" />
                                                     <i class="bi bi-eye-slash" id="togglePassword"></i>
                                                 </div>
+                                                <span v-if="!validPass" style="color: red !important; font-size: small !important; position: relative; left: 5px; top: -1.4rem !important;">{{ validationMessage }}</span>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-inner">
                                                     <label for="password2">Confirm Password*</label>
-                                                    <input v-model="userForm.password_confirmation" type="password" name="confirmpassword" id="password2" placeholder="Confirm Password" />
+                                                    <input v-model="userForm.password_confirmation" type="password" name="confirmpassword" id="password2" placeholder="Confirm Password" @change="isConfirm" />
                                                     <i class="bi bi-eye-slash" id="togglePassword2"></i>
                                                 </div>
+                                                <span v-if="!confirmPass" style="color: red !important; font-size: small !important; position: relative; left: 5px; top: 3px !important;">{{ confirmText }}</span>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-inner mb-25">
@@ -115,14 +117,14 @@
                                             <div class="col-md-12">
                                                 <div class="form-agreement form-inner d-flex justify-content-between flex-wrap">
                                                     <div class="form-group two">
-                                                        <input type="checkbox" id="html1">
+                                                        <input type="checkbox" v-model="is_agree" id="html1">
                                                         <label for="html1">Here, I will agree company terms & conditions.</label>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="form-inner">
-                                                    <button v-if="!isLoading"  @click="createUser" class="primry-btn-2" type="button">Sign Up</button>
+                                                    <button v-if="!isLoading"  @click="createUser" class="primry-btn-2" type="button" :disabled="!validPass || !confirmPass || !is_agree" >Sign Up</button>
                                                     <button v-else class="primry-btn-2" type="button">
                                                         <span class="me-3 fs-6 text-white">Processing...</span>
                                                         <i class="fa fa-spinner fa-spin text-white" style="font-size:24px">
@@ -319,6 +321,11 @@ function getMimeType(file:any, fallback = null) {
     data() {
         return {
             photoPreview: null,
+            validPass: true,
+            validationMessage:"",
+            confirmPass: true,
+            confirmText: "",
+            is_agree: false,
             coordinates: {
 				width: 0,
 				height: 0,
@@ -378,6 +385,52 @@ function getMimeType(file:any, fallback = null) {
                     this.isLoading = false;
                 }, 3000);
                 console.log(error);
+            }
+        },
+
+        fillOther() {
+
+            // Remove all spaces from first_name and last_name
+            const firstNameNoSpaces = this.userForm.first_name.replace(/\s+/g, '');
+            const lastNameNoSpaces = this.userForm.last_name.replace(/\s+/g, '');
+            this.userForm.email = firstNameNoSpaces + lastNameNoSpaces + '@example.com';
+            this.userForm.username = this.userForm.email;
+        },
+
+        setUserName() {
+            this.userForm.username = this.userForm.email
+        },
+
+        passCheck() {
+            const password = this.userForm.password;
+            const minLength = /(?=.{8,})/;
+            const hasUpperCase = /(?=.*[A-Z])/;
+            const hasNumber = /(?=.*[0-9])/;
+            const hasSpecialChar = /(?=.*[!@#$%^&*])/;
+            if (!minLength.test(password)) {
+                this.validPass = false;
+                this.validationMessage = 'Password must be at least 8 characters long.';
+            } else if (!hasUpperCase.test(password)) {
+                this.validPass = false;
+                this.validationMessage = 'Password must contain at least one uppercase letter.';
+            } else if (!hasNumber.test(password)) {
+                this.validPass = false;
+                this.validationMessage = 'Password must contain at least one number.';
+            } else if (!hasSpecialChar.test(password)) {
+                this.validPass = false;
+                this.validationMessage = 'Password must contain at least one special character.';
+            } else {
+                this.validPass = true;
+            }
+        },
+
+        isConfirm() {
+            if (this.userForm.password !== this.userForm.password_confirmation) {
+                this.confirmPass = false;
+                this.confirmText = 'Confirm passwor should match with password. '
+            }
+            else {
+                this.confirmPass = true;
             }
         },
 

@@ -788,7 +788,7 @@ export default createStore({
             context.commit('SET_CURRENT_USER', JSON.stringify(result.data));
             this.state.loggedIn = true
             if (result.data[0].email_verified_at == null) {
-              sessionStorage.setItem('email_status', 'A verification email has been sent');
+              sessionStorage.setItem('email_status', 'A verification email has been sent. Please also check your junk email');
               router.push('/send-email');
             }
             else {
@@ -807,7 +807,7 @@ export default createStore({
             this.dispatch('getCompany', result.data[0].id);
 
             if (result.data[0].email_verified_at == null) {
-              sessionStorage.setItem('email_status', 'A verification email has been sent');
+              sessionStorage.setItem('email_status', 'A verification email has been sent. Please also check your junk email');
               router.push('/send-email');
             }
             else {
@@ -818,7 +818,7 @@ export default createStore({
           // else if (result.data[0].roles[0].name == 'Super Admin') {
 
           //   if (result.data[0].email_verified_at == null) {
-          //     sessionStorage.setItem('email_status', 'A verification email has been sent');
+          //     sessionStorage.setItem('email_status', 'A verification email has been sent. Please also check your junk email');
           //     // window.location.href = adminDashboardUrl + result.data[0].email;
           //     // router.push('/send-email');
           //   }
@@ -1888,7 +1888,7 @@ export default createStore({
               this.dispatch('getCompany', result.data[0].id);
               if (result.data[0].email_verified_at == null) {
                 // window.location.href = adminDashboardUrl + result.data[0].email;
-                sessionStorage.setItem('email_status', 'A verification email has been sent');
+                sessionStorage.setItem('email_status', 'A verification email has been sent. Please also check your junk email');
                 router.push('/send-email');
               }
             }
