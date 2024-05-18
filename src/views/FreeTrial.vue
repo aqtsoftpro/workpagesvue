@@ -7,7 +7,7 @@
                   <div class="col-lg-12">
                        <div class="form-wrapper">
                           <div class="form-title">
-                              <h3>Employer Signup</h3>
+                              <h3>Employer Free Trial</h3>
                               <span></span>
                           </div>
                           <div class="register-tab">
@@ -194,6 +194,7 @@
     },
     data() {
       return {
+        user: null,
           userForm: {
               first_name: null,
               last_name: null,
@@ -222,6 +223,7 @@
     },
     computed: {
         ...mapGetters([
+            'currentUser',
             'signUpUser',
             'companyTypes',
             'signUpCompany',
@@ -318,6 +320,18 @@
     mounted() 
       {
         const route = useRoute();
+        this.user = JSON.parse(this.currentUser)[0];
+        console.log(this.user);
+        
+        if (this.user !== null) {
+            this.employerForm.first_name = this.user.first_name;
+            this.employerForm.last_name = this.user.last_name;
+            this.employerForm.username = this.user.username;
+            this.employerForm.company_name = this.user.company_name;
+            this.employerForm.company_type_id = this.user.company_type_id;
+            this.employerForm.suburb_id = this.user.suburb_id;
+            this.employerForm.email = this.user.email;
+        }
         console.log(route.params.id);
         this.employerForm.planId = route.params.id;
         this.$store.dispatch('getCompanyTypes', '');
