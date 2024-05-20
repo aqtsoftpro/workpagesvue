@@ -113,7 +113,11 @@
                                                 <img src="/assets/images/icon/qualification-2.svg" alt="">
                                                 <select class="form-select" v-model="user.qualification_id">
                                                     <option value="">Select Education</option>
-                                                    <option v-for="qualification in qualificationsOptions" :value="qualification.id" :selected="user.qualification_id == qualification.id">{{ qualification.name }}</option>
+                                                    <optgroup v-for="(group, index) in degreeGroups" :label="index">
+                                                        <option v-for="item in group" :value="item.id" :selected="user.qualification_id == item.id" >{{ item.name }}</option>
+                                                    </optgroup>
+                                                    
+                                                    <!-- <option v-for="qualification in qualificationsOptions" :value="qualification.id" :selected="user.qualification_id == qualification.id">{{ qualification.name }}</option> -->
                                                 </select>  
                                             </div>
                                         </div>
@@ -384,6 +388,7 @@ import moment from 'moment';
         qualificationsOptions: [],
         languagesOptions: [],
         locationsOptions: [],
+        degreeGroups: [],
         designationsOptions: [],
         logoVisible : true,
         isLoading: false,
@@ -545,6 +550,7 @@ import moment from 'moment';
     },
 
     qualifications() {
+        this.degreeGroups = this.qualifications
         this.qualificationsOptions = this.qualifications
     },
 
