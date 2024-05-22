@@ -8,12 +8,12 @@
                     <div class="banner-content text-center">
                         <h1>Job Category</h1>
                         <span></span>
-                        <nav aria-label="breadcrumb">
+                        <!-- <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><router-link to="index.html">Home</router-link></li>
                                 <li class="breadcrumb-item active" aria-current="page">Job Category</li>
                             </ol>
-                        </nav>
+                        </nav> -->
                     </div>
                 </div>
             </div>

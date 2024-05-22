@@ -8,12 +8,12 @@
                     <div class="banner-content text-center">
                         <h1>Job Listing</h1>
                         <span></span>
-                        <nav aria-label="breadcrumb">
+                        <!-- <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><router-link to="index.html">Home</router-link></li>
                                 <li class="breadcrumb-item active" aria-current="page">Job Listing  </li>
                             </ol>
-                        </nav>
+                        </nav> -->
                     </div>
                 </div>
             </div>
@@ -95,12 +95,12 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                        <router-link v-if="loggedIn" to="/bookmark" class="bookmark">
+                                        <!-- <router-link v-if="loggedIn" to="/bookmark" class="bookmark">
                                             <i class="bi bi-bookmark-fill"></i>
                                         </router-link>
                                         <router-link v-else :to="{ name: 'login' }" class="bookmark">
                                             <i class="bi bi-bookmark-fill"></i>
-                                        </router-link>                                        
+                                        </router-link>                                         -->
                                     </div>
                                     <div class="job-type-apply">
                                         <div class="job-type">

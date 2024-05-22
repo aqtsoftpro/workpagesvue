@@ -1,19 +1,19 @@
 <template>
   <div>
         <!-- ========== Inner Banner Start============= -->
-        <div class="inner-banner">
+        <div class="inner-banner" :style="bgImage">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="banner-content text-center">
-                        <h1>Job Details</h1>
+                        <h1 :style="textColor">Job Details</h1>
                         <span></span>
-                        <nav aria-label="breadcrumb">
+                        <!-- <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="breadcrumb-item"><router-link to="/">Home</router-link></li>
                                 <li class="breadcrumb-item active" aria-current="page">Job Details</li>
                             </ol>
-                        </nav>
+                        </nav> -->
                     </div>
                 </div>
             </div>
@@ -68,7 +68,7 @@
                         <br>
                         <p><span>Job Responsibility:</span>  </p>
                         {{ current_job.job_responsibilities }}
-                        <h6>Educational Requirements:</h6>
+                        <h6 class="mt-3">Educational Requirements:</h6>
                         <ul>
                             <li>{{ current_job.qualification }}</li>
                         </ul>
@@ -241,6 +241,7 @@
                                                         <img src="/assets/images/icon/user-2.svg" alt="">
                                                         <input v-on:change="onFileSelected" type="file" name="cv" />
                                                     </div>
+                                                    <label v-if="user.cv !== null" >Cv already uploaded</label>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -371,6 +372,8 @@ import { useRoute, useRouter } from 'vue-router'
         jobs: [],
         user: null,
         role: null,
+        bgImage: '',
+        textColor: '',
         application: {
             salary: null,
             experience: null,
@@ -394,7 +397,8 @@ import { useRoute, useRouter } from 'vue-router'
         'relatedJobs',
         'currentUser',
         'candidateAppliedOnJob',
-        'loggedIn'
+        'loggedIn',
+        'globalVariables'
       ]),
 
   },
@@ -403,6 +407,7 @@ import { useRoute, useRouter } from 'vue-router'
     if (this.loggedIn) {
         this.$store.dispatch('getJobDetail', route.params.job_key)
         this.$store.dispatch('relatedJobs', '')
+        this.$store.dispatch('getGlobalVariables');
         this.user = JSON.parse(this.currentUser)[0]
         this.role = this.user.roles[0].name
         this.currentUri = window.location.href;
@@ -533,6 +538,10 @@ import { useRoute, useRouter } from 'vue-router'
     candidateAppliedOnJob(){
         this.user_current_job_applied = this.candidateAppliedOnJob.applied_status
     },
+    globalVariables() {
+      this.bgImage = 'background-image: url('+this.globalVariables._banner_image+'); color: '+this.globalVariables._banner_text_color+'!important;';
+      this.textColor = 'color: '+this.globalVariables._banner_text_color+' !important;'
+    }
   }
 })
 export default class JobDetails extends Vue {}

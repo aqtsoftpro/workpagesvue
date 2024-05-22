@@ -6,14 +6,14 @@
               <div class="row">
                   <div class="col-lg-12">
                       <div class="banner-content text-center">
-                          <h1 :style="textColor">Job Details</h1>
-                          <span></span>
+                          <h1 :style="textColor">{{ jobs[0]?.category }}</h1>
+                          <!-- <span></span>
                           <nav aria-label="breadcrumb">
                               <ol class="breadcrumb">
-                                  <li class="breadcrumb-item" :style="textColor"><a href="index.html" :style="textColor">Home</a></li>
-                                  <li class="breadcrumb-item active" :style="textColor" aria-current="page">Job Details</li>
+                                  <li class="breadcrumb-item" :style="textColor"><router-link to="/" :style="textColor">Home</router-link></li>
+                                  <li class="breadcrumb-item active" :style="textColor" aria-current="page">Category Jobs / {{ jobs[0]?.category }}</li>
                               </ol>
-                          </nav>
+                          </nav> -->
                       </div>
                   </div>
               </div>
@@ -69,7 +69,7 @@
                             </div>
                         </div>
                         <div class="row ">
-                            <div v-for="job in job" :key="job.id" class="col-lg-12 mb-30">
+                            <div v-for="job in jobs" :key="job.id" class="col-lg-12 mb-30">
                                 <div class="job-listing-card">
                                     <div class="job-top">
                                         <div class="job-list-content">
@@ -79,7 +79,7 @@
                                                 </div>
                                                 <div class="company-details">
                                                     <div class="name-location">
-                                                        <h5><router-link to="/job-details">{{ job.job_title }}</router-link></h5>
+                                                        <h5><router-link :to="getJobDetail(job.job_key, job.job_slug)">{{ job.job_title }}</router-link></h5>
                                                         <p><router-link :to="'/company-details?company_id=' + job.company_id">{{ job.company }}</router-link></p>
                                                     </div>
                                                 </div>
@@ -95,12 +95,12 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                        <router-link v-if="loggedIn" to="/bookmark" class="bookmark">
+                                        <!-- <router-link v-if="loggedIn" to="/bookmark" class="bookmark">
                                             <i class="bi bi-bookmark-fill"></i>
                                         </router-link>
                                         <router-link v-else :to="{ name: 'login' }" class="bookmark">
                                             <i class="bi bi-bookmark-fill"></i>
-                                        </router-link>                                        
+                                        </router-link>                                         -->
                                     </div>
                                     <div class="job-type-apply">
                                         <div class="job-type">

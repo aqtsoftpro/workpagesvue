@@ -8,12 +8,12 @@
                     <div class="banner-content text-center">
                         <h1 :style="textColor">Charity Partner</h1>
                         <span></span>
-                        <nav aria-label="breadcrumb">
+                        <!-- <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item" :style="textColor"><router-link to="index.html" :style="textColor">Home</router-link></li>
                                 <li class="breadcrumb-item active" :style="textColor" aria-current="page">Charity Partner  </li>
                             </ol>
-                        </nav>
+                        </nav> -->
                     </div>
                 </div>
             </div>

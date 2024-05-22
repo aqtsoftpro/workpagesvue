@@ -104,9 +104,9 @@
                                                     <!-- <preview :width="120" :height="120" :src="image.src" :coordinates="userForm.coordinates" /> -->
                                                        
                                                     <div class="button-wrapper">
-                                                        <button class="btn btn-primary col-md-2 " type="button" @click="$refs.file.click()">
+                                                        <button class="btn primary-btn-2 col-md-2 " type="button" @click="$refs.file.click()">
                                                             <input @change="photoChange" ref="file" accept="image/*" type="file" id="photo" name="photo" style="display:none" >  
-                                                            Load Image                                                      
+                                                            Upload Image                                                      
                                                         </button>
                                                     </div>    
                                                 </div>
@@ -118,7 +118,7 @@
                                                 <div class="form-agreement form-inner d-flex justify-content-between flex-wrap">
                                                     <div class="form-group two">
                                                         <input type="checkbox" v-model="is_agree" id="html1">
-                                                        <label for="html1">Here, I will agree company terms & conditions.</label>
+                                                        <label for="html1">By registering, you acknowledge and agree to our Privacy Policy.</label>
                                                     </div>
                                                 </div>
                                             </div>

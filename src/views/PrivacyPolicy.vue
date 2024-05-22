@@ -8,12 +8,12 @@
                     <div class="banner-content text-center">
                         <h1>Privacy Policy</h1>
                         <span></span>
-                        <nav aria-label="breadcrumb">
+                        <!-- <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><router-link to="index.html">Home</router-link></li>
                                 <li class="breadcrumb-item active" aria-current="page">Privacy Policy  </li>
                             </ol>
-                        </nav>
+                        </nav> -->
                     </div>
                 </div>
             </div>

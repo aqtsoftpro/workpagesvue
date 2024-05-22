@@ -149,7 +149,7 @@
                                                   <div class="form-agreement form-inner d-flex justify-content-between flex-wrap">
                                                       <div class="form-group two">
                                                           <input type="checkbox" id="html">
-                                                          <label for="html">Here, I will agree company terms & conditions.</label>
+                                                          <label for="html">By registering, you acknowledge and agree to our Privacy Policy.</label>
                                                       </div>
                                                   </div>
                                               </div>

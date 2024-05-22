@@ -130,6 +130,7 @@
                                                 <img src="/assets/images/icon/create-resume.svg" alt="" width="16">
                                                 <input type="file" @change="cvHandle" placeholder="upload file" accept="application/pdf" />
                                             </div>
+                                            <label v-if="user.cv !== null" >Cv already uploaded</label>
                                         </div>
                                     </div>
 
@@ -456,7 +457,7 @@ import moment from 'moment';
     async updateProfile(){
         this.isLoading = true;
         try {
-            this.user.dob = moment(this.user.dob).format('YYYY-MM-DD');
+            this.user.dob = moment(this.user.dob).format('DD-MM-YYYY');
             await this.$store.dispatch('updateProfile', this.user);
             window.setTimeout(() => {
                 this.isLoading = false

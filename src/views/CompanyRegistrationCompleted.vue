@@ -8,12 +8,12 @@
                     <div class="banner-content text-center">
                         <h1 :style="textColor">Employer Registration Completed</h1>
                         <span></span>
-                        <nav aria-label="breadcrumb">
+                        <!-- <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item" :style="textColor"><router-link to="index.html" :style="textColor">Home</router-link></li>
                                 <li class="breadcrumb-item active"  :style="textColor" aria-current="page">Employer Registration Completed </li>
                             </ol>
-                        </nav>
+                        </nav> -->
                     </div>
                 </div>
             </div>
