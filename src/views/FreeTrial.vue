@@ -47,10 +47,6 @@
                                                               placeholder="Jonson"
                                                               :rules="lastName" 
                                                           />
-  
-  
-  
-                          
                                                       </div>
                                                       <!-- <ErrorMessage class="text-danger" name="last_name" /> -->
                                                   </div>
@@ -106,7 +102,7 @@
                                                       <!-- <ErrorMessage class="text-danger" name="company_name" /> -->
                                                   </div>
                                               </div>
-                                              <div class="col-md-6">
+                                              <!-- <div class="col-md-6">
                                                   <div class="form-inner mb-25">
                                                       <label>Company Type*</label>
                                                       <div class="input-area">
@@ -144,7 +140,7 @@
                                                               />
                                                       </div>
                                                   </div>
-                                              </div>
+                                              </div> -->
                                               <div class="col-md-12">
                                                   <div class="form-agreement form-inner d-flex justify-content-between flex-wrap">
                                                       <div class="form-group two">

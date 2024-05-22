@@ -57,7 +57,7 @@
                                     <div class="d-flex justify-content-center mt-5">
                                         <button v-if="this.activePlanId == null && !plan.isLoading && plan.price > 0"@click="checkout(plan)" class="primry-btn-2 custom-btn lg-btn" type="button" >{{ this.loggedIn == true ? 'Buy Now':'Login To Buy'}} </button>
                                         <button v-if="this.activePlanId !== null && !plan.isLoading && plan.price > 0 && this.activePlanId == plan.id" class="primry-btn-2 custom-btn lg-btn" type="button" disabled>Subscribed </button>
-                                        <button v-if="!plan.isLoading && plan.price <= 0" @click="zeroSubscribe(plan)" class="primry-btn-2 custom-btn lg-btn" type="button" >{{ this.loggedIn == true ? 'Buy Now':'Login To Buy'}} </button>
+                                        <button v-if="!plan.isLoading && plan.price == 0" @click="zeroSubscribe(plan)" class="primry-btn-2 custom-btn lg-btn" type="button" >{{ this.loggedIn == true ? 'Buy Now':'Login To Buy'}} </button>
                                         <button v-if="plan.isLoading" class="primry-btn-2 custom-btn lg-btn" type="button">
                                             <span class="me-3 fs-6 text-white">Processing...</span>
                                             <i class="fa fa-spinner fa-spin text-white ms-3" style="font-size:24px">

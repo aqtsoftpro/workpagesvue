@@ -99,7 +99,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-inner mb-25">
-                                                    <label>Company Type*</label>
+                                                    <label>Industry Type*</label>
                                                     <div class="input-area">
                                                         <img src="assets/images/icon/category-2.svg" alt="">
                                                         <Dropdown

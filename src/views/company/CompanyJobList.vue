@@ -13,8 +13,11 @@
                             <!-- <div class="job-post-btn">
                                 <router-link to="/company/ad-list" class="primry-btn-2">Job Advertisement List</router-link>
                             </div> -->
-                            <div class="job-post-btn">
+                            <!-- <div class="job-post-btn">
                                 <router-link to="/company/create-job" class="primry-btn-2">Create Job Post</router-link>
+                            </div> -->
+                            <div>
+                                <router-link to="/company/create-job" class="primry-btn-2 lg-btn w-unset">Create Job Post</router-link>
                             </div>
                         </div>
                         <div class="table-filter-area mb-30">

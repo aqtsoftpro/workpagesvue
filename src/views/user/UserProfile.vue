@@ -372,7 +372,7 @@ import moment from 'moment';
             dob: '',
             email: '',
             phone: '',
-            current_job_location_id: '',
+            current_job_location_id: 2,
             designation_id: '',
             qualification_id: '2',
             description: '',
@@ -392,7 +392,7 @@ import moment from 'moment';
 
         otherDetail: {
             active_job: null,
-            country_id: null,
+            country_id: 2,
             profile_status: null,
             is_available: null,
             intro_video: null,

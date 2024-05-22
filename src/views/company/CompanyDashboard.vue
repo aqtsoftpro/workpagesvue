@@ -12,7 +12,7 @@
                                 <div class="author-area two">
                                     <div class="author-img">
                                         <img width="200" v-if="company_logo" :src="company_logo" />
-                                        <img v-else src="/assets/images/icon/demo-company.jpeg" alt="">
+                                        <img v-else src="/assets/images/work-pages-logo-cropped.png" alt="">
                                     </div>
                                     <div class="author-content">
                                         <span>Hello,</span>
@@ -20,12 +20,19 @@
                                     </div>
                                 </div>
 
-                                <div class="action-btn-group">
+                                <!-- <div class="action-btn-group">
                                     <ul>
-                                        <li><router-link to="/company/profile"><span><img
-                                                        src="/assets/images/icon/edit2.svg" alt=""></span>Edit
+                                        <li><router-link to="/company/profile" class="btn primary-btn-2">
+                                            <span><img
+                                                        src="/assets/images/icon/edit2.svg" alt="">
+                                                    </span>
+                                                    Edit
                                                 Profile</router-link></li>
                                     </ul>
+                                </div> -->
+                                <div>
+                                    <router-link to="/company/profile" class="primry-btn-2 lg-btn w-unset">Edit
+                                                Profile</router-link>
                                 </div>
                             </div>
                             <div class="counter-area">

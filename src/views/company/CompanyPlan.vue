@@ -9,9 +9,13 @@
                             <div class="title">
                                 <h4>Plan & Invoice List:</h4>
                             </div>
-                            <div class="job-post-btn">
+                            <!-- <div class="job-post-btn">
                                 <router-link class="primry-btn-2" to="/plans">{{ companySubscriptions.length > 0 ? 'Upgrade Plan': 'Purchase Plan' }}</router-link>
+                            </div> -->
+                            <div>
+                                <router-link class="primry-btn-2 lg-btn w-unset" to="/plans">{{ companySubscriptions.length > 0 ? 'Upgrade Plan': 'Purchase Plan' }}</router-link>
                             </div>
+                            
                         </div>
                         <table class="eg-table table plan-invoice-table mb-0">
                             <thead>

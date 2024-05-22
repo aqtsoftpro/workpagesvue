@@ -29,7 +29,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-inner mb-25">
-                                            <label>Company Type*</label>
+                                            <label>Industry Type*</label>
                                             <div class="input-area">
                                                 <img src="/assets/images/icon/category-2.svg" alt="">
                                                 <!-- <Dropdown 
@@ -44,7 +44,7 @@
                                                 md:w-24rem"
                                                  /> -->
                                                  <select class="form-select" v-model="userForm.company_type_id" @change="changeCompanyType">
-                                                    <option value="">Select Company Type*</option>
+                                                    <option value="">Select Industry Type*</option>
                                                     <option v-for="companyType in companyTypes" :value="companyType.id">{{ companyType.name }}</option>
                                                 </select>
                                             </div>
