@@ -128,7 +128,7 @@
 
     .h-fix::-webkit-scrollbar {
     width: 8px; /* Width of the scrollbar */
-    background-color: #d0e0eb; /* Background color of the scrollbar track */
+    background-color: #050a46; /* Background color of the scrollbar track */
     border-radius: 6px; /* Radius of the scrollbar track */
     }
 
