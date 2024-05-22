@@ -41,8 +41,8 @@
                                             <label>Your DOB</label>
                                             <div class="input-area">
                                                 <img src="/assets/images/icon/clock-2.svg " alt="">
-                                                <Calendar v-model="user.dob"  :maxDate="maxDate"   />
-                                          
+                                                <Calendar v-model="user.dob" dateFormat="dd-mm-yy" :maxDate="maxDate" />
+                                                <!-- dateFormat="dd-mm-yyyy" -->
                                             </div>
                                         </div>
                                     </div>
@@ -122,6 +122,18 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-inner mb-25">
+                                            <label for="password2">Upload CV</label>
+                                            <div class="input-area">
+                                                <img src="/assets/images/icon/create-resume.svg" alt="" width="16">
+                                                <input type="file" @change="cvHandle" placeholder="upload file" accept="application/pdf" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+
                                     <div class="col-md-12">
                                         <div class="form-inner mb-50">
                                             <label>Description - Write a brief summary about you</label>
@@ -225,7 +237,7 @@
                             </form>
                         </div>
 
-                        <div class="form-wrapper mb-5">
+                        <!-- <div class="form-wrapper mb-5">
                             <div class="section-title">
                                 <h5>Other Details:</h5>
                             </div>
@@ -252,7 +264,7 @@
                                     </div>
                                 </div>
                             </form>
-                        </div>
+                        </div> -->
                         
                         <div class="form-wrapper">
                             <div class="section-title">
@@ -365,6 +377,7 @@ import moment from 'moment';
             description: '',
             address: '',
             suburb_id:'',
+            cv: '',
         },
         social: {
             user_id: null,
@@ -496,6 +509,13 @@ import moment from 'moment';
         const file = event.target.files[0];
         console.log(event);
         this.documentForm.file_path = file;
+        console.log('no data found');
+    },
+
+    cvHandle(event: any) {
+        const file = event.target.files[0];
+        console.log(event);
+        this.user.cv = file;
         console.log('no data found');
     },
 

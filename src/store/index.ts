@@ -1037,11 +1037,21 @@ export default createStore({
       })
         .then(res => {
           let result = res
-          localStorage.setItem('currentUser', JSON.stringify(res.data.user));
-          context.commit('SET_CURRENT_USER', JSON.stringify(res.data.user));
-          toast.success(res.data.message, {
-            position: toast.POSITION.BOTTOM_RIGHT
-          })
+          if (res.data.status == 'disabled') {
+            toast.success(res.data.message, {
+              position: toast.POSITION.BOTTOM_RIGHT
+            });
+            window.setTimeout(() => {
+              this.dispatch('logout', '');
+            }, 2000);
+          }
+          else {
+            localStorage.setItem('currentUser', JSON.stringify(res.data.user));
+            context.commit('SET_CURRENT_USER', JSON.stringify(res.data.user));
+            toast.success(res.data.message, {
+              position: toast.POSITION.BOTTOM_RIGHT
+            });
+          }
 
         }).catch(err => {
           toast.error(err.message, {

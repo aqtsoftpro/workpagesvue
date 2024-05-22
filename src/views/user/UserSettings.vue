@@ -109,14 +109,14 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
-                                        <div class="single-permission mb-2">
+                                        <!-- <div class="single-permission mb-2">
                                             <div class="title">
                                                 <h6>Your profile satatus</h6>
                                             </div>
                                             <div class="form-check form-switch">
                                                 <InputSwitch v-model="profile_status" :pt="{ slider: 'my-switch-slider' }" @change="updateStatus({'profile_status':profile_status == true ? 'opened': 'closed'})"/>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <div class="single-permission mb-2">
                                             <div class="title">
                                                 <h6>Are you available to interview ?</h6>
