@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="banner-content text-center">
-                        <h2>Thank you for verification</h2>
+                        <h2>Success! You have verified your Work Pages profile</h2>
                         <span></span>
                     </div>
                 </div>
