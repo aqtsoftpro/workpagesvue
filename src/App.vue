@@ -351,7 +351,7 @@
                     <div class="col-lg-6 d-flex justify-content-lg-end justify-content-center">
                         <div class="footer-btm-menu">
                             <ul>
-                                <li><router-link to="/privacy-policy">Privacy Policy</router-link></li>
+                                <li><router-link to="/privacy-policy" >Privacy Policy</router-link></li>
                                 <li><router-link to="/terms-conditions">Terms of Services</router-link></li>
                                 <!-- <li><router-link to="https://www.google.com/maps/place/Egens+Lab/@23.8340712,90.3634979,17z/data=!3m1!4b1!4m5!3m4!1s0x3755c14c8682a473:0xa6c74743d52adb88!8m2!3d23.8340663!4d90.3656866">Our Sitemap</router-link></li> -->
                             </ul>
@@ -464,12 +464,26 @@
 .dropdown-menu > li > a:hover{
     /* background-color: #010536; */
     text-decoration: underline;
-    color: #3b3434;
+    /* color: #010536; */
+    color: #FFFF00 !important;
 }
 
 li:hover > .dropdown-menu {
     display: block;
 }
+
+footer .footer-widget ul li a:hover {
+    color: #FFFF00 !important;
+}
+
+footer .footer-btm a {
+    color: #B3B3B3 !important;
+}
+
+footer .footer-btm a:hover {
+    color: #FFFF00 !important;
+}
+
 
 </style>
 
