@@ -521,7 +521,7 @@
                         </div> -->
                         <div class="company-area">
                             <div class="company-logo">
-                                <img :src="(job.company_logo) ? job.company_logo : '/assets/images/bg/company-logo/company-01.png'" alt="">
+                                <img :src="(job.company_logo) ? job.company_logo : '/assets/images/work-pages-logo.png'" alt="">
                             </div>
                             <div class="company-details">
                                 <div class="name-location">
@@ -653,7 +653,7 @@
                                     <div class="company-area d-flex justify-content-center align-items-center" >
                                         
                                         <div class="company-logo">
-                                                <img :src="(company.logo) ? company.logo : '/assets/images/icon/demo-company.jpeg'" alt="">
+                                                <img :src="(company.logo) ? company.logo : '/assets/images/work-pages-logo.png'" alt="">
                                         </div>
                                     </div>
                                     <div class="job-discription">

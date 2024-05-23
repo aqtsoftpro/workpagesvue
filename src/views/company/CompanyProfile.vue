@@ -122,9 +122,9 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-inner mb-25">
-                                            <label for="twitter">Twitter</label>
+                                            <label for="twitter">X</label>
                                             <div class="input-area">
-                                                <img src="/assets/images/icon/twiter-2.svg" alt="">
+                                                <img src="/assets/images/icon/twitter-x.svg" alt="" width="26"  >
                                                 <input v-model="userForm.twitter" type="text" id="twitter" name="twitter" placeholder="https://example-twitter.com">
                                             </div>
                                         </div>
@@ -149,9 +149,9 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-inner mb-25">
-                                            <label for="dribble">Dribbble</label>
+                                            <label for="dribble">Instagram</label>
                                             <div class="input-area">
-                                                <img src="/assets/images/icon/dribble-2.svg" alt="">
+                                                <img src="/assets/images/icon/instagram.svg" width="16" alt="">
                                                 <input v-model="userForm.dribble" type="text" id="dribble" name="dribble" placeholder="https://example-dribbble.com">
                                             </div>
                                         </div>

@@ -33,7 +33,7 @@
                             </div>
                             <div class="col-lg-6 d-flex align-items-center justify-content-lg-end">
                                 <div class="grid-select-area">
-                                    <div class="select-area">
+                                    <!-- <div class="select-area">
                                         <select class="select1">
                                             <option value="0">Sort By(Default)</option>
                                             <option value="1">Full Time</option>
@@ -64,7 +64,7 @@
                                                 </svg>
                                             </a></li>
                                         </ul>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -126,13 +126,16 @@
                                 <div class="pagination-area">
                                     <nav aria-label="...">
                                         <ul class="pagination">
-                                            <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1"></a></li>
-                                            <li class="page-item active" aria-current="page"><a class="page-link" href="#">01</a></li>
+                                            <!-- <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1"></a></li>
+                                            <li class="page-item active" aria-current="page"><a class="page-link" href="#">01</a></li> -->
 
-                                            <li v-for="item in jobs.links" class="page-item"><a class="page-link" href="#">{{ item.label }}</a></li>
+                                            <li v-for="item in jobs.links" class="page-item" :class="{ 'active': item.active == true, 'd-none': item.label.includes('Previous') || item.label.includes('Next') }"  >
+                                                <!-- <a class="page-link" href="#">{{ item.label }}</a> -->
+                                                <button class="page-link" @click="toPage(item.url)" > {{ item.url == null ? '<': item.label }} </button>
+                                            </li>
 
-                                            <li class="page-item"><a class="page-link" href="#">03</a></li>
-                                            <li class="page-item"><a class="page-link" href="#"></a></li>
+                                            <!-- <li class="page-item"><a class="page-link" href="#">03</a></li>
+                                            <li class="page-item"><a class="page-link" href="#"></a></li> -->
                                         </ul>
                                     </nav>
                                 </div>
@@ -179,6 +182,7 @@ import { useRoute } from 'vue-router'
     console.log(route.params.cat_slug)
     const data = {
         category : route.params.cat_slug,
+        page : 1
     };
     this.$store.dispatch('getCategoryJobs', data)
     this.$store.dispatch('getGlobalVariables');
@@ -206,10 +210,19 @@ import { useRoute } from 'vue-router'
     },
 
     toPage(url: any) {
-            const data = {
-            category : url,
-        };
-        this.$store.dispatch('getCategoryJobs', data)
+
+        const urlObj = new URL(url);
+
+        // Extract the category from the pathname
+        const pathnameParts = urlObj.pathname.split('/');
+        const category = pathnameParts[pathnameParts.length - 1];
+
+        // Extract the page parameter from the query string
+        const params = new URLSearchParams(urlObj.search);
+
+        const page = params.get('page');
+
+        this.$store.dispatch('getCategoryJobs', { category: category, page: page})
     },
     
     isJobExpired(expirationDate: any) {

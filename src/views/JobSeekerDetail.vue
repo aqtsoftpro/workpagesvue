@@ -69,7 +69,7 @@
                       <div class="card" style="height: 45em !important;">
                         <div class="card-body">
                             <div class="card-title">
-                                <h4>Job Seeker Detail:</h4>
+                                <h4>Job Seeker About:</h4>
                             </div>
                             <!-- <div v-if="permission" class="row" style="height: 40em; overflow-y: scroll !important;">
                                 <div v-for="document in jobSeekerData.documents" class="col-md-6 my-5">
@@ -100,10 +100,10 @@
                                 </div>
                             </div> -->
 
-                            <div v-if="jobSeekerData.description !== null" class="row">
+                            <div v-if="jobSeekerData.description !== null" class="row p-4">
                                 {{ jobSeekerData.description }}
                             </div>
-                            <div v-else>
+                            <div v-else class="row p-4" >
                                 <h5>No Description Found!...</h5>
                             </div>
                         </div>
@@ -120,7 +120,7 @@
                                   <li><p><span class="title">Email:</span> {{ jobSeekerData?.email }}</p></li>
                                   <li><p><span class="title">Phone:</span> {{ jobSeekerData?.phone }}</p></li>
                                   <li><p><span class="title">Gender:</span> {{ jobSeekerData?.gender }}</p></li>
-                                  <li><p><span class="title">Designation:</span> {{ jobSeekerData?.designtion }}</p></li>
+                                  <li><p><span class="title">Designation:</span> {{ jobSeekerData?.designtion?.name }}</p></li>
                                   <li><p><span class="title">Address:</span> {{ jobSeekerData?.address }}</p></li>
                               </ul>
                           </div>
