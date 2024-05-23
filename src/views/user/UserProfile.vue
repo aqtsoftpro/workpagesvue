@@ -550,11 +550,13 @@ import moment from 'moment';
     },
     currentUser(){
         this.user = JSON.parse(this.currentUser)[0]
+        this.user.current_job_location_id = JSON.parse(this.currentUser)[0].current_job_location_id ?? 2;
     },
 
     userDetails() {
         this.otherDetail.active_job = this.userDetails?.active_job;
-        this.otherDetail.country_id = this.userDetails?.country_id;
+        this.otherDetail.country_id = this.userDetails?.country_id ?? 2;
+        this.otherDetail.current_job_location_id = this.userDetails?.current_job_location_id ?? 2;
         this.otherDetail.profile_status = this.userDetails?.profile_status;
         this.otherDetail.is_available = this.userDetails?.is_available;
         this.otherDetail.intro_video = this.userDetails?.intro_video;

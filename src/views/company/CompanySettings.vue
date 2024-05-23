@@ -45,7 +45,6 @@
                                         </div>
                                     </div>
                                 </div>
-                             
                             </div>
                         </form>
                         <!-- <form class="profile-form">    
