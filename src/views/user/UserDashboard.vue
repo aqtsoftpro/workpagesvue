@@ -9,7 +9,7 @@
                          <div class="author-area">
                             <div class="author-img">
                                 <img v-if="user.photo" :src="user.photo">
-                                <img v-else src="/assets/images/bg/no-image.jpg">
+                                <img v-else src="/assets/images/work-pages-logo.png">
                             </div>
                             <div class="author-content">
                                 <span>Hello, I’m</span>
