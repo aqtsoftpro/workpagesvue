@@ -48,7 +48,7 @@
                              
                             </div>
                         </form>
-                        <form class="profile-form">    
+                        <!-- <form class="profile-form">    
                             <div class="phone-email-area">
                                 <div class="row">
                                     <div class="col-lg-12">
@@ -137,32 +137,6 @@
                                                 <InputSwitch v-model="jobsApplicationsEmailAlert"  />
                                             </div>
                                         </div>
-                                        <!-- <div class="single-permission mb-30">
-                                            <div class="title">
-                                                <h6>Resume Visibility</h6>
-                                            </div>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault2">
-                                            </div>
-                                        </div>
-                                        <div class="single-permission mb-3">
-                                            <div class="title">
-                                                <h6>Disable Account</h6>
-                                                <p>If you log in again you will able to see all the match jobs and get all information.</p>
-                                            </div>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault3">
-                                            </div>
-                                        </div>
-                                        <div class="single-permission align-items-start">
-                                            <div class="title">
-                                                <h6>Delete Account</h6>
-                                                <p>If you delete your account, you will no longer be able to get information about the matched jobs.</p>
-                                            </div>
-                                            <div class="delete-btn">
-                                                <button type="reset">Delete Account</button>
-                                            </div>
-                                        </div> -->
                                     </div>
                                 </div>
                             </div>
@@ -177,7 +151,7 @@
                                     </button>
                                 </div>
                             </div>
-                        </form>
+                        </form> -->
                     </div>
                 </div>
             </div>

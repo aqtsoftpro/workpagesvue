@@ -6,7 +6,7 @@
               <div class="row">
                   <div class="col-lg-12">
                       <div class="banner-content text-center">
-                          <h1 :style="textColor">{{ jobs[0]?.category }}</h1>
+                          <h1 :style="textColor">{{ jobs.data ? jobs.data[0]?.category : 'No Category' }}</h1>
                           <!-- <span></span>
                           <nav aria-label="breadcrumb">
                               <ol class="breadcrumb">
@@ -75,7 +75,7 @@
                                         <div class="job-list-content">
                                             <div class="company-area">
                                                 <div class="logo">
-                                                        <img :src="(job.company_logo) ? job.company_logo : 'https://loremflickr.com/52/52/logo,organisation/all'" alt="">
+                                                        <img :src="(job.company_logo) ? job.company_logo : '/assets/images/work-pages-logo.png'" alt="">
                                                 </div>
                                                 <div class="company-details">
                                                     <div class="name-location">
