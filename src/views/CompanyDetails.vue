@@ -17,7 +17,7 @@
                     <div class="col-lg-12">
                         <div class="post-thumb">
                             <div class="company-logo">
-                                <img :src="(company.logo) ? company.logo : '/assets/images/bg/company-logo/company-01.png'"
+                                <img :src="(company.logo) ? company.logo : '/assets/images/work-pages-logo.png'"
                                     alt="">
                             </div>
                         </div>
@@ -147,12 +147,12 @@
                                     <div class="job-list-content">
                                         <div class="company-area">
                                             <div class="logo">
-                                                <img :src="job.company_logo" alt="">
+                                                <img :src="job.company_logo ?? '/assets/images/work-pages-logo.png'" alt="">
                                             </div>
                                             <div class="company-details">
                                                 <div class="name-location">
-                                                    <h5><a href="job-details.html">{{ job.job_title }}</a></h5>
-                                                    <p><a href="company-details.html">{{ job.company }}</a></p>
+                                                    <h5><a href="#">{{ job.job_title }}</a></h5>
+                                                    <p><a href="#">{{ job.company }}</a></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -176,9 +176,9 @@
                                             </ul>
                                         </div>
                                     </div>
-                                    <div class="bookmark">
+                                    <!-- <div class="bookmark">
                                         <i class="bi bi-bookmark-fill"></i>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="job-type-apply">
                                     <p><img src="assets/images/icon/company-4.svg" alt=""> Job Applied: <span> {{

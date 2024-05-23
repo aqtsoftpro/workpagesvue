@@ -139,6 +139,9 @@
                                         </ul>
                                     </nav>
                                 </div>
+
+                                <!-- <Paginator v-model:first="currentPage" :rows="rowsPerPage" :totalRecords="totalPages" @page="toPage('event')">
+                                </Paginator> -->
                             </div>
                         </div>
                     </div>
@@ -154,17 +157,32 @@
 import { Options, Vue } from 'vue-class-component';
 import JobCats from '../views/CategoryJobs.vue'; // @ is an alias to /src
 import { mapGetters } from 'vuex';
-import { useRoute } from 'vue-router'
+import { useRoute } from 'vue-router';
+import Paginator from 'primevue/paginator';
+
 
 @Options({
   components: {
     JobCats,
+    Paginator,
   },
   data(){
     return {
         jobs: [],
         bgImage: '',
         textColor: '',
+        currentPage : 1,
+        totalPages : 0,
+        rowsPerPage : 10,
+
+
+        // "next_page_url": "http:\/\/127.0.0.1:8000\/api\/categoryJobs\/development?page=2",
+        // "path": "http:\/\/127.0.0.1:8000\/api\/categoryJobs\/development",
+        // "per_page": 3,
+        // "prev_page_url": null,
+        // "to": 3,
+        // "total": 20
+
     }
   },
   computed: {

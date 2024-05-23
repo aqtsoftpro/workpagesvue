@@ -516,21 +516,15 @@
             <div class="row g-4">
                 <div class="col-xl-4 col-lg-6" v-if="jobs_latest" v-for="job in jobs_latest" :key="job.id">
                     <div class="job-list-card">
-                        <!-- <div class="urgent-batch">
-                            <span>Urgent</span>
-                        </div> -->
-                        <div class="company-area">
+                        <div class="company-area" style="flex-direction: column !important " >
                             <div class="company-logo">
                                 <img :src="(job.company_logo) ? job.company_logo : '/assets/images/work-pages-logo.png'" alt="">
                             </div>
-                            <div class="company-details">
+                            <div class="company-details" style="justify-content:center !important">
                                 <div class="name-location">
-                                    <h5>{{job.job_title}}</h5>
-                                    <!-- <p><router-link to="/company-details">{{job.company_name}}</router-link></p> -->
+                                    <h5 >{{job.job_title}}</h5>
                                 </div>
-                                <!-- <div class="bookmark">
-                                    <i class="bi bi-bookmark"></i>
-                                </div> -->
+
                             </div>
                         </div>
                         <div class="job-discription">
@@ -547,9 +541,6 @@
                             </ul>
                         </div>
                         <div class="job-type-apply">
-                            <!-- <div class="apply-btn">
-                                <router-link :to="getJobDetail(job.job_key, job.job_slug)"><span><img src="assets/images/icon/apply-ellipse.svg" alt=""></span>Apply Now</router-link>
-                            </div> -->
                             <div class="apply-btn" v-if="!isJobExpired(job.expiration)">
                                 <router-link v-if="loggedIn" :to="getJobDetail(job.job_key, job.job_slug)"><span><img src="assets/images/icon/apply-ellipse.svg" alt=""></span>Apply Now</router-link>
                                 <router-link v-else :to="{ name: 'login'}"><span><img src="assets/images/icon/apply-ellipse.svg" alt=""></span>Login to apply</router-link>
@@ -653,7 +644,7 @@
                                     <div class="company-area d-flex justify-content-center align-items-center" >
                                         
                                         <div class="company-logo">
-                                                <img :src="(company.logo) ? company.logo : '/assets/images/work-pages-logo.png'" alt="">
+                                                <img :src="(company.logo) ? company.logo : '/assets/images/icon/demo-company.jpeg'" alt="">
                                         </div>
                                     </div>
                                     <div class="job-discription">

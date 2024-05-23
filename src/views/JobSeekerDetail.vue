@@ -32,7 +32,7 @@
                               <div class="company-area">
                                   <div class="logo">
                                       <img width="200" v-if="jobSeekerData.photo"  :src="jobSeekerData.photo" />
-                                      <!-- <img v-else src="/assets/images/bg/company-logo/company-01.png" alt=""> -->
+                                      <!-- <img v-else src="/assets/images/work-pages-logo.png" alt=""> -->
                                   </div>
                                   <div class="company-details">
                                       <div class="name-location">

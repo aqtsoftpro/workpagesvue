@@ -6079,7 +6079,7 @@ header.style-7 .main-menu ul li.menu-item-has-children > i {
   content: "";
   height: 100%;
   width: 3px;
-  background: rgba(0, 167, 172, 0.25);
+  background: rgba(1, 5, 54, 1);
   position: absolute;
   top: 0;
   left: 0;
@@ -6632,7 +6632,7 @@ header.style-7 .main-menu ul li.menu-item-has-children > i {
 .home1-top-recruiters .recruters-card {
   background: #FFFFFF;
   border-radius: 5px;
-  border: 1px solid rgba(0, 167, 172, 0.25);
+  border: 1px solid rgba(1, 5, 54, 1);
   transition: 0.35s;
 }
 .home1-top-recruiters .recruters-card .company-area {
@@ -12192,7 +12192,7 @@ header.style-7 .main-menu ul li.menu-item-has-children > i {
   content: "";
   height: 100%;
   width: 3px;
-  background: rgba(0, 167, 172, 0.25);
+  background: rgba(1, 5, 54, 1);
   position: absolute;
   top: 0;
   left: 0;
@@ -13742,7 +13742,7 @@ header.style-7 .main-menu ul li.menu-item-has-children > i {
   height: 13px;
   width: 13px;
   border-radius: 50%;
-  border: 1px solid rgba(0, 167, 172, 0.25);
+  border: 1px solid rgba(1, 5, 54, 1);
   position: absolute;
   left: -3px;
   top: -3px;
@@ -13781,7 +13781,7 @@ header.style-7 .main-menu ul li.menu-item-has-children > i {
   height: 13px;
   width: 13px;
   border-radius: 50%;
-  border: 1px solid rgba(0, 167, 172, 0.25);
+  border: 1px solid rgba(1, 5, 54, 1);
   position: absolute;
   left: -3px;
   top: -3px;

@@ -90,7 +90,7 @@
                                 <div class="company-list-card1">
                                     <div class="company-area">
                                         <div class="logo">
-                                            <img :src="(company.logo) ? company.logo : '/assets/images/bg/company-logo/company-01.png'" alt="">
+                                            <img :src="(company.logo) ? company.logo : '/assets/images/work-pages-logo.png'" alt="">
                                         </div>
                                        <div class="company-content">
                                         <div class="company-details">

@@ -25,7 +25,7 @@
                                         <td data-label="Job Title">
                                             <div class="company-info">
                                                 <div class="logo">
-                                                    <img src="/assets/images/bg/company-logo/company-01.png" alt="">
+                                                    <img src="/assets/images/work-pages-logo.png" alt="">
                                                 </div>
                                                 <div class="company-details">
                                                     <div class="top">

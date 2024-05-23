@@ -33,7 +33,10 @@
                                             <div class="job-list-content">
                                                 <div class="company-area">
                                                     <div class="logo">
-                                                        <img :src="(seeker.photo) ? seeker.photo : 'https://loremflickr.com/52/52/logo,organisation/all'"
+
+                                                        
+
+                                                        <img :src="(seeker.photo) ? seeker.photo : '/assets/images/work-pages-logo.png'"
                                                             alt="">
                                                     </div>
                                                     <div class="company-details">

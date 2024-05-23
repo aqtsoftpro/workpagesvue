@@ -31,7 +31,7 @@
                             <div class="company-area">
                                 <div class="logo">
                                     <img width="200" v-if="current_job.company_logo"  :src="current_job.company_logo" />
-                                    <img v-else src="/assets/images/bg/company-logo/company-01.png" alt="">
+                                    <img v-else src="/assets/images/work-pages-logo.png" alt="">
                                 </div>
                                 <div class="company-details">
                                     <div class="name-location">
@@ -309,7 +309,7 @@
                                     <div class="feature-card">
                                         <div class="company-area">
                                             <div class="logo">
-                                                <img src="/assets/images/bg/company-logo/company-06.png" alt="">
+                                                <img src="/assets/images/work-pages-logo.png" alt="">
                                             </div>
                                             <div class="company-details">
                                                 <div class="name-location">
