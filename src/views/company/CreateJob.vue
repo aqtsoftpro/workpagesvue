@@ -82,8 +82,8 @@
                                         </div>
                                     </div>          
                                     <div class="col-md-6">
-                                        <div class="form-inner mb-25">
-                                            <label>Qualification Required*</label>
+                                        <!-- <div class="form-inner mb-25">
+                                            <label>Qualification*</label>
                                             <div class="input-area">
                                                 <img src="/assets/images/icon/category-2.svg" alt="">
                                                 <Dropdown 
@@ -97,11 +97,26 @@
                                                 class="w-full 
                                                 md:w-14rem" />
                                             </div>
+                                        </div> -->
+
+                                        <div class="form-inner mb-25">
+                                            <label>Qualification *</label>
+                                            <div class="input-area">
+                                                <img src="/assets/images/icon/qualification-2.svg" alt="">
+                                                <select class="form-select" v-model="jobForm.qualification_id" placeholder="Select Qualification">
+                                                    <option value="">Select Qualification</option>
+                                                    <optgroup v-for="(group, index) in qualifications" :label="index">
+                                                        <option v-for="item in group" :value="item.id" :selected="jobForm.qualification_id == item.id" >{{ item.name }}</option>
+                                                    </optgroup>                                                    
+                                                </select>  
+                                            </div>
                                         </div>
+
+
                                     </div> 
                                     <div class="col-md-6">
                                         <div class="form-inner mb-25">
-                                            <label>Gender Required</label>
+                                            <label>Gender *</label>
                                             <div class="input-area">
                                                 <img src="/assets/images/icon/category-2.svg" alt="">
                                                 <Dropdown 

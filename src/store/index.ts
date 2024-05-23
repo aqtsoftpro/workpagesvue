@@ -1580,7 +1580,7 @@ export default createStore({
     },
 
     getCategoryJobs(context, payload) {
-      axios.get(apiUrl + 'categoryJobs/' + payload, {
+      axios.get(apiUrl + 'categoryJobs/' + payload.category +'?page=' + payload.page, {
         headers: {
           'authorization': 'Bearer ' + localStorage.getItem('token')
         }

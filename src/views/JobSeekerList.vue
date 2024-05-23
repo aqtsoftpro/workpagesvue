@@ -1,12 +1,12 @@
 <template>
     <div>
           <!-- ========== Inner Banner Start============= -->
-          <div class="inner-banner">
+          <div class="inner-banner" :style="bgImage">
           <div class="container">
               <div class="row">
                   <div class="col-lg-12">
                       <div class="banner-content text-center">
-                          <h1>Casual Portal</h1>
+                          <h1 :style="textColor">Casual Portal</h1>
                           <span></span>
                           <!-- <nav aria-label="breadcrumb">
                               <ol class="breadcrumb">
@@ -47,7 +47,7 @@
                                                         <router-link :to="'job-seeker/'+seeker.id">
                                                             <h5>{{ seeker.name }}</h5>
                                                         </router-link>
-                                                        <div>{{ seeker.description }}</div>
+                                                        <!-- <div>{{ seeker.description }}</div> -->
                                                       </div>
                                                   </div>
                                               </div>
@@ -66,7 +66,7 @@
                                       </div>
                                       <div class="job-type-apply">
                                             <div class="job-type">
-                                                <span class="light-blue">{{ seeker.designation ?? "No Designation" }}</span>
+                                                <div class="primry-btn-2 p-1 px-3">{{ seeker.designation ?? "No Designation" }}</div>
                                                 <button class="primry-btn-2 p-1 px-3" @click="openForm(seeker)">Send Sms</button>
                                                 <button class="primry-btn-2 p-1 px-3" @click="openMailForm(seeker)">Send Email</button>
                                             </div>
@@ -218,7 +218,9 @@
         currentPage : 1,
         totalPages : 0,
         rowsPerPage : 10,
-        pageLoading: false
+        pageLoading: false,
+        bgImage: '',
+        textColor: '',
       }
     },
     methods: {
@@ -296,7 +298,8 @@
       ...mapGetters([
           'searchResult',
           'searchSeeker',
-          'loggedIn'
+          'loggedIn',
+          'globalVariables'
       ]),
   
     },
@@ -306,6 +309,7 @@
       
       this.$store.dispatch('searchJobs', query);
       this.$store.dispatch('searchSeeker', '');
+      this.$store.dispatch('getGlobalVariables');
       
     },
     watch: {
@@ -317,6 +321,11 @@
         this.jobSeekers = this.searchSeeker.Listing,
         this.totalPages = this.searchSeeker.count;
       },
+
+      globalVariables() {
+        this.bgImage = 'background-image: url('+this.globalVariables._banner_image+')';
+        this.textColor = 'color: '+this.globalVariables._banner_text_color+' !important;';
+      }
     }
   })
   export default class JobSeekerList extends Vue {}

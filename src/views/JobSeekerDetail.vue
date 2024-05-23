@@ -1,12 +1,12 @@
 <template>
     <div>
           <!-- ========== Inner Banner Start============= -->
-          <div class="inner-banner">
+          <div class="inner-banner" :style="bgImage">
           <div class="container">
               <div class="row">
                   <div class="col-lg-12">
                       <div class="banner-content text-center">
-                          <h1>Jobseeker Details</h1>
+                          <h1 :style="textColor">Jobseeker Details</h1>
                           <span></span>
                           <!-- <nav aria-label="breadcrumb">
                               <ol class="breadcrumb">
@@ -38,7 +38,7 @@
                                       <div class="name-location">
                                           <h5><a href="#">{{ jobSeekerData.name }}</a></h5>
                                           <!-- {{ jobSeekerData.id }} -->
-                                          <p>{{jobSeekerData.description}}</p>
+                                          <!-- <p>{{jobSeekerData.description}}</p> -->
                                       </div>
                                   </div>
                               </div>
@@ -48,21 +48,20 @@
                                           <img src="/assets/images/icon/map-2.svg" alt="">
                                           <p><span class="title">Location:</span> {{ jobSeekerData.location?.name }}</p>
                                       </li>
-                                      <li>
+                                      <!-- <li>
                                           <img src="/assets/images/icon/category-2.svg" alt="">
                                           <p><span class="title">Designation:</span> {{ jobSeekerData.designation?.name }}</p>
-                                      </li>
+                                      </li> -->
                                   </ul>
                                   <ul>
                                       <li>
                                           <img src="/assets/images/icon/company-2.svg" alt="">
                                           <p><span class="title">Qualification:</span> {{ jobSeekerData.qualification?.name }}</p>
                                       </li>
-                                      <li>
-                                          <!-- <img src="/assets/images/icon/salary-2.svg" alt=""> -->
+                                      <!-- <li>
                                           <img src="/assets/images/icon/map-2.svg" alt="">
                                           <p><span class="title">Current Job Location:</span> {{ jobSeekerData.job_location?.name }}</p>
-                                      </li>
+                                      </li> -->
                                   </ul>
                               </div>
                           </div>
@@ -72,7 +71,7 @@
                             <div class="card-title">
                                 <h4>Job Seeker Detail:</h4>
                             </div>
-                            <div v-if="permission" class="row" style="height: 40em; overflow-y: scroll !important;">
+                            <!-- <div v-if="permission" class="row" style="height: 40em; overflow-y: scroll !important;">
                                 <div v-for="document in jobSeekerData.documents" class="col-md-6 my-5">
                                     <div class="d-flex flex-column border border-1 bg-light p-3" style="border-radius: 8px !important;">
                                         <span class="fw-bold text-center">
@@ -99,24 +98,31 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div> -->
+
+                            <div v-if="jobSeekerData.description !== null" class="row">
+                                {{ jobSeekerData.description }}
+                            </div>
+                            <div v-else>
+                                <h5>No Description Found!...</h5>
                             </div>
                         </div>
                       </div>
                   </div>
                   <div class="col-lg-4">
-                      <div class="job-details-sidebar mb-120">
+                      <div v-if="jobSeekerData" class="job-details-sidebar mb-120">
                           <div class="job-summary-area mb-50" style="height: 558px !important;">
                               <div class="job-summary-title">
                                   <h6>Job Seeker Summary:</h6>
                               </div>
-                              <!-- <ul>
-                                  <li><p><span class="title">Job Posted:</span> {{ job_seeker_detail.posted_on }}</p></li>
-                                  <li><p><span class="title">Expiration:</span> {{ job_seeker_detail.expiration }}</p></li>
-                                  <li><p><span class="title">Vacancy:</span> {{ job_seeker_detail.vacancy }} Person.</p></li>
-                                  <li><p><span class="title">Experiences:</span> {{  job_seeker_detail.experience  }} Years.</p></li>
-                                  <li><p><span class="title">Education:</span>{{ job_seeker_detail.qualification }}</p></li>
-                                  <li><p><span class="title">Gender:</span> {{ job_seeker_detail.gender }}</p></li>
-                              </ul> -->
+                              <ul v-if="jobSeekerData" >
+                                  <li><p><span class="title">Name:</span> {{ jobSeekerData?.name }}</p></li>
+                                  <li><p><span class="title">Email:</span> {{ jobSeekerData?.email }}</p></li>
+                                  <li><p><span class="title">Phone:</span> {{ jobSeekerData?.phone }}</p></li>
+                                  <li><p><span class="title">Gender:</span> {{ jobSeekerData?.gender }}</p></li>
+                                  <li><p><span class="title">Designation:</span> {{ jobSeekerData?.designtion }}</p></li>
+                                  <li><p><span class="title">Address:</span> {{ jobSeekerData?.address }}</p></li>
+                              </ul>
                           </div>
                           <div class="location-area">
                               <h6>Get Location:</h6>
@@ -274,13 +280,16 @@
           }, 
           permission: null,
           jobSeekerData: null,
+          bgImage: '',
+          textColor: '',
       }
     },
     computed: {
         ...mapState([
             'jobSeekerDetail',
             'currentUser',
-            'loggedIn'
+            'loggedIn',
+            'globalVariables'
         ]),
   
     },
@@ -295,6 +304,7 @@
             console.log(this.user.id);
         }
         this.jobSeekerData = this.jobSeekerDetail
+        this.$store.dispatch('getGlobalVariables');
     },
 
     methods: {
@@ -329,6 +339,10 @@
     watch: {
         jobSeekerDetail() {
             this.jobSeekerData = this.jobSeekerDetail;
+        },
+        globalVariables() {
+            this.bgImage = 'background-image: url('+this.globalVariables._banner_image+')';
+            this.textColor = 'color: '+this.globalVariables._banner_text_color+' !important;';
         }
     }
 

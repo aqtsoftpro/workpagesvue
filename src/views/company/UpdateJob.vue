@@ -84,25 +84,15 @@
                                     </div>          
                                     <div class="col-md-6">
                                         <div class="form-inner mb-25">
-                                            <label>Qualification Required*</label>
+                                            <label>Qualification *</label>
                                             <div class="input-area">
-                                                <img src="/assets/images/icon/category-2.svg" alt="">
-                                                <!-- <Dropdown 
-                                                @change="changeQualification"
-                                                v-model=this.jobForm.qualification_id 
-                                                :options="qualifications" 
-                                                ref="language"
-                                                placeholder="Select Qualification"
-                                                optionLabel="name" 
-                                                optionValue="id"
-                                                :disabled="!editTitle"
-                                                class="w-full 
-                                                md:w-14rem" /> -->
-
-                                                <select class="form-select me-1" v-model="this.jobForm.qualification_id" @change="changeQualification" :disabled="!editTitle">
+                                                <img src="/assets/images/icon/qualification-2.svg" alt="">
+                                                <select class="form-select" v-model="jobForm.qualification_id"  @change="changeQualification" :disabled="!editTitle">
                                                     <option value="">Select Qualification</option>
-                                                    <option v-for="qualification in qualifications" :value="qualification.id" >{{ qualification.name }}</option>
-                                                </select>
+                                                    <optgroup v-for="(group, index) in qualifications" :label="index">
+                                                        <option v-for="item in group" :value="item.id" :selected="jobForm.qualification_id == item.id" >{{ item.name }}</option>
+                                                    </optgroup>                                                    
+                                                </select>  
                                             </div>
                                         </div>
                                     </div> 

@@ -29,7 +29,7 @@
                     <div class="job-listing-wrrap">
                         <div class="row g-4 mb-25">
                             <div class="col-lg-6 d-flex align-items-center">
-                                <p class="show-item">Showing results 10 in 200 jobs list</p>
+                                <p class="show-item">Showing results {{ jobs.per_page }} in {{ jobs.total}} jobs list</p>
                             </div>
                             <div class="col-lg-6 d-flex align-items-center justify-content-lg-end">
                                 <div class="grid-select-area">
@@ -69,7 +69,7 @@
                             </div>
                         </div>
                         <div class="row ">
-                            <div v-for="job in jobs" :key="job.id" class="col-lg-12 mb-30">
+                            <div v-for="job in jobs.data" :key="job.id" class="col-lg-12 mb-30">
                                 <div class="job-listing-card">
                                     <div class="job-top">
                                         <div class="job-list-content">
@@ -128,7 +128,9 @@
                                         <ul class="pagination">
                                             <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1"></a></li>
                                             <li class="page-item active" aria-current="page"><a class="page-link" href="#">01</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">02</a></li>
+
+                                            <li v-for="item in jobs.links" class="page-item"><a class="page-link" href="#">{{ item.label }}</a></li>
+
                                             <li class="page-item"><a class="page-link" href="#">03</a></li>
                                             <li class="page-item"><a class="page-link" href="#"></a></li>
                                         </ul>
@@ -175,7 +177,10 @@ import { useRoute } from 'vue-router'
   mounted(){
     const route = useRoute()
     console.log(route.params.cat_slug)
-    this.$store.dispatch('getCategoryJobs', route.params.cat_slug)
+    const data = {
+        category : route.params.cat_slug,
+    };
+    this.$store.dispatch('getCategoryJobs', data)
     this.$store.dispatch('getGlobalVariables');
   },
   methods: {
@@ -198,6 +203,13 @@ import { useRoute } from 'vue-router'
 
       // Create and return a Date object using the parsed month, day, and year
       return new Date(year, monthMap[month], parseInt(day, 10));
+    },
+
+    toPage(url: any) {
+            const data = {
+            category : url,
+        };
+        this.$store.dispatch('getCategoryJobs', data)
     },
     
     isJobExpired(expirationDate: any) {
