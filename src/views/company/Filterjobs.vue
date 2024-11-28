@@ -3,68 +3,9 @@
     <div class="dashboard-area company-dashboard pt-120 mb-120">
         <div class="container">
             <div class="row">
-                <company-menu />
                 <div class="col-lg-12" id="scrollTarget">
                     <div class="table-wrapper2">
-                        <div class="title-and-btn">
-                            <div class="title">
-                                <h4>Latest Job List:</h4>
-                            </div>
-                            <!-- <div class="job-post-btn">
-                                <router-link to="/company/ad-list" class="primry-btn-2">Job Advertisement List</router-link>
-                            </div> -->
-                            <!-- <div class="job-post-btn">
-                                <router-link to="/company/create-job" class="primry-btn-2">Create Job Post</router-link>
-                            </div> -->
-                            <div>
-                                <router-link to="/company/create-job" class="primry-btn-2 lg-btn w-unset">Create Job
-                                    Post</router-link>
-                            </div>
-                        </div>
-                        <div class="table-filter-area mb-30">
-                            <form>
-                                <div class="form-wrap style-2 style-3">
-                                    <div class="form-inner">
-                                        <div class="input-area">
-                                            <img src="assets/images/icon/search-2.svg" alt="">
-                                            <input type="text" v-model="search_job_title"
-                                                placeholder="Search by job title">
-                                        </div>
 
-                                    </div>
-                                    <button class="primry-btn-1" @click.prevent="searchByTitle">Search</button>
-                                </div>
-
-                                <div class="form-wrap style-3">
-                                    <div class="form-inner">
-                                        <div class="input-area">
-                                            <img src="assets/images/icon/calender2.svg" alt="">
-                                            <!-- <input type="text" id="datepicker11" placeholder="Search by date"> -->
-                                            <Calendar v-model="JobsDate" dateFormat="dd/mm/yy"
-                                                @date-select="searchByDate" placeholder="Search by date" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- <div class="form-wrap">
-                                    <div class="form-inner">
-                                        <p>Show er page</p>
-                                        <div class="select-area">
-                                            <select class="select1">
-                                                <option>05</option>
-                                                <option>10</option>
-                                                <option>15</option>
-                                                <option>20</option>
-                                              </select>
-                                        </div>
-                                    </div>
-                                </div> -->
-                            </form>
-                            <div v-if="showAlert" class="alert alert-warning mt-3" role="alert">
-                                Enter Job Title to Search
-
-
-                            </div>
-                        </div>
                         <table class="eg-table table job-list-table mb-0">
                             <thead>
                                 <tr>
@@ -89,21 +30,10 @@
                                             <h5>{{ job.job_title }}</h5>
                                             <p><img src="assets/images/icon/calender2.svg" alt=""><span>Deadline:</span>
                                                 {{ (job.expiration) ? job.expiration : 'No Deadline' }}</p>
-                                            <!-- <div v-bind:job-status="job.status"  class="form-check form-switch"  @click="handleSwitchChange(index)">
-                                                <input class="form-check-input" :id="job.id" type="checkbox" :checked="job.status == 'active' ? true: false" id="flexSwitchCheckDefault1"  >
-                                               
-                                  
-                                            </div> -->
+
                                             <InputSwitch v-model="job.jobStatus" :modelValue="switchValue"
-                                                @update:modelValue="handleSwitchChange(job)" />
-                                            <!-- <InputSwitch v-if="jobStatusMap[job.id]" v-model="job.status"   @update:modelValue="handleSwitchChange(job)" />
-                                            <InputSwitch v-else v-model="jobStatusMap[job.id]" 
-                                            @update:modelValue="handleSwitchChange(job)" />  -->
+                                                @update:modelValue="handleSwitchChange(job)" />Live
 
-                                            <!-- <InputSwitch v-model="job.status"  @update:modelValue="handleSwitchChange(job)" /> -->
-                                            Live
-
-                                            <!-- <InputSwitch id="toggleSwitch" modelValue="yes" /> -->
                                         </div>
                                     </td>
                                     <td data-label="Applications">
@@ -112,9 +42,6 @@
                                     <td data-label="Matched">
                                         <span class="total-number light-orange">0</span>
                                     </td>
-                                    <!-- <td data-label="Shortlisted">
-                                        <span class="total-number">700</span>
-                                    </td> -->
                                     <td data-label="Viewed">
                                         <span class="total-number light-yellow">{{ job.view_jobs_count ?? 0 }}</span>
                                     </td>
@@ -177,8 +104,6 @@
                             <p>{{ item.label }}</p>
                             <InputSwitch v-model="item.value" @click="toggleSwitch(index)" />
                         </div>
-
-
                     </div>
                 </div>
             </div>
@@ -195,13 +120,10 @@
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
 import { toast } from 'vue3-toastify';
-import JobList from './CompanyJobList.vue'; // @ is an alias to /src
-import CompanyMenu from './CompanyMenu.vue';
 import { mapGetters } from 'vuex';
 import ProgressSpinner from 'primevue/progressspinner';
 import Paginator from 'primevue/paginator';
 import axios from 'axios';
-import Calendar from 'primevue/calendar';
 import { apiUrl, adminDashboardUrl, adminDashboardDomain } from '../../utils/config';
 import moment from 'moment';
 import InputSwitch from 'primevue/inputswitch';
@@ -211,11 +133,8 @@ import router from '@/router';
 
 @Options({
     components: {
-        JobList,
-        'company-menu': CompanyMenu,
         ProgressSpinner,
         Paginator,
-        Calendar,
         InputSwitch,
         ConfirmPopup
     },
@@ -252,37 +171,7 @@ import router from '@/router';
                 this.$store.dispatch('updateJobStatus', { jobId: job.id, jobTitle: job.job_title, jobStatus: 'inactive' });
             }
         },
-        searchByTitle() {
-            // if(!this.search_job_title)
-            //     {
-            //         console.log(this.search_job_title);
-            //         this.showAlert = true;
-            //     }
-            //     else
-            //     {
-            //         this.showAlert = false;
-            //         this.isLoading = true; // Show loader
-            //         const pageId = 0;
-            //         const searchJobTitle = this.search_job_title;
 
-            //         this.fetchListing(pageId, searchJobTitle);
-            //     }
-            this.isLoading = true; // Show loader
-            const pageId = 0;
-            const searchJobTitle = this.search_job_title;
-            const searchJobDate = null;
-
-            this.fetchListing(pageId, searchJobTitle, searchJobDate);
-
-        },
-        searchByDate(date: any) {
-            console.log(moment(date).format('YYYY-MM-DD'));
-            const pageId = 0;
-            this.search_job_title = '';
-            const searchJobTitle = null;
-            const searchJobDate = moment(date).format('YYYY-MM-DD');
-            this.fetchListing(pageId, searchJobTitle, searchJobDate);
-        },
         handlePageChange(event: any) {
             this.isLoading = true; // Show loader
             const searchJobTitle = this.search_job_title;
@@ -320,6 +209,7 @@ import router from '@/router';
                 });
 
         },
+
         getJobDetail(job_key: any, job_slug: any) {
             return {
                 path: '/job-details/' + job_key + '/' + job_slug
@@ -355,5 +245,5 @@ import router from '@/router';
         }
     }
 })
-export default class CompanyJobList extends Vue { }
+export default class Filterjobs extends Vue { }
 </script>

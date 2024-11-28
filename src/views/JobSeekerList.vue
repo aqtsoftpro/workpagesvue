@@ -26,6 +26,35 @@
               <div class="row g-lg-4 gy-5">
             
                   <div class="col-lg-12 order-lg-2 order-1">
+                    <div class="table-wrapper2">
+                        <div class="table-filter-area mb-30">
+                            <form @submit.prevent="filterSeeker">
+                                <div class="form-wrap style-2 style-3">
+                                    <div class="form-inner">
+                                        <div class="input-area">
+                                            <img src="assets/images/icon/search-2.svg" alt="">
+                                            <input type="text"  v-model="searchQuery"
+                                                placeholder="Search">
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="primry-btn-1">Search</button>
+                                </div>
+
+                                <!-- <div class="form-wrap style-3">
+                                    <div class="form-inner">
+                                       
+                                    </div>
+                                </div> -->
+                            </form>
+                            <!-- <div v-if="showAlert" class="alert alert-warning mt-3" role="alert">
+                                Enter Job Title to Search
+
+
+                            </div> -->
+                        </div>
+                    </div>
+
+
                       <div class="job-listing-wrrap">
                         <!-- {{ searchSeeker }} -->
                           <div v-if="!showForm && !mailFormShow" class="row ">
@@ -72,10 +101,10 @@
                                             </div>
                                             
                                             <div class="apply-btn">
-                                                <div class="msg-btn">
+                                                <div class="create-profile-btn">
                                                     <!-- <button class="primry-btn-2 p-1 px-3 mb-2 me-0" @click="openMailForm(seeker)">Send Email</button> -->
-                                                    <router-link :to="'job-seeker/' + seeker.id">
-                                                        <span><img src="assets/images/icon/apply-ellipse.svg" alt=""></span>
+                                                    <router-link :to="'job-seeker/' + seeker.id"  class="router-link-active active primry-btn-1 hover-white user-btn-custom py-2 px-3">
+                                                        <!-- <span><img src="assets/images/icon/apply-ellipse.svg" alt=""></span> -->
                                                         Detail Job Seeker
                                                     </router-link>
                                                 </div>
@@ -181,6 +210,12 @@
       <!-- ========== Job Listing e nd============= -->
     </div>  
   </template>
+
+ <style scoped>
+    .hover-white:hover {
+        color: rgb(255, 255, 255) !important;
+    }
+ </style>
   
   <script lang="ts">
   import { Options, Vue } from 'vue-class-component';
@@ -221,6 +256,7 @@
         pageLoading: false,
         bgImage: '',
         textColor: '',
+        searchQuery: '',
       }
     },
     methods: {
@@ -236,7 +272,7 @@
             this.pageLoading = true; // Show loader
             const pageId = event.page;
             try {
-                await this.$store.dispatch('searchSeeker', {'pageId': pageId});
+                await this.$store.dispatch('searchSeeker', {'pageId': pageId, 'filter': this.searchQuery});
                 window.setTimeout(() => {
                     this.pageLoading = false; // Show loader
                 }, 1000);
@@ -293,6 +329,10 @@
                 this.closeMailForm;
             }, 6000);
         },
+
+        async filterSeeker() {
+            await this.$store.dispatch('searchSeeker', {'filter': this.searchQuery});
+        }
     },  
     computed: {
       ...mapGetters([
@@ -308,7 +348,7 @@
       console.log(query);
       
       this.$store.dispatch('searchJobs', query);
-      this.$store.dispatch('searchSeeker', '');
+      this.$store.dispatch('searchSeeker', this.searchQuery);
       this.$store.dispatch('getGlobalVariables');
       
     },

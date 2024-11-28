@@ -229,7 +229,7 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: '/company/job-list',
         component: CompanyJobList,
-        // meta: { requiresAuth: true, role: 'Employer', 'sub_access': true, allow_ads: 'yes' }
+        meta: { requiresAuth: true, role: 'Employer', 'sub_access': true, allow_ads: 'yes' }
       },
       {
         path: '/company/applications',

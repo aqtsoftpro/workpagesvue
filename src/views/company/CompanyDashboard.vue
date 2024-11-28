@@ -38,7 +38,7 @@
                             <div class="counter-area">
                                 <div class="row g-4 justify-content-center mb-30">
                                     <div class="col-lg-4 col-sm-6">
-                                        <div class="counter-single two">
+                                        <router-link class="counter-single two" to="/company/job-list">
                                             <div class="counter-icon">
                                                 <img src="/assets/images/icon/save-job.svg" alt="image">
                                             </div>
@@ -51,10 +51,10 @@
                                                     <span>+</span>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </router-link>
                                     </div>
                                     <div class="col-lg-4 col-sm-6">
-                                        <div class="counter-single three">
+                                        <router-link class="counter-single three" to="/company/job-list" >
                                             <div class="counter-icon">
                                                 <img src="/assets/images/icon/pending-icon.svg" alt="image">
                                             </div>
@@ -67,10 +67,10 @@
                                                     <span>+</span>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </router-link>
                                     </div>
                                     <div class="col-lg-4 col-sm-6">
-                                        <div class="counter-single four">
+                                        <router-link class="counter-single four" to="/company/job-list" >
                                             <div class="counter-icon">
                                                 <img src="/assets/images/icon/closed-icon.svg" alt="image">
                                             </div>
@@ -83,12 +83,12 @@
                                                     <span>+</span>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </router-link>
                                     </div>
                                 </div>
                                 <div class="row g-4 justify-content-cente">
                                     <div class="col-lg-4 col-sm-6">
-                                        <div class="counter-single">
+                                        <router-link class="counter-single" to="/company/applications" >
                                             <div class="counter-icon">
                                                 <img src="/assets/images/icon/total-view-icon.svg" alt="image">
                                             </div>
@@ -104,10 +104,10 @@
                                                     <!-- <span>+</span> -->
                                                 </div>
                                             </div>
-                                        </div>
+                                        </router-link>
                                     </div>
                                     <div class="col-lg-4 col-sm-6">
-                                        <div class="counter-single three">
+                                        <router-link class="counter-single three" to="/company/applications" >
                                             <div class="counter-icon">
                                                 <img src="/assets/images/icon/highlight-icon.svg" alt="image">
                                             </div>
@@ -120,10 +120,10 @@
                                                     <span>+</span>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </router-link>
                                     </div>
                                     <div class="col-lg-4 col-sm-6">
-                                        <div class="counter-single four">
+                                        <router-link class="counter-single four" to="/company/job-list" >
                                             <div class="counter-icon">
                                                 <img src="/assets/images/icon/featured-icon.svg" alt="image">
                                             </div>
@@ -136,7 +136,7 @@
                                                     <span>+</span>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </router-link>
                                     </div>
                                 </div>
                             </div>

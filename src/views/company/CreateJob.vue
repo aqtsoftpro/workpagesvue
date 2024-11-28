@@ -152,7 +152,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-inner mb-25">
-                                            <label>Job State</label>
+                                            <label>Job Location</label>
                                             <div class="input-area">
                                                 <img src="/assets/images/icon/category-2.svg" alt="">
                                                 <Dropdown 
@@ -160,7 +160,7 @@
                                                 v-model=this.jobForm.state_id
                                                 :options="states" 
                                                 ref="language"
-                                                placeholder="Select Job Category"
+                                                placeholder="Select Job Location"
                                                 optionLabel="name" 
                                                 optionValue="id" 
                                                 class="w-full 
@@ -174,12 +174,12 @@
                                                 <textarea v-model="jobForm.job_description" id="description" placeholder="Job Description"></textarea>
                                         </div>
                                     </div>       
-                                    <div class="col-md-12">
+                                    <!-- <div class="col-md-12">
                                         <div class="form-inner mb-25">
                                             <label for="description">Job Responsibilities*</label>
                                                 <textarea v-model="jobForm.job_responsibilities" placeholder="Job Responsibilities"></textarea>
                                         </div>
-                                    </div>                                                                                                             
+                                    </div>                                                                                                              -->
                                     <div class="col-md-3">
                                         <div class="form-inner mb-25">
                                             <label for="vacancy">Vacancies</label>

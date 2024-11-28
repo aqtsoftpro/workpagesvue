@@ -33,22 +33,24 @@
                                 <div class="pricing-plan-card1 mx-2" :class="{'bg-card1': index % 2 === 0, 'bg-card2': index % 2 !== 0 }" style="height: 50em;">
                                     <div class="pricing-plan-header">
                                         <div class="starting-form">
-                                            <span v-if="plan.main_icon == '' || plan.main_icon == null" ><img src="assets/images/icon/price-star.svg" alt=""> {{ plan.name }}</span>
-                                            <span v-else  ><i style="color: #e59a22;">{{ plan.main_icon }}</i style="color: yellowgreen;"> {{ plan.name }}</span>
+                                            <span ><img src="assets/images/icon/site-fav.png" alt="" width="35" > {{ plan.name }}</span>
+                                            <!-- <span v-else  ><i style="color: #e59a22;">{{ plan.main_icon }}</i style="color: yellowgreen;"> {{ plan.name }}</span> -->
                                         </div>
                                         <!-- <div class="preview-btn">
                                             <a href="#">Preview Sample</a>
                                         </div> -->
                                     </div>
                                     <div class="price-area">
-                                        <h3>${{ plan.price }} / <span>Per Job +VAT</span></h3>
+                                        <h3>${{ plan.price }} 
+                                            <!-- / <span>Per Job +VAT</span> -->
+                                        </h3>
                                     </div>
                                     <div class="">
                                         <ul class="priceing-list h-fix mb-4">
                                             <li v-for="point in plan.keypoints">
                                                     <div class="icon">
-                                                    <span v-if="point.icon !== null || point.icon !== ''" style="color: rgb(255, 215, 0); margin-right: 1em;">{{ point.icon }}</span>
-                                                    <span v-else style="color: rgb(255, 215, 0); margin-right: 1em;">&#10006;</span>
+                                                    <span v-if="point.icon !== null || point.icon !== ''" style="color: rgba(254, 254, 0, 0.9); margin-right: 1em;">{{ point.icon }}</span>
+                                                    <span v-else style="color: rgba(254, 254, 0, 0.9); margin-right: 1em;">&#10006;</span>
                                                 </div>
                                                 <p>{{ point.title }}</p>
                                             </li>

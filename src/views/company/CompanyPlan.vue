@@ -21,7 +21,8 @@
                             <thead>
                                 <tr>
                                     <th>(#) Number</th>
-                                    <th>Date</th>
+                                    <th>Creation Date</th>
+                                    <th>Expiry Date</th>
                                     <th>Package</th>
                                     <th>Amount</th>
                                     <th>Payment Through</th>
@@ -33,9 +34,10 @@
                                 <tr v-if="companySubscriptions.length > 0" v-for="subscription in companySubscriptions" class="style-2">
                                     <td data-label="(#) Number">#-{{ subscription.id }}</td>
                                     <td data-label="Date">{{ formatDate(subscription.created_at) }}</td>
-                                    <td data-label="Package"><button class="eg-btn light-sky-btn">{{ subscription.package.name }}</button></td>
-                                    <td data-label="Amount">${{ subscription.stripe_price }}</td>
-                                    <td data-label="Payment Through">{{ subscription.package.stripe_price_id ? subscription.brand+ ' card - '+subscription.last_4 : 'Offline Method' }}</td>
+                                    <td data-label="Expiry Date">{{ formatDate(subscription.ends_at) }}</td>
+                                    <td data-label="Package"><button class="eg-btn light-sky-btn">{{ subscription.package?.name }}</button></td>
+                                    <td data-label="Amount">${{ subscription.stripe_price ?? 0 }}</td>
+                                    <td data-label="Payment Through">{{ subscription.package?.stripe_price_id ? subscription.brand+ ' card - '+subscription.last_4 : 'Offline Method' }}</td>
                                     <td data-label="Payment Status">
                                         <!-- <router-link v-if="subscription.receipt_url" class="status yellow-color" :to="subscription.receipt_url" target="_blank">
                                             {{ subscription.stripe_status==""? 'Pending': subscription.stripe_status}} <i class="bi bi-download ms-5"></i>
@@ -181,7 +183,7 @@ import CompanyMenu from './CompanyMenu.vue'
   },
   async mounted() {
     this.$store.dispatch('companySubscriptions')
-    console.log(this.companySubscriptions);
+    console.log("Subscriptiosn are ", this.companySubscriptions);
   },
 })
 export default class CompanyPlan extends Vue {}

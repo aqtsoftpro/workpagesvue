@@ -562,7 +562,7 @@ Vue.prototype.$globalVar = "Shared Data";
             this.permission = this.user.sub_accesses ? this.user.sub_accesses[0] : null;
         }
         this.$store.dispatch('getGlobalVariables');
-        this.$store.dispatch('getTopCompanies');
+        // this.$store.dispatch('getTopCompanies');
         // if(!this.loggedIn){
         //     this.$router.push('/')
         // } else {

@@ -8,8 +8,8 @@
                     <div class="dashboard-inner">
                          <div class="author-area">
                             <div class="author-img">
-                                <img v-if="user.photo" :src="user.photo">
-                                <img v-else src="/assets/images/work-pages-logo.png">
+                                <img v-if="user.photo" :src="user.photo" style="width: 90px; height: auto !important;" >
+                                <img v-else src="/assets/images/work-pages-logo.png" style="width: 90px; height: auto !important;" >
                             </div>
                             <div class="author-content">
                                 <span>Hello, I’m</span>
@@ -320,6 +320,8 @@ import { mapGetters } from 'vuex';
     let Script = document.createElement("script");
       Script.setAttribute("src", "/assets/js/main.js");
       document.head.appendChild(Script);
+
+    this.user = JSON.parse(this.currentUser)[0]
   },
   watch: {
     candidateApplications() {

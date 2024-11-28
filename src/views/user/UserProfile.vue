@@ -125,12 +125,12 @@
 
                                     <div class="col-md-6">
                                         <div class="form-inner mb-25">
-                                            <label for="password2">Upload CV</label>
+                                            <label for="password2">Upload Resume</label>
                                             <div class="input-area">
                                                 <img src="/assets/images/icon/create-resume.svg" alt="" width="16">
                                                 <input type="file" @change="cvHandle" placeholder="upload file" accept="application/pdf" />
                                             </div>
-                                            <label v-if="user.cv !== null" >Cv already uploaded</label>
+                                            <label v-if="user.cv !== null" >Resume already uploaded</label>
                                         </div>
                                     </div>
 
