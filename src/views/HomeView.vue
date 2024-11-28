@@ -70,8 +70,8 @@
 
                                         <div class="form-inner">
                                             <Dropdown v-model="this.searchForm.location_id" :options="search_states"
-                                                editable optionLabel="name" placeholder="Select Location"
-                                                class="w-full md:w-14rem">
+                                                @change="changeLocation" ref="location" editable optionLabel="name"
+                                                placeholder="Select Location" optionValue="id" class="w-full md:w-14rem">
                                                 <!-- <template #option="slotProps">
                                                     <div class="flex align-items-center">
                                                         <div>{{ slotProps.option.name }}</div>
@@ -1292,7 +1292,7 @@ ul {
 </style>
 
 <style>
-.form-inner >.p-inputtext {
+.form-inner>.p-inputtext {
     background: var(--white);
     font-family: var(--font-work-sans);
     font-weight: 400;
@@ -1305,16 +1305,16 @@ ul {
     margin-left: 25px !important;
 }
 
-.form-inner > input {
+.form-inner>input {
     margin-left: 25px !important;
 }
 
-.p-dropdown-items-wrapper > ul {
+.p-dropdown-items-wrapper>ul {
     margin-left: -1rem !important;
     padding-top: .5rem !important;
 }
 
-.p-dropdown-items-wrapper > ul > li {
+.p-dropdown-items-wrapper>ul>li {
     line-height: 3 !important;
     margin-right: 20px !important;
 }
@@ -1332,7 +1332,6 @@ ul {
     width: 100%;
     margin-left: 25px;
 }
-
 </style>
 
 <script lang="ts">
