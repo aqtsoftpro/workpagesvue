@@ -10736,7 +10736,7 @@ header.style-7 .main-menu ul li.menu-item-has-children > i {
   width: 7px;
   margin: 0 auto;
   border-radius: 50%;
-  background: rgba(254, 254, 0, 0.9);
+  background: #ffff00;
   text-align: center;
   position: relative;
 }
@@ -10744,7 +10744,7 @@ header.style-7 .main-menu ul li.menu-item-has-children > i {
   content: "";
   width: 67px;
   height: 1px;
-  background: rgba(254, 254, 0, 0.9);
+  background: #ffff00;
   position: absolute;
   left: 15px;
   top: 50%;
@@ -10754,7 +10754,7 @@ header.style-7 .main-menu ul li.menu-item-has-children > i {
   content: "";
   width: 67px;
   height: 1px;
-  background: rgba(254, 254, 0, 0.9);
+  background: #ffff00;
   position: absolute;
   right: 15px;
   top: 50%;

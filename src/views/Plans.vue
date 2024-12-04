@@ -33,7 +33,7 @@
                                 <div class="pricing-plan-card1 mx-2" :class="{'bg-card1': index % 2 === 0, 'bg-card2': index % 2 !== 0 }" style="height: 50em;">
                                     <div class="pricing-plan-header">
                                         <div class="starting-form">
-                                            <span ><img src="assets/images/icon/site-fav.png" alt="" width="35" > {{ plan.name }}</span>
+                                            <span style="background-color: #010536; color: white; " ><img src="assets/images/icon/site-fav.png" alt="" width="35" > {{ plan.name }}</span>
                                             <!-- <span v-else  ><i style="color: #e59a22;">{{ plan.main_icon }}</i style="color: yellowgreen;"> {{ plan.name }}</span> -->
                                         </div>
                                         <!-- <div class="preview-btn">

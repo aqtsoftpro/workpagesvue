@@ -189,7 +189,7 @@
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="info-title">
-                                                <h6>You can upload your all leagal documents here</h6>
+                                                <h6>You can upload your leagal documents here</h6>
                                                 <div class="dash"></div>
                                             </div>
                                         </div>
