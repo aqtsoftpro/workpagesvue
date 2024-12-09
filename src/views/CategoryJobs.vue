@@ -168,6 +168,7 @@ import Paginator from 'primevue/paginator';
             totalPages: 0,
             rowsPerPage: 10,
             currentUser: '',
+            role: null,
 
 
             // "next_page_url": "http:\/\/127.0.0.1:8000\/api\/categoryJobs\/development?page=2",
@@ -246,7 +247,7 @@ import Paginator from 'primevue/paginator';
         },
 
         isJobExpired(expirationDate: any) {
-            if (!this.role.name || this.role.name == 'Employer') {
+            if (!this.role?.name || this.role?.name == 'Employer') {
                 return true;
             }
             const today = new Date();
