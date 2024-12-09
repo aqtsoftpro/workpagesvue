@@ -102,7 +102,7 @@
                                     <tbody>
                                         <tr v-for="application in jobApplications" :key="application.id">
                                             <td data-label="Job Title">
-                                                <div class="company-info"  >
+                                                <div class="company-info">
                                                     <!-- <div class="logo">
                                                         <img src="/assets/images/bg/company-logo/company-06.png" alt="">
                                                     </div> -->
@@ -110,30 +110,39 @@
                                                         <div class="top">
                                                             <h6><router-link
                                                                     :to="getJobDetail(application.job.job_key, application.job.job_slug)">{{
-                                                                    application.job.job_title }}</router-link></h6>
-                                                            
+                                                                        application.job.job_title }}</router-link></h6>
+
                                                         </div>
                                                         <div>
                                                             <img src="/assets/images/icon/location.svg" alt=""> {{
-                                                            application.job.location }}
+                                                                application.job.location }}
                                                         </div>
-                                                        <div>
-                                                            <div class="d-flex">
-                                                                <img src="/assets/images/icon/arrow2.svg" alt="">
+                                                        <div class="d-flex flex-wrap">
+                                                            <span>
+                                                                <img src="/assets/images/icon/arrow2.svg" width="10"
+                                                                    alt="">
                                                                 <span class="title ms-2">Salary:</span>
-                                                            </div>
-                                                            <p style="width: 8rem !important ;" >
+                                                            </span>
+                                                            <span style="width: 9rem !important ;">
                                                                 {{ application.job.salary_range }}
-                                                            </p>
+                                                            </span>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td data-label="Apply Job">{{ application.applied_on }}</td>
-                                            <td data-label="Company"><a class="view-btn" href="company-details.html" style="text-overflow: initial;" >{{
-                                                    application.job.company }} </a></td>
-                                            <td data-label="Status"><span class="eg-btn purple-btn">{{
-                                                    application.status_name }}</span></td>
+                                            <td data-label="Company"><a class="view-btn" href="company-details.html"
+                                                    style="text-overflow: initial;">{{
+                                                        application.job.company }} </a></td>
+                                            <td data-label="Status">
+                                                <span class="eg-btn" 
+                                                :class="{
+                                                    'btn-success': application.status_name == 'Shortlisted',
+                                                    'purple-btn': application.status_name == 'Applied / Received',
+                                                    'btn-danger' : application.status_name == 'Rejected'
+                                                    }" >
+                                                    {{ application.status_name }}</span>
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>

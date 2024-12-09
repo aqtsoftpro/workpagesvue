@@ -24,10 +24,54 @@
                                 <tbody>
                                     <tr v-if="isLoading">
                                         <td colspan="6">
-                                            <ProgressSpinner  />
+                                            <ProgressSpinner />
                                         </td>
                                     </tr>
+
                                     <tr v-else v-for="application in jobApplications" :key="application.id">
+                                        <td data-label="Job Title">
+                                            <div class="company-info">
+                                                <!-- <div class="logo">
+                                                        <img src="/assets/images/bg/company-logo/company-06.png" alt="">
+                                                    </div> -->
+                                                <div class="company-details">
+                                                    <div class="top">
+                                                        <h6><router-link
+                                                                :to="getJobDetail(application.job.job_key, application.job.job_slug)">{{
+                                                                    application.job.job_title }}</router-link></h6>
+
+                                                    </div>
+                                                    <div>
+                                                        <img src="/assets/images/icon/location.svg" alt=""> {{
+                                                            application.job.location }}
+                                                    </div>
+                                                    <div class="d-flex flex-wrap">
+                                                        <span>
+                                                            <img src="/assets/images/icon/arrow2.svg" width="10" alt="">
+                                                            <span class="title ms-2">Salary:</span>
+                                                        </span>
+                                                        <span style="width: 9rem !important ;">
+                                                            {{ application.job.salary_range }}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td data-label="Apply Job">{{ application.applied_on }}</td>
+                                        <td data-label="Company"><a class="view-btn" href="company-details.html"
+                                                style="text-overflow: initial;">{{
+                                                    application.job.company }} </a></td>
+                                        <td data-label="Status">
+                                            <span class="eg-btn" :class="{
+                                                'btn-success': application.status_name == 'Shortlisted',
+                                                'purple-btn': application.status_name == 'Applied / Received',
+                                                'btn-danger': application.status_name == 'Rejected'
+                                            }">
+                                                {{ application.status_name }}</span>
+                                        </td>
+                                    </tr>
+
+                                    <!-- <tr v-else v-for="application in jobApplications" :key="application.id">
                                         <td data-label="Job Title">
                                             <div class="company-info">
                                                 <div class="logo">
@@ -52,20 +96,20 @@
                                         <td data-label="Company">
                                             <router-link :to="companyDetail(application.job.company_id)">{{ application.job.company }}</router-link>
 
-                                            <!-- <a class="view-btn" href="company-details.html">{{ application.job.company }}</a> -->
                                         </td>
                                         <td data-label="Status"><button class="eg-btn purple-btn">{{ application.status_name }}</button></td>
-                                    </tr>
+                                    </tr> -->
                                 </tbody>
                             </table>
                             <div class="pagination-table-info">
 
-                                <Paginator v-model:first="currentPage" :rows="rowsPerPage" :totalRecords="totalPages" @page="handlePageChange">
+                                <Paginator v-model:first="currentPage" :rows="rowsPerPage" :totalRecords="totalPages"
+                                    @page="handlePageChange">
                                 </Paginator>
 
                             </div>
                         </div>
-                       
+
                     </div>
                 </div>
             </div>
@@ -105,93 +149,91 @@ import axios from 'axios';
 import { apiUrl, adminDashboardUrl, adminDashboardDomain } from '../../utils/config';
 
 @Options({
-components: {
-  'user-menu': UserMenu,
-  ProgressSpinner,
-  Paginator
-},
-data() {
-  return {
-      user: {},
-      user_id: {},
-      jobApplications: [],
-      isLoading: true,
-      currentPage : 1,
-      totalPages : 0,
-      rowsPerPage : 10,
-  }
-},
-computed: {
-  ...mapGetters([
-    'currentUser',
-    'candidateApplications'
-  ]),
-},
-methods: {
-    handlePageChange(event:any) 
-        {
+    components: {
+        'user-menu': UserMenu,
+        ProgressSpinner,
+        Paginator
+    },
+    data() {
+        return {
+            user: {},
+            user_id: {},
+            jobApplications: [],
+            isLoading: true,
+            currentPage: 1,
+            totalPages: 0,
+            rowsPerPage: 10,
+        }
+    },
+    computed: {
+        ...mapGetters([
+            'currentUser',
+            'candidateApplications'
+        ]),
+    },
+    methods: {
+        handlePageChange(event: any) {
             this.isLoading = true; // Show loader
             const pageId = event.page;
 
-            axios.get(apiUrl + 'getApplicationsByUserId/'+ this.user_id +'?pageId=' + pageId, {
-            headers: {
-                'authorization': 'Bearer ' + localStorage.getItem('token')
-                } 
+            axios.get(apiUrl + 'getApplicationsByUserId/' + this.user_id + '?pageId=' + pageId, {
+                headers: {
+                    'authorization': 'Bearer ' + localStorage.getItem('token')
+                }
             })
-            .then(res => {
-                console.log(res.data.Listing);
-                this.jobApplications = res.data.Listing; // Store fetched data
-                this.totalPages = res.data.count;
-                const element = window.document.getElementById('scrollTarget');
-            if (element) {
-                element.scrollIntoView({ behavior: 'smooth' });
+                .then(res => {
+                    console.log(res.data.Listing);
+                    this.jobApplications = res.data.Listing; // Store fetched data
+                    this.totalPages = res.data.count;
+                    const element = window.document.getElementById('scrollTarget');
+                    if (element) {
+                        element.scrollIntoView({ behavior: 'smooth' });
+                    }
+                })
+                .catch(err => {
+                })
+                .finally(() => {
+                    this.isLoading = false; // Hide loader
+                });
+
+        },
+
+        getJobDetail(job_key: any, job_slug: any) {
+            return {
+                path: '/job-details/' + job_key + '/' + job_slug
+                // path: '/job-details/${job_key}/${job_slug}'
+            };
+        },
+
+        companyDetail(company_id: any) {
+            return {
+                path: '/company-details/' + company_id
             }
-            })
-            .catch(err => {
-            })
-            .finally(() => {
-            this.isLoading = false; // Hide loader
-            });
+        }
+    },
+    async mounted() {
+        this.user = JSON.parse(this.currentUser)[0]
+        try {
+            this.$store.dispatch('getCandidateApplications', this.user.id)
+            window.setTimeout(() => {
+                this.isLoading = false;
+            }, 2000);
+        } catch (error) {
+            console.log(error);
+        }
+        this.user_id = this.user.id;
+
+        let Script = document.createElement("script");
+        Script.setAttribute("src", "/assets/js/main.js");
+        document.head.appendChild(Script);
 
     },
-
-    getJobDetail(job_key:any, job_slug:any) {    
-        return {
-            path: '/job-details/'+job_key+'/'+job_slug
-            // path: '/job-details/${job_key}/${job_slug}'
-        };
-    },
-
-    companyDetail(company_id: any)
-    {
-        return {
-            path: '/company-details/'+company_id
+    watch: {
+        candidateApplications() {
+            this.jobApplications = this.candidateApplications.Listing
+            this.totalPages = this.candidateApplications.count;
         }
     }
-}, 
-async mounted() {
-    this.user = JSON.parse(this.currentUser)[0]
-    try {
-        this.$store.dispatch('getCandidateApplications', this.user.id)
-        window.setTimeout(() => {
-            this.isLoading = false;
-        }, 2000);
-    } catch (error) {
-        console.log(error);
-    }
-    this.user_id = this.user.id;
-
-    let Script = document.createElement("script");
-    Script.setAttribute("src", "/assets/js/main.js");
-    document.head.appendChild(Script);
-
-},
-watch: {
-    candidateApplications() {
-        this.jobApplications = this.candidateApplications.Listing
-        this.totalPages =  this.candidateApplications.count;
-    }
-}
 })
-export default class UserJobs extends Vue {}
+export default class UserJobs extends Vue { }
 </script>

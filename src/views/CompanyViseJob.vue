@@ -69,68 +69,62 @@
                             </div>
                         </div> -->
                         <div class="row ">
-                            <div v-for="job in searchResult" :key="job.expiration" class="col-lg-12 mb-30">
-                                <div class="job-listing-card">
-                                    <div class="job-top">
-                                        <div class="job-list-content">
-                                            <div class="company-area">
-                                                <div class="logo">
-                                                        <img :src="(job.company_logo) ? job.company_logo : 'https://loremflickr.com/52/52/logo,organisation/all'" alt="">
-                                                </div>
-                                                <div class="company-details">
-                                                    <div class="name-location">
-                                                        <h5><router-link :to="getJobDetail(job.job_key, job.job_slug)">{{ job.job_title }}</router-link></h5>
-                                                        <p><router-link :to="'/company-details?company_id=' + job.company_id">{{ job.company }}</router-link></p>
-                                                    </div>
+
+                            <div v-for="job in searchResult" :key="job.id" class="col-lg-12 mb-30">
+                            <div class="job-listing-card">
+                                <div class="job-top">
+                                    <div class="job-list-content">
+                                        <div class="company-area" style="min-width: fit-content;">
+                                            <div class="logo">
+                                                <img :src="(job.company_logo) ? job.company_logo : '/assets/images/work-pages-logo.png'"
+                                                    alt="">
+                                            </div>
+                                            <div class="company-details">
+                                                <div class="name-location">
+                                                    <h5><router-link :to="getJobDetail(job.job_key, job.job_slug)">{{
+                                                        job.job_title }}</router-link></h5>
+                                                    <p><router-link
+                                                            :to="'/company-details?company_id=' + job.company_id">{{
+                                                                job.company }}</router-link></p>
                                                 </div>
                                             </div>
-                                            <div class="job-discription">
-                                                <ul>
-                                                    <li>
-                                                        <p><span class="title">Salary:</span> {{ job.salary_range }}</p>                                                
-                                                    </li>
-                                                    <li>
-                                                        <p><span class="title">Deadline:</span>{{ job.expiration }}</p>                                                
-                                                    </li>
-                                                </ul>
-                                            </div>
                                         </div>
-                                        <!-- <router-link v-if="loggedIn" to="/bookmark" class="bookmark">
-                                            <i class="bi bi-bookmark-fill"></i>
-                                        </router-link>
-                                        <router-link v-else :to="{ name: 'login' }" class="bookmark">
-                                            <i class="bi bi-bookmark-fill"></i>
-                                        </router-link>                                         -->
+                                        <div class="job-discription">
+                                            <ul>
+                                                <li>
+                                                    <p><span class="title">Salary:</span> {{ job.salary_range }}
+                                                    </p>
+                                                </li>
+                                                <li>
+                                                    <p><span class="title">Application Close:</span>{{
+                                                        job.expiration }}</p>
+                                                </li>
+                                                <li>
+                                                    <p style="line-height: 1.5rem;"><span class="title">Summary:
+                                                        </span>{{ job.job_description.slice(0, 30) }}</p>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
-                                    <div class="job-type-apply">
-                                        <div class="job-type">
-                                            <span class="light-green">{{ job.working_mode  }}</span>
-                                            <!-- <span class="light-purple">Part Time</span>
-                                            <span class="light-blue">Remote</span> -->
-                                        </div>
-                                        <div class="apply-btn" v-if="!isJobExpired(job.expiration)">
-                                            <router-link v-if="loggedIn" :to="getJobDetail(job.job_key, job.job_slug)"><span><img src="assets/images/icon/apply-ellipse.svg" alt=""></span>Apply Now</router-link>
-                                            <router-link v-else :to="{ name: 'login'}"><span><img src="assets/images/icon/apply-ellipse.svg" alt=""></span>Login to apply</router-link>
-                                        </div>
-                                        <!-- <div v-else class="apply-btn">
-                                            <a href="#" class="text-danger"><span><img src="assets/images/icon/apply-ellipse.svg" alt=""></span>Expired...</a>
-                                        </div> -->
+                                </div>
+
+                                <div class="job-type-apply">
+                                    <div class="job-type">
+                                        <span class="light-green">{{ job.working_mode }} {{ job.expiration
+                                            }}</span>
+
                                     </div>
+                                    <div v-if="!isJobExpired(job.expiration)" class="apply-btn">
+                                        <router-link v-if="loggedIn" class="primry-btn-2 y-btn lg-btn"
+                                            :to="getJobDetail(job.job_key, job.job_slug, 'apply')">
+                                            Apply Now</router-link>
+                                        <router-link v-else :to="{ name: 'login' }" class="primry-btn-2 y-btn lg-btn">
+                                            Login to apply</router-link>
+                                    </div>
+
                                 </div>
                             </div>
-                            <!-- <div class="col-lg-12 d-flex justify-content-center">
-                                <div class="pagination-area">
-                                    <nav aria-label="...">
-                                        <ul class="pagination">
-                                            <li class="page-item disabled"><router-link class="page-link" to="#" tabindex="-1"></router-link></li>
-                                            <li class="page-item active" aria-current="page"><router-link class="page-link" to="#">01</router-link></li>
-                                            <li class="page-item"><router-link class="page-link" to="#">02</router-link></li>
-                                            <li class="page-item"><router-link class="page-link" to="#">03</router-link></li>
-                                            <li class="page-item"><router-link class="page-link" to="#"></router-link></li>
-                                        </ul>
-                                    </nav>
-                                </div>
-                            </div> -->
+                        </div>
                         </div>
                     </div>
                 </div>

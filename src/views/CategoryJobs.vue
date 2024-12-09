@@ -92,7 +92,7 @@
                                             <span class="light-blue">Remote</span> -->
                                             </div>
                                             <!-- v-if="!isJobExpired(job.expiration)" -->
-                                            <div class="apply-btn">
+                                            <div v-if="!isJobExpired(job.expiration)" class="apply-btn">
                                                 <router-link v-if="loggedIn" class="primry-btn-2 y-btn lg-btn"
                                                     :to="getJobDetail(job.job_key, job.job_slug, 'apply')">
                                                     Apply Now</router-link>
@@ -100,16 +100,7 @@
                                                     class="primry-btn-2 y-btn lg-btn">
                                                     Login to apply</router-link>
                                             </div>
-                                            <!-- <div class="apply-btn">
-                                                <router-link v-if="loggedIn"
-                                                    :to="getJobDetail(job.job_key, job.job_slug)"><span><img
-                                                            src="assets/images/icon/apply-ellipse.svg"
-                                                            alt=""></span>Apply Now</router-link>
-                                                <router-link v-else :to="{ name: 'login' }"><span><img
-                                                            src="assets/images/icon/apply-ellipse.svg"
-                                                            alt=""></span>Login to apply</router-link>
-
-                                            </div> -->
+                                        
                                         </div>
                                     </div>
                                 </div>
@@ -134,9 +125,6 @@
                                             </ul>
                                         </nav>
                                     </div>
-
-                                    <!-- <Paginator v-model:first="currentPage" :rows="rowsPerPage" :totalRecords="totalPages" @page="toPage('event')">
-                                </Paginator> -->
                                 </div>
                             </div>
                         </div>
@@ -179,6 +167,7 @@ import Paginator from 'primevue/paginator';
             currentPage: 1,
             totalPages: 0,
             rowsPerPage: 10,
+            currentUser: '',
 
 
             // "next_page_url": "http:\/\/127.0.0.1:8000\/api\/categoryJobs\/development?page=2",
@@ -197,7 +186,8 @@ import Paginator from 'primevue/paginator';
         ...mapGetters([
             'job',
             'loggedIn',
-            'globalVariables'
+            'globalVariables',
+            'currentUser',
         ]),
     },
     mounted() {
@@ -209,6 +199,13 @@ import Paginator from 'primevue/paginator';
         };
         this.$store.dispatch('getCategoryJobs', data)
         this.$store.dispatch('getGlobalVariables');
+        if (this.currentUser) {
+            this.user = JSON.parse(this.currentUser)[0]
+            this.role = this.user.roles[0].id
+            this.reviewForm.user_id = this.user.id
+            console.log(this.user.id);
+        }
+        
     },
     methods: {
         getJobDetail(job_key: any, job_slug: any) {
@@ -249,6 +246,9 @@ import Paginator from 'primevue/paginator';
         },
 
         isJobExpired(expirationDate: any) {
+            if (!this.role.name || this.role.name == 'Employer') {
+                return true;
+            }
             const today = new Date();
             const expiration = this.parsedExpirationDate(expirationDate);
             return expiration < today; // Returns true if the job is expired

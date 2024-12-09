@@ -17,8 +17,7 @@
                     <div class="col-lg-12">
                         <div class="post-thumb">
                             <div class="company-logo">
-                                <img :src="(company.logo) ? company.logo : '/assets/images/work-pages-logo.png'"
-                                    alt="">
+                                <img :src="(company.logo) ? company.logo : '/assets/images/work-pages-logo.png'" alt="">
                             </div>
                         </div>
                         <div class="company-area">
@@ -26,7 +25,8 @@
                                 <h4>{{ company.name }}</h4>
                                 <ul>
                                     <li><img src="assets/images/icon/map-2.svg" alt=""> {{ company.location }}</li>
-                                    <li><img src="assets/images/icon/category-2.svg" alt=""><span class="title">Category:
+                                    <li><img src="assets/images/icon/category-2.svg" alt=""><span
+                                            class="title">Category:
                                         </span> {{ company.company_type }}</li>
                                 </ul>
                             </div>
@@ -141,13 +141,15 @@
                         <div class="section-title">
                             <h4>Latest Jobs:</h4>
                         </div>
-                        <div v-for="job in company.jobs" :key="job.id" class="col-lg-12 mb-30">
+
+                        <!-- <div v-for="job in company.jobs" :key="job.id" class="col-lg-12 mb-30">
                             <div class="job-listing-card">
                                 <div class="job-top">
                                     <div class="job-list-content">
                                         <div class="company-area">
                                             <div class="logo">
-                                                <img :src="job.company_logo ?? '/assets/images/work-pages-logo.png'" alt="">
+                                                <img :src="job.company_logo ?? '/assets/images/work-pages-logo.png'"
+                                                    alt="">
                                             </div>
                                             <div class="company-details">
                                                 <div class="name-location">
@@ -168,7 +170,8 @@
                                             </ul>
                                             <ul>
                                                 <li>
-                                                    <p><span class="title">Experience:</span> {{ job.exprience }} Years</p>
+                                                    <p><span class="title">Experience:</span> {{ job.exprience }} Years
+                                                    </p>
                                                 </li>
                                                 <li>
                                                     <p><span class="title">Published:</span> {{ job.posted_on }}</p>
@@ -176,17 +179,14 @@
                                             </ul>
                                         </div>
                                     </div>
-                                    <!-- <div class="bookmark">
-                                        <i class="bi bi-bookmark-fill"></i>
-                                    </div> -->
+
                                 </div>
                                 <div class="job-type-apply">
                                     <p><img src="assets/images/icon/company-4.svg" alt=""> Job Applied: <span> {{
                                         job.applications_count }} Person</span></p>
                                     <div class="job-type">
                                         <span class="light-yellow">{{ job.working_mode }}</span>
-                                        <!-- <span class="light-purple">Part Time</span>
-                                    <span class="light-blue">Remote</span> -->
+
                                     </div>
                                     <div class="apply-btn">
                                         <router-link v-if="loggedIn"
@@ -197,10 +197,72 @@
                                                     src="assets/images/icon/apply-ellipse.svg" alt=""></span>Login to
                                             apply</router-link>
 
-                                        <!-- <router-link :to="`job-details?job_id=${job.id}`"><span><img
-                                                    src="assets/images/icon/apply-ellipse.svg" alt=""></span>Apply
-                                            Now</router-link> -->
+   
                                     </div>
+                                </div>
+                            </div>
+                        </div> -->
+
+                        <div v-for="job in company.jobs" :key="job.id" class="col-lg-12 mb-30">
+                            <div class="job-listing-card">
+                                <div class="job-top">
+                                    <div class="job-list-content">
+                                        <div class="company-area" style="min-width: fit-content;">
+                                            <div class="logo">
+                                                <img :src="(job.company_logo) ? job.company_logo : '/assets/images/work-pages-logo.png'"
+                                                    alt="">
+                                            </div>
+                                            <div class="company-details">
+                                                <div class="name-location">
+                                                    <h5><router-link :to="getJobDetail(job.job_key, job.job_slug)">{{
+                                                        job.job_title }}</router-link></h5>
+                                                    <p><router-link
+                                                            :to="'/company-details?company_id=' + job.company_id">{{
+                                                                job.company }}</router-link></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="job-discription">
+                                            <ul>
+                                                <li>
+                                                    <p><span class="title">Salary:</span> {{ job.salary_range }}
+                                                    </p>
+                                                </li>
+                                                <li>
+                                                    <p><span class="title">Application Close:</span>{{
+                                                        job.expiration }}</p>
+                                                </li>
+                                                <li>
+                                                    <p style="line-height: 1.5rem;"><span class="title">Summary:
+                                                        </span>{{ job.job_description.slice(0, 30) }}</p>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- <router-link v-if="loggedIn" to="/bookmark" class="bookmark">
+                                            <i class="bi bi-bookmark-fill"></i>
+                                        </router-link>
+                                        <router-link v-else :to="{ name: 'login' }" class="bookmark">
+                                            <i class="bi bi-bookmark-fill"></i>
+                                        </router-link>                                         -->
+                                </div>
+
+                                <div class="job-type-apply">
+                                    <div class="job-type">
+                                        <span class="light-green">{{ job.working_mode }} {{ job.expiration
+                                            }}</span>
+                                        <!-- <span class="light-purple">Part Time</span>
+                                            <span class="light-blue">Remote</span> -->
+                                    </div>
+                                    <!-- v-if="!isJobExpired(job.expiration)" -->
+                                    <div v-if="!isJobExpired(job.expiration)" class="apply-btn">
+                                        <router-link v-if="loggedIn" class="primry-btn-2 y-btn lg-btn"
+                                            :to="getJobDetail(job.job_key, job.job_slug, 'apply')">
+                                            Apply Now</router-link>
+                                        <router-link v-else :to="{ name: 'login' }" class="primry-btn-2 y-btn lg-btn">
+                                            Login to apply</router-link>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -208,7 +270,8 @@
                             <nav aria-label="...">
                                 <ul class="pagination">
                                     <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1"></a></li>
-                                    <li class="page-item active" aria-current="page"><a class="page-link" href="#">01</a>
+                                    <li class="page-item active" aria-current="page"><a class="page-link"
+                                            href="#">01</a>
                                     </li>
                                     <li class="page-item"><a class="page-link" href="#">02</a></li>
                                     <li class="page-item"><a class="page-link" href="#">03</a></li>
@@ -266,7 +329,8 @@
                                                 placeholder="Your Review"></textarea>
                                         </div>
                                     </div>
-                                    <button @click="createReview" class="primry-btn-2 lg-btn w-unset" type="button">Submit
+                                    <button @click="createReview" class="primry-btn-2 lg-btn w-unset"
+                                        type="button">Submit
                                         Review</button>
                                 </div>
                             </form>
@@ -335,6 +399,29 @@ import { useRoute } from 'vue-router';
                 // path: '/job-details/${job_key}/${job_slug}'
             };
         },
+
+        parsedExpirationDate(expirationDate: any) {
+            // Split the expiration date string into month, day, and year
+            const [month, day, year] = expirationDate.split(' ');
+            // Type annotation for monthMap
+            const monthMap: { [key: string]: number } = {
+                'Jan': 0, 'Feb': 1, 'Mar': 2, 'Apr': 3,
+                'May': 4, 'Jun': 5, 'Jul': 6, 'Aug': 7,
+                'Sep': 8, 'Oct': 9, 'Nov': 10, 'Dec': 11
+            };
+
+            // Create and return a Date object using the parsed month, day, and year
+            return new Date(year, monthMap[month], parseInt(day, 10));
+        },
+
+        isJobExpired(expirationDate: any) {
+            if (!this.role.name || this.role.name == 'Employer') {
+                return true;
+            }
+            const today = new Date();
+            const expiration = this.parsedExpirationDate(expirationDate);
+            return expiration < today; // Returns true if the job is expired
+        }
     },
     computed: {
         ...mapGetters([

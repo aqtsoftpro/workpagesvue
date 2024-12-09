@@ -25,7 +25,7 @@
                                 <!-- <p>Don’t forget to create your profile and let employers find you and contact you directly! </p> -->
                                 <div class="job-search-area">
                                     <form>
-                                        <div class="form-inner job-title">
+                                        <div class="form-inner job-title mt-4 mt-md-0" style="padding: 0;" >
                                             <div class="icon-container">
                                                 <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20"
                                                     height="30" viewBox="0,0,256,256" style="fill:#000000;">
@@ -42,28 +42,23 @@
                                                     </g>
                                                 </svg>
                                             </div>
-                                            <div class="input-container">
-                                                <input type="text" v-model="searchForm.keyword"
+                                            <div class="input-container me-2">
+                                                <input type="text" v-model="searchForm.keyword" style="border-radius: 60px;"
                                                     placeholder="What jobs are you looking for?">
                                             </div>
                                         </div>
-
                                         <div class="form-inner industry" style="flex: 1">
-                                            <Dropdown v-model=this.searchForm.category_id :options="search_category"
-                                                @change="changeCategory" ref="location" optionLabel="name"
-                                                optionValue="id" placeholder="Select Category" class="w-full
-                                            md:w-14rem"
-                                                style="padding-left: 1rem !important; align-items: center !important; height: 2.6rem !important; border-radius: 20px; color: #010536 !important; font-family:'Work Sans'!important;" />
+                                            <Dropdown v-model="this.searchForm.category_id" :options="search_category"
+                                                @change="changeCategory" ref="category" editable optionLabel="name"
+                                                placeholder="Select Category" optionValue="id" class="w-full md:w-14rem"
+                                                style="align-items: center !important; border-radius: 20px;">
+                                                <!-- <template #option="slotProps">
+                                                    <div class="flex align-items-center">
+                                                        <div>{{ slotProps.option.name }}</div>
+                                                    </div>
+                                                </template> -->
+                                            </Dropdown>
                                         </div>
-                                        <!-- <div class="form-inner location" style="flex: 1">
-
-                                            <Dropdown v-model=this.searchForm.location_id :options="search_states"
-                                                @change="changeLocation" ref="location" optionLabel="name"
-                                                optionValue="id" placeholder="Select Location" inputClass="form-control"
-                                                class="w-full
-                                            md:w-14rem"
-                                                style="padding-left: 1rem !important; align-items: center !important; height: 2.6rem !important; border-radius: 20px;" />
-                                        </div> -->
 
 
 
@@ -1309,7 +1304,7 @@ ul {
 
 .p-dropdown>input {
     /* margin-left: 25px !important; */
-    text-align: center !important;
+    /* text-align: center !important; */
     background: transparent !important;
     height: fit-content !important;
 }
