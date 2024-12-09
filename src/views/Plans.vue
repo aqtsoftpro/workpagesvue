@@ -27,13 +27,22 @@
         <div class="pricing-plan-area pt-120 mb-120">
             <div class="container">
                 <div class="row g-4 mb-70 justify-content-center align-items-center">
-                    <Splide :options="{ type: 'loop', perPage: 3, pagination:false }" aria-label="My Favorite Images">
+                    <Splide :options="{
+                        type: 'loop', perPage: 3, pagination: false, breakpoints: {
+                            1068: { perPage: 2 }, // For screens <= 768px
+                            768: { perPage: 1 }, // For screens <= 576px
+                        }
+                    }" aria-label="My Favorite Images">
                         <SplideSlide v-for="(plan, index) in allPlans">
                             <div class="col-lg-12 col-md-12">
-                                <div class="pricing-plan-card1 mx-2" :class="{'bg-card1': index % 2 === 0, 'bg-card2': index % 2 !== 0 }" style="height: 50em;">
+                                <div class="pricing-plan-card1 mx-2"
+                                    :class="{ 'bg-card1': index % 2 === 0, 'bg-card2': index % 2 !== 0 }"
+                                    style="height: 50em;">
                                     <div class="pricing-plan-header">
                                         <div class="starting-form">
-                                            <span style="background-color: #010536; color: white; " ><img src="assets/images/icon/site-fav.png" alt="" width="35" > {{ plan.name }}</span>
+                                            <span style="background-color: #010536; color: white; "><img
+                                                    src="assets/images/icon/site-fav.png" alt="" width="35"> {{
+                                                plan.name }}</span>
                                             <!-- <span v-else  ><i style="color: #e59a22;">{{ plan.main_icon }}</i style="color: yellowgreen;"> {{ plan.name }}</span> -->
                                         </div>
                                         <!-- <div class="preview-btn">
@@ -41,26 +50,38 @@
                                         </div> -->
                                     </div>
                                     <div class="price-area">
-                                        <h3>${{ plan.price }} 
+                                        <h3>${{ plan.price }}
                                             <!-- / <span>Per Job +VAT</span> -->
                                         </h3>
                                     </div>
                                     <div class="">
                                         <ul class="priceing-list h-fix mb-4">
                                             <li v-for="point in plan.keypoints">
-                                                    <div class="icon">
-                                                    <span v-if="point.icon !== null || point.icon !== ''" style="color: rgba(254, 254, 0, 0.9); margin-right: 1em;">{{ point.icon }}</span>
-                                                    <span v-else style="color: rgba(254, 254, 0, 0.9); margin-right: 1em;">&#10006;</span>
+                                                <div class="icon">
+                                                    <span v-if="point.icon !== null || point.icon !== ''"
+                                                        style="color: rgba(254, 254, 0, 0.9); margin-right: 1em;">{{
+                                                        point.icon }}</span>
+                                                    <span v-else
+                                                        style="color: rgba(254, 254, 0, 0.9); margin-right: 1em;">&#10006;</span>
                                                 </div>
                                                 <p>{{ point.title }}</p>
                                             </li>
                                         </ul>
                                     </div>
                                     <div class="d-flex justify-content-center mt-5">
-                                        <button v-if="this.activePlanId == null && !plan.isLoading && plan.price > 0"@click="checkout(plan)" class="primry-btn-2 custom-btn lg-btn" type="button" >{{ this.loggedIn == true ? 'Buy Now':'Login To Buy'}} </button>
-                                        <button v-if="this.activePlanId !== null && !plan.isLoading && plan.price > 0 && this.activePlanId == plan.id" class="primry-btn-2 custom-btn lg-btn" type="button" disabled>Subscribed </button>
-                                        <button v-if="!plan.isLoading && plan.price == 0" @click="zeroSubscribe(plan)" class="primry-btn-2 custom-btn lg-btn" type="button" >{{ this.loggedIn == true ? 'Buy Now':'Login To Buy'}} </button>
-                                        <button v-if="plan.isLoading" class="primry-btn-2 custom-btn lg-btn" type="button">
+                                        <button v-if="this.activePlanId == null && !plan.isLoading && plan.price > 0"
+                                            @click="checkout(plan)" class="primry-btn-2 custom-btn lg-btn"
+                                            type="button">{{ this.loggedIn == true ? 'Buy Now' : 'Login To Buy' }}
+                                        </button>
+                                        <button
+                                            v-if="this.activePlanId !== null && !plan.isLoading && plan.price > 0 && this.activePlanId == plan.id"
+                                            class="primry-btn-2 custom-btn lg-btn" type="button" disabled>Subscribed
+                                        </button>
+                                        <button v-if="!plan.isLoading && plan.price == 0" @click="zeroSubscribe(plan)"
+                                            class="primry-btn-2 custom-btn lg-btn" type="button">{{ this.loggedIn ==
+                                            true ? 'Buy Now':'Login To Buy'}} </button>
+                                        <button v-if="plan.isLoading" class="primry-btn-2 custom-btn lg-btn"
+                                            type="button">
                                             <span class="me-3 fs-6 text-white">Processing...</span>
                                             <i class="fa fa-spinner fa-spin text-white ms-3" style="font-size:24px">
                                             </i>
@@ -74,7 +95,8 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="add-area">
-                            <p><span>N.B:</span> If are you never posted a job in WORKPAGES? Get 15% off in your first job
+                            <p><span>N.B:</span> If are you never posted a job in WORKPAGES? Get 15% off in your first
+                                job
                                 post.</p>
                             <a class="primry-btn-1" href="#">Get Offer</a>
                         </div>
@@ -108,52 +130,60 @@
     </div>
 </template>
 <style scoped>
-    .custom-btn {
+.custom-btn {
     border-radius: 50px !important;
-    }
+}
 
-    .custom-btn::after{
-        border-radius: 50px !important;
-    }
+.custom-btn::after {
+    border-radius: 50px !important;
+}
 
-    .custom-btn:hover svg{
-        border-radius: 50px !important;
-    }
+.custom-btn:hover svg {
+    border-radius: 50px !important;
+}
 
-    .custom-btn::before{
-        border-radius: 50px !important;
-    }
-    .h-fix {
-        height: 28em !important;
-        overflow-y: scroll;
-    }
+.custom-btn::before {
+    border-radius: 50px !important;
+}
 
-    .h-fix::-webkit-scrollbar {
-    width: 8px; /* Width of the scrollbar */
-    background-color: #050a46; /* Background color of the scrollbar track */
-    border-radius: 6px; /* Radius of the scrollbar track */
-    }
+.h-fix {
+    height: 28em !important;
+    overflow-y: scroll;
+}
 
-    .h-fix::-webkit-scrollbar-thumb {
-    background-color: #010536; /* Color of the scrollbar thumb */
-    border-radius: 6px; /* Radius of the scrollbar thumb */
-    }
+.h-fix::-webkit-scrollbar {
+    width: 8px;
+    /* Width of the scrollbar */
+    background-color: #050a46;
+    /* Background color of the scrollbar track */
+    border-radius: 6px;
+    /* Radius of the scrollbar track */
+}
 
-    .h-fix::-webkit-scrollbar-thumb:hover {
-    background-color: #000; /* Color of the scrollbar thumb on hover */
-    }
+.h-fix::-webkit-scrollbar-thumb {
+    background-color: #010536;
+    /* Color of the scrollbar thumb */
+    border-radius: 6px;
+    /* Radius of the scrollbar thumb */
+}
 
-    .h-fix::-webkit-scrollbar-button {
-    display: none; /* Hide scrollbar buttons */
-    }
+.h-fix::-webkit-scrollbar-thumb:hover {
+    background-color: #000;
+    /* Color of the scrollbar thumb on hover */
+}
 
-    .bg-card1 {
-        background-color: rgb(255, 255, 242) !important;
-    }
+.h-fix::-webkit-scrollbar-button {
+    display: none;
+    /* Hide scrollbar buttons */
+}
 
-    .bg-card2 {
-        background-color: rgb(252, 250, 252) !important;
-    }
+.bg-card1 {
+    background-color: rgb(255, 255, 242) !important;
+}
+
+.bg-card2 {
+    background-color: rgb(252, 250, 252) !important;
+}
 </style>
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
@@ -203,7 +233,7 @@ interface Plan {
     },
     mounted() {
         this.$store.dispatch('getAllPlans');
-        if (this.loggedIn == true ) {
+        if (this.loggedIn == true) {
             this.$store.dispatch('getAciveSub');
         }
         this.$store.dispatch('getGlobalVariables');
@@ -237,8 +267,8 @@ interface Plan {
             this.activePlanId = this.activeSub?.package_id ?? null;
         },
         globalVariables() {
-            this.bgImage = 'background-image: url('+this.globalVariables._banner_image+')';
-            this.textColor = 'color: '+this.globalVariables._banner_text_color+' !important;';
+            this.bgImage = 'background-image: url(' + this.globalVariables._banner_image + ')';
+            this.textColor = 'color: ' + this.globalVariables._banner_text_color + ' !important;';
         }
     }
 })

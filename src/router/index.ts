@@ -131,16 +131,16 @@ const routes: Array<RouteRecordRaw> = [
     name: 'featured-jobs',
     component: JobListing
   },
-  {  
+  {
     path: '/job-details/:job_key/:job_slug',
     name: 'job-details',
     component: JobDetails
-  },  
+  },
   {
     path: '/job-apply',
     name: 'job-apply',
     component: JobApply
-  },  
+  },
   {
     path: '/view-cv',
     name: 'view-cv',
@@ -191,7 +191,7 @@ const routes: Array<RouteRecordRaw> = [
     path: '/job-seeker-list',
     name: 'job-seeker-list',
     component: JobSeekerList,
-    meta: { requiresAuth: true, role: 'Employer', 'sub_access': true, casual_portal: 'yes'}
+    meta: { requiresAuth: true, role: 'Employer', 'sub_access': true, casual_portal: 'yes' }
   },
 
   {
@@ -219,12 +219,12 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: '/company/dashboard',
         component: CompanyDashboard,
-        meta: { requiresAuth: true, role: 'Employer', 'sub_access': false,}
+        meta: { requiresAuth: true, role: 'Employer', 'sub_access': false, }
       },
       {
         path: '/company/profile',
         component: CompanyProfile,
-        meta: { requiresAuth: true, role: 'Employer', 'sub_access': false,}
+        meta: { requiresAuth: true, role: 'Employer', 'sub_access': false, }
       },
       {
         path: '/company/job-list',
@@ -245,16 +245,16 @@ const routes: Array<RouteRecordRaw> = [
         path: '/company/update-job/:job_key/:job_slug',
         component: UpdateJob,
         meta: { requiresAuth: true, role: 'Employer', 'sub_access': true, allow_edits: 'yes' }
-      },      
+      },
       {
         path: '/company/plan',
         component: CompanyPlan,
-        meta: { requiresAuth: true, role: 'Employer', 'sub_access': false,}
+        meta: { requiresAuth: true, role: 'Employer', 'sub_access': false, }
       },
       {
         path: '/company/settings',
         component: CompanySettings,
-        meta: { requiresAuth: true, role: 'Employer', 'sub_access': false,}
+        meta: { requiresAuth: true, role: 'Employer', 'sub_access': false, }
       },
 
       {
@@ -283,42 +283,42 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: '/user/dashboard',
         component: UserDashboard,
-        meta: { requiresAuth: true, role: 'Job Seeker'}
+        meta: { requiresAuth: true, role: 'Job Seeker' }
       },
       {
         path: '/user/profile',
         component: UserProfile,
-        meta: { requiresAuth: true, role: 'Job Seeker'}
+        meta: { requiresAuth: true, role: 'Job Seeker' }
       },
       {
         path: '/user/portfolio',
         component: UserPortfolio,
-        meta: { requiresAuth: true, role: 'Job Seeker'}
+        meta: { requiresAuth: true, role: 'Job Seeker' }
       },
       {
         path: '/user/jobs',
         component: UserJobs,
-        meta: { requiresAuth: true, role: 'Job Seeker'}
+        meta: { requiresAuth: true, role: 'Job Seeker' }
       },
       {
         path: '/user/bookmarks',
         component: UserBookmarks,
-        meta: { requiresAuth: true, role: 'Job Seeker'}
+        meta: { requiresAuth: true, role: 'Job Seeker' }
       },
       {
         path: '/user/edit-resume',
         component: UserEditResume,
-        meta: { requiresAuth: true, role: 'Job Seeker'}
+        meta: { requiresAuth: true, role: 'Job Seeker' }
       },
       {
         path: '/user/view-resume',
         component: UserViewResume,
-        meta: { requiresAuth: true, role: 'Job Seeker'}
+        meta: { requiresAuth: true, role: 'Job Seeker' }
       },
       {
         path: '/user/settings',
         component: UserSettings,
-        meta: { requiresAuth: true, role: 'Job Seeker'}
+        meta: { requiresAuth: true, role: 'Job Seeker' }
       },
     ]
   },
@@ -330,7 +330,8 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/plans',
     name: 'plans',
-    component: Plans
+    component: Plans,
+    meta: { onlyfor: 'Employer' }
   },
   {
     path: '/contact-us',
@@ -361,16 +362,13 @@ router.beforeEach((to, from, next) => {
 
   if (to.meta.requiresAuth) {
     const isLoggedIn = store.state.loggedIn;
-    
     const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
     if (!isLoggedIn) {
       // User is not logged in, redirect to login or handle accordingly
       next('/login');
       return;
     }
-
     // Check if the user is logged in
-
     if (!currentUser || !currentUser[0].roles) {
       // User is not logged in or doesn't have roles, redirect to login or handle accordingly
       next('/login');
@@ -481,6 +479,21 @@ router.beforeEach((to, from, next) => {
     //   next('/unauthorized');
     //   return;
     // }
+  }
+
+  if (to.meta?.onlyfor) {
+    const isLoggedIn = store.state.loggedIn;
+
+    if (isLoggedIn) {
+      const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+      const currentRole = currentUser[0].roles[0] ?? null
+
+      if (to.meta?.onlyfor !== currentRole?.name) {
+        next('/');
+        return;
+      }
+
+    }
   }
 
   // Continue to the route

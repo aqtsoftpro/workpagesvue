@@ -2,9 +2,9 @@
     <div>
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-12 pt-3">
                     <div class="banner-content text-center">
-                        <h2>Success! You have verified your Work Pages profile</h2>
+                        <h2 class="mt-3 pt-4" >Success! You have verified your Work Pages profile</h2>
                         <span></span>
                     </div>
                 </div>

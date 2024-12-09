@@ -30,9 +30,10 @@
                             <div class="job-list-content">
                                 <div class="company-area">
                                     <div class="logo">
-                                        <img v-if="current_job.company_logo"
-                                            :src="current_job.company_logo" style="width: 75px; height: 75px;" />
-                                        <img v-else src="/assets/images/work-pages-logo.png" alt="" style="width: 75px; height: 75px;">
+                                        <img v-if="current_job.company_logo" :src="current_job.company_logo"
+                                            style="width: 75px; height: 75px;" />
+                                        <img v-else src="/assets/images/work-pages-logo.png" alt=""
+                                            style="width: 75px; height: 75px;">
                                     </div>
                                     <div class="company-details">
                                         <div class="name-location">
@@ -90,7 +91,7 @@
                                         <!-- <router-link class="primry-btn-2 lg-btn" :to="{ name: 'job-apply', query: { job_id: current_job.id, company_id: current_job.company_id }}">Apply Position</router-link> -->
                                         <!-- <router-link class="primry-btn-2 lg-btn" to="#apply_job_continer">Apply Position</router-link> -->
                                         <button class="primry-btn-2 lg-btn" @click="applyBtn" type="click">Apply
-                                            Position</button>
+                                            Now</button>
 
                                     </li>
                                 </ul>
@@ -263,36 +264,59 @@
                                                             <img src="/assets/images/icon/user-2.svg" alt="">
                                                             <input v-on:change="onFileSelected" type="file" name="cv" />
                                                         </div>
-                                                        <label v-if="user.cv !== null">Cv already uploaded</label>
+                                                        <label v-if="user.cv !== null">CV already uploaded</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-inner mb-25">
-                                                        <label>Your Current Designation</label>
+                                                        <label>Your current position</label>
                                                         <div class="input-area">
                                                             <img src="/assets/images/icon/clock-2.svg " alt="">
                                                             <input type="text" v-model="application.designation"
-                                                                placeholder="What is your current designation" />
+                                                                placeholder="What is your current job title" />
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
+                                                <div class="col-md-12">
                                                     <div class="form-inner mb-25">
-                                                        <label>Your Exprience</label>
+                                                        <label>Your experience</label>
                                                         <div class="input-area">
                                                             <img src="/assets/images/icon/clock-2.svg " alt="">
-                                                            <input type="text" v-model="application.experience"
-                                                                placeholder="How many years of experince do you have ?" />
+                                                            <!-- <input type="text" v-model="application.experience"
+                                                                placeholder="How many years of experience do you have?" /> -->
+
+                                                            <Dropdown v-model="application.experience"
+                                                                :options="exp_options" 
+                                                                optionLabel="name" optionValue="id"
+                                                                placeholder="How many years of experience do you have?" />
+
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
+                                                <!-- <div class="col-md-6">
                                                     <div class="form-inner mb-25">
                                                         <label>Expected Salary</label>
                                                         <div class="input-area">
                                                             <img src="/assets/images/icon/clock-2.svg " alt="">
                                                             <input type="text" v-model="application.salary"
                                                                 placeholder="What is your expected salary ?" />
+                                                        </div>
+                                                    </div>
+                                                </div> -->
+
+                                                <div class="col-md-12">
+                                                    <div class="form-inner mb-25">
+                                                        <label>Salary expectation</label>
+                                                        <div class="input-area">
+                                                            <img src="/assets/images/icon/clock-2.svg " alt="">
+                                                            <!-- <input type="text" v-model="application.experience"
+                                                                placeholder="How many years of experience do you have?" /> -->
+
+                                                            <Dropdown v-model="application.salary_period"
+                                                                :options="periods" 
+                                                                optionLabel="name" optionValue="id"
+                                                                placeholder="What is your expected salary ?" />
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -391,15 +415,26 @@
     </div>
 </template>
 
+<style>
+
+.p-dropdown-label .p-inputtext .p-placeholder {
+    width: 100% !important;
+    overflow-x: hidden;
+}
+
+</style>
+
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
 import JobDetail from '../views/JobDetails.vue'; // @ is an alias to /src
+import Dropdown from 'primevue/dropdown';
 import { mapState } from 'vuex';
 import { useRoute, useRouter } from 'vue-router'
 
 @Options({
     components: {
         JobDetail,
+        Dropdown,
     },
     data() {
         return {
@@ -417,7 +452,8 @@ import { useRoute, useRouter } from 'vue-router'
                 company_id: null,
                 status_id: 1,
                 job_id: null,
-                cv: null
+                cv: null,
+                salary_period: '',
             },
             user_current_job_applied: '',
             currentUri: '',
@@ -425,6 +461,35 @@ import { useRoute, useRouter } from 'vue-router'
             isCopied: false,
             titleText: 'Copy to clipboard',
             validImage: false,
+            exp_options: [
+                {
+                    id: 0,
+                    name: 'No experience',
+                },
+                {
+                    id: 2,
+                    name: '0-2 years',
+                },
+                {
+                    id: 5,
+                    name: '3-5 years',
+                },
+                {
+                    id: 6,
+                    name: 'More than 5 years',
+                }
+            ],
+
+            periods: [
+                {
+                    id: 'per-hour',
+                    name: 'Per hour',
+                },
+                {
+                    id: 'per-annum',
+                    name: 'Per annum',
+                },
+            ]
 
         }
     },

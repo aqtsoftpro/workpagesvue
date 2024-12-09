@@ -12,7 +12,7 @@
                     <h2>Featured data</h2>
                     {{ featured_companies }} -->
                         <div class="col-lg-12">
-                            <div class="hero-content">
+                            <div class="hero-content" :style="{ 'margin-top': slider_search_panel_margin_top + 'px' }">
 
                                 <span v-if="slider_content" v-html="slider_content"
                                     :style="{ color: slider_text_color }"></span>
@@ -23,8 +23,7 @@
                                 <!-- <h1><span>Search now </span> to find your new job opportunity</h1> -->
                                 <!-- <h1>1020+ <span>Category</span> Job’s Here</h1> -->
                                 <!-- <p>Don’t forget to create your profile and let employers find you and contact you directly! </p> -->
-                                <div class="job-search-area"
-                                    :style="{ 'margin-top': slider_search_panel_margin_top + 'px' }">
+                                <div class="job-search-area">
                                     <form>
                                         <div class="form-inner job-title">
                                             <div class="icon-container">
@@ -54,7 +53,7 @@
                                                 @change="changeCategory" ref="location" optionLabel="name"
                                                 optionValue="id" placeholder="Select Category" class="w-full
                                             md:w-14rem"
-                                                style="padding-left: 1rem !important; align-items: center !important; height: 2.6rem !important; border-radius: 20px;" />
+                                                style="padding-left: 1rem !important; align-items: center !important; height: 2.6rem !important; border-radius: 20px; color: #010536 !important; font-family:'Work Sans'!important;" />
                                         </div>
                                         <!-- <div class="form-inner location" style="flex: 1">
 
@@ -68,10 +67,11 @@
 
 
 
-                                        <div class="form-inner">
+                                        <div class="form-inner" style="flex: 1">
                                             <Dropdown v-model="this.searchForm.location_id" :options="search_states"
                                                 @change="changeLocation" ref="location" editable optionLabel="name"
-                                                placeholder="Select Location" optionValue="id" class="w-full md:w-14rem">
+                                                placeholder="Select Location" optionValue="id" class="w-full md:w-14rem"
+                                                style="align-items: center !important; border-radius: 20px;">
                                                 <!-- <template #option="slotProps">
                                                     <div class="flex align-items-center">
                                                         <div>{{ slotProps.option.name }}</div>
@@ -1238,6 +1238,7 @@
     border-radius: 2rem;
     min-width: 14rem;
     padding-left: 2rem;
+    background: transparent !important;
 }
 
 ul {
@@ -1294,19 +1295,23 @@ ul {
 <style>
 .form-inner>.p-inputtext {
     background: var(--white);
-    font-family: var(--font-work-sans);
     font-weight: 400;
-    /* height: 48px; */
     font-size: 0.938rem;
     line-height: 18px;
-    color: var(--title-color1);
     padding: 12px 0;
     width: 100%;
     margin-left: 25px !important;
+    font-family: 'Work Sans' !important;
+
 }
 
-.form-inner>input {
-    margin-left: 25px !important;
+
+
+.p-dropdown>input {
+    /* margin-left: 25px !important; */
+    text-align: center !important;
+    background: transparent !important;
+    height: fit-content !important;
 }
 
 .p-dropdown-items-wrapper>ul {
@@ -1325,12 +1330,17 @@ ul {
 
 .hero6 .hero-wapper .hero-content .job-search-area form .form-inner input {
     background: var(--white);
-    font-family: var(--font-work-sans);
+    /* font-family: var(--font-work-sans); */
     font-weight: 400;
     font-size: 0.938rem;
     color: var(--title-color1);
     width: 100%;
     margin-left: 25px;
+}
+
+.p-dropdown-label .p-inputtext .p-placeholder {
+    color: #010536 !important;
+    font-family: 'Work Sans' !important;
 }
 </style>
 

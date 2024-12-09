@@ -79,7 +79,7 @@
                                     <router-link to="/charity-partner" @click="closeResponsiveMenu">Charity
                                         Partner</router-link>
                                 </li>
-                                <li>
+                                <li v-if="!loggedIn || this.role == 'Employer'" >
                                     <router-link to="/plans" @click="closeResponsiveMenu">Pricing</router-link>
                                 </li>
 
@@ -344,7 +344,7 @@
                             </div>
                             <div class="content">
                                 <h5>Support Line:</h5>
-                                <router-link to="">{{ globalSettings['_support_line'] }}</router-link>
+                                <router-link to="">{{ globalSettings['_site_support_no'] }}</router-link>
                             </div>
                         </div>
                     </div>

@@ -6,16 +6,17 @@
                 <user-menu />
                 <div class="col-lg-9">
                     <div class="dashboard-inner">
-                         <div class="author-area">
+                        <div class="author-area">
                             <div class="author-img">
-                                <img v-if="user.photo" :src="user.photo" style="width: 90px; height: auto !important;" >
-                                <img v-else src="/assets/images/work-pages-logo.png" style="width: 90px; height: auto !important;" >
+                                <img v-if="user.photo" :src="user.photo" style="width: 90px; height: auto !important;">
+                                <img v-else src="/assets/images/work-pages-logo.png"
+                                    style="width: 90px; height: auto !important;">
                             </div>
                             <div class="author-content">
                                 <span>Hello, I’m</span>
-                                <h4>{{ user.name  }}</h4>
+                                <h4>{{ user.name }}</h4>
                             </div>
-                         </div>
+                        </div>
                         <div class="counter-area">
                             <div class="row g-lg-4 g-md-5 gy-5 justify-content-center">
                                 <div class="col-lg-4 col-sm-6">
@@ -84,9 +85,11 @@
                                 </div>
                             </div>
                         </div>
+
+
                         <div class="table-wrapper">
                             <h5 class="title">Current Applied Jobs:</h5>
-                            <div class="scroll-table">
+                            <div class="table-wrapper2">
                                 <table class="eg-table table category-table mb-0">
                                     <thead>
                                         <tr>
@@ -99,29 +102,38 @@
                                     <tbody>
                                         <tr v-for="application in jobApplications" :key="application.id">
                                             <td data-label="Job Title">
-                                                <div class="company-info">
-                                                    <div class="logo">
+                                                <div class="company-info"  >
+                                                    <!-- <div class="logo">
                                                         <img src="/assets/images/bg/company-logo/company-06.png" alt="">
-                                                    </div>
+                                                    </div> -->
                                                     <div class="company-details">
                                                         <div class="top">
+                                                            <h6><router-link
+                                                                    :to="getJobDetail(application.job.job_key, application.job.job_slug)">{{
+                                                                    application.job.job_title }}</router-link></h6>
                                                             
-                                                            <h6><router-link :to="getJobDetail(application.job.job_key, application.job.job_slug)">{{ application.job.job_title }}</router-link></h6>
-                                                            <span><img src="/assets/images/icon/calender2.svg" alt=""> 1 days ago</span>
                                                         </div>
-                                                        <ul>
-                                                            <li><img src="/assets/images/icon/location.svg" alt=""> {{ application.job.location }}</li>
-                                                            <li>
+                                                        <div>
+                                                            <img src="/assets/images/icon/location.svg" alt=""> {{
+                                                            application.job.location }}
+                                                        </div>
+                                                        <div>
+                                                            <div class="d-flex">
                                                                 <img src="/assets/images/icon/arrow2.svg" alt="">
-                                                                <p><span class="title">Salary:</span> {{ application.job.salary_range }}</p>
-                                                            </li>
-                                                        </ul>
+                                                                <span class="title ms-2">Salary:</span>
+                                                            </div>
+                                                            <p style="width: 8rem !important ;" >
+                                                                {{ application.job.salary_range }}
+                                                            </p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td data-label="Apply Job">{{ application.applied_on  }}</td>
-                                            <td data-label="Company"><a class="view-btn" href="company-details.html">{{ application.job.company }} </a></td>
-                                            <td data-label="Status"><span class="eg-btn purple-btn">{{ application.status_name }}</span></td>
+                                            <td data-label="Apply Job">{{ application.applied_on }}</td>
+                                            <td data-label="Company"><a class="view-btn" href="company-details.html" style="text-overflow: initial;" >{{
+                                                    application.job.company }} </a></td>
+                                            <td data-label="Status"><span class="eg-btn purple-btn">{{
+                                                    application.status_name }}</span></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -294,54 +306,54 @@ import UserMenu from './UserMenu.vue';
 import { mapGetters } from 'vuex';
 
 @Options({
-  components: {
-    'user-menu': UserMenu
-  },
-  data() {
-    return {
-        user: {},
-        jobApplications: [],
-        adminURL: null,
-        imageExists: false,
-    }
-  },
-  computed: {
-    ...mapGetters([
-       'currentUser',
-       'candidateApplications',
-       'adminDashboardDomain'
-    ])
-  },
-  mounted() {
-    this.$store.dispatch('getUserInfo');
-    this.user = JSON.parse(this.currentUser)[0]
-    this.$store.dispatch('getCandidateApplications', this.user.id);
-
-    let Script = document.createElement("script");
-      Script.setAttribute("src", "/assets/js/main.js");
-      document.head.appendChild(Script);
-
-    this.user = JSON.parse(this.currentUser)[0]
-  },
-  watch: {
-    candidateApplications() {
-      this.jobApplications = this.candidateApplications.Listing
+    components: {
+        'user-menu': UserMenu
     },
-    currentUser: {
-        handler() {
-        this.user = JSON.parse(this.currentUser)[0];
+    data() {
+        return {
+            user: {},
+            jobApplications: [],
+            adminURL: null,
+            imageExists: false,
+        }
+    },
+    computed: {
+        ...mapGetters([
+            'currentUser',
+            'candidateApplications',
+            'adminDashboardDomain'
+        ])
+    },
+    mounted() {
+        this.$store.dispatch('getUserInfo');
+        this.user = JSON.parse(this.currentUser)[0]
+        this.$store.dispatch('getCandidateApplications', this.user.id);
+
+        let Script = document.createElement("script");
+        Script.setAttribute("src", "/assets/js/main.js");
+        document.head.appendChild(Script);
+
+        this.user = JSON.parse(this.currentUser)[0]
+    },
+    watch: {
+        candidateApplications() {
+            this.jobApplications = this.candidateApplications.Listing
         },
-        immediate: true, // Trigger immediately on component mount
+        currentUser: {
+            handler() {
+                this.user = JSON.parse(this.currentUser)[0];
+            },
+            immediate: true, // Trigger immediately on component mount
+        },
     },
-  },
-  methods: {
-    getJobDetail(job_key:any, job_slug:any) {    
-      return {
-        path: '/job-details/'+job_key+'/'+job_slug
-        // path: '/job-details/${job_key}/${job_slug}'
-      };
+    methods: {
+        getJobDetail(job_key: any, job_slug: any) {
+            return {
+                path: '/job-details/' + job_key + '/' + job_slug
+                // path: '/job-details/${job_key}/${job_slug}'
+            };
+        },
     },
-  },
 })
-export default class UserDashboard extends Vue {}
+export default class UserDashboard extends Vue { }
 </script>
