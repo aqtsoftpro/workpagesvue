@@ -118,10 +118,7 @@
                                             <div class="job-type">
                                                 <span class="light-green">{{ job.working_mode }} {{ job.expiration
                                                     }}</span>
-                                                <!-- <span class="light-purple">Part Time</span>
-                                            <span class="light-blue">Remote</span> -->
                                             </div>
-                                            <!-- v-if="!isJobExpired(job.expiration)" -->
                                             <div v-if="!isJobExpired(job.expiration)" class="apply-btn">
                                                 <router-link v-if="loggedIn" class="primry-btn-2 y-btn lg-btn"
                                                     :to="getJobDetail(job.job_key, job.job_slug, 'apply')">
@@ -130,7 +127,7 @@
                                                     class="primry-btn-2 y-btn lg-btn">
                                                     Login to apply</router-link>
                                             </div>
-
+                                        
                                         </div>
                                     </div>
                                 </div>
@@ -143,6 +140,16 @@
         <!-- ========== Job Listing e nd============= -->
     </div>
 </template>
+
+<style>
+.apply-btn>.y-btn {
+    color: #f7f7f2 !important;
+}
+
+.y-btn:hover {
+    color: black !important;
+}
+</style>
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';

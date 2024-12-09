@@ -27499,3 +27499,16 @@ td>.eg-btn {
   font-family: 'Work Sans' !important;
   color: rgb(6, 20, 33) !important;
 }
+
+.apply-btn>.y-btn {
+    color: #f7f7f2;
+}
+
+.y-btn:hover {
+    color: black;
+}
+
+.company-area > .company-details {
+  max-width: 200px !important;
+  overflow-wrap: normal !important;
+}

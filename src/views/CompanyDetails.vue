@@ -239,12 +239,6 @@
                                             </ul>
                                         </div>
                                     </div>
-                                    <!-- <router-link v-if="loggedIn" to="/bookmark" class="bookmark">
-                                            <i class="bi bi-bookmark-fill"></i>
-                                        </router-link>
-                                        <router-link v-else :to="{ name: 'login' }" class="bookmark">
-                                            <i class="bi bi-bookmark-fill"></i>
-                                        </router-link>                                         -->
                                 </div>
 
                                 <div class="job-type-apply">
@@ -342,6 +336,16 @@
         <!-- ========== Job Details e nd============= -->
     </div>
 </template>
+
+<style>
+.apply-btn>.y-btn {
+    color: #f7f7f2;
+}
+
+.y-btn:hover {
+    color: black;
+}
+</style>
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';

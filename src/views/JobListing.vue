@@ -202,6 +202,16 @@
 
 </template>
 
+<style>
+.apply-btn>.y-btn {
+    color: #f7f7f2 !important;
+}
+
+.y-btn:hover {
+    color: black !important;
+}
+</style>
+
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
 import { mapGetters } from 'vuex';

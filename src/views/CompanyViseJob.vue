@@ -82,7 +82,8 @@
                                             <div class="company-details">
                                                 <div class="name-location">
                                                     <h5><router-link :to="getJobDetail(job.job_key, job.job_slug)">{{
-                                                        job.job_title }}</router-link></h5>
+                                                        job.job_title }}
+                                                        lor</router-link></h5>
                                                     <p><router-link
                                                             :to="'/company-details?company_id=' + job.company_id">{{
                                                                 job.company }}</router-link></p>
@@ -134,6 +135,16 @@
     <!-- ========== Job Listing e nd============= -->
   </div>  
 </template>
+
+<style>
+.apply-btn>.y-btn {
+    color: #f7f7f2;
+}
+
+.y-btn:hover {
+    color: black;
+}
+</style>
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
