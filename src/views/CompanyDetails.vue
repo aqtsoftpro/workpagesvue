@@ -419,7 +419,7 @@ import { useRoute } from 'vue-router';
         },
 
         isJobExpired(expirationDate: any) {
-            if (!this.role.name || this.role.name == 'Employer') {
+            if (!this.role?.name || this.role?.name == 'Employer')  {
                 return true;
             }
             const today = new Date();
