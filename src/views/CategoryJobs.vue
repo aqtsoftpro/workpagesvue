@@ -247,7 +247,7 @@ import Paginator from 'primevue/paginator';
         },
 
         isJobExpired(expirationDate: any) {
-            if (!this.role?.name || this.role?.name == 'Employer') {
+            if (this.role?.name && this.role?.name == 'Employer') {
                 return true;
             }
             const today = new Date();
