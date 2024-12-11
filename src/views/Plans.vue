@@ -35,12 +35,11 @@
                     }" aria-label="My Favorite Images">
                         <SplideSlide v-for="(plan, index) in allPlans">
                             <div class="col-lg-12 col-md-12">
-                                <div class="pricing-plan-card1 mx-2"
-                                    :class="{ 'bg-card1': index % 2 === 0, 'bg-card2': index % 2 !== 0 }"
+                                <div class="pricing-plan-card1 mx-2 bg-card1"
                                     style="height: 50em;">
                                     <div class="pricing-plan-header">
                                         <div class="starting-form">
-                                            <span style="background-color: #010536; color: white; "><img
+                                            <span style="background-color: #010536; color: white; min-height: 5rem; "><img
                                                     src="assets/images/icon/site-fav.png" alt="" width="35"> {{
                                                 plan.name }}</span>
                                             <!-- <span v-else  ><i style="color: #e59a22;">{{ plan.main_icon }}</i style="color: yellowgreen;"> {{ plan.name }}</span> -->
@@ -59,10 +58,10 @@
                                             <li v-for="point in plan.keypoints">
                                                 <div class="icon">
                                                     <span v-if="point.icon !== null || point.icon !== ''"
-                                                        style="color: rgba(254, 254, 0, 0.9); margin-right: 1em;">{{
+                                                        style="color: #010536; margin-right: 1em;">{{
                                                         point.icon }}</span>
                                                     <span v-else
-                                                        style="color: rgba(254, 254, 0, 0.9); margin-right: 1em;">&#10006;</span>
+                                                        style="color: #010536; margin-right: 1em;">&#10006;</span>
                                                 </div>
                                                 <p>{{ point.title }}</p>
                                             </li>

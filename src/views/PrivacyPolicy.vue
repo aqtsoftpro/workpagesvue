@@ -4,9 +4,9 @@
         <div class="inner-banner" :style="bgImage">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-12">                 
                     <div class="banner-content text-center">
-                        <h1>Privacy Policy</h1>
+                        <h1 :style="textColor" >Privacy Policy</h1>
                         <span></span>
                         <!-- <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
@@ -23,9 +23,7 @@
     <!-- ========== Job Listing Start============= -->
     <div class="job-listing-area pt-120 mb-120">
         <div class="container">
-
           <div v-html="cmsPageInfo"></div>
-    
         </div>
     </div>
     <!-- ========== Job Listing e nd============= -->
@@ -45,6 +43,7 @@ import PrivacyPolicy from './PrivacyPolicy.vue'; // @ is an alias to /src
     return {
       cmsPageInfo: null,
       bgImage: '',
+      textColor: '',
     }
   },
   computed: {
@@ -66,6 +65,7 @@ import PrivacyPolicy from './PrivacyPolicy.vue'; // @ is an alias to /src
     },
     globalVariables() {
       this.bgImage = 'background-image: url('+this.globalVariables._banner_image+')';
+      this.textColor = 'color: ' + this.globalVariables._banner_text_color + ' !important;'
     }
   }
 })
