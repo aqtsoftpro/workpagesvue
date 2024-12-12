@@ -277,6 +277,34 @@
                                                         </div>
                                                     </div>
                                                 </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-inner mb-25">
+                                                        <label>Salary expectation</label>
+                                                        <div class="input-area">
+                                                            <img src="/assets/images/icon/clock-2.svg " alt="">
+                                                            <input type="text" v-model="application.salary"
+                                                                placeholder="What is your expected salary ?" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-inner mb-25">
+                                                        <label>Salary period</label>
+                                                        <div class="input-area">
+                                                            <img src="/assets/images/icon/clock-2.svg " alt="">
+                                                            <!-- <input type="text" v-model="application.experience"
+                                                                placeholder="How many years of experience do you have?" /> -->
+
+                                                            <Dropdown v-model="application.salary_period"
+                                                                :options="periods" optionLabel="name" optionValue="id"
+                                                                placeholder="Select salary period" />
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
                                                 <div class="col-md-12">
                                                     <div class="form-inner mb-25">
                                                         <label>Your experience</label>
@@ -286,36 +314,9 @@
                                                                 placeholder="How many years of experience do you have?" /> -->
 
                                                             <Dropdown v-model="application.experience"
-                                                                :options="exp_options" 
-                                                                optionLabel="name" optionValue="id"
+                                                                :options="exp_options" optionLabel="name"
+                                                                optionValue="id"
                                                                 placeholder="How many years of experience do you have?" />
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- <div class="col-md-6">
-                                                    <div class="form-inner mb-25">
-                                                        <label>Expected Salary</label>
-                                                        <div class="input-area">
-                                                            <img src="/assets/images/icon/clock-2.svg " alt="">
-                                                            <input type="text" v-model="application.salary"
-                                                                placeholder="What is your expected salary ?" />
-                                                        </div>
-                                                    </div>
-                                                </div> -->
-
-                                                <div class="col-md-12">
-                                                    <div class="form-inner mb-25">
-                                                        <label>Salary expectation</label>
-                                                        <div class="input-area">
-                                                            <img src="/assets/images/icon/clock-2.svg " alt="">
-                                                            <!-- <input type="text" v-model="application.experience"
-                                                                placeholder="How many years of experience do you have?" /> -->
-
-                                                            <Dropdown v-model="application.salary_period"
-                                                                :options="periods" 
-                                                                optionLabel="name" optionValue="id"
-                                                                placeholder="What is your expected salary ?" />
 
                                                         </div>
                                                     </div>
@@ -396,10 +397,12 @@
                                             </div>
                                             <div class="job-type-apply">
                                                 <div class="apply-btn">
-                                                    <router-link
-                                                        :to="{ name: 'job-details', query: { job_id: job.id } }"><span><img
+                                                    <router-link class="primry-btn-2 y-btn lg-btn"
+                                                        :to="{ name: 'job-details', query: { job_id: job.id } }">
+                                                        <!-- <span><img
                                                                 src="/assets/images/icon/apply-ellipse.svg"
-                                                                alt=""></span>Apply Now</router-link>
+                                                                alt=""></span> -->
+                                                                Apply Now</router-link>
                                                 </div>
                                             </div>
                                         </div>
@@ -416,12 +419,10 @@
 </template>
 
 <style>
-
 .p-dropdown-label .p-inputtext .p-placeholder {
     width: 100% !important;
     overflow-x: hidden;
 }
-
 </style>
 
 <script lang="ts">

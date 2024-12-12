@@ -7,7 +7,7 @@
                 <div class="col-lg-12">
                      <div class="form-wrapper">
                         <div class="form-title">
-                            <h3>Employer Signup</h3>
+                            <h3>Employer Sign Up</h3>
                             <span></span>
                         </div>
                         <div class="register-tab">

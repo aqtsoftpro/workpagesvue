@@ -29,7 +29,7 @@
                         <div class="job-listing-wrrap">
                             <div class="row g-4 mb-25">
                                 <div class="col-lg-6 d-flex align-items-center">
-                                    <p class="show-item">Showing results {{ jobs.per_page }} in {{ jobs.total }} jobs
+                                    <p v-if="jobs.total > 0" class="show-item">Showing results {{ jobs.per_page }} in {{ jobs.total }} jobs
                                         list</p>
                                 </div>
                                 <div class="col-lg-6 d-flex align-items-center justify-content-lg-end">
@@ -106,7 +106,7 @@
                                 </div>
 
 
-                                <div class="col-lg-12 d-flex justify-content-center">
+                                <div v-if="jobs.total > 0" class="col-lg-12 d-flex justify-content-center">
                                     <div class="pagination-area">
                                         <nav aria-label="...">
                                             <ul class="pagination">
@@ -124,6 +124,11 @@
                                             <li class="page-item"><a class="page-link" href="#"></a></li> -->
                                             </ul>
                                         </nav>
+                                    </div>
+                                </div>
+                                <div v-else class="col-lg-12 d-flex justify-content-center">
+                                    <div class="pagination-area">
+                                        <h5 class="title">No result found</h5>
                                     </div>
                                 </div>
                             </div>

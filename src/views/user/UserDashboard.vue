@@ -93,7 +93,7 @@
                                 <table class="eg-table table category-table mb-0">
                                     <thead>
                                         <tr>
-                                            <th>Job Tittle</th>
+                                            <th>Job Title</th>
                                             <th>Apply Date</th>
                                             <th>Company</th>
                                             <th>Status</th>
@@ -138,7 +138,7 @@
                                                 <span class="eg-btn" 
                                                 :class="{
                                                     'btn-success': application.status_name == 'Shortlisted',
-                                                    'purple-btn': application.status_name == 'Applied / Received',
+                                                    'purple-btn': application.status_name == 'Applied',
                                                     'btn-danger' : application.status_name == 'Rejected'
                                                     }" >
                                                     {{ application.status_name }}</span>

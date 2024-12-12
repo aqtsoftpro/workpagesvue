@@ -637,9 +637,12 @@
                     </div>
 
                     <div class="col-lg-12 d-flex justify-content-center pt-3">
-                        <div class="explore-btn">
-                            <router-link to="/job-categories">Explore More <span><img
-                                        src="assets/images/icon/explore-elliose.svg" alt=""></span></router-link>
+                        <div class="sign-in-btn">
+                            <router-link to="/job-categories" class="primry-btn-1 user-btn-custom" >Explore More 
+                                <!-- <span>
+                                <img src="assets/images/icon/explore-elliose.svg" alt="">
+                                    </span> -->
+                                </router-link>
                         </div>
                     </div>
 
@@ -657,10 +660,11 @@
                             <h2>WORKPAGES <span>Latest</span> Job</h2>
                             <p>To choose your trending job dream &amp; to make future bright.</p>
                         </div>
-                        <div class="explore-btn">
-                            <router-link to="/job-listing">
-                                <p style="color: aliceblue; margin-top: 1em;">Explore More</p> <span><img
-                                        src="assets/images/icon/explore-elliose.svg" alt=""></span>
+                        <div class="create-profile-btn">
+                            <router-link class="primry-btn-1 user-btn-custom" to="/job-listing">Explore More
+                                <!-- <p style="color: aliceblue; margin-top: 1em;">Explore More</p> 
+                                <span><img
+                                        src="assets/images/icon/explore-elliose.svg" alt=""></span> -->
                             </router-link>
                         </div>
                     </div>
@@ -866,12 +870,15 @@
                         class="col-12 d-flex flex-wrap align-items-end justify-content-md-between justify-content-start gap-3">
                         <div class="section-title1">
                             <h2>Our <span>Featured </span> Jobs</h2>
-                            <p>To choose your trending job dream &amp; to make future bright.</p>
+                            <p>Choose from our range of available jobs.</p>
                         </div>
-                        <div class="explore-btn">
-                            <router-link to="/featured-jobs">Explore More <span><img
-                                        src="assets/images/icon/explore-elliose.svg" alt=""></span></router-link>
+                        <div class="sign-in-btn">
+                            <router-link class="primry-btn-1 user-btn-custom" to="/featured-jobs">Explore More 
+                                <!-- <span><img
+                                        src="assets/images/icon/explore-elliose.svg" alt=""></span> -->
+                                    </router-link>
                         </div>
+
                     </div>
                 </div>
                 <div class="row gy-5">
@@ -949,8 +956,8 @@
                     <div class="col-lg-12">
                         <div class="talent-wrap">
                             <div class="talent-content">
-                                <h4>Are You Looking For A <span>Dream Job?</span></h4>
-                                <p>2400+ candidates are available for your company.</p>
+                                <h4>Are you looking for your <span>dream job?</span></h4>
+                                <p>Join our Employee Directory to let employers find and hire you.</p>
                             </div>
                             <div class="talent-img">
                                 <img class="img-fluid" src="https://loremflickr.com/352/291/logo,company/all" alt="">
@@ -972,7 +979,7 @@
                         class="col-12 d-flex flex-wrap align-items-end justify-content-md-between justify-content-start gap-3">
                         <div class="section-title1">
                             <h2>Top Level <span>Recruiters</span></h2>
-                            <p>To choose your trending job dream & to make future bright.</p>
+                            <p>Access our Employee Directory to find staff</p>
                         </div>
                     </div>
                 </div>
@@ -1002,8 +1009,9 @@
                                             <p>Vacancies: <span>0</span></p>
                                         </div>
                                         <div class="apply-btn">
-                                            <router-link :to="getCompanyDetail(top_company.id)">
-                                                <span><img src="assets/images/icon/apply-ellipse.svg" alt=""></span>View
+                                            <router-link class="primry-btn-2 y-btn lg-btn" :to="getCompanyDetail(top_company.id)">
+                                                <!-- <span><img src="assets/images/icon/apply-ellipse.svg" alt=""></span> -->
+                                                View
                                                 Details</router-link>
                                         </div>
                                     </div>

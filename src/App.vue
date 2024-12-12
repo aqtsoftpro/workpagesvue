@@ -107,21 +107,21 @@
                                     <router-link class="primry-btn-1 user-btn-custom" to="/login"
                                         @click="closeResponsiveMenu">
                                         <i class="bi bi-key-fill" style="margin-right:10px"></i>
-                                        Sign In
+                                        Login
                                     </router-link>
                                 </div>
                                 <div class="post-job-btn mb-10">
                                     <router-link class="primry-btn-1 user-btn-custom" :to="{ path: '/job-seeker-register' }"
                                         @click="closeResponsiveMenu">
                                         <i class="bi bi-person-circle" style="margin-right:10px"></i>
-                                        Job Seeker Signup
+                                        Job Seeker Sign Up
                                     </router-link>
                                 </div>
                                 <div class="post-job-btn mb-10">
                                     <router-link class="primry-btn-1 user-btn-custom" :to="{ path: '/employer-register' }"
                                         @click="closeResponsiveMenu">
                                         <i class="bi bi-person-circle" style="margin-right:10px"></i>
-                                        Employer Signup
+                                        Employer Sign Up
                                     </router-link>
                                 </div>
                                 <div class="social-area">
@@ -158,7 +158,7 @@
                                     <div class="create-profile-btn">
                                         <router-link class="primry-btn-1 user-btn-custom" to="/login">
                                             <i class="bi bi-key-fill" style="margin-right:10px"></i>
-                                            Sign In
+                                            Login
                                         </router-link>
                                     </div>
                                 </li>
@@ -167,7 +167,7 @@
                                         <router-link class="primry-btn-1 user-btn-custom"
                                             :to="{ path: '/job-seeker-register' }">
                                             <i class="bi bi-person-circle" style="margin-right:10px"></i>
-                                            Job Seeker Signup
+                                            Job Seeker Sign Up
                                         </router-link>
                                     </div>
                                 </li>
@@ -175,7 +175,7 @@
                                     <div class="sign-in-btn">
                                         <router-link class="primry-btn-1 user-btn-custom" :to="{ path: '/employer-register' }">
                                             <i class="bi bi-person-circle" style="margin-right:10px"></i>
-                                            Employer Signup</router-link>
+                                            Employer Sign Up</router-link>
                                     </div>
                                 </li>
                                 <li v-if="loggedIn" class="d-md-flex d-none">
@@ -352,7 +352,7 @@
                         <div class="footer-btm-menu">
                             <ul>
                                 <li><router-link to="/privacy-policy" >Privacy Policy</router-link></li>
-                                <li><router-link to="/terms-conditions">Terms of Services</router-link></li>
+                                <li><router-link to="/terms-conditions">Terms & Conditions</router-link></li>
                                 <!-- <li><router-link to="https://www.google.com/maps/place/Egens+Lab/@23.8340712,90.3634979,17z/data=!3m1!4b1!4m5!3m4!1s0x3755c14c8682a473:0xa6c74743d52adb88!8m2!3d23.8340663!4d90.3656866">Our Sitemap</router-link></li> -->
                             </ul>
                         </div>

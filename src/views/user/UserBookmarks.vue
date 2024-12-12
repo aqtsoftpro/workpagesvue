@@ -14,7 +14,7 @@
                             <table class="eg-table table category-table mb-30">
                                 <thead>
                                     <tr>
-                                        <th>Job Tittle</th>
+                                        <th>Job Title</th>
                                         <th>Deadline</th>
                                         <th>Company</th>
                                         <th>Action</th>
