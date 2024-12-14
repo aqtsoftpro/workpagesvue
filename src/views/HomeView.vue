@@ -797,7 +797,7 @@
                         class="col-12 d-flex flex-wrap align-items-end justify-content-md-between justify-content-start gap-3">
                         <div class="section-title1">
                             <h2>WORKPAGES <span>Featured</span> Companies</h2>
-                            <p>Select the company and apply.</p>
+                            <p>Select the company and apply</p>
                         </div>
                         <!-- <div class="explore-btn">
                         <router-link to="/job-listing">Explore More <span><img src="assets/images/icon/explore-elliose.svg" alt=""></span></router-link>
@@ -871,7 +871,7 @@
                         class="col-12 d-flex flex-wrap align-items-end justify-content-md-between justify-content-start gap-3">
                         <div class="section-title1">
                             <h2>Our <span>Featured </span> Jobs</h2>
-                            <p>Choose from our range of available jobs.</p>
+                            <p>Choose from our range of available jobs</p>
                         </div>
                         <div class="create-profile-btn">
                             <router-link class="primry-btn-1 user-btn-custom" to="/featured-jobs">Explore More
@@ -1058,7 +1058,7 @@
                     <div class="col-12 d-flex justify-content-center">
                         <div class="section-title1 text-center">
                             <h2>Feeback from our User</h2>
-                            <p>See what our Users have to say about our Service.</p>
+                            <p>See what our Users have to say about our Service</p>
                         </div>
                     </div>
                 </div>
