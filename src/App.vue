@@ -180,7 +180,7 @@
                                 </li>
                                 <li v-if="loggedIn" class="d-md-flex d-none">
 
-                                    <div class="create-profile-btn">
+                                    <div class="sign-in-btn">
                                         <router-link v-if="this.role == 'Job Seeker'" class="primry-btn-1 user-btn-custom"
                                             :to="{ path: '/user/dashboard' }">
                                             <i class="bi bi-speedometer2" style="margin-right:10px"></i>
@@ -192,7 +192,7 @@
                                     </div>
                                 </li>
                                 <li v-if="loggedIn" class="d-md-flex d-none">
-                                    <div class="create-profile-btn">
+                                    <div class="sign-in-btn">
                                         <router-link v-if="this.role == 'Job Seeker'" class="primry-btn-1 user-btn-custom"
                                             :to="{ path: '/user/settings' }">
                                             <i class="bi bi-speedometer2" style="margin-right:10px"></i>
@@ -204,7 +204,7 @@
                                     </div>
                                 </li>
                                 <li v-if="loggedIn" class="d-md-flex d-none">
-                                    <div class="create-profile-btn">
+                                    <div class="sign-in-btn">
                                         <a href="#" class="primry-btn-1 user-btn-custom" @click="logout">
                                             <i class="bi bi-door-closed" style="margin-right:10px"></i>
                                             Logout</a>
