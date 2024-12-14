@@ -756,7 +756,7 @@
                             </div>
                             <div class="working-process-content">
                                 <h5><router-link to="#">Create Resume</router-link></h5>
-                                <p>Build Your Resume Tell them who you are and what you do.</p>
+                                <p>Build Your Resume Tell them who you are and what you do</p>
                             </div>
                         </div>
                     </div>
@@ -768,7 +768,7 @@
                             </div>
                             <div class="working-process-content">
                                 <h5><router-link to="#">Find Jobs</router-link></h5>
-                                <p>Search Find your dream job.</p>
+                                <p>Search Find your dream job</p>
                             </div>
                         </div>
                     </div>
@@ -780,7 +780,7 @@
                             </div>
                             <div class="working-process-content">
                                 <h5><router-link to="#">Apply Jobs</router-link></h5>
-                                <p>Apply Share your details with Employers.</p>
+                                <p>Apply Share your details with Employers</p>
                             </div>
                         </div>
                     </div>
@@ -958,7 +958,7 @@
                         <div class="talent-wrap">
                             <div class="talent-content">
                                 <h4>Are you looking for your <span>dream job?</span></h4>
-                                <p>Join our Employee Directory to let employers find and hire you.</p>
+                                <p>Join our Employee Directory to let employers find and hire you</p>
                             </div>
                             <div class="talent-img">
                                 <img class="img-fluid" src="https://loremflickr.com/352/291/logo,company/all" alt="">
