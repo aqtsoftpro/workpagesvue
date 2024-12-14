@@ -95,7 +95,7 @@
                                       </div>
                                       <div class="job-type-apply">
                                             <div class="job-type">
-                                                <div class="primry-btn-2 p-1 px-3">{{ seeker.designation ?? "No Designation" }}</div>
+                                                <!-- <div class="primry-btn-2 p-1 px-3">{{ seeker.designation ?? "No Designation" }}</div> -->
                                                 <button class="primry-btn-2 p-1 px-3" @click="openForm(seeker)">Send Sms</button>
                                                 <button class="primry-btn-2 p-1 px-3" @click="openMailForm(seeker)">Send Email</button>
                                             </div>

@@ -25,7 +25,7 @@
                                 <!-- <p>Don’t forget to create your profile and let employers find you and contact you directly! </p> -->
                                 <div class="job-search-area">
                                     <form>
-                                        <div class="form-inner job-title mt-4 mt-md-0" style="padding: 0;" >
+                                        <div class="form-inner job-title mt-4 mt-md-0" style="padding: 0;">
                                             <div class="icon-container">
                                                 <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20"
                                                     height="30" viewBox="0,0,256,256" style="fill:#000000;">
@@ -43,7 +43,8 @@
                                                 </svg>
                                             </div>
                                             <div class="input-container me-2">
-                                                <input type="text" v-model="searchForm.keyword" style="border-radius: 60px;"
+                                                <input type="text" v-model="searchForm.keyword"
+                                                    style="border-radius: 60px;"
                                                     placeholder="What jobs are you looking for?">
                                             </div>
                                         </div>
@@ -374,7 +375,7 @@
                     <div id="home2-category-area" class="col-12 d-flex justify-content-center gap-3">
                         <div class="section-title1 text-center">
                             <h2>Trending Jobs <span>Category</span></h2>
-                            <p>To choose your trending job dream & to make future bright.</p>
+                            <p>These companies are hiring now!</p>
                         </div>
                     </div>
                 </div>
@@ -627,7 +628,7 @@
                                     <h5>
                                         {{ category.name }}
                                     </h5>
-                                    <p>Job Available:
+                                    <p>Jobs Available:
                                         <span v-if="category.cat_counts">{{ category.cat_counts }}</span>
                                         <span v-else>0</span>
                                     </p>
@@ -637,12 +638,12 @@
                     </div>
 
                     <div class="col-lg-12 d-flex justify-content-center pt-3">
-                        <div class="sign-in-btn">
-                            <router-link to="/job-categories" class="primry-btn-1 user-btn-custom" >Explore More 
+                        <div class="create-profile-btn">
+                            <router-link to="/job-categories" class="primry-btn-1 user-btn-custom">Explore More
                                 <!-- <span>
                                 <img src="assets/images/icon/explore-elliose.svg" alt="">
                                     </span> -->
-                                </router-link>
+                            </router-link>
                         </div>
                     </div>
 
@@ -657,8 +658,8 @@
                     <div
                         class="col-12 d-flex flex-wrap align-items-end justify-content-md-between justify-content-start gap-3">
                         <div class="section-title1">
-                            <h2>WORKPAGES <span>Latest</span> Job</h2>
-                            <p>To choose your trending job dream &amp; to make future bright.</p>
+                            <h2>WORKPAGES <span>Latest</span> Jobs</h2>
+                            <p>Change your career path today!</p>
                         </div>
                         <div class="create-profile-btn">
                             <router-link class="primry-btn-1 user-btn-custom" to="/job-listing">Explore More
@@ -677,11 +678,11 @@
                                     <img :src="(job.company_logo) ? job.company_logo : '/assets/images/work-pages-logo.png'"
                                         alt="">
                                 </div>
-                                <div class="company-details" style="justify-content:center !important">
-                                    <div class="name-location">
-                                        <h5>{{ job.job_title }}</h5>
-                                    </div>
 
+                            </div>
+                            <div class="company-details mb-4" style="justify-content:center !important">
+                                <div class="name-location">                                   
+                                    <h5 class="text-center" >{{ job.job_title?.length > 30 ? job.job_title.slice(0, 20) + '...' : job.job_title }}</h5>
                                 </div>
                             </div>
                             <div class="job-discription">
@@ -728,8 +729,8 @@
                 <div class="row mb-60">
                     <div class="col-12 d-flex justify-content-center">
                         <div class="section-title1 text-center">
-                            <h2>WORKPAGES Working <span>Process</span></h2>
-                            <p>To choose your trending job dream &amp; to make future bright.</p>
+                            <h2>WORK PAGES <span>Process</span></h2>
+                            <p>It's as easy as 1 2 3 4</p>
                         </div>
 
                     </div>
@@ -743,7 +744,7 @@
                             </div>
                             <div class="working-process-content">
                                 <h5><router-link to="#">Account Create</router-link></h5>
-                                <p>To create your account be confident & safely.</p>
+                                <p>Account Creation Create your Job Seeker Profile</p>
                             </div>
                         </div>
                     </div>
@@ -755,7 +756,7 @@
                             </div>
                             <div class="working-process-content">
                                 <h5><router-link to="#">Create Resume</router-link></h5>
-                                <p>To create your account be confident & safely.</p>
+                                <p>Build Your Resume Tell them who you are and what you do.</p>
                             </div>
                         </div>
                     </div>
@@ -767,7 +768,7 @@
                             </div>
                             <div class="working-process-content">
                                 <h5><router-link to="#">Find Jobs</router-link></h5>
-                                <p>To create your account be confident & safely.</p>
+                                <p>Search Find your dream job.</p>
                             </div>
                         </div>
                     </div>
@@ -779,7 +780,7 @@
                             </div>
                             <div class="working-process-content">
                                 <h5><router-link to="#">Apply Jobs</router-link></h5>
-                                <p>To create your account be confident & safely.</p>
+                                <p>Apply Share your details with Employers.</p>
                             </div>
                         </div>
                     </div>
@@ -796,7 +797,7 @@
                         class="col-12 d-flex flex-wrap align-items-end justify-content-md-between justify-content-start gap-3">
                         <div class="section-title1">
                             <h2>WORKPAGES <span>Featured</span> Companies</h2>
-                            <p>To choose your trending company dream &amp; to make future bright.</p>
+                            <p>Select the company and apply.</p>
                         </div>
                         <!-- <div class="explore-btn">
                         <router-link to="/job-listing">Explore More <span><img src="assets/images/icon/explore-elliose.svg" alt=""></span></router-link>
@@ -872,11 +873,11 @@
                             <h2>Our <span>Featured </span> Jobs</h2>
                             <p>Choose from our range of available jobs.</p>
                         </div>
-                        <div class="sign-in-btn">
-                            <router-link class="primry-btn-1 user-btn-custom" to="/featured-jobs">Explore More 
+                        <div class="create-profile-btn">
+                            <router-link class="primry-btn-1 user-btn-custom" to="/featured-jobs">Explore More
                                 <!-- <span><img
                                         src="assets/images/icon/explore-elliose.svg" alt=""></span> -->
-                                    </router-link>
+                            </router-link>
                         </div>
 
                     </div>
@@ -1009,7 +1010,8 @@
                                             <p>Vacancies: <span>0</span></p>
                                         </div>
                                         <div class="apply-btn">
-                                            <router-link class="primry-btn-2 y-btn lg-btn" :to="getCompanyDetail(top_company.id)">
+                                            <router-link class="primry-btn-2 y-btn lg-btn"
+                                                :to="getCompanyDetail(top_company.id)">
                                                 <!-- <span><img src="assets/images/icon/apply-ellipse.svg" alt=""></span> -->
                                                 View
                                                 Details</router-link>
@@ -1055,8 +1057,8 @@
                 <div class="row mb-60">
                     <div class="col-12 d-flex justify-content-center">
                         <div class="section-title1 text-center">
-                            <h2>Feedback Of <span>Users</span></h2>
-                            <p>To choose your trending job dream &amp; to make future bright.</p>
+                            <h2>Feeback from our User</h2>
+                            <p>See what our Users have to say about our Service.</p>
                         </div>
                     </div>
                 </div>

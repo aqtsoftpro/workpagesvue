@@ -45,7 +45,7 @@
                                         <!-- <a class="status yellow-color" :href="subscription.receipt_url" target="_blank" >
                                             {{ subscription.stripe_status==""? 'Pending': subscription.stripe_status}} <i class="bi bi-download ms-5"></i>
                                         </a> -->
-                                        <button class="status yellow-color" @click="getReceipt(subscription.receipt_url)">{{ subscription.stripe_status==""? 'Pending': subscription.stripe_status}} <i class="bi bi-download"></i></button>
+                                        <button :class="{'status':true, 'yellow-color': true}" @click="getReceipt(subscription.receipt_url)">{{ subscription.stripe_status==""? 'Pending': subscription.stripe_status}} <i class="bi bi-download"></i></button>
                                     </td>
                                     <td class="action">
                                         <span v-if="subscription.status == 'unsubscribed'" class="badge bg-danger">Unsubscribed</span>
