@@ -24646,12 +24646,12 @@ header.style-7 .main-menu ul li.menu-item-has-children>i {
 }
 
 .company-job-detaiils-page .job-details-and-counter-area .counter-single.six .total-number {
-  background: #FF2121;
+  background: #FD02BD;
   border: 1px dashed rgba(6, 20, 33, 0.25);
 }
 
 .company-job-detaiils-page .job-details-and-counter-area .counter-single.six p {
-  color: #FF2121;
+  color: #FD02BD;
 }
 
 .company-job-detaiils-page .job-details-and-counter-area .counter-single:hover::after {
@@ -25025,7 +25025,7 @@ header.style-7 .main-menu ul li.menu-item-has-children>i {
 }
 
 .table-wrapper2 .title-and-btn .job-post-btn a {
-  background-color: #0087D3;
+  background-color: #05ff00;
   padding: 10px 22px;
 }
 
@@ -25269,12 +25269,12 @@ header.style-7 .main-menu ul li.menu-item-has-children>i {
 }
 
 .table-wrapper2 .eg-table tbody tr td .action-btn-group ul li button {
-  background: #0087D3;
+  background: #05ff00;
   border-radius: 4px;
   font-family: var(--font-work-sans);
   font-weight: 500;
   font-size: 0.875rem;
-  color: #FFFFFF;
+  color: #5c5454;
   padding: 3px 12px;
   display: flex;
   align-items: center;
@@ -25285,11 +25285,11 @@ header.style-7 .main-menu ul li.menu-item-has-children>i {
 }
 
 .table-wrapper2 .eg-table tbody tr td .action-btn-group ul li button.reject {
-  background: #FF2121;
+  background: #FD02BD;
 }
 
 .table-wrapper2 .eg-table tbody tr td .action-btn-group ul li button.review {
-  background: orange;
+  background: #00ffef;
 }
 
 .table-wrapper2 .eg-table tbody tr td .action-btn-group ul li button svg {
@@ -25504,7 +25504,7 @@ header.style-7 .main-menu ul li.menu-item-has-children>i {
   padding: 4px 16px;
 }
 
-.table-wrapper2 .eg-table.job-list-table tbody tr td .total-number.light-orange {
+.table-wrapper2 .eg-table.job-list-table tbody tr td .total-number.light-#00ffef {
   background: rgba(251, 96, 30, 0.08);
   border: 1px solid rgba(251, 96, 30, 0.15);
   color: #FB601E;
@@ -27463,7 +27463,7 @@ header.style-4 .menu-area {
 
 
 .sdasdasdasdasdasdsa path {
-  fill: #0087D3;
+  fill: #05ff00;
 }
 
 .newletter-container {
@@ -27511,4 +27511,9 @@ td>.eg-btn {
 .company-area > .company-details {
   max-width: 200px !important;
   overflow-wrap: normal !important;
+}
+
+.pkg-name {
+  background-color: #00ffef !important;
+  color: #57078e;
 }

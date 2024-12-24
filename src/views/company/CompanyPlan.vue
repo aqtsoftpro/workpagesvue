@@ -35,7 +35,9 @@
                                     <td data-label="(#) Number">#-{{ subscription.id }}</td>
                                     <td data-label="Date">{{ formatDate(subscription.created_at) }}</td>
                                     <td data-label="Expiry Date">{{ formatDate(subscription.ends_at) }}</td>
-                                    <td data-label="Package"><button class="eg-btn light-sky-btn">{{ subscription.package?.name }}</button></td>
+                                    <td data-label="Package">
+                                        <button class="eg-btn light-sky-btn pkg-name"  >{{ subscription.package?.name }}</button>
+                                    </td>
                                     <td data-label="Amount">${{ subscription.stripe_price ?? 0 }}</td>
                                     <td data-label="Payment Through">{{ subscription.package?.stripe_price_id ? subscription.brand+ ' card - '+subscription.last_4 : 'Offline Method' }}</td>
                                     <td data-label="Payment Status">

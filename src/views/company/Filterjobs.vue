@@ -40,7 +40,7 @@
                                         <span class="total-number">{{ job.applications_count ?? 0 }}</span>
                                     </td>
                                     <td data-label="Matched">
-                                        <span class="total-number light-orange">0</span>
+                                        <span class="total-number light-#00ffef">0</span>
                                     </td>
                                     <td data-label="Viewed">
                                         <span class="total-number light-yellow">{{ job.view_jobs_count ?? 0 }}</span>

@@ -110,7 +110,7 @@
                                         <span class="total-number">{{ job.applications_count ?? 0 }}</span>
                                     </td>
                                     <td data-label="Matched">
-                                        <span class="total-number light-orange">0</span>
+                                        <span class="total-number light-#00ffef">0</span>
                                     </td>
                                     <!-- <td data-label="Shortlisted">
                                         <span class="total-number">700</span>

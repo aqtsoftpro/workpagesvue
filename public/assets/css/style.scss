@@ -21320,11 +21320,11 @@ header.style-7 {
             }
             &.six{
                 .total-number{
-                    background: #FF2121;
+                    background: #FD02BD;
                     border: 1px dashed rgba(6, 20, 33, 0.25);
                 }
                 p{
-                    color: #FF2121;
+                    color: #FD02BD;
                 }          
             }
             &:hover{
@@ -21653,7 +21653,7 @@ header.style-7 {
         }
         .job-post-btn{
             a{
-                background-color: #0087D3;
+                background-color: #05ff00;
                 padding: 10px 22px;
             }
         }
@@ -21855,21 +21855,21 @@ header.style-7 {
                                     margin-bottom: 0;
                                 }
                                 button{
-                                    background: #0087D3;
+                                    background: #05ff00;
                                     border-radius: 4px;
                                     font-family: var(--font-work-sans);
                                     font-weight: 500;
                                     font-size: 0.875rem;
-                                    color: #FFFFFF;   
+                                    color: #5c5454;   
                                     padding: 3px 12px;
                                     display: flex;
                                     align-items: center;
                                     gap: 8px;
                                     &.reject{
-                                        background: #FF2121;
+                                        background: #57078e;
                                     }
                                     &.review{
-                                        background: orange;
+                                        background: #00ffef;
                                     }
                                     position:relative;
                                     transition:0.5s all ease;
@@ -22064,7 +22064,7 @@ header.style-7 {
                             border: 1px solid rgba(0, 110, 189, 0.15);
                             border-radius: 4px;  
                             padding: 4px 16px;  
-                            &.light-orange{
+                            &.light-#00ffef{
                                 background: rgba(251, 96, 30, 0.08);
                                 border: 1px solid rgba(251, 96, 30, 0.15);
                                 color: #FB601E;
@@ -23584,4 +23584,4 @@ header.style-7 {
 }
 
 
-svg.phone_icon path { fill: #0087D3; }
+svg.phone_icon path { fill: #05ff00; }

@@ -78,7 +78,7 @@
                                         </div>
                                   </td>
                                   <td data-label="Total Application">
-                                      <span class="total-number light-orange">{{ ad.job.applications.length }}</span>
+                                      <span class="total-number light-#00ffef">{{ ad.job.applications.length }}</span>
                                   </td>
                                   <td data-label="Viewed">
                                       <span class="total-number" :class="{'deep-pink': ad.status == 0}">{{ ad.status == 1 ? 'Live' : 'Inactive'}}</span>

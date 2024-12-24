@@ -205,13 +205,16 @@
                                                                     Shortlist</button>
                                                                     <button v-else>processing...</button>
                                                             </li>
-                                                            <li v-if="application.status_name != 'Rejected'"><button v-if="!application.isLoading"
+                                                            <li v-if="application.status_name != 'Rejected'">
+                                                            <button v-if="!application.isLoading"
                                                                     @click="updateCandidateApplication('reject', application)"
-                                                                    class="reject"><img
-                                                                        src="/assets/images/icon/rejected-icon.svg" alt="">
+                                                                    class="reject">
+                                                                    <img src="/assets/images/icon/rejected-icon.svg" alt="">
                                                                     Reject</button>
                                                                     <button v-else >processing...</button>
                                                             </li>
+
+                                                            
                                                         </ul>
                                                     </div>
                                                 </td>
