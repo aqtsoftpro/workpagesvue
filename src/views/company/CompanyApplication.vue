@@ -97,7 +97,7 @@
                                                             <li v-if="application.status_name != 'Rejected'">
                                                                 <button v-if="!application.editClicked"
                                                                     @click="updateCandidateApplication('reject', application)"
-                                                                    class="reject">
+                                                                    class="reject text-light">
                                                                     <img src="/assets/images/icon/rejected-icon.svg"
                                                                         alt=""> Reject</button>
                                                                 <button v-else>processing...</button>
@@ -191,7 +191,7 @@
                                                             <li v-if="application.status_name != 'Rejected'">
                                                                 <button v-if="!application.editClicked"
                                                                     @click="updateCandidateApplication('reject', application)"
-                                                                    class="reject">
+                                                                    class="reject text-light">
                                                                     <img src="/assets/images/icon/rejected-icon.svg"
                                                                         alt=""> Rejected
                                                                 </button>
@@ -200,7 +200,7 @@
                                                             <li>
                                                                 <button
                                                                     @click="deleteCandidateApplication(application.id)"
-                                                                    class="reject"><img
+                                                                    class="reject text-light"><img
                                                                         src="/assets/images/icon/rejected-icon.svg"
                                                                         alt=""> Delete</button>
                                                             </li>

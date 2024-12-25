@@ -106,27 +106,60 @@
                             </ul>
 
                             <div class="for-mobile-menu d-lg-none d-block">
-                                <div class="sign-in-btn mb-10">
+                                <div v-if="!loggedIn" class="sign-in-btn mb-10">
                                     <router-link class="primry-btn-1 user-btn-custom" to="/login"
                                         @click="closeResponsiveMenu">
                                         <i class="bi bi-key-fill" style="margin-right:10px"></i>
                                         Login
                                     </router-link>
                                 </div>
-                                <div class="post-job-btn mb-10">
+                                <div v-if="!loggedIn" class="post-job-btn mb-10">
                                     <router-link class="primry-btn-1 user-btn-custom"
                                         :to="{ path: '/job-seeker-register' }" @click="closeResponsiveMenu">
                                         <i class="bi bi-person-circle" style="margin-right:10px"></i>
                                         Job Seeker Sign Up
                                     </router-link>
                                 </div>
-                                <div class="post-job-btn mb-10">
+                                <div v-if="!loggedIn" class="post-job-btn mb-10">
                                     <router-link class="primry-btn-1 user-btn-custom"
                                         :to="{ path: '/employer-register' }" @click="closeResponsiveMenu">
                                         <i class="bi bi-person-circle" style="margin-right:10px"></i>
                                         Employer Sign Up
                                     </router-link>
                                 </div>
+
+
+                                <div v-if="loggedIn" class="post-job-btn mb-10">
+                                    <router-link v-if="this.role == 'Job Seeker'" class="primry-btn-1 user-btn-custom"
+                                        :to="{ path: '/user/dashboard' }">
+                                        <i class="bi bi-speedometer2" style="margin-right:10px"></i>
+                                        Dashboard</router-link>
+                                    <router-link v-if="this.role == 'Employer'" class="primry-btn-1 user-btn-custom"
+                                        :to="{ path: '/company/dashboard' }">
+                                        <i class="bi bi-speedometer2" style="margin-right:10px"></i>
+                                        Dashboard</router-link>
+                                </div>
+
+
+                                <div v-if="loggedIn" class="post-job-btn mb-10">
+                                    <router-link v-if="this.role == 'Job Seeker'" class="primry-btn-1 user-btn-custom"
+                                        :to="{ path: '/user/settings' }">
+                                        <i class="bi bi-speedometer2" style="margin-right:10px"></i>
+                                        Settings</router-link>
+                                    <router-link v-if="this.role == 'Employer'" class="primry-btn-1 user-btn-custom"
+                                        :to="{ path: '/company/settings' }">
+                                        <i class="bi bi-speedometer2" style="margin-right:10px"></i>
+                                        Settings</router-link>
+                                </div>
+
+                                <div v-if="loggedIn" class="post-job-btn mb-10">
+                                    <a href="#" class="primry-btn-1 user-btn-custom" @click="logout">
+                                        <i class="bi bi-door-closed" style="margin-right:10px"></i>
+                                        Logout</a>
+                                </div>
+
+
+
                                 <div class="social-area">
                                     <ul>
                                         <li v-if="globalSettings['_social_media_facebook']">

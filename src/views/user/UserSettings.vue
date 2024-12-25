@@ -121,7 +121,7 @@
                                             <div class="title">
                                                 <h6>Are you available to interview ?</h6>
                                             </div>
-                                            <div class="form-check form-switch">
+                                            <div class="form-check form-switch ms-auto">
                                                 <InputSwitch v-model="is_available" :pt="{ slider: 'my-switch-slider' }" @change="updateAvailable({'is_available':is_available == true ? 'yes' : 'no'})" />
                                             </div>
                                         </div>
@@ -129,7 +129,7 @@
                                             <div class="title">
                                                 <h6>Receive application & update notification </h6>
                                             </div>
-                                            <div class="form-check form-switch">
+                                            <div class="form-check form-switch ms-auto">
                                                 <InputSwitch :pt="{ slider: 'my-switch-slider' }"  v-model="applicationShortlistedEmailAlert" />
                                             </div>
                                         </div>
@@ -162,7 +162,7 @@
                                                 <h6>Disable Account</h6>
                                                 <p>If you log in again you will be able to see all previous information.</p>
                                             </div>
-                                            <div class="form-check form-switch">
+                                            <div class="form-check form-switch ms-auto">
                                                 <InputSwitch v-model="disableAccount" />
                                             </div>
                                         </div>

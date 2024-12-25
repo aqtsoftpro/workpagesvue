@@ -27550,8 +27550,9 @@ td>.eg-btn {
     margin-left: auto !important;
   }
 
-  .table-wrapper2 .eg-table tbody tr td .carrer-summary ul li {
+  .table-wrapper2 .eg-table tbody tr td .carrer-summary ul li:before {
     list-style: none;
+    display: none !important;
     /* Removes bullets or circles from the list */
     text-align: end !important;
     margin-left: auto !important;
