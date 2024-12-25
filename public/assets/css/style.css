@@ -27501,14 +27501,14 @@ td>.eg-btn {
 }
 
 .apply-btn>.y-btn {
-    color: #f7f7f2;
+  color: #f7f7f2;
 }
 
 .y-btn:hover {
-    color: black;
+  color: black;
 }
 
-.company-area > .company-details {
+.company-area>.company-details {
   max-width: 200px !important;
   overflow-wrap: normal !important;
 }
@@ -27516,4 +27516,59 @@ td>.eg-btn {
 .pkg-name {
   background-color: #00ffef !important;
   color: #57078e;
+}
+
+
+
+
+@media (max-width: 768px) {
+
+
+  .employee-info>.employee-content {
+    text-align: end !important;
+  }
+
+  .employee-info>.employee-content>p {
+    margin-left: auto !important;
+  }
+
+
+  .employee-info>.carrer-summary {
+    text-align: end !important;
+    margin-left: auto !important;
+  }
+
+  .table-wrapper2 .eg-table tbody tr td .carrer-summary h6 {
+    text-align: end !important;
+    margin-left: auto !important;
+  }
+
+  .table-wrapper2 .eg-table tbody tr td .carrer-summary ul {
+    list-style: none;
+    /* Removes bullets or circles from the list */
+    text-align: end !important;
+    margin-left: auto !important;
+  }
+
+  .table-wrapper2 .eg-table tbody tr td .carrer-summary ul li {
+    list-style: none;
+    /* Removes bullets or circles from the list */
+    text-align: end !important;
+    margin-left: auto !important;
+  }
+
+  .table-wrapper2 .eg-table tbody tr td .action-btn-group button {
+    text-align: end !important;
+    margin-left: auto !important;
+  }
+
+  .table-wrapper2 .eg-table tbody tr td .employee-info .employee-content button {
+    text-align: end !important;
+    margin-left: auto !important;
+  }
+
+  .table-wrapper2 .eg-table tbody tr td .employee-info .employee-content>span {
+    text-align: end !important;
+    margin-left: auto !important;
+  }
 }

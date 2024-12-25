@@ -12,19 +12,20 @@
                         <div class="social-area">
                             <ul>
                                 <li v-if="globalSettings['_social_media_facebook']">
-                                    <a v-bind:href="globalSettings['_social_media_facebook']" target="_blank"><i
-                                            class="bx bxl-facebook"></i></a>
+                                    <a v-bind:href="globalSettings['_social_media_facebook']" target="_blank"
+                                        style="min-width: 35px!important;"><i class="bx bxl-facebook"></i></a>
                                 </li>
                                 <li v-if="globalSettings['_social_media_twitter']">
-                                    <a v-bind:href="globalSettings['_social_media_twitter']" target="_blank"><i
-                                            class="bx bxl-twitter"></i></a>
+                                    <a v-bind:href="globalSettings['_social_media_twitter']" target="_blank"
+                                        style="min-width: 35px!important;"><i class="bx bxl-twitter"></i></a>
                                 </li>
                                 <li v-if="globalSettings['_social_media_linkedin']">
-                                    <a v-bind:href="globalSettings['_social_media_linkedin']" target="_blank"><i
-                                            class="bx bxl-linkedin"></i></a>
+                                    <a v-bind:href="globalSettings['_social_media_linkedin']" target="_blank"
+                                        style="min-width: 35px!important;"><i class="bx bxl-linkedin"></i></a>
                                 </li>
                                 <li v-if="globalSettings['_social_media_instagram']">
-                                    <a v-bind:href="globalSettings['_social_media_instagram']" target="_blank"><i class="bx bxl-instagram"></i></a>
+                                    <a v-bind:href="globalSettings['_social_media_instagram']" target="_blank"
+                                        style="min-width: 35px!important;"><i class="bx bxl-instagram"></i></a>
                                 </li>
                             </ul>
                         </div>
@@ -64,8 +65,10 @@
                                 </li>
                                 <!-- {{ console.log(permission)  }} -->
                                 <!-- v-if="loggedIn && this.role == 'Job Seeker'" -->
-                                <li v-if="loggedIn && this.role == 'Employer' && this.permission?.casual_portal == 'yes'" >
-                                    <router-link to="/casual-portal" @click="closeResponsiveMenu">Casual Portal</router-link>
+                                <li
+                                    v-if="loggedIn && this.role == 'Employer' && this.permission?.casual_portal == 'yes'">
+                                    <router-link to="/casual-portal" @click="closeResponsiveMenu">Casual
+                                        Portal</router-link>
 
                                     <!-- <router-link to="/companies" @click="closeResponsiveMenu">Companies</router-link> -->
                                     <!-- <a href="#" class="dropdown-toggle">Companies</a>
@@ -79,7 +82,7 @@
                                     <router-link to="/charity-partner" @click="closeResponsiveMenu">Charity
                                         Partner</router-link>
                                 </li>
-                                <li v-if="!loggedIn || this.role == 'Employer'" >
+                                <li v-if="!loggedIn || this.role == 'Employer'">
                                     <router-link to="/plans" @click="closeResponsiveMenu">Pricing</router-link>
                                 </li>
 
@@ -111,15 +114,15 @@
                                     </router-link>
                                 </div>
                                 <div class="post-job-btn mb-10">
-                                    <router-link class="primry-btn-1 user-btn-custom" :to="{ path: '/job-seeker-register' }"
-                                        @click="closeResponsiveMenu">
+                                    <router-link class="primry-btn-1 user-btn-custom"
+                                        :to="{ path: '/job-seeker-register' }" @click="closeResponsiveMenu">
                                         <i class="bi bi-person-circle" style="margin-right:10px"></i>
                                         Job Seeker Sign Up
                                     </router-link>
                                 </div>
                                 <div class="post-job-btn mb-10">
-                                    <router-link class="primry-btn-1 user-btn-custom" :to="{ path: '/employer-register' }"
-                                        @click="closeResponsiveMenu">
+                                    <router-link class="primry-btn-1 user-btn-custom"
+                                        :to="{ path: '/employer-register' }" @click="closeResponsiveMenu">
                                         <i class="bi bi-person-circle" style="margin-right:10px"></i>
                                         Employer Sign Up
                                     </router-link>
@@ -127,20 +130,20 @@
                                 <div class="social-area">
                                     <ul>
                                         <li v-if="globalSettings['_social_media_facebook']">
-                                            <a v-bind:href="globalSettings['_social_media_facebook']" target="_blank"><i
-                                                    class="bx bxl-facebook"></i></a>
+                                            <a v-bind:href="globalSettings['_social_media_facebook']" target="_blank"
+                                                style="min-width: 35px!important;"><i class="bx bxl-facebook"></i></a>
                                         </li>
                                         <li v-if="globalSettings['_social_media_twitter']">
-                                            <a v-bind:href="globalSettings['_social_media_twitter']" target="_blank"><i
-                                                    class="bx bxl-twitter"></i></a>
+                                            <a v-bind:href="globalSettings['_social_media_twitter']" target="_blank"
+                                                style="min-width: 35px!important;"><i class="bx bxl-twitter"></i></a>
                                         </li>
                                         <li v-if="globalSettings['_social_media_linkedin']">
-                                            <a v-bind:href="globalSettings['_social_media_linkedin']" target="_blank"><i
-                                                    class="bx bxl-linkedin"></i></a>
+                                            <a v-bind:href="globalSettings['_social_media_linkedin']" target="_blank"
+                                                style="min-width: 35px!important;"><i class="bx bxl-linkedin"></i></a>
                                         </li>
                                         <li v-if="globalSettings['_social_media_instagram']">
-                                            <a v-bind:href="globalSettings['_social_media_instagram']" target="_blank"><i
-                                                    class="bx bxl-instagram"></i></a>
+                                            <a v-bind:href="globalSettings['_social_media_instagram']" target="_blank"
+                                                style="min-width: 35px!important;"><i class="bx bxl-instagram"></i></a>
                                         </li>
                                     </ul>
                                 </div>
@@ -173,7 +176,8 @@
                                 </li>
                                 <li v-if="!loggedIn" class="d-md-flex d-none">
                                     <div class="sign-in-btn">
-                                        <router-link class="primry-btn-1 user-btn-custom" :to="{ path: '/employer-register' }">
+                                        <router-link class="primry-btn-1 user-btn-custom"
+                                            :to="{ path: '/employer-register' }">
                                             <i class="bi bi-person-circle" style="margin-right:10px"></i>
                                             Employer Sign Up</router-link>
                                     </div>
@@ -181,8 +185,8 @@
                                 <li v-if="loggedIn" class="d-md-flex d-none">
 
                                     <div class="sign-in-btn">
-                                        <router-link v-if="this.role == 'Job Seeker'" class="primry-btn-1 user-btn-custom"
-                                            :to="{ path: '/user/dashboard' }">
+                                        <router-link v-if="this.role == 'Job Seeker'"
+                                            class="primry-btn-1 user-btn-custom" :to="{ path: '/user/dashboard' }">
                                             <i class="bi bi-speedometer2" style="margin-right:10px"></i>
                                             Dashboard</router-link>
                                         <router-link v-if="this.role == 'Employer'" class="primry-btn-1 user-btn-custom"
@@ -193,8 +197,8 @@
                                 </li>
                                 <li v-if="loggedIn" class="d-md-flex d-none">
                                     <div class="sign-in-btn">
-                                        <router-link v-if="this.role == 'Job Seeker'" class="primry-btn-1 user-btn-custom"
-                                            :to="{ path: '/user/settings' }">
+                                        <router-link v-if="this.role == 'Job Seeker'"
+                                            class="primry-btn-1 user-btn-custom" :to="{ path: '/user/settings' }">
                                             <i class="bi bi-speedometer2" style="margin-right:10px"></i>
                                             Settings</router-link>
                                         <router-link v-if="this.role == 'Employer'" class="primry-btn-1 user-btn-custom"
@@ -240,7 +244,8 @@
                             <input v-model="newletter.newsletter_email" type="email" class="form-control"
                                 name="newsletter_email" id="newsletter_email" placeholder="Enter your email" />
                             <span class="input-group-btn">
-                                <button class="primry-btn-2 lg-btn" @click="subscribe" type="button">Subscribe Now</button>
+                                <button class="primry-btn-2 lg-btn" @click="subscribe" type="button">Subscribe
+                                    Now</button>
                             </span>
                         </div>
 
@@ -268,22 +273,26 @@
                                             class='bx bx-up-arrow-alt'></i></router-link></li>
                                 <li><router-link to="/privacy-policy">Privacy & Policy<i
                                             class='bx bx-up-arrow-alt'></i></router-link></li>
-                                <li><router-link to="/job-seeker-list">Candidate Listing <i class='bx bx-up-arrow-alt'></i></router-link>
+                                <li><router-link to="/job-seeker-list">Candidate Listing <i
+                                            class='bx bx-up-arrow-alt'></i></router-link>
                                 </li>
                             </ul>
                         </div>
                     </div>
                 </div>
                 <!-- v-if="role == 'Job Seeker'" -->
-                <div class="col-lg-3 col-md-4 col-sm-6 mb--50 d-flex justify-content-md-center justify-content-sm-end justify-content-center">
+                <div
+                    class="col-lg-3 col-md-4 col-sm-6 mb--50 d-flex justify-content-md-center justify-content-sm-end justify-content-center">
                     <div class="footer-widget">
                         <div class="widget-title">
                             <h5>For Candidate’s</h5>
                         </div>
                         <div class="menu-container">
                             <ul>
-                                <li><router-link to="/user/profile">Create Resume <i class='bx bx-up-arrow-alt'></i></router-link></li>
-                                <li><router-link to="/job-categories">Browse Categories <i class='bx bx-up-arrow-alt'></i></router-link></li>
+                                <li><router-link to="/user/profile">Create Resume <i
+                                            class='bx bx-up-arrow-alt'></i></router-link></li>
+                                <li><router-link to="/job-categories">Browse Categories <i
+                                            class='bx bx-up-arrow-alt'></i></router-link></li>
                                 <li><router-link to="/user/bookmarks">Save Jobs List <i
                                             class='bx bx-up-arrow-alt'></i></router-link></li>
                                 <li><router-link to="/job-listing">Browse Jobs <i
@@ -295,7 +304,8 @@
                     </div>
                 </div>
                 <!-- v-if="role == 'Employer'" -->
-                <div class="col-lg-3 col-md-4 col-sm-6 mb--50 d-flex justify-content-lg-center justify-content-md-end justify-content-sm-start justify-content-center">
+                <div
+                    class="col-lg-3 col-md-4 col-sm-6 mb--50 d-flex justify-content-lg-center justify-content-md-end justify-content-sm-start justify-content-center">
                     <div class="footer-widget">
                         <div class="widget-title">
                             <h5>For Employer’s</h5>
@@ -325,10 +335,12 @@
                         <div class="app-list">
                             <ul>
                                 <li>
-                                    <router-link to="/"><img src="/assets/images/icon/apple-app.svg" alt=""></router-link>
+                                    <router-link to="/"><img src="/assets/images/icon/apple-app.svg"
+                                            alt=""></router-link>
                                 </li>
                                 <li>
-                                    <router-link to="/"><img src="/assets/images/icon/google-play.svg" alt=""></router-link>
+                                    <router-link to="/"><img src="/assets/images/icon/google-play.svg"
+                                            alt=""></router-link>
                                 </li>
                             </ul>
                         </div>
@@ -351,7 +363,7 @@
                     <div class="col-lg-6 d-flex justify-content-lg-end justify-content-center">
                         <div class="footer-btm-menu">
                             <ul>
-                                <li><router-link to="/privacy-policy" >Privacy Policy</router-link></li>
+                                <li><router-link to="/privacy-policy">Privacy Policy</router-link></li>
                                 <li><router-link to="/terms-conditions">Terms & Conditions</router-link></li>
                                 <!-- <li><router-link to="https://www.google.com/maps/place/Egens+Lab/@23.8340712,90.3634979,17z/data=!3m1!4b1!4m5!3m4!1s0x3755c14c8682a473:0xa6c74743d52adb88!8m2!3d23.8340663!4d90.3656866">Our Sitemap</router-link></li> -->
                             </ul>
@@ -361,26 +373,31 @@
                 <div class="row border-top align-items-center">
                     <div class="col-lg-6 d-flex  justify-content-lg-start justify-content-center">
                         <div class="copyright-area">
-                            <p>©Copyright {{ currentYear }} <router-link to="contact-us" class="text-light">Workpages</router-link> </p>
+                            <p>©Copyright {{ currentYear }} <router-link to="contact-us"
+                                    class="text-light">Workpages</router-link> </p>
                         </div>
                     </div>
                     <div class="col-lg-6 d-flex  justify-content-lg-end justify-content-center ">
                         <div class="social-area">
                             <ul>
                                 <li v-if="globalSettings['_social_media_facebook']">
-                                    <a v-bind:href="globalSettings['_social_media_facebook']" target="_blank"><i
+                                    <a v-bind:href="globalSettings['_social_media_facebook']" target="_blank"
+                                        style="min-width: 35px!important;"><i
                                             class="bx bxl-facebook text-light"></i></a>
                                 </li>
                                 <li v-if="globalSettings['_social_media_twitter']">
-                                    <a v-bind:href="globalSettings['_social_media_twitter']" target="_blank"><i
-                                            class="bx bxl-twitter text-light"></i></a>
+                                    <a v-bind:href="globalSettings['_social_media_twitter']" target="_blank"
+                                        style="min-width: 35px!important;"><i class="bx bxl-twitter text-light"></i></a>
                                 </li>
                                 <li v-if="globalSettings['_social_media_linkedin']">
-                                    <a v-bind:href="globalSettings['_social_media_linkedin']" target="_blank"><i
+                                    <a v-bind:href="globalSettings['_social_media_linkedin']" target="_blank"
+                                        style="min-width: 35px!important;"><i
                                             class="bx bxl-linkedin text-light"></i></a>
                                 </li>
                                 <li v-if="globalSettings['_social_media_instagram']">
-                                    <a v-bind:href="globalSettings['_social_media_instagram']" target="_blank"><i class="bx bxl-instagram text-light"></i></a>
+                                    <a v-bind:href="globalSettings['_social_media_instagram']" target="_blank"
+                                        style="min-width: 35px!important;"><i
+                                            class="bx bxl-instagram text-light"></i></a>
                                 </li>
                             </ul>
                         </div>
@@ -392,31 +409,33 @@
 </template>
 <style>
 .blur {
-  z-index: 500;
-  overflow-y: hidden;
+    z-index: 500;
+    overflow-y: hidden;
 }
 
 .spin-loader {
-  position: fixed; /* Adjust the position if needed */
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border: 8px solid #f3f3f3;
-  border-radius: 50%;
-  border-top: 8px solid #010536;
-  width: 50px;
-  height: 50px;
-  -webkit-animation: spin 2s linear infinite;
-  animation: spin 2s linear infinite;
+    position: fixed;
+    /* Adjust the position if needed */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 8px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 8px solid #010536;
+    width: 50px;
+    height: 50px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
 }
 
 @keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .dropdown-menu {
@@ -431,24 +450,31 @@
 }
 
 
-    .dropdown-menu::-webkit-scrollbar {
-    width: 8px; /* Width of the scrollbar */
-    background-color: #d0e0eb; /* Background color of the scrollbar track */
-    border-radius: 6px; /* Radius of the scrollbar track */
-    }
+.dropdown-menu::-webkit-scrollbar {
+    width: 8px;
+    /* Width of the scrollbar */
+    background-color: #d0e0eb;
+    /* Background color of the scrollbar track */
+    border-radius: 6px;
+    /* Radius of the scrollbar track */
+}
 
-    .dropdown-menu::-webkit-scrollbar-thumb {
-    background-color: #010536; /* Color of the scrollbar thumb */
-    border-radius: 6px; /* Radius of the scrollbar thumb */
-    }
+.dropdown-menu::-webkit-scrollbar-thumb {
+    background-color: #010536;
+    /* Color of the scrollbar thumb */
+    border-radius: 6px;
+    /* Radius of the scrollbar thumb */
+}
 
-    .dropdown-menu::-webkit-scrollbar-thumb:hover {
-    background-color: #000; /* Color of the scrollbar thumb on hover */
-    }
+.dropdown-menu::-webkit-scrollbar-thumb:hover {
+    background-color: #000;
+    /* Color of the scrollbar thumb on hover */
+}
 
-    .dropdown-menu::-webkit-scrollbar-button {
-    display: none; /* Hide scrollbar buttons */
-    }
+.dropdown-menu::-webkit-scrollbar-button {
+    display: none;
+    /* Hide scrollbar buttons */
+}
 
 .dropdown-menu li {
     margin: 0;
@@ -461,14 +487,14 @@
     text-decoration: none;
 }
 
-.dropdown-menu > li > a:hover{
+.dropdown-menu>li>a:hover {
     /* background-color: #010536; */
     text-decoration: underline;
     /* color: #010536; */
     color: #FFFF00 !important;
 }
 
-li:hover > .dropdown-menu {
+li:hover>.dropdown-menu {
     display: block;
 }
 
@@ -483,8 +509,6 @@ footer .footer-btm a {
 footer .footer-btm a:hover {
     color: #FFFF00 !important;
 }
-
-
 </style>
 
 <script>

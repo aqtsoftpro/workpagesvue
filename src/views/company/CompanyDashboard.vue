@@ -19,17 +19,6 @@
                                         <h4 v-if="this.user"> {{ user.name }} </h4>
                                     </div>
                                 </div>
-
-                                <!-- <div class="action-btn-group">
-                                    <ul>
-                                        <li><router-link to="/company/profile" class="btn primary-btn-2">
-                                            <span><img
-                                                        src="/assets/images/icon/edit2.svg" alt="">
-                                                    </span>
-                                                    Edit
-                                                Profile</router-link></li>
-                                    </ul>
-                                </div> -->
                                 <div>
                                     <router-link to="/company/profile" class="primry-btn-2 lg-btn w-unset">Edit
                                                 Profile</router-link>
@@ -152,15 +141,18 @@
                                     <table class="eg-table table category-table mb-0">
                                         <tbody v-if="newApplications.length > 0">
                                             <tr v-for="application in newApplications" :key="application.id">
-                                                <td data-label="Candidate Name">
+                                                <td data-label="Candidate Image">
                                                     <div class="employee-info">
                                                         <div class="employee-img">
                                                             <router-link :to="'/job-seeker/'+application.user?.id">
                                                                 <img v-if="application.user?.photo" :src="application.user?.photo" alt="">
                                                                 <img v-else src="/assets/images/icon/user-2.svg" alt="">
                                                             </router-link> 
-                                                            <!-- <img :src="application.user?.photo" alt=""> -->
                                                         </div>
+                                                    </div>
+                                                </td>
+                                                <td data-label="Candidate Detail">
+                                                    <div class="employee-info">
                                                         <div class="employee-content">
                                                             {{ application.user_name }}
                                                             <button type="button" class="btn btn-primary"
@@ -170,13 +162,15 @@
 
                                                             <!-- <span><img src="/assets/images/icon/company-2.svg" alt="">{{
                                                                 application.job.location }}</span> -->
-                                                            <span>Total reviews: ({{ application.user?.reviews?.length ?? 0 }})</span>
+                                                                <p>
+                                                                    <span >Total reviews: ({{ application.user?.reviews?.length ?? 0 }})</span>
+                                                                </p>
                                                             <p><span>Applied On:</span> {{ application.applied_on ?? ''}}</p>
                                                             <p><span>Status:</span> {{ application.status_name ?? 'No Status' }}</p>
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td data-label="Carrer Summary">
+                                                <td data-label="Career Summary">
                                                     <div class="carrer-summary">
                                                         <h6>{{application.user?.designtion?.name ?? 'No Current Designation'}} <span>({{ application.user?.job_location?.name ?? 'No Location' }})</span></h6>
                                                         <ul>

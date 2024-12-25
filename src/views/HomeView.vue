@@ -8,12 +8,12 @@
                 <!-- <div :class="{ 'blur': isLoading }"> -->
                 <div class="container">
                     <div class="row">
+                        <!-- <a href="#userFeedbck"> This is just test</a> -->
                         <!--                     
                     <h2>Featured data</h2>
                     {{ featured_companies }} -->
-                        <div class="col-lg-12">
+                        <div class="col-lg-12 mt-mbl">
                             <div class="hero-content" :style="{ 'margin-top': slider_search_panel_margin_top + 'px' }">
-
                                 <span v-if="slider_content" v-html="slider_content"
                                     :style="{ color: slider_text_color }"></span>
 
@@ -193,8 +193,8 @@
         <div class="counter-area home2-counter-area mb-120">
             <div class="container">
                 <div class="row g-lg-4 gy-5 justify-content-center">
-                    <div class="col-lg-3 col-sm-6 divider d-flex justify-content-center">
-                        <div class="counter-single">
+                    <div class="col-lg-3 col-6 divider d-flex justify-content-center">
+                        <div class="counter-single flex-sm-row flex-column justify-content-center">
                             <div class="counter-icon">
                                 <div class="icon-bg">
                                     <img src="assets/images/icon/counter-icon-bg.svg" class="home-counter-bg" alt="">
@@ -216,8 +216,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-sm-6 divider d-flex justify-content-center">
-                        <div class="counter-single">
+                    <div class="col-lg-3 col-6 divider d-flex justify-content-center">
+                        <div class="counter-single flex-sm-row flex-column justify-content-center">
                             <div class="counter-icon">
                                 <div class="icon-bg">
                                     <img src="assets/images/icon/counter-icon-bg.svg" class="home-counter-bg" alt="">
@@ -269,8 +269,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-sm-6 divider d-flex justify-content-center">
-                        <div class="counter-single">
+                    <div class="col-lg-3 col-6 divider d-flex justify-content-center">
+                        <div class="counter-single flex-sm-row flex-column justify-content-center">
                             <div class="counter-icon">
                                 <div class="icon-bg">
                                     <img src="assets/images/icon/counter-icon-bg.svg" class="home-counter-bg" alt="">
@@ -293,8 +293,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-sm-6 d-flex justify-content-center">
-                        <div class="counter-single">
+                    <div class="col-lg-3 col-6 d-flex justify-content-center">
+                        <div class="counter-single flex-sm-row flex-column justify-content-center">
                             <div class="counter-icon">
                                 <div class="icon-bg">
                                     <img src="assets/images/icon/counter-icon-bg.svg" class="home-counter-bg" alt="">
@@ -681,8 +681,10 @@
 
                             </div>
                             <div class="company-details mb-4" style="justify-content:center !important">
-                                <div class="name-location">                                   
-                                    <h5 class="text-center" >{{ job.job_title?.length > 30 ? job.job_title.slice(0, 20) + '...' : job.job_title }}</h5>
+                                <div class="name-location">
+                                    <h5 class="text-center">{{ job.job_title?.length > 30 ? job.job_title.slice(0, 20) +
+                                        '...' :
+                                        job.job_title }}</h5>
                                 </div>
                             </div>
                             <div class="job-discription">
@@ -1057,13 +1059,13 @@
                 <div class="row mb-60">
                     <div class="col-12 d-flex justify-content-center">
                         <div class="section-title1 text-center">
-                            <h2>Feeback from our User</h2>
+                            <h2>Feeback from our Users</h2>
                             <p>See what our Users have to say about our Service</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="row">
+                <div class="row" id="userFeedbck">
                     <div class="swiper home2-feedback-slider">
                         <div class="swiper-wrapper">
                             <div v-for="testimonial in home_testimonials" :key="testimonial.id" class="swiper-slide">
@@ -1089,6 +1091,10 @@
                                             <span>{{ testimonial.designation }}</span>
                                         </div>
                                     </div>
+
+                                    <!-- <button class="btn btn-primary" @click="shareOnFacebook" >Facebook</button> -->
+
+
                                 </div>
                             </div>
                         </div>
@@ -1233,6 +1239,12 @@
 
 </template>
 
+<style>
+.p-dropdown-panel {
+    max-width: 240px !important;
+}
+</style>
+
 <style scoped>
 /* .form-wrapper form .form-inner span {
     font-size: 1rem !important;
@@ -1288,6 +1300,12 @@ ul {
     align-items: center;
 }
 
+
+@media (max-width: 768px) {
+    .mt-mbl {
+        margin-top: 200px !important;
+    }
+}
 
 /* cursor: pointer;
     position: absolute;
@@ -1497,6 +1515,15 @@ import '@splidejs/vue-splide/css';
                 this.sliderOptions.perPage = 4; // Default value
             }
         },
+
+
+        shareOnFacebook() {
+            const url = encodeURIComponent(window.location.href + '#userFeedbck'); // Encode the URL of your website
+            const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+
+            // Open the share URL in a new tab or window
+            window.open(facebookShareUrl, '_blank', 'noopener,noreferrer');
+        }
 
     },
     mounted() {
