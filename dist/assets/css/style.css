@@ -24646,7 +24646,7 @@ header.style-7 .main-menu ul li.menu-item-has-children>i {
 }
 
 .company-job-detaiils-page .job-details-and-counter-area .counter-single.six .total-number {
-  background: #FD02BD;
+  background: #FFFF00;
   border: 1px dashed rgba(6, 20, 33, 0.25);
 }
 
@@ -25269,7 +25269,7 @@ header.style-7 .main-menu ul li.menu-item-has-children>i {
 }
 
 .table-wrapper2 .eg-table tbody tr td .action-btn-group ul li button {
-  background: #05ff00;
+  background: #ffff00;
   border-radius: 4px;
   font-family: var(--font-work-sans);
   font-weight: 500;
@@ -25285,11 +25285,11 @@ header.style-7 .main-menu ul li.menu-item-has-children>i {
 }
 
 .table-wrapper2 .eg-table tbody tr td .action-btn-group ul li button.reject {
-  background: #FD02BD;
+  background: #FFFF00;
 }
 
 .table-wrapper2 .eg-table tbody tr td .action-btn-group ul li button.review {
-  background: #00ffef;
+  background: #ffff00;
 }
 
 .table-wrapper2 .eg-table tbody tr td .action-btn-group ul li button svg {
