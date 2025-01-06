@@ -25308,7 +25308,7 @@ header.style-7 .main-menu ul li.menu-item-has-children>i {
   bottom: 0;
   opacity: 0;
   content: "";
-  background-color: var(--primary-dark);
+  background-color: var(--primary-color1);
   z-index: -1;
 }
 
