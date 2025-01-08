@@ -35,7 +35,7 @@
                                             <label for="html">Remember Me</label>
                                         </div>
                      
-                                        <router-link :class="forgot-pass" :to="{name: 'forgot-password'}">Forget Password?</router-link>
+                                        <router-link :class="forgot-pass" :to="{name: 'forgot-password'}">Forgot Password?</router-link>
                                     </div>
                                 </div>
                                 <div class="col-lg-12">

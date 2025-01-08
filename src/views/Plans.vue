@@ -94,30 +94,31 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="add-area">
-                            <p><span>N.B:</span> If are you never posted a job in WORKPAGES? Get 15% off in your first
-                                job
-                                post.</p>
-                            <a class="primry-btn-1" href="#">Get Offer</a>
+                            <p><span>Special Offer for First Time Users!</span> New to WORKPAGES? Post your first job for FREE!</p>
+                        </div>
+                        <div class="add-area">
+                            <p>Click below to claim your offer:</p>
+                            <a class="primry-btn-1" href="#">Post a job for free</a>
                         </div>
                     </div>
                     <div class="col-lg-12">
                         <div class="advertuse-area">
-                            <h4>Why Choose Only WORKPAGES for your business Advertise</h4>
+                            <h4>Why Choose WORKPAGES for Your Business Advertising?</h4>
                             <ul>
                                 <li>
-                                    <p><span>10 thousand</span> users daily visitors</p>
+                                    <p><span>Wide Audience Reach: </span> Showcase your jobs to diverse and active audience.</p>
                                 </li>
                                 <li>
-                                    <p>Easy to post a job in this site.</p>
+                                    <p><span>Simple Job Posting: </span> Post jobs effortlessly and quickly.</p>
                                 </li>
                                 <li>
-                                    <p>More than <span>5 thousand</span> CV’s in CV Bank.</p>
+                                    <p><span>Extensive CV Database: </span>Find the right candidates with access to a large pool of CVs.</p>
                                 </li>
                                 <li>
-                                    <p>There are more than <span>20 thousand</span> Recruiters Connected here.</p>
+                                    <p><span>Active Recruiter Network: </span>Connect with a growing community of bussinesses and recruites.</p>
                                 </li>
                                 <li>
-                                    <p>The most powerful things that <span>15 thousand</span> viewers per jobs post.</p>
+                                    <p><span>High Job Engagement: </span>Get your job posts noticed by the right candidates.</p>
                                 </li>
                             </ul>
                         </div>

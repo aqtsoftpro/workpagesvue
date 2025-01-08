@@ -68,18 +68,16 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="col-lg-12">
-                    <div class="office-location-map">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3649.564763018799!2d90.36349791490355!3d23.834071191491947!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c14c8682a473%3A0xa6c74743d52adb88!2sEgens%20Lab!5e0!3m2!1sen!2sbd!4v1675482960370!5m2!1sen!2sbd" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    </div>
-                </div> -->
                 </div>
                 <div class="row g-lg-4 gy-5">
                     <div class="col-lg-6">
                         <div class="contect-content">
                             <h4>Need Any Help? Contact Us</h4>
-                            <p>Alternatively you can also check for the Company email, phone number and address in the
-                                official website.</p>
+                            <p>
+                                We are commited to providing you with the support you need whether you have questions,
+                                need assistance, or want more inforamtion about our services, our team is here to help.
+                            </p>
+                            <p>Feel free to us the contact details below to get in touch with us directly:</p>
                             <div class="support">
                                 <div class="icon">
                                     <img src="assets/images/icon/footer-support-icon.svg" alt="">
@@ -90,10 +88,29 @@
                                         globalSettings._site_support_no }}</a>
                                 </div>
                             </div>
+
+                            <div>
+                                <h4 class="title">Our Availabilty: </h4>
+                                <ul>
+                                    <li><span class="fw-bold"> Customer Service Team:</span>
+                                        Available from <span>9:00 AM to 5:00PM,</span> Monday to Friday. We are ready to
+                                        address any queries related to your account,
+                                        job posting and general inquiries during these ours.
+                                    </li>
+                                    <li>
+                                        <span class="fw-bold">Recruitment Hub:</span>
+                                        Provied Extended coverage <span>24 hours a day, 6 days a week</span> to insure
+                                        your receive timely support for urgent recruitment related matters.
+                                    </li>
+                                </ul>
+                            </div>
                             <div class="service-available">
-                                <span>N:B</span>
+                                <!-- <span>N:B</span>
                                 <p>Our Customer Service team are available from 9am to 5pm, Monday to Friday. Our
-                                    Recruitment Hub provides coverage 24 hours a day, 6 days per week.</p>
+                                    Recruitment Hub provides coverage 24 hours a day, 6 days per week.</p> -->
+                                <p>We aim to make your experience with WORKPAGES seamless and hassle-free if you need
+                                    further contact details, such as our email or office address, please visit the
+                                    relevant section on our website. </p>
                             </div>
                         </div>
                     </div>
