@@ -96,7 +96,7 @@
                         <div class="add-area">
                             <p><span>Special Offer for First Time Users!</span> New to WORKPAGES? Post your first job for FREE!</p>
                         </div>
-                        <div class="add-area">
+                        <div class="add-area" style="gap: 1em;" >
                             <p>Click below to claim your offer:</p>
                             <a class="primry-btn-1" href="#">Post a job for free</a>
                         </div>

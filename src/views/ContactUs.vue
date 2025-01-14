@@ -78,7 +78,7 @@
                                 need assistance, or want more inforamtion about our services, our team is here to help.
                             </p>
                             <p>Feel free to us the contact details below to get in touch with us directly:</p>
-                            <div class="support">
+                            <!-- <div class="support">
                                 <div class="icon">
                                     <img src="assets/images/icon/footer-support-icon.svg" alt="">
                                 </div>
@@ -87,7 +87,17 @@
                                     <a href="tel:{{ globalSettings._site_support_no }}">{{
                                         globalSettings._site_support_no }}</a>
                                 </div>
+                            </div> -->
+
+
+                            <div>
+                                <h5 class="mb-3" >Support Line:</h5>
+                                <h6 class="title">
+                                    <img src="assets/images/icon/footer-support-icon.svg" alt="">
+                                    <a href="tel:{{ globalSettings._site_support_no }}">{{ globalSettings._site_support_no }}</a>
+                                </h6>
                             </div>
+
 
                             <div>
                                 <h4 class="title">Our Availabilty: </h4>
