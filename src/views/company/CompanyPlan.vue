@@ -36,7 +36,7 @@
                                     <td data-label="Date">{{ formatDate(subscription.created_at) }}</td>
                                     <td data-label="Expiry Date">{{ formatDate(subscription.ends_at) }}</td>
                                     <td data-label="Package">
-                                        <button class="eg-btn light-sky-btn pkg-name"  >{{ subscription.package?.name }}</button>
+                                        <button class="eg-btn light-yellow-btn pkg-name "  >{{ subscription.package?.name }}</button>
                                     </td>
                                     <td data-label="Amount">${{ subscription.stripe_price ?? 0 }}</td>
                                     <td data-label="Payment Through">{{ subscription.package?.stripe_price_id ? subscription.brand+ ' card - '+subscription.last_4 : 'Offline Method' }}</td>
@@ -141,6 +141,18 @@
         </div>
     </div>
 </template>
+
+<style scoped>
+    .light-yellow-btn {
+        background-color: #ffff00 !important;
+        color: rgb(52, 47, 47) !important; 
+    }
+
+    .light-yellow-btn:hover {
+        background-color: #1e1e1d !important;
+        color: white !important;
+    }
+</style>
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';

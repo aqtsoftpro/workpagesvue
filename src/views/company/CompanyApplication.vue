@@ -76,21 +76,22 @@
                                                                 <button
                                                                     v-if="!application.isLoading && (this.permission?.cv_credit > 0)"
                                                                     class="review" @click="downloadCv(application)">
-                                                                    <img src="/assets/images/icon/docs.svg" alt="">
+                                                                    <!-- <img src="/assets/images/icon/docs.svg" alt=""> -->
                                                                     Download CV
                                                                 </button>
                                                                 <button
                                                                     v-if="application.isLoading && (this.permission?.cv_credit > 0)"
                                                                     class="review">
-                                                                    <img src="/assets/images/icon/docs.svg" alt="">
+                                                                    <!-- <img src="/assets/images/icon/docs.svg" alt=""> -->
                                                                     Downloading...
                                                                 </button>
                                                             </li>
                                                             <li v-if="application.status_name != 'Shortlisted'">
                                                                 <button v-if="!application.editClicked"
                                                                     @click="updateCandidateApplication('shortlist', application)">
-                                                                    <img src="/assets/images/icon/shortlist-icon.svg"
-                                                                        alt=""> Shortlist</button>
+                                                                    <!-- <img src="/assets/images/icon/shortlist-icon.svg"
+                                                                        alt="">  -->
+                                                                        Shortlist</button>
                                                                 <button v-else>processing...</button>
                                                             </li>
 
@@ -98,8 +99,9 @@
                                                                 <button v-if="!application.editClicked"
                                                                     @click="updateCandidateApplication('reject', application)"
                                                                     class="reject">
-                                                                    <img src="/assets/images/icon/rejected-icon.svg"
-                                                                        alt=""> Reject</button>
+                                                                    <!-- <img src="/assets/images/icon/rejected-icon.svg"
+                                                                        alt=""> -->
+                                                                         Reject</button>
                                                                 <button v-else>processing...</button>
                                                             </li>
                                                         </ul>
@@ -170,21 +172,22 @@
                                                                 <button
                                                                     v-if="!application.isLoading && (this.permission?.cv_credit > 0)"
                                                                     class="review" @click="downloadCv(application)">
-                                                                    <img src="/assets/images/icon/docs.svg" alt="">
+                                                                    <!-- <img src="/assets/images/icon/docs.svg" alt=""> -->
                                                                     Download CV
                                                                 </button>
                                                                 <button
                                                                     v-if="application.isLoading && (this.permission?.cv_credit > 0)"
                                                                     class="review">
-                                                                    <img src="/assets/images/icon/docs.svg" alt="">
+                                                                    <!-- <img src="/assets/images/icon/docs.svg" alt=""> -->
                                                                     Downloading...
                                                                 </button>
                                                             </li>
                                                             <li v-if="application.status_name != 'Shortlisted'">
                                                                 <button v-if="!application.editClicked"
                                                                     @click="updateCandidateApplication('shortlist', application)">
-                                                                    <img src="/assets/images/icon/shortlist-icon.svg"
-                                                                        alt=""> Shortlist
+                                                                    <!-- <img src="/assets/images/icon/shortlist-icon.svg"
+                                                                        alt="">  -->
+                                                                        Shortlist
                                                                 </button>
                                                                 <button v-else>processing...</button>
                                                             </li>
@@ -192,17 +195,20 @@
                                                                 <button v-if="!application.editClicked"
                                                                     @click="updateCandidateApplication('reject', application)"
                                                                     class="reject">
-                                                                    <img src="/assets/images/icon/rejected-icon.svg"
-                                                                        alt=""> Rejected
+                                                                    <!-- <img src="/assets/images/icon/rejected-icon.svg"
+                                                                        alt="">  -->
+                                                                        Rejected
                                                                 </button>
                                                                 <button v-else>processing...</button>
                                                             </li>
                                                             <li>
                                                                 <button
                                                                     @click="deleteCandidateApplication(application.id)"
-                                                                    class="reject"><img
+                                                                    class="reject">
+                                                                    <!-- <img
                                                                         src="/assets/images/icon/rejected-icon.svg"
-                                                                        alt=""> Delete</button>
+                                                                        alt="">  -->
+                                                                        Delete</button>
                                                             </li>
                                                         </ul>
                                                     </div>

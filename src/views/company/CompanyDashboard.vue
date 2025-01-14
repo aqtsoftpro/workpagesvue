@@ -187,15 +187,17 @@
                                                         <ul>
                                                             <li v-if="this.user.sub_accesses.length > 0">
                                                                 <button v-if="!cvClicked && (filteredSubAccesses[0].cv_credit > 0)" class="review" @click="downloadCv(application.cv)">
-                                                                    <img src="/assets/images/icon/docs.svg" alt=""> Download CV
+                                                                    <!-- <img src="/assets/images/icon/docs.svg" alt="">  -->
+                                                                    Download CV
                                                                 </button>
                                                                 <button v-if="cvClicked && (filteredSubAccesses[0].cv_credit > 0)" class="review" >
-                                                                    <img src="/assets/images/icon/docs.svg" alt=""> Downloading...
+                                                                    <!-- <img src="/assets/images/icon/docs.svg" alt="">  -->
+                                                                    Downloading...
                                                                 </button>
                                                             </li>
                                                             <li v-if="application.status_name != 'Shortlisted'">
-                                                                <button v-if="!application.isLoading" @click="updateCandidateApplication('shortlist', application)"><img
-                                                                        src="/assets/images/icon/shortlist-icon.svg" alt="">
+                                                                <button v-if="!application.isLoading" @click="updateCandidateApplication('shortlist', application)">
+                                                                    <!-- <img src="/assets/images/icon/shortlist-icon.svg" alt=""> -->
                                                                     Shortlist</button>
                                                                     <button v-else>processing...</button>
                                                             </li>
@@ -203,7 +205,7 @@
                                                             <button v-if="!application.isLoading"
                                                                     @click="updateCandidateApplication('reject', application)"
                                                                     class="reject">
-                                                                    <img src="/assets/images/icon/rejected-icon.svg" alt="">
+                                                                    <!-- <img src="/assets/images/icon/rejected-icon.svg" alt=""> -->
                                                                     Reject</button>
                                                                     <button v-else >processing...</button>
                                                             </li>
