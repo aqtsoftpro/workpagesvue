@@ -143,11 +143,9 @@
         class="eg-btn" 
         } -->
                                             <td data-label="Status">
-
-                                                <div class="create-profile-btn"><a href="javascript:void(0)"
-                                                        class="primry-btn-1 user-btn-custom">
+                                                <div class="create-profile-btn">
+                                                    <a href="javascript:void(0)" class="primry-btn-1 user-btn-custom">
                                                         {{ application.status_name }}
-
                                                     </a>
                                                 </div>
 

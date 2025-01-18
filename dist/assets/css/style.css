@@ -27573,3 +27573,15 @@ td>.eg-btn {
     margin-left: auto !important;
   }
 }
+
+td[data-label="Status"] {
+  text-align: center;
+}
+
+.create-profile-btn {
+  text-align: center;
+}
+
+.primry-btn-1.user-btn-custom {
+  display: inline-block;
+}
