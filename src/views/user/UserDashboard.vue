@@ -134,13 +134,16 @@
                                             <td data-label="Company"><a class="view-btn" href="company-details.html"
                                                     style="text-overflow: initial;">{{
                                                         application.job.company }} </a></td>
+
+                                            <!-- :class="{
+        'primry-btn-1 user-btn-custom': application.status_name == 'Shortlisted',
+        'primry-btn-1 user-btn-custom': application.status_name == 'Applied',
+        'primry-btn-1 user-btn-custom' : application.status_name == 'Rejected'
+
+        class="eg-btn" 
+        } -->
                                             <td data-label="Status">
-                                                <span class="eg-btn" 
-                                                :class="{
-                                                    'btn-success': application.status_name == 'Shortlisted',
-                                                    'purple-btn': application.status_name == 'Applied',
-                                                    'btn-danger' : application.status_name == 'Rejected'
-                                                    }" >
+                                                <span class="primry-btn-1 user-btn-custom">
                                                     {{ application.status_name }}</span>
                                             </td>
                                         </tr>
