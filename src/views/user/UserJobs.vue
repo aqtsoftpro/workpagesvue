@@ -62,12 +62,21 @@
                                                 style="text-overflow: initial;">{{
                                                     application.job.company }} </a></td>
                                         <td data-label="Status">
-                                            <span class="eg-btn" :class="{
+
+                                            <div class="create-profile-btn"><a href="javascript:void(0)"
+                                                        class="primry-btn-1 user-btn-custom">
+                                                        {{ application.status_name }}
+
+                                                    </a>
+                                                </div>
+
+                                            <!-- <span class="eg-btn" :class="{
                                                 'btn-success': application.status_name == 'Shortlisted',
                                                 'purple-btn': application.status_name == 'Applied',
                                                 'btn-danger': application.status_name == 'Rejected'
-                                            }">
-                                                {{ application.status_name }}</span>
+                                            }"
+                                            >
+                                                {{ application.status_name }}</span> -->
                                         </td>
                                     </tr>
 
