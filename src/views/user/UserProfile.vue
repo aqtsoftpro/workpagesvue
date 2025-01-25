@@ -5,20 +5,20 @@
                 <user-menu />
                 <div class="col-lg-9">
                     <div class="my-profile-inner">
-                        
+
                         <div class="form-wrapper mb-60">
                             <!-- <div class="section-title">
                                 <h5>My Profile</h5>
                             </div> -->
                             <form class="profile-form">
                                 <div class="row">
-                                                                        
+
                                     <div class="col-md-6">
                                         <div class="form-inner mb-25">
                                             <label>Full Name*</label>
                                             <div class="input-area">
                                                 <img src="/assets/images/icon/user-2.svg" alt="">
-                                                <input v-model="user.name" type="text" >
+                                                <input v-model="user.name" type="text">
                                             </div>
                                         </div>
                                     </div>
@@ -29,9 +29,12 @@
                                                 <img src="/assets/images/icon/language-2.svg" alt="">
                                                 <select class="form-select" v-model="user.gender">
                                                     <option value="">Select Gender</option>
-                                                    <option value="male" :selected="user.gender =='male'">Male</option>
-                                                    <option value="female"  :selected="user.gender =='female'">Female</option>
-                                                    <option value="unspecified"  :selected="user.gender =='unspecified'">Unspecified</option>
+                                                    <option value="male" :selected="user.gender == 'male'">Male</option>
+                                                    <option value="female" :selected="user.gender == 'female'">Female
+                                                    </option>
+                                                    <option value="unspecified"
+                                                        :selected="user.gender == 'unspecified'">
+                                                        Unspecified</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -59,7 +62,9 @@
                                                 <img src="/assets/images/icon/company-2.svg" alt="">
                                                 <select class="form-select" v-model="user.suburb_id">
                                                     <option value="">Select Suburb</option>
-                                                    <option v-for="subrub in subrubsList" :value="subrub.id" :selected="user.suburb_id == subrub.id">{{ subrub.name }}</option>
+                                                    <option v-for="subrub in subrubsList" :value="subrub.id"
+                                                        :selected="user.suburb_id == subrub.id">{{ subrub.name }}
+                                                    </option>
                                                 </select>
                                             </div>
                                         </div>
@@ -71,8 +76,10 @@
                                                 <img src="/assets/images/icon/company-2.svg" alt="">
                                                 <select class="form-select" v-model="user.current_job_location_id">
                                                     <option value="">Select Location</option>
-                                                    <option v-for="location in locationsOptions" :value="location.id" :selected="user.current_job_location_id == location.id">{{ location.name }}</option>
-                                                </select>                                                
+                                                    <option v-for="location in locationsOptions" :value="location.id"
+                                                        :selected="user.current_job_location_id == location.id">{{
+                                                            location.name }}</option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
@@ -81,7 +88,7 @@
                                             <label>Phone Number*</label>
                                             <div class="input-area">
                                                 <img src="/assets/images/icon/phone-2.svg" alt="">
-                                                <input v-model="user.phone" type="text" >
+                                                <input v-model="user.phone" type="text">
                                             </div>
                                         </div>
                                     </div>
@@ -101,11 +108,16 @@
                                                 <img src="/assets/images/icon/designation-2.svg" alt="">
                                                 <select class="form-select" v-model="user.designation_id">
                                                     <option value="">Select Job Title</option>
-                                                    <option v-for="designation in designationsOptions" :value="designation.id" :selected="user.designation_id == designation.id">{{ designation.name }}</option>
-                                                </select>                                                
+                                                    <option v-for="designation in designationsOptions"
+                                                        :value="designation.id"
+                                                        :selected="user.designation_id == designation.id">{{
+                                                            designation.name }}</option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
+
+
                                     <div class="col-md-6">
                                         <div class="form-inner mb-25">
                                             <label>Education</label>
@@ -114,11 +126,13 @@
                                                 <select class="form-select" v-model="user.qualification_id">
                                                     <option value="">Select Education</option>
                                                     <optgroup v-for="(group, index) in degreeGroups" :label="index">
-                                                        <option v-for="item in group" :value="item.id" :selected="user.qualification_id == item.id" >{{ item.name }}</option>
+                                                        <option v-for="item in group" :value="item.id"
+                                                            :selected="user.qualification_id == item.id">{{ item.name }}
+                                                        </option>
                                                     </optgroup>
-                                                    
+
                                                     <!-- <option v-for="qualification in qualificationsOptions" :value="qualification.id" :selected="user.qualification_id == qualification.id">{{ qualification.name }}</option> -->
-                                                </select>  
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
@@ -128,9 +142,10 @@
                                             <label for="password2">Upload Resume</label>
                                             <div class="input-area">
                                                 <img src="/assets/images/icon/create-resume.svg" alt="" width="16">
-                                                <input type="file" @change="cvHandle" placeholder="upload file" accept="application/pdf" />
+                                                <input type="file" @change="cvHandle" placeholder="upload file"
+                                                    accept="application/pdf" />
                                             </div>
-                                            <label v-if="user.cv !== null" >Resume already uploaded</label>
+                                            <label v-if="user.cv !== null">Resume already uploaded</label>
                                         </div>
                                     </div>
 
@@ -150,7 +165,8 @@
                                                         <h5>Upload Display Picture: </h5>
                                                         <div class="drag-area">
                                                             <p>Upload Logo</p>
-                                                            <button type="button" class="upload-btn"><i class="bi bi-plus-lg"></i></button>
+                                                            <button type="button" class="upload-btn"><i
+                                                                    class="bi bi-plus-lg"></i></button>
                                                             <input v-on:change="handlePhotoUpload" type="file" />
                                                         </div>
                                                         <span>Maximum File Upload: 2 MB</span>
@@ -158,15 +174,37 @@
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <img v-if="logoVisible" width="200" :src="user.photo" alt="">
-                                                    <img  :src="preview" width="200" alt=""> 
+                                                    <img :src="preview" width="200" alt="">
                                                 </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-12">
+                                        <div class="d-flex justify-content-between align-items-center ">
+                                            <h6>Casual Portal Visibility </h6>
+                                            <div class="form-check form-switch mt-2">
+                                                <InputSwitch :pt="{ slider: 'my-switch-slider' }"
+                                                    v-model="user.casual_show" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 mb-5">
+                                        <div class="d-flex justify-content-between align-items-center ">
+                                            <h6>Employee Directory Visibility </h6>
+                                            <div class="form-check form-switch mt-2">
+                                                <InputSwitch :pt="{ slider: 'my-switch-slider' }"
+                                                    v-model="user.public_show" />
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="col-md-12">
                                         <div class="form-inner">
-                                            <button v-if="!isLoading" @click="updateProfile" class="primry-btn-2 lg-btn w-unset" type="button">Update Profile
+                                            <button v-if="!isLoading" @click="updateProfile"
+                                                class="primry-btn-2 lg-btn w-unset" type="button">Update Profile
                                             </button>
                                             <button v-else class="primry-btn-2 lg-btn w-unset" type="button">
                                                 <span class="me-3 fs-6 text-white">Processing...</span>
@@ -195,12 +233,12 @@
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-inner mb-25">
-                                                <label >Document Name</label>
+                                                <label>Document Name</label>
                                                 <div class="input-area">
                                                     <img src="/assets/images/icon/education.svg" alt="" width="16">
-                                                    <Dropdown v-model=documentForm.title :options="documents" @change="setTitle"
-                                                        ref="suburb_id" optionLabel="name" optionValue="name"
-                                                        placeholder="Select Title" class="w-full 
+                                                    <Dropdown v-model=documentForm.title :options="documents"
+                                                        @change="setTitle" ref="suburb_id" optionLabel="name"
+                                                        optionValue="name" placeholder="Select Title" class="w-full 
                                                     md:w-24rem" />
                                                 </div>
                                             </div>
@@ -225,10 +263,12 @@
                                         <div class="col-md-12 pt-10">
                                             <div class="form-inner">
                                                 <button v-if="!isLoading" @click="documentStore"
-                                                    class="primry-btn-2 lg-btn w-unset" type="button">Save Changes</button>
+                                                    class="primry-btn-2 lg-btn w-unset" type="button">Save
+                                                    Changes</button>
                                                 <button v-else class="primry-btn-2 lg-btn w-unset" type="button">
                                                     <span class="me-3 fs-6 text-white">Processing...</span>
-                                                    <i class="fa fa-spinner fa-spin text-white ms-3" style="font-size:24px">
+                                                    <i class="fa fa-spinner fa-spin text-white ms-3"
+                                                        style="font-size:24px">
                                                     </i>
                                                 </button>
                                             </div>
@@ -266,7 +306,7 @@
                                 </div>
                             </form>
                         </div> -->
-                        
+
                         <div class="form-wrapper">
                             <div class="section-title">
                                 <h5>Social Network:</h5>
@@ -278,7 +318,8 @@
                                             <label>Facebook</label>
                                             <div class="input-area">
                                                 <img src="/assets/images/icon/facebook-2.svg" alt="">
-                                                <input type="text" v-model="social.facebook" placeholder="https://example-facebook.com">
+                                                <input type="text" v-model="social.facebook"
+                                                    placeholder="https://example-facebook.com">
                                             </div>
                                         </div>
                                     </div>
@@ -287,7 +328,8 @@
                                             <label>Twitter</label>
                                             <div class="input-area">
                                                 <img src="/assets/images/icon/twiter-2.svg" alt="">
-                                                <input type="text" v-model="social.twitter" placeholder="https://example-twitter.com">
+                                                <input type="text" v-model="social.twitter"
+                                                    placeholder="https://example-twitter.com">
                                             </div>
                                         </div>
                                     </div>
@@ -296,7 +338,8 @@
                                             <label>LinkedIn</label>
                                             <div class="input-area">
                                                 <img src="/assets/images/icon/linkedin-2.svg" alt="">
-                                                <input type="text" v-model="social.linkedin" placeholder="https://example-linkedin.com">
+                                                <input type="text" v-model="social.linkedin"
+                                                    placeholder="https://example-linkedin.com">
                                             </div>
                                         </div>
                                     </div>
@@ -305,13 +348,15 @@
                                             <label>Instagram</label>
                                             <div class="input-area">
                                                 <img src="/assets/images/icon/instagram.svg" alt="" width="16">
-                                                <input type="text" v-model="social.instagram" placeholder="https://example-instagram.com">
+                                                <input type="text" v-model="social.instagram"
+                                                    placeholder="https://example-instagram.com">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-inner">
-                                            <button @click="updateUserSocial" class="primry-btn-2 lg-btn w-unset" type="button">Update Social Info</button>
+                                            <button @click="updateUserSocial" class="primry-btn-2 lg-btn w-unset"
+                                                type="button">Update Social Info</button>
                                         </div>
                                     </div>
                                 </div>
@@ -329,6 +374,7 @@
     font-size: 1rem !important;
     padding: 10px !important;
 }
+
 .p-dropdown {
     width: 100% !important;
 }
@@ -352,177 +398,181 @@ import UserMenu from './UserMenu.vue';
 import { mapGetters } from 'vuex';
 import Dropdown from 'primevue/dropdown';
 import Calendar from 'primevue/calendar';
+import InputSwitch from 'primevue/inputswitch';
 import moment from 'moment';
 
 @Options({
-  components: {
-    'user-menu': UserMenu,
-    Dropdown,
-    Calendar,
-  },
-  data() {
-    return {
-        preview: null,
-        maxDate: null,
-        user: {
-            name: '',
-            gender: '',
-            photo: '',
-            age: '',
-            dob: '',
-            email: '',
-            phone: '',
-            current_job_location_id: 2,
-            designation_id: '',
-            qualification_id: '2',
-            description: '',
-            address: '',
-            suburb_id:'',
-            cv: '',
-        },
-        social: {
-            user_id: null,
-            facebook: null,
-            twitter: null,
-            linkedin: null,
-            pinterest: null,
-            instagram: null,
-            behance: null,
-        },
-
-        otherDetail: {
-            active_job: null,
-            country_id: 2,
-            profile_status: null,
-            is_available: null,
-            intro_video: null,
-            loading: false
-        },
-
-        qualificationsOptions: [],
-        languagesOptions: [],
-        locationsOptions: [],
-        degreeGroups: [],
-        designationsOptions: [],
-        logoVisible : true,
-        isLoading: false,
-        subrubsList: [],
-
-        documents: [
-            { id: 1, name: 'Work Rights' },
-            { id: 2, name: 'Licence' },
-            { id: 3, name: 'Qualifications' },
-            { id: 4, name: 'Experience Letter' }
-        ],
-
-        documentForm: {
-            title: '',
-            detail: '',
-            file_path: ''
-        },
-    }
-  },
-  created() {
-    this.maxDate = new Date();
-  },
-  computed: {
-    ...mapGetters([
-        'currentUser',
-        'designations',
-        'qualifications',
-        'locations',
-        'languages',
-        'userSocials',
-        'suburbs',
-        'userDetails'
-    ])
-  },
-  methods: {
-    changeLanguage(event:any){
-        this.user.language_id = event.value
+    components: {
+        'user-menu': UserMenu,
+        Dropdown,
+        Calendar,
+        InputSwitch,
     },
-    changeQualification(event:any){
-        this.user.qualification_id = event.value
-    },
+    data() {
+        return {
+            preview: null,
+            maxDate: null,
+            user: {
+                name: '',
+                gender: '',
+                photo: '',
+                age: '',
+                dob: '',
+                email: '',
+                phone: '',
+                current_job_location_id: 2,
+                designation_id: '',
+                qualification_id: '2',
+                description: '',
+                address: '',
+                suburb_id: '',
+                cv: '',
+                casual_show: false,
+                public_show: false,
+            },
+            social: {
+                user_id: null,
+                facebook: null,
+                twitter: null,
+                linkedin: null,
+                pinterest: null,
+                instagram: null,
+                behance: null,
+            },
 
-    changeDesignation(event:any){
-        this.user.designation_id = event.value
+            otherDetail: {
+                active_job: null,
+                country_id: 2,
+                profile_status: null,
+                is_available: null,
+                intro_video: null,
+                loading: false
+            },
+
+            qualificationsOptions: [],
+            languagesOptions: [],
+            locationsOptions: [],
+            degreeGroups: [],
+            designationsOptions: [],
+            logoVisible: true,
+            isLoading: false,
+            subrubsList: [],
+
+            documents: [
+                { id: 1, name: 'Work Rights' },
+                { id: 2, name: 'Licence' },
+                { id: 3, name: 'Qualifications' },
+                { id: 4, name: 'Experience Letter' }
+            ],
+
+            documentForm: {
+                title: '',
+                detail: '',
+                file_path: ''
+            },
+        }
     },
-    changeLocation(event:any){
-        this.user.location_id = event.value
+    created() {
+        this.maxDate = new Date();
     },
-    changeSuburb(event:any){
+    computed: {
+        ...mapGetters([
+            'currentUser',
+            'designations',
+            'qualifications',
+            'locations',
+            'languages',
+            'userSocials',
+            'suburbs',
+            'userDetails'
+        ])
+    },
+    methods: {
+        changeLanguage(event: any) {
+            this.user.language_id = event.value
+        },
+        changeQualification(event: any) {
+            this.user.qualification_id = event.value
+        },
+
+        changeDesignation(event: any) {
+            this.user.designation_id = event.value
+        },
+        changeLocation(event: any) {
+            this.user.location_id = event.value
+        },
+        changeSuburb(event: any) {
             this.user.suburb_id = event.value
         },
-    async updateProfile(){
-        this.isLoading = true;
-        try {
-            this.user.dob = moment(this.user.dob).format('DD-MM-YYYY');
-            await this.$store.dispatch('updateProfile', this.user);
-            window.setTimeout(() => {
-                this.isLoading = false
-            }, 6000)
-        } catch (error) {
-            console.log(error);
-            
-        }
+        async updateProfile() {
+            this.isLoading = true;
+            try {
+                this.user.dob = moment(this.user.dob).format('DD-MM-YYYY');
+                await this.$store.dispatch('updateProfile', this.user);
+                window.setTimeout(() => {
+                    this.isLoading = false
+                }, 6000)
+            } catch (error) {
+                console.log(error);
+
+            }
+
+        },
+
+        updateUserSocial() {
+            this.$store.dispatch('updateUserSocials', this.social)
+        },
+
+        async updateUserDetail() {
+            this.otherDetail.loading = true;
+            try {
+                await this.$store.dispatch('updateUserDetail', this.otherDetail);
+                window.setTimeout(() => {
+                    this.otherDetail.loading = false;
+                }, 1000);
+            } catch (error) {
+                console.log(error);
+
+            }
+        },
+
+        handlePhotoUpload(event: any) {
+            this.logoVisible = false;
+            this.user.photo = event.target.files[0];
+            this.preview = URL.createObjectURL(event.target.files[0]);
+        },
+
+        otherFileHandle(event: any) {
+            const file = event.target.files[0];
+            console.log(event);
+            this.otherDetail.intro_video = file;
+            console.log('no data found');
+        },
+
+        documentStore() {
+            this.$store.dispatch('documentStore', this.documentForm)
+            this.documentForm.title = ''
+            this.documentForm.file_path = ''
+            this.documentForm.detail = ''
+        },
+
+        fileHandle(event: any) {
+            const file = event.target.files[0];
+            console.log(event);
+            this.documentForm.file_path = file;
+            console.log('no data found');
+        },
+
+        cvHandle(event: any) {
+            const file = event.target.files[0];
+            console.log(event);
+            this.user.cv = file;
+            console.log('no data found');
+        },
+
 
     },
-
-    updateUserSocial(){        
-        this.$store.dispatch('updateUserSocials', this.social)
-    },
-
-    async updateUserDetail(){
-        this.otherDetail.loading = true;
-        try {
-            await this.$store.dispatch('updateUserDetail', this.otherDetail);
-            window.setTimeout(() => {
-                this.otherDetail.loading = false;
-            }, 1000);
-        } catch (error) {
-            console.log(error);
-            
-        }
-    },
-
-    handlePhotoUpload(event:any){
-        this.logoVisible = false;
-        this.user.photo = event.target.files[0];
-        this.preview = URL.createObjectURL(event.target.files[0]);
-    },
-
-    otherFileHandle(event: any) {
-      const file = event.target.files[0];
-      console.log(event);
-      this.otherDetail.intro_video = file;
-      console.log('no data found');
-    },
-
-    documentStore() {
-        this.$store.dispatch('documentStore', this.documentForm)
-        this.documentForm.title = ''
-        this.documentForm.file_path = ''
-        this.documentForm.detail = ''
-    },
-
-    fileHandle(event: any) {
-        const file = event.target.files[0];
-        console.log(event);
-        this.documentForm.file_path = file;
-        console.log('no data found');
-    },
-
-    cvHandle(event: any) {
-        const file = event.target.files[0];
-        console.log(event);
-        this.user.cv = file;
-        console.log('no data found');
-    },
-
-
-  },
-  mounted() {
+    mounted() {
         // this.$store.dispatch('getUserInfo')
         this.user = JSON.parse(this.currentUser)[0]
         this.social.user_id = this.user.id
@@ -533,7 +583,7 @@ import moment from 'moment';
         this.$store.dispatch('getSuburb', '')
         this.$store.dispatch('getUserSocials', this.user.id)
         this.$store.dispatch('getUserDetails', '')
-        
+
         //   this.designationsOptions = await this.designations
         //   this.qualificationsOptions = await this.qualifications
         //   this.languagesOptions = await this.languages
@@ -542,43 +592,43 @@ import moment from 'moment';
         let Script = document.createElement("script");
         Script.setAttribute("src", "/assets/js/main.js");
         document.head.appendChild(Script);
-  },
-  watch: {
-    userSocials() {
-        this.social = this.userSocials.data
-        this.social.user_id = this.user.id        
     },
-    currentUser(){
-        this.user = JSON.parse(this.currentUser)[0]
-        this.user.current_job_location_id = JSON.parse(this.currentUser)[0].current_job_location_id ?? 2;
-        this.user.location_id = JSON.parse(this.currentUser)[0].location_id ?? 2;
-    },
+    watch: {
+        userSocials() {
+            this.social = this.userSocials.data
+            this.social.user_id = this.user.id
+        },
+        currentUser() {
+            this.user = JSON.parse(this.currentUser)[0]
+            this.user.current_job_location_id = JSON.parse(this.currentUser)[0].current_job_location_id ?? 2;
+            this.user.location_id = JSON.parse(this.currentUser)[0].location_id ?? 2;
+        },
 
-    userDetails() {
-        this.otherDetail.active_job = this.userDetails?.active_job;
-        this.otherDetail.location_id = this.userDetails?.location_id ?? 2;
-        this.otherDetail.current_job_location_id = this.userDetails?.current_job_location_id ?? 2;
-        this.otherDetail.profile_status = this.userDetails?.profile_status;
-        this.otherDetail.is_available = this.userDetails?.is_available;
-        this.otherDetail.intro_video = this.userDetails?.intro_video;
-    },
-    suburbs() {
-       this.subrubsList =  this.suburbs;
-    },
-    locations() {
-        this.locationsOptions = this.locations
-    },
+        userDetails() {
+            this.otherDetail.active_job = this.userDetails?.active_job;
+            this.otherDetail.location_id = this.userDetails?.location_id ?? 2;
+            this.otherDetail.current_job_location_id = this.userDetails?.current_job_location_id ?? 2;
+            this.otherDetail.profile_status = this.userDetails?.profile_status;
+            this.otherDetail.is_available = this.userDetails?.is_available;
+            this.otherDetail.intro_video = this.userDetails?.intro_video;
+        },
+        suburbs() {
+            this.subrubsList = this.suburbs;
+        },
+        locations() {
+            this.locationsOptions = this.locations
+        },
 
-    designations() {
-        this.designationsOptions = this.designations
-    },
+        designations() {
+            this.designationsOptions = this.designations
+        },
 
-    qualifications() {
-        this.degreeGroups = this.qualifications
-        this.qualificationsOptions = this.qualifications
-    },
+        qualifications() {
+            this.degreeGroups = this.qualifications
+            this.qualificationsOptions = this.qualifications
+        },
 
-  }
+    }
 })
-export default class UserProfile extends Vue {}
+export default class UserProfile extends Vue { }
 </script>

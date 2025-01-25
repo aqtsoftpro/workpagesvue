@@ -78,6 +78,7 @@ export default createStore({
     shortListedApps: [],
     rejectedApps: [],
     activeSub: null,
+    employeeDirectory: [],
 
   },
   getters: {
@@ -147,10 +148,11 @@ export default createStore({
     advertisement: state => state.advertisement,
     userDocuments: state => state.userDocuments,
     resetEmail: state => state.resetEmail,
-    loginUser: state=> state.loginUser,
-    shortListedApps: state=> state.shortListedApps,
-    rejectedApps: state=> state.rejectedApps,
-    activeSub: state=> state.activeSub,
+    loginUser: state => state.loginUser,
+    shortListedApps: state => state.shortListedApps,
+    rejectedApps: state => state.rejectedApps,
+    activeSub: state => state.activeSub,
+    employeeDirectory: state => state.employeeDirectory,
 
   },
   mutations: {
@@ -370,7 +372,11 @@ export default createStore({
       state.activeSub = payload
     },
 
-    
+    SET_EMP_DIRECTORY(state, payload) {
+      state.employeeDirectory = payload
+    }
+
+
 
   },
   actions: {
@@ -440,27 +446,27 @@ export default createStore({
           if (res.data.status == 'error') {
 
             if (res.data.data.first_name) {
-              toast.error(res.data.data.first_name , {
+              toast.error(res.data.data.first_name, {
                 position: toast.POSITION.BOTTOM_RIGHT,
               });
             }
             if (res.data.data.last_name) {
-              toast.error(res.data.data.last_name , {
+              toast.error(res.data.data.last_name, {
                 position: toast.POSITION.BOTTOM_RIGHT,
               });
             }
             if (res.data.data.email) {
-              toast.error(res.data.data.email , {
+              toast.error(res.data.data.email, {
                 position: toast.POSITION.BOTTOM_RIGHT,
               });
             }
             if (res.data.data.password) {
-              toast.error(res.data.data.password , {
+              toast.error(res.data.data.password, {
                 position: toast.POSITION.BOTTOM_RIGHT,
               });
             }
             if (res.data.data.suburb_id) {
-              toast.error(res.data.data.suburb_id , {
+              toast.error(res.data.data.suburb_id, {
                 position: toast.POSITION.BOTTOM_RIGHT,
               });
             }
@@ -479,7 +485,7 @@ export default createStore({
             }, 2000);
           }
         })
-        .catch(err => {          
+        .catch(err => {
           toast.error(err.message, {
             position: toast.POSITION.BOTTOM_RIGHT,
           })
@@ -496,34 +502,34 @@ export default createStore({
           console.log(res.data.status);
           if (res.data.status == 'error') {
             if (res.data.data.first_name) {
-              toast.error(res.data.data.first_name , {
+              toast.error(res.data.data.first_name, {
                 position: toast.POSITION.BOTTOM_RIGHT,
               });
             }
 
             if (res.data.data.last_name) {
-              toast.error(res.data.data.last_name , {
+              toast.error(res.data.data.last_name, {
                 position: toast.POSITION.BOTTOM_RIGHT,
               });
             }
 
             if (res.data.data.email) {
-              toast.error(res.data.data.email , {
+              toast.error(res.data.data.email, {
                 position: toast.POSITION.BOTTOM_RIGHT,
               });
             }
             if (res.data.data.password) {
-              toast.error(res.data.data.password , {
+              toast.error(res.data.data.password, {
                 position: toast.POSITION.BOTTOM_RIGHT,
               });
             }
             if (res.data.data.suburb_id) {
-              toast.error(res.data.data.suburb_id , {
+              toast.error(res.data.data.suburb_id, {
                 position: toast.POSITION.BOTTOM_RIGHT,
               });
             }
             if (res.data.data.company_type_id) {
-              toast.error(res.data.data.company_type_id , {
+              toast.error(res.data.data.company_type_id, {
                 position: toast.POSITION.BOTTOM_RIGHT,
               });
             }
@@ -828,7 +834,7 @@ export default createStore({
           //   }
           // }
           else {
-            toast.error('You cannot assign '+ result.data[0].roles[0].name +' role!', {
+            toast.error('You cannot assign ' + result.data[0].roles[0].name + ' role!', {
               position: toast.POSITION.BOTTOM_RIGHT,
             });
           }
@@ -840,7 +846,7 @@ export default createStore({
       }
     },
 
-    getCurrentUser(context, payload){
+    getCurrentUser(context, payload) {
       try {
         axios.post(apiUrl + 'workpages/getUser', { token: localStorage.getItem('token') }, {
           headers: {
@@ -1580,7 +1586,7 @@ export default createStore({
     },
 
     getCategoryJobs(context, payload) {
-      axios.get(apiUrl + 'categoryJobs/' + payload.category +'?page=' + payload.page, {
+      axios.get(apiUrl + 'categoryJobs/' + payload.category + '?page=' + payload.page, {
         headers: {
           'authorization': 'Bearer ' + localStorage.getItem('token')
         }
@@ -1991,6 +1997,23 @@ export default createStore({
         })
     },
 
+    getEmpdirectory({ commit }, payload) {
+      axios
+        .post(apiUrl + 'get-directoy', payload, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        })
+        .then((res) => {
+          if (res && res.data) {
+            commit('SET_EMP_DIRECTORY', res.data);
+          }
+        })
+        .catch((err) => {
+          console.error('Error fetching employee directory:', err);
+        });
+    },
+
     companyData(context, payload) {
       axios.get(apiUrl + 'company-dashboard', {
         headers: {
@@ -2164,7 +2187,7 @@ export default createStore({
         .then(res => {
           const result = res.data.data
           console.log(result);
-          
+
           context.commit('SET_SHORT_LISTED', result)
         })
         .catch(err => {
@@ -2181,7 +2204,7 @@ export default createStore({
         .then(res => {
           const result = res.data.data
           console.log(result);
-          
+
           context.commit('SET_REJECTED', result)
         })
         .catch(err => {
@@ -2190,7 +2213,7 @@ export default createStore({
     },
 
     deleteJob(context, payload) {
-      axios.post(apiUrl + 'job/' + payload.id, payload,{
+      axios.post(apiUrl + 'job/' + payload.id, payload, {
         headers: {
           authorization: 'Bearer ' + localStorage.getItem('token'),
           'Content-Type': 'multipart/form-data'
@@ -2214,17 +2237,17 @@ export default createStore({
 
     getAciveSub(context, payload) {
       axios.get(apiUrl + 'get-active-sub',
-      {
-        headers: {
-          'Authorization': 'Bearer ' + localStorage.getItem('token')
-        }
-      })
-      .then(res => {
-        let result = res.data
-        context.commit('SET_ACTIVE_SUB', result.data)
-      }).catch(err => {
-        console.log(err);
-      })
+        {
+          headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
+          }
+        })
+        .then(res => {
+          let result = res.data
+          context.commit('SET_ACTIVE_SUB', result.data)
+        }).catch(err => {
+          console.log(err);
+        })
     },
   },
   modules: {

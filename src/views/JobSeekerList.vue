@@ -8,12 +8,7 @@
                       <div class="banner-content text-center">
                           <h1 :style="textColor">Casual Portal</h1>
                           <span></span>
-                          <!-- <nav aria-label="breadcrumb">
-                              <ol class="breadcrumb">
-                                  <li class="breadcrumb-item"><router-link to="index.html">Home</router-link></li>
-                                  <li class="breadcrumb-item active" aria-current="page">Casual Portal</li>
-                              </ol>
-                          </nav> -->
+
                       </div>
                   </div>
               </div>
@@ -39,18 +34,7 @@
                                     </div>
                                     <button type="submit" class="primry-btn-1">Search</button>
                                 </div>
-
-                                <!-- <div class="form-wrap style-3">
-                                    <div class="form-inner">
-                                       
-                                    </div>
-                                </div> -->
                             </form>
-                            <!-- <div v-if="showAlert" class="alert alert-warning mt-3" role="alert">
-                                Enter Job Title to Search
-
-
-                            </div> -->
                         </div>
                     </div>
 

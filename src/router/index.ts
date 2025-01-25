@@ -53,8 +53,8 @@ import CreateAd from '../views/company/CreateAd.vue'
 import CompanyJobAd from '../views/company/CompanyJobAd.vue'
 import FreeTrial from '../views/FreeTrial.vue'
 import Faq from '../views/Faq.vue'
-
 import { toast } from 'vue3-toastify'
+import EmployeeDir from '../views/EmployeeDir.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -74,6 +74,17 @@ const routes: Array<RouteRecordRaw> = [
     component: JobSeekerList,
     meta: { requiresAuth: true, role: 'Employer', 'sub_access': true, casual_portal: 'yes' }
   },
+
+
+  {
+    path: '/employee-directory',
+    name: 'employee-directory',
+    // component: CasualPortal
+    component: EmployeeDir,
+    meta: { requiresAuth: true, role: 'Employer', 'sub_access': true, casual_portal: 'yes' }
+  },
+
+
   {
     path: '/charity-partner',
     name: 'charity-partner',

@@ -109,14 +109,7 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
-                                        <!-- <div class="single-permission mb-2">
-                                            <div class="title">
-                                                <h6>Your profile satatus</h6>
-                                            </div>
-                                            <div class="form-check form-switch">
-                                                <InputSwitch v-model="profile_status" :pt="{ slider: 'my-switch-slider' }" @change="updateStatus({'profile_status':profile_status == true ? 'opened': 'closed'})"/>
-                                            </div>
-                                        </div> -->
+
                                         <div class="single-permission mb-2">
                                             <div class="title">
                                                 <h6>Are you available to interview ?</h6>
@@ -133,30 +126,7 @@
                                                 <InputSwitch :pt="{ slider: 'my-switch-slider' }"  v-model="applicationShortlistedEmailAlert" />
                                             </div>
                                         </div>
-                                        <!-- <div class="single-permission mb-2">
-                                            <div class="title">
-                                                <h6>Application Shortlisted Email Alert</h6>
-                                            </div>
-                                            <div class="form-check form-switch">
-                                                <InputSwitch v-model="applicationShortlistedEmailAlert" />
-                                            </div>
-                                        </div>
-                                        <div class="single-permission mb-2">
-                                            <div class="title">
-                                                <h6>Application Rejected Email Alert</h6>
-                                            </div>
-                                            <div class="form-check form-switch">
-                                                <InputSwitch v-model="applicationRejectedEmailAlert" />
-                                            </div>
-                                        </div> -->
-                                        <!-- <div class="single-permission mb-30">
-                                            <div class="title">
-                                                <h6>Resume Visibility</h6>
-                                            </div>
-                                            <div class="form-check form-switch">
-                                                <InputSwitch v-model="resumeVisibility"/>
-                                            </div>
-                                        </div> -->
+
                                         <div class="single-permission mb-3">
                                             <div class="title">
                                                 <h6>Disable Account</h6>
@@ -166,15 +136,6 @@
                                                 <InputSwitch v-model="disableAccount" />
                                             </div>
                                         </div>
-                                        <!-- <div class="single-permission align-items-start">
-                                            <div class="title">
-                                                <h6>Delete Account</h6>
-                                                <p>If you delete your account, you will no longer be able to get information about the matched jobs.</p>
-                                            </div>
-                                            <div class="delete-btn">
-                                                <button type="reset" @click="deletUser">Delete Account</button>
-                                            </div>
-                                        </div> -->
                                     </div>
                                 </div>
                             </div>
@@ -191,64 +152,6 @@
                             </div>
                         </form>
                     </div>
-
-                    <!-- <div class="form-wrapper mt-5">
-                        <form class="profile-form">
-                            <div class="section-title2">
-                                <h5 class="d-flex align-items-baseline gap-1"><img
-                                        src="assets/images/icon/profile-settings.svg" alt=""> Upload Documents </h5>
-                            </div>
-                            <div class="change-password-area mb-40">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="info-title">
-                                            <h6>You can upload your all leagal documents here</h6>
-                                            <div class="dash"></div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-inner mb-25">
-                                            <label for="password">Document Name</label>
-                                            <div class="input-area">
-                                                <img src="/assets/images/icon/education.svg" alt="" width="16">
-                                                <Dropdown v-model=documentForm.title :options="documents" @change="setTitle"
-                                                    ref="suburb_id" optionLabel="name" optionValue="name"
-                                                    placeholder="Select Title" class="w-full 
-                                                md:w-24rem" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-inner mb-25">
-                                            <label for="password2">Document Detail*</label>
-                                            <textarea v-model="documentForm.detail"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-inner mb-25">
-                                            <label for="password2">Upload File*</label>
-                                            <div class="input-area">
-                                                <img src="/assets/images/icon/create-resume.svg" alt="" width="16">
-                                                <input type="file" @change="fileHandle" placeholder="upload file" />
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12 pt-10">
-                                        <div class="form-inner">
-                                            <button v-if="!isLoading" @click="documentStore"
-                                                class="primry-btn-2 lg-btn w-unset" type="button">Upload Data</button>
-                                            <button v-else class="primry-btn-2 lg-btn w-unset" type="button">
-                                                <span class="me-3 fs-6 text-white">Processing...</span>
-                                                <i class="fa fa-spinner fa-spin text-white ms-3" style="font-size:24px">
-                                                </i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div> -->
                 </div>
             </div>
         </div>

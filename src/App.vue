@@ -78,6 +78,13 @@
                                         </li>
                                     </ul> -->
                                 </li>
+
+
+                                <li v-if="loggedIn && this.role == 'Employer' && this.permission?.casual_portal == 'yes'">
+                                    <router-link to="/casual-portal" @click="closeResponsiveMenu">Employee Directory</router-link>
+                                </li>
+
+
                                 <li>
                                     <router-link to="/charity-partner" @click="closeResponsiveMenu">Charity
                                         Partner</router-link>
