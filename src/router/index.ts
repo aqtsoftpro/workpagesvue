@@ -52,6 +52,7 @@ import CompanySeekers from '../views/company/CompanySeekers.vue'
 import CreateAd from '../views/company/CreateAd.vue'
 import CompanyJobAd from '../views/company/CompanyJobAd.vue'
 import FreeTrial from '../views/FreeTrial.vue'
+import Faq from '../views/Faq.vue'
 
 import { toast } from 'vue3-toastify'
 
@@ -77,6 +78,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/charity-partner',
     name: 'charity-partner',
     component: CharityPartner
+  },
+  {
+    path: '/faq',
+    name: 'faq',
+    component: Faq
   },
   {
     path: '/login',

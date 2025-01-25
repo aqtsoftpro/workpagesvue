@@ -100,6 +100,10 @@
                                     <router-link to="/contact-us" @click="closeResponsiveMenu">Contact</router-link>
                                 </li>
 
+                                <li>
+                                    <router-link to="/faq" @click="closeResponsiveMenu">FAQs</router-link>
+                                </li>
+
                                 <!-- <li v-if="loggedIn && this.role == 'Employer'">
                                     <router-link to="/job-seeker-list" >Recommended</router-link>
                                 </li> -->
@@ -302,6 +306,7 @@
                             <ul>
                                 <li><router-link to="/about-us">About Us <i
                                             class='bx bx-up-arrow-alt'></i></router-link></li>
+                                <li><router-link to="/faq">FAQs <i class='bx bx-up-arrow-alt'></i></router-link></li>
                                 <li><router-link to="/terms-conditions">Terms & Conditions<i
                                             class='bx bx-up-arrow-alt'></i></router-link></li>
                                 <li><router-link to="/privacy-policy">Privacy & Policy<i

@@ -25,11 +25,12 @@
         <div class="container">
             <div class="row mb-5">
                 <div class="col-lg-12">
-                    <div class="section-title text-center">
+                    <div v-html="cmsPageInfo" ></div>
+                    <!-- <div class="section-title text-center">
                         <h5 class="title">
                             Partner with us to transform lives through employment, to create self-reliant communities!
                         </h5>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="col-lg-12">
@@ -130,7 +131,7 @@ import PrivacyPolicy from './PrivacyPolicy.vue'; // @ is an alias to /src
   },
   mounted() {
     var credentials = {
-        'page_slug': 'privacy-policy',
+        'page_slug': 'charity-partner',
     }
     this.$store.dispatch('getCMSPages', credentials);
     this.$store.dispatch('getGlobalVariables');
