@@ -604,6 +604,8 @@ import moment from 'moment';
             this.user = JSON.parse(this.currentUser)[0]
             this.user.current_job_location_id = JSON.parse(this.currentUser)[0].current_job_location_id ?? 2;
             this.user.location_id = JSON.parse(this.currentUser)[0].location_id ?? 2;
+            this.user.casual_show = this.user.userMeta?.casual_show == "1" ? true : false;
+            this.user.public_show = this.user.userMeta?.public_show == "1" ? true : false;
         },
 
         userDetails() {
