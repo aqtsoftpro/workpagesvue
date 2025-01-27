@@ -81,7 +81,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'employee-directory',
     // component: CasualPortal
     component: EmployeeDir,
-    meta: { requiresAuth: true, role: 'Employer', 'sub_access': true, casual_portal: 'yes' }
+    meta: { requiresAuth: true, role: 'Employer', 'sub_access': true, emp_directory: 'yes' }
   },
 
 
@@ -426,6 +426,18 @@ router.beforeEach((to, from, next) => {
     }
 
     if (to.meta.casual_portal && currentUser[0].sub_accesses[0].casual_portal != to.meta.casual_portal) {
+      // User doesn't have the required role, redirect to unauthorized page or handle accordingly
+      toast.error('Please purchase a plan to get access', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
+      window.setTimeout(() => {
+        next('/plans');
+      }, 2000);
+      return;
+    }
+
+
+    if (to.meta.emp_directory && currentUser[0].sub_accesses[0].emp_directory != to.meta.emp_directory) {
       // User doesn't have the required role, redirect to unauthorized page or handle accordingly
       toast.error('Please purchase a plan to get access', {
         position: toast.POSITION.BOTTOM_RIGHT,

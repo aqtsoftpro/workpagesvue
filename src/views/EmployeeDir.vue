@@ -346,7 +346,7 @@ import { mapGetters } from 'vuex';
         console.log(query);
 
         this.$store.dispatch('searchJobs', query);
-        this.$store.dispatch('getEmpdirectory', this.searchQuery);
+        this.$store.dispatch('getEmpdirectory', { 'filter': this.searchQuery });
         this.$store.dispatch('getGlobalVariables');
 
     },

@@ -573,8 +573,10 @@ import moment from 'moment';
 
     },
     mounted() {
-        // this.$store.dispatch('getUserInfo')
+        this.$store.dispatch('getCurrentUser')
         this.user = JSON.parse(this.currentUser)[0]
+        this.user.casual_show = this.user.userMeta?.casual_show == "1" ? true : false;
+        this.user.public_show = this.user.userMeta?.public_show == "1" ? true : false;
         this.social.user_id = this.user.id
         this.$store.dispatch('getDesignations', '')
         this.$store.dispatch('getQualifications', '')

@@ -938,7 +938,10 @@ export default createStore({
       }).then(res => {
         console.log(payload);
         let result = res
+        // this.dispatch('getUserInfo', payload.type);
         this.dispatch('getUserDetails', '');
+
+
         toast.success(res.data.message, {
           position: toast.POSITION.BOTTOM_RIGHT
         })
@@ -1999,7 +2002,7 @@ export default createStore({
 
     getEmpdirectory({ commit }, payload) {
       axios
-        .post(apiUrl + 'get-directoy', payload, {
+        .post(apiUrl + 'get-directory', payload, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
           },

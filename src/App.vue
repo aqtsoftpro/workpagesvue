@@ -80,8 +80,8 @@
                                 </li>
 
 
-                                <li v-if="loggedIn && this.role == 'Employer' && this.permission?.casual_portal == 'yes'">
-                                    <router-link to="/casual-portal" @click="closeResponsiveMenu">Employee Directory</router-link>
+                                <li v-if="loggedIn && this.role == 'Employer' && this.permission?.emp_directory == 'yes'">
+                                    <router-link to="/employee-directory" @click="closeResponsiveMenu">Employee Directory</router-link>
                                 </li>
 
 
