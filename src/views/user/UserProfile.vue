@@ -186,7 +186,7 @@
                                             <h6>Casual Portal Visibility </h6>
                                             <div class="form-check form-switch mt-2">
                                                 <InputSwitch :pt="{ slider: 'my-switch-slider' }"
-                                                    v-model="user.casual_show" />
+                                                    v-model="user._new_casual_show" />
                                             </div>
                                         </div>
                                     </div>
@@ -427,7 +427,7 @@ import moment from 'moment';
                 address: '',
                 suburb_id: '',
                 cv: '',
-                casual_show: false,
+                _new_casual_show: false,
                 public_show: false,
             },
             social: {
@@ -575,7 +575,7 @@ import moment from 'moment';
     mounted() {
         this.$store.dispatch('getCurrentUser')
         this.user = JSON.parse(this.currentUser)[0]
-        this.user.casual_show = this.user.userMeta?.casual_show == "1" ? true : false;
+        this.user._new_casual_show = this.user.userMeta?._new_casual_show == "1" ? true : false;
         this.user.public_show = this.user.userMeta?.public_show == "1" ? true : false;
         this.social.user_id = this.user.id
         this.$store.dispatch('getDesignations', '')
@@ -604,7 +604,7 @@ import moment from 'moment';
             this.user = JSON.parse(this.currentUser)[0]
             this.user.current_job_location_id = JSON.parse(this.currentUser)[0].current_job_location_id ?? 2;
             this.user.location_id = JSON.parse(this.currentUser)[0].location_id ?? 2;
-            this.user.casual_show = this.user.userMeta?.casual_show == "1" ? true : false;
+            this.user._new_casual_show = this.user.userMeta?._new_casual_show == "1" ? true : false;
             this.user.public_show = this.user.userMeta?.public_show == "1" ? true : false;
         },
 
