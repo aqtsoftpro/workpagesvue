@@ -13363,8 +13363,9 @@ header.style-7 .main-menu ul li.menu-item-has-children>i {
 
 .job-listing-card .job-top .job-list-content .job-discription {
   display: flex;
-  align-items: center;
-  gap: 10px;
+  align-items: start;
+  gap: 0px;
+  flex-direction: column;
 }
 
 @media (max-width: 767px) {
@@ -27585,3 +27586,14 @@ td[data-label="Status"] {
 .primry-btn-1.user-btn-custom {
   display: inline-block;
 }
+
+.selected-seekers {
+  background-color: rgb(0 63 136 / 10%);
+}
+.contact-seeker-card { cursor: pointer; border:1px solid #00509d; }
+.contact-seeker-panel { background-color: #EFF3F2; }
+
+.jobseeker-filter-1 {
+  border-radius: 0 !important;
+}
+.jon-top-mr-b { margin-bottom: 0 !important;}

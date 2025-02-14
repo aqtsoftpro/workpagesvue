@@ -51,6 +51,7 @@ export default createStore({
     companyApplications: [],
     globalVariables: [],
     suburbs: [],
+    employeeAvailibility: [],
     companyInfo: null,
     companyReviews: null,
     homeStats: [],
@@ -123,6 +124,7 @@ export default createStore({
     companyApplications: state => state.companyApplications,
     globalVariables: state => state.globalVariables,
     suburbs: state => state.suburbs,
+    employeeAvailibility: state => state.employeeAvailibility,
 
     companyInfo: state => state.companyInfo,
     companyReviews: state => state.companyReviews,
@@ -280,6 +282,11 @@ export default createStore({
       state.suburbs = payload
     },
 
+    SET_EMPLOYEEAVALIBILITY(state, payload) {
+      state.employeeAvailibility = payload
+    },
+
+
     SET_USER_SOCIALS(state, payload) {
       state.userSocials = payload
     },
@@ -427,6 +434,19 @@ export default createStore({
         .then(res => {
 
           context.commit('SET_SUBURB', res.data)
+        })
+        .catch(err => {
+          toast.error(err.message, {
+            position: toast.POSITION.BOTTOM_RIGHT
+          })
+        })
+    },
+
+    getEmployeeAvailibility(context) {
+      axios.get(apiUrl + 'employeeAvailibility')
+        .then(res => {
+
+          context.commit('SET_EMPLOYEEAVALIBILITY', res.data)
         })
         .catch(err => {
           toast.error(err.message, {
@@ -601,6 +621,7 @@ export default createStore({
 
 
     updateProfile(context, payload) {
+      console.log(apiUrl + 'user/' + payload.id);
       axios.post(apiUrl + 'user/' + payload.id, payload, {
         headers: {
           authorization: 'Bearer ' + localStorage.getItem('token'),
@@ -622,6 +643,7 @@ export default createStore({
             position: toast.POSITION.BOTTOM_RIGHT,
           })
         })
+
     },
 
     passwordChange(context, payload) {
@@ -1986,18 +2008,35 @@ export default createStore({
         })
     },
 
-    searchSeeker(context, payload) {
-      axios.post(apiUrl + 'search-seeker', payload, {
-        headers: {
-          authorization: 'Bearer ' + localStorage.getItem('token'),
-        }
+    // searchSeeker(context, payload) {
+    //   axios.post(apiUrl + 'search-seeker', payload, {
+    //     headers: {
+    //       authorization: 'Bearer ' + localStorage.getItem('token'),
+    //     }
 
-      }).then(res => {
-        context.commit('SET_JOB_SEEKERS', res.data);
-      })
-        .catch(err => {
-          console.log(err);
+    //   }).then(res => {
+    //     context.commit('SET_JOB_SEEKERS', res.data);
+    //   })
+    //     .catch(err => {
+    //       console.log(err);
+    //     })
+    // },
+
+    searchSeeker({ commit }, payload) {
+      axios
+        .post(apiUrl + 'search-seeker', payload, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
         })
+        .then((res) => {
+          if (res && res.data) {
+            commit('SET_JOB_SEEKERS', res.data);
+          }
+        })
+        .catch((err) => {
+          console.error('Error fetching casual directory:', err);
+        });
     },
 
     getEmpdirectory({ commit }, payload) {

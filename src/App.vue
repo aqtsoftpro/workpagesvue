@@ -451,6 +451,11 @@
             </div>
         </div>
     </footer>
+    <!-- <div v-if="selectedSeekers.length > 0" class=" alert alert-info mb-4">
+                                <p>You have selected {{ selectedSeekers.length }} job seekers.</p>
+            </div>  -->
+    
+
 </template>
 <style>
 .blur {

@@ -1578,6 +1578,7 @@ import '@splidejs/vue-splide/css';
 
     },
     watch: {
+        
         globalVariables() {
             console.log(this.globalVariables._slider_img);
             this.slider_img = this.globalVariables._slider_img;
@@ -1617,11 +1618,9 @@ import '@splidejs/vue-splide/css';
         testimonials() {
             this.home_testimonials = this.testimonials
         },
-
         featuredCompanies() {
             this.featured_companies = this.featuredCompanies;
         },
-
 
 
     },

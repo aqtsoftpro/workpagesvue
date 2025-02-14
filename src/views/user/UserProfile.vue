@@ -139,6 +139,21 @@
 
                                     <div class="col-md-6">
                                         <div class="form-inner mb-25">
+                                            <label>Select Availibility</label>
+                                            <div class="input-area">
+                                                <img src="/assets/images/icon/qualification-2.svg" alt="">
+                                                <select class="form-select" v-model="user.availibility_id">
+                                                    <option value="">Select Availibility</option>
+                                                    <option v-for="availibility in employeeAvailibilityList" :value="availibility.id"
+                                                        :selected="user.availibility_id == availibility.id">{{ availibility.name }}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-inner mb-25">
                                             <label for="password2">Upload Resume</label>
                                             <div class="input-area">
                                                 <img src="/assets/images/icon/create-resume.svg" alt="" width="16">
@@ -156,6 +171,10 @@
                                             <textarea v-model="user.description"></textarea>
                                         </div>
                                     </div>
+
+
+
+
 
                                     <div class="col-lg-12">
                                         <div class="company-images-area mb-50">
@@ -186,7 +205,7 @@
                                             <h6>Casual Portal Visibility </h6>
                                             <div class="form-check form-switch mt-2">
                                                 <InputSwitch :pt="{ slider: 'my-switch-slider' }"
-                                                    v-model="user._new_casual_show" />
+                                                    v-model="user.casual_portal_visibility" />
                                             </div>
                                         </div>
                                     </div>
@@ -196,7 +215,7 @@
                                             <h6>Employee Directory Visibility </h6>
                                             <div class="form-check form-switch mt-2">
                                                 <InputSwitch :pt="{ slider: 'my-switch-slider' }"
-                                                    v-model="user.public_show" />
+                                                    v-model="user.employee_directory_visibility" />
                                             </div>
                                         </div>
                                     </div>
@@ -393,6 +412,7 @@
 </style>
 
 <script lang="ts">
+
 import { Options, Vue } from 'vue-class-component';
 import UserMenu from './UserMenu.vue';
 import { mapGetters } from 'vuex';
@@ -426,9 +446,10 @@ import moment from 'moment';
                 description: '',
                 address: '',
                 suburb_id: '',
+                availibility_id: '',
                 cv: '',
-                _new_casual_show: false,
-                public_show: false,
+                casual_portal_visibility: false,
+                employee_directory_visibility: false,
             },
             social: {
                 user_id: null,
@@ -457,6 +478,7 @@ import moment from 'moment';
             logoVisible: true,
             isLoading: false,
             subrubsList: [],
+            employeeAvailibilityList: [],
 
             documents: [
                 { id: 1, name: 'Work Rights' },
@@ -484,6 +506,7 @@ import moment from 'moment';
             'languages',
             'userSocials',
             'suburbs',
+            'employeeAvailibility',
             'userDetails'
         ])
     },
@@ -494,7 +517,6 @@ import moment from 'moment';
         changeQualification(event: any) {
             this.user.qualification_id = event.value
         },
-
         changeDesignation(event: any) {
             this.user.designation_id = event.value
         },
@@ -504,10 +526,15 @@ import moment from 'moment';
         changeSuburb(event: any) {
             this.user.suburb_id = event.value
         },
+        changeAvilibility(event: any) {
+            this.user.availibility_id = event.value
+        },
         async updateProfile() {
+ 
             this.isLoading = true;
             try {
                 this.user.dob = moment(this.user.dob).format('DD-MM-YYYY');
+                console.log(this.user);
                 await this.$store.dispatch('updateProfile', this.user);
                 window.setTimeout(() => {
                     this.isLoading = false
@@ -575,14 +602,17 @@ import moment from 'moment';
     mounted() {
         this.$store.dispatch('getCurrentUser')
         this.user = JSON.parse(this.currentUser)[0]
-        this.user._new_casual_show = this.user.userMeta?._new_casual_show == "1" ? true : false;
-        this.user.public_show = this.user.userMeta?.public_show == "1" ? true : false;
+        console.log(this.user.userMeta);
+        this.user.casual_portal_visibility = this.user.userMeta?.casual_portal_visibility == "1" ? true : false;
+
+        this.user.employee_directory_visibility = this.user.userMeta?.employee_directory_visibility == "1" ? true : false;
         this.social.user_id = this.user.id
         this.$store.dispatch('getDesignations', '')
         this.$store.dispatch('getQualifications', '')
         this.$store.dispatch('getLocations', '')
         this.$store.dispatch('getLanguages', '')
         this.$store.dispatch('getSuburb', '')
+        this.$store.dispatch('getEmployeeAvailibility', '')
         this.$store.dispatch('getUserSocials', this.user.id)
         this.$store.dispatch('getUserDetails', '')
 
@@ -604,10 +634,9 @@ import moment from 'moment';
             this.user = JSON.parse(this.currentUser)[0]
             this.user.current_job_location_id = JSON.parse(this.currentUser)[0].current_job_location_id ?? 2;
             this.user.location_id = JSON.parse(this.currentUser)[0].location_id ?? 2;
-            this.user._new_casual_show = this.user.userMeta?._new_casual_show == "1" ? true : false;
-            this.user.public_show = this.user.userMeta?.public_show == "1" ? true : false;
+            this.user.casual_portal_visibility = this.user.userMeta?.casual_portal_visibility == "1" ? true : false;
+            this.user.employee_directory_visibility = this.user.userMeta?.employee_directory_visibility == "1" ? true : false;
         },
-
         userDetails() {
             this.otherDetail.active_job = this.userDetails?.active_job;
             this.otherDetail.location_id = this.userDetails?.location_id ?? 2;
@@ -617,16 +646,18 @@ import moment from 'moment';
             this.otherDetail.intro_video = this.userDetails?.intro_video;
         },
         suburbs() {
+
             this.subrubsList = this.suburbs;
+        },
+        employeeAvailibility() {
+            this.employeeAvailibilityList = this.employeeAvailibility;
         },
         locations() {
             this.locationsOptions = this.locations
         },
-
         designations() {
             this.designationsOptions = this.designations
         },
-
         qualifications() {
             this.degreeGroups = this.qualifications
             this.qualificationsOptions = this.qualifications

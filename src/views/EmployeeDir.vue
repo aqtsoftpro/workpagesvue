@@ -25,11 +25,30 @@
                             <div class="table-filter-area mb-30">
                                 <form @submit.prevent="filterSeeker">
                                     <div class="form-wrap style-2 style-3">
-                                        <div class="form-inner">
+                                        <div class="form-inner jobseeker-filter-1">
                                             <div class="input-area">
                                                 <img src="assets/images/icon/search-2.svg" alt="">
-                                                <input type="text" v-model="searchQuery" placeholder="Search">
+                                                <input type="text" v-model="searchQuery.keyword" placeholder="Search">
                                             </div>
+                                        </div>
+                                        <div class="form-inner jobseeker-filter-1">
+                                            <select class="form-select" v-model="searchQuery.availibility_id">
+                                                <option value="">Select Availibility</option>
+                                                <option v-for="availibility in employeeAvailibilityList"
+                                                    :value="availibility.id"
+                                                    :selected="searchQuery.availibility_id == availibility.id">{{
+                                                        availibility.name }}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="form-inner jobseeker-filter-1">
+                                            <select class="form-select" v-model="searchQuery.location_id">
+                                                <option value="">Select Location</option>
+                                                <option v-for="location in locationsOptions" :value="location.id"
+                                                    :selected="searchQuery.location_id == location.id">{{ location.name
+                                                    }}
+                                                </option>
+                                            </select>
                                         </div>
                                         <button type="submit" class="primry-btn-1">Search</button>
                                     </div>
@@ -38,16 +57,38 @@
                         </div>
 
 
+
                         <div class="job-listing-wrrap">
-                            <div v-if="!showForm && !mailFormShow" class="row ">
+
+                            <div v-if="bulkContainer" class=" p-3 mb-3 contact-seeker-panel container">
+                                <div class="row">
+                                    <div class="col-lg-6 d-flex align-items-center">
+                                        <button class="primry-btn-2 p-1 px-3 me-2 d-inline-block"
+                                            @click="bulkSelection()">Bulk Selection</button>
+                                    </div>
+                                    <div v-if="selectedSeekers.length > 0" class="col-lg-6 d-flex justify-content-end">
+                                        <button class="primry-btn-2 p-1 px-3 me-2 d-inline-block"
+                                            @click="openForm(selectedSeekersInfo)">Send Sms</button>
+                                        <button class="primry-btn-2 p-1 px-3 d-inline-block"
+                                            @click="openMailForm(selectedSeekersInfo)">Send Email</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div v-if="!showForm && !mailFormShow" class="row">
                                 <div v-if="pageLoading" class="p-5">
                                     <div class="d-flex justify-content-center py-5">
                                         <ProgressSpinner />
                                     </div>
                                 </div>
                                 <div v-else v-for="seeker in jobSeekers" :key="seeker.id" class="col-lg-12 mb-30">
-                                    <div class="job-listing-card">
-                                        <div class="job-top">
+
+                                    <div class="job-listing-card" :class="{
+                                        'selected-seekers': selectedSeekers.includes(seeker.id),
+                                        'contact-seeker-card': bulkSelectionVar
+                                    }" @click="toggleSeekerSelection(seeker, seeker.id, bulkSelectionVar)">
+
+                                        <div class="job-top jon-top-mr-b">
                                             <div class="job-list-content">
                                                 <div class="company-area">
                                                     <div class="logo">
@@ -66,39 +107,40 @@
                                                 <div class="job-discription">
                                                     <ul>
                                                         <li>
+                                                            <p><span class="title">Designation:</span> {{
+                                                                seeker.designtion?.name ?? 'No Designation' }}</p>
+                                                        </li>
+                                                        <li>
                                                             <p><span class="title">Location:</span> {{
                                                                 seeker.job_location?.name ?? 'No Location' }}</p>
                                                         </li>
                                                         <li>
-                                                            <p><span class="title">Qualification:</span>{{
+                                                            <p><span class="title">Qualification:</span> {{
                                                                 seeker.qualification?.name ?? 'No Qualification' }}</p>
                                                         </li>
+                                                        <li v-if="seeker.description">
+                                                            <p><span class="title">Summery:</span> {{
+                                                                seeker.description.length > 100 ?
+                                                                    seeker.description.substring(0, 75) + '...' :
+                                                                    seeker.description }}</p>
+                                                        </li>
                                                     </ul>
-                                                </div>
-                                            </div>
-                                            <span>Total reviews: ({{ seeker.reviews.length }})</span>
-                                        </div>
-                                        <div class="job-type-apply">
-                                            <div class="job-type">
-                                                <!-- <div class="primry-btn-2 p-1 px-3">{{ seeker.designation ?? "No Designation" }}</div> -->
-                                                <button class="primry-btn-2 p-1 px-3" @click="openForm(seeker)">Send
-                                                    Sms</button>
-                                                <button class="primry-btn-2 p-1 px-3" @click="openMailForm(seeker)">Send
-                                                    Email</button>
-                                            </div>
 
-                                            <div class="apply-btn">
-                                                <div class="create-profile-btn">
-                                                    <!-- <button class="primry-btn-2 p-1 px-3 mb-2 me-0" @click="openMailForm(seeker)">Send Email</button> -->
-                                                    <router-link :to="'job-seeker/' + seeker.id"
-                                                        class="router-link-active active primry-btn-1 hover-white user-btn-custom py-2 px-3">
-                                                        <!-- <span><img src="assets/images/icon/apply-ellipse.svg" alt=""></span> -->
-                                                        Detail Job Seeker
-                                                    </router-link>
+
                                                 </div>
                                             </div>
+                                            <span class="d-flex flex-column justify-content-between gap-3">Total
+                                                reviews: ({{ seeker.reviews.length }})
+                                                <router-link :to="'job-seeker/' + seeker.id"
+                                                    class="router-link-active active primry-btn-1 hover-white user-btn-custom py-2 px-3">
+                                                    <!-- <span><img src="assets/images/icon/apply-ellipse.svg" alt=""></span> -->
+                                                    Detail Job Seeker
+                                                </router-link>
+                                            </span>
                                         </div>
+
                                     </div>
+
                                 </div>
                                 <div class="col-lg-12 d-flex justify-content-center">
                                     <Paginator v-model:first="currentPage" :rows="rowsPerPage"
@@ -116,7 +158,7 @@
                                         </div>
                                         <form class="profile-form">
                                             <div class="section-title2">
-                                                <h5>To: {{ smsForm.full_name }} Phone: {{ smsForm.last_four ?? "Not exists" }}</h5>
+                                                <h5>To: {{ smsForm.full_name }} </h5>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12">
@@ -150,6 +192,8 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- SMS & EMAIL FORM -->
                             <div v-if="mailFormShow" class="row">
                                 <div class="col-12">
                                     <div class="form-wrapper">
@@ -200,13 +244,21 @@
                                     </div>
                                 </div>
                             </div>
+
+
+
                         </div>
+
+
+
+
                     </div>
                 </div>
             </div>
         </div>
         <!-- ========== Job Listing e nd============= -->
     </div>
+
 </template>
 
 <style scoped>
@@ -239,10 +291,10 @@ import { mapGetters } from 'vuex';
             },
 
             mailForm: {
-                user_id: '',
+                user_id: [],
                 subject: '',
                 body: '',
-                full_name: '',
+                full_name: [],
             },
             showForm: false,
             mailFormShow: false,
@@ -254,7 +306,18 @@ import { mapGetters } from 'vuex';
             pageLoading: false,
             bgImage: '',
             textColor: '',
-            searchQuery: '',
+            searchQuery: {
+                keyword: '',
+                availibility_id: '',
+                location_id: '',
+            },
+            search_availibility: [],
+            employeeAvailibilityList: [],
+            locationsOptions: [],
+            selectedSeekers: [],
+            selectedSeekersInfo: [],
+            bulkSelectionVar: false,
+            bulkContainer: true,
         }
     },
     methods: {
@@ -269,8 +332,12 @@ import { mapGetters } from 'vuex';
 
             this.pageLoading = true; // Show loader
             const pageId = event.page;
+
+            const formData = new FormData();
+            formData.append('pageId', pageId);
+ 
             try {
-                await this.$store.dispatch('getEmpdirectory', { 'pageId': pageId, 'filter': this.searchQuery });
+                await this.$store.dispatch('getEmpdirectory', formData);
                 window.setTimeout(() => {
                     this.pageLoading = false; // Show loader
                 }, 1000);
@@ -280,14 +347,40 @@ import { mapGetters } from 'vuex';
             }
 
         },
+        toggleSeekerSelection(seeker: any, seekerId: any, bulkSelectionVar: any) {
 
-        openForm(seeker: any) {
-            this.smsForm.user_id = seeker.id;
-            this.smsForm.full_name = seeker.name;
-            this.smsForm.receiver_number = seeker.phone;
-            this.smsForm.last_four = seeker.phone?.toString().slice(-4) ?? null;
+            const index = this.selectedSeekers.indexOf(seekerId);
+            if (bulkSelectionVar) {
+                if (index === -1) {
+                    this.selectedSeekers.push(seekerId);
+                    this.selectedSeekersInfo.push({
+                        id: seeker.id,
+                        name: seeker.name,
+                        phone: seeker.phone ?? 'N/A',
+                        email: seeker.email ?? 'N/A',
+                    });
+                } else {
+                    this.selectedSeekers.splice(index, 1);
+                    this.selectedSeekersInfo.splice(index, 1);
+                }
+            }
+        },
+
+        bulkSelection() {
+
+            this.bulkSelectionVar = true;
+
+        },
+
+        openForm(seekers: any) {
+            console.log(seekers);
+            this.smsForm.user_id = seekers.map((seeker: { id: number }) => seeker.id).join(', ');
+            this.smsForm.full_name = seekers.map((seeker: { name: string; phone: string }, index: number) => `${seeker.name} (${seeker.phone.toString().slice(-4) ?? 'N/A'})`).join(', ');
+            this.smsForm.receiver_number = seekers.map((seeker: { phone: string }) => seeker.phone).join(', ');
+            this.smsForm.last_four = true;
             this.showForm = true;
             window.scrollTo(0, 0);
+            this.bulkContainer = false;
         },
         closeForm() {
             this.smsForm.user_id = '';
@@ -296,20 +389,25 @@ import { mapGetters } from 'vuex';
             this.smsForm.receiver_number = '';
             this.smsForm.full_name = '';
             this.showForm = false;
+            this.bulkContainer = true;
         },
-        openMailForm(seeker: any) {
-            this.mailForm.user_id = seeker.id;
-            this.mailForm.full_name = seeker.name;
+        openMailForm(seekers: any) {
+            this.mailForm.user_id = seekers.map((seeker: { id: number }) => seeker.id).join(', ');
+            this.mailForm.full_name = seekers.map((seeker: { name: string }) => seeker.name).join(', ');
             this.mailFormShow = true;
             window.scrollTo(0, 0);
+            this.bulkContainer = false;
+
         },
         closeMailForm() {
-            this.mailForm.user_id = '';
+            this.mailForm.user_id = [];
             this.mailForm.subject = '';
             this.mailForm.body = '';
-            this.mailForm.full_name = '';
+            this.mailForm.full_name = [];
             this.mailFormShow = false;
+            this.bulkContainer = true;
         },
+
         async sendMessage() {
             this.isLoading = true;
             await this.$store.dispatch('sendMessage', this.smsForm);
@@ -329,41 +427,57 @@ import { mapGetters } from 'vuex';
         },
 
         async filterSeeker() {
-            await this.$store.dispatch('getEmpdirectory', { 'filter': this.searchQuery });
+            const formData = new FormData();
+
+            formData.append('keyword', this.searchQuery.keyword);
+            formData.append('availibility_id', this.searchQuery.availibility_id);
+            formData.append('location_id', this.searchQuery.location_id);
+
+            await this.$store.dispatch('getEmpdirectory', formData);
         }
     },
     computed: {
+
         ...mapGetters([
             'searchResult',
             'employeeDirectory',
             'loggedIn',
-            'globalVariables'
+            'globalVariables',
+            'employeeAvailibility',
+            'locations',
         ]),
 
     },
     mounted() {
+
         let query = this.$route.query
-        console.log(query);
 
         this.$store.dispatch('searchJobs', query);
-        this.$store.dispatch('getEmpdirectory', { 'filter': this.searchQuery });
+        this.$store.dispatch('getEmpdirectory', this.searchQuery);
         this.$store.dispatch('getGlobalVariables');
-
+        this.$store.dispatch('getEmployeeAvailibility', '');
+        this.$store.dispatch('getLocations', '');
     },
     watch: {
+
         searchResult() {
-            console.log(this.searchResult);
             this.jobs = this.searchResult
         },
         employeeDirectory() {
             this.jobSeekers = this.employeeDirectory.Listing,
                 this.totalPages = this.employeeDirectory.count;
         },
-
         globalVariables() {
             this.bgImage = 'background-image: url(' + this.globalVariables._banner_image + ')';
             this.textColor = 'color: ' + this.globalVariables._banner_text_color + ' !important;';
-        }
+        },
+        employeeAvailibility() {
+            this.employeeAvailibilityList = this.employeeAvailibility;
+        },
+        locations() {
+            this.locationsOptions = this.locations
+        },
+
     }
 })
 export default class EmployeeDir extends Vue { }
