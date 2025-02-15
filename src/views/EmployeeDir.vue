@@ -21,7 +21,8 @@
                 <div class="row g-lg-4 gy-5">
 
                     <div class="col-lg-12 order-lg-2 order-1">
-                        <div class="table-wrapper2">
+                        <div v-if="filterVisible" class="table-wrapper2">
+
                             <div class="table-filter-area mb-30">
                                 <form @submit.prevent="filterSeeker">
                                     <div class="form-wrap style-2 style-3">
@@ -90,19 +91,27 @@
 
                                         <div class="job-top jon-top-mr-b">
                                             <div class="job-list-content">
-                                                <div class="company-area">
-                                                    <div class="logo">
-                                                        <img :src="(seeker.photo) ? seeker.photo : 'https://loremflickr.com/52/52/logo,organisation/all'"
-                                                            alt="">
-                                                    </div>
-                                                    <div class="company-details">
-                                                        <div class="name-location">
-                                                            <router-link :to="'job-seeker/' + seeker.id">
-                                                                <h5>{{ seeker.name }}</h5>
-                                                            </router-link>
-                                                            <!-- <div>{{ seeker.description }}</div> -->
+                                                <div class="company-area d-flex flex-column justify-content-between gap-3">
+                                                    <div>
+                                                        <div class="logo">
+                                                            <img :src="(seeker.photo) ? seeker.photo : 'https://loremflickr.com/52/52/logo,organisation/all'"
+                                                                alt="">
+                                                        </div>
+                                                        <div class="company-details">
+                                                            <div class="name-location">
+                                                                <router-link :to="'job-seeker/' + seeker.id">
+                                                                    <h5>{{ seeker.name }}</h5>
+                                                                </router-link>
+                                                                <!-- <div>{{ seeker.description }}</div> -->
+                                                            </div>
                                                         </div>
                                                     </div>
+
+                                                    <div>
+                                                        <button class="primry-btn-2 p-1 px-3 me-2 d-inline-block" @click="openForm(seeker)">Send Sms</button>
+                                                        <button class="primry-btn-2 p-1 px-3 d-inline-block" @click="openMailForm(seeker)">Send Email</button>
+                                                    </div>
+
                                                 </div>
                                                 <div class="job-discription">
                                                     <ul>
@@ -318,6 +327,7 @@ import { mapGetters } from 'vuex';
             selectedSeekersInfo: [],
             bulkSelectionVar: false,
             bulkContainer: true,
+            filterVisible: true,
         }
     },
     methods: {
@@ -373,14 +383,21 @@ import { mapGetters } from 'vuex';
         },
 
         openForm(seekers: any) {
-            console.log(seekers);
-            this.smsForm.user_id = seekers.map((seeker: { id: number }) => seeker.id).join(', ');
-            this.smsForm.full_name = seekers.map((seeker: { name: string; phone: string }, index: number) => `${seeker.name} (${seeker.phone.toString().slice(-4) ?? 'N/A'})`).join(', ');
-            this.smsForm.receiver_number = seekers.map((seeker: { phone: string }) => seeker.phone).join(', ');
+            if (typeof seekers === 'object' && seekers !== null && !Array.isArray(seekers)) {
+                this.smsForm.user_id = seekers.id + ",";
+                this.smsForm.full_name = seekers.name + " (" + (seekers.phone ? seekers.phone.toString().slice(-4) : 'N/A') + ")";
+                this.smsForm.receiver_number = seekers.phone + ",";
+            }
+            else{
+                this.smsForm.user_id = seekers.map((seeker: { id: number }) => seeker.id).join(', ');
+                this.smsForm.full_name = seekers.map((seeker: { name: string; phone: string }, index: number) => `${seeker.name} (${seeker.phone.toString().slice(-4) ?? 'N/A'})`).join(', ');
+                this.smsForm.receiver_number = seekers.map((seeker: { phone: string }) => seeker.phone).join(', ');
+            }
             this.smsForm.last_four = true;
             this.showForm = true;
             window.scrollTo(0, 0);
             this.bulkContainer = false;
+            this.filterVisible = false;
         },
         closeForm() {
             this.smsForm.user_id = '';
@@ -390,13 +407,22 @@ import { mapGetters } from 'vuex';
             this.smsForm.full_name = '';
             this.showForm = false;
             this.bulkContainer = true;
+            this.filterVisible = true;
         },
         openMailForm(seekers: any) {
-            this.mailForm.user_id = seekers.map((seeker: { id: number }) => seeker.id).join(', ');
-            this.mailForm.full_name = seekers.map((seeker: { name: string }) => seeker.name).join(', ');
+            if (typeof seekers === 'object' && seekers !== null && !Array.isArray(seekers)) {
+                this.mailForm.user_id = seekers.id + ",";
+                this.mailForm.full_name = seekers.name + ",";
+            }
+            else{
+                this.mailForm.user_id = seekers.map((seeker: { id: number }) => seeker.id).join(', ');
+                this.mailForm.full_name = seekers.map((seeker: { name: string }) => seeker.name).join(', ');
+            }
+
             this.mailFormShow = true;
             window.scrollTo(0, 0);
             this.bulkContainer = false;
+            this.filterVisible = false;
 
         },
         closeMailForm() {
@@ -406,9 +432,18 @@ import { mapGetters } from 'vuex';
             this.mailForm.full_name = [];
             this.mailFormShow = false;
             this.bulkContainer = true;
+            this.filterVisible = true;
         },
 
         async sendMessage() {
+
+            const userConfirmed = window.confirm("Are you sure you want to send this sms?");
+    
+            if (!userConfirmed) {
+                return;
+            }
+
+            this.smsForm.message ='';
             this.isLoading = true;
             await this.$store.dispatch('sendMessage', this.smsForm);
             window.setTimeout(() => {
@@ -418,6 +453,17 @@ import { mapGetters } from 'vuex';
         },
 
         async sendEmail() {
+
+            const userConfirmed = window.confirm("Are you sure you want to send this email?");
+    
+            if (!userConfirmed) {
+                return;
+            }
+
+            this.isLoading = true;
+
+            this.mailForm.subject = '';
+            this.mailForm.body = '';
             this.isLoading = true;
             await this.$store.dispatch('sendEmail', this.mailForm);
             window.setTimeout(() => {
@@ -475,6 +521,7 @@ import { mapGetters } from 'vuex';
             this.employeeAvailibilityList = this.employeeAvailibility;
         },
         locations() {
+
             this.locationsOptions = this.locations
         },
 
