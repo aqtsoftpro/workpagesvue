@@ -634,6 +634,7 @@ Vue.prototype.$globalVar = "Shared Data";
             this.role = this.user.roles[0].name
             console.log(this.role);
             this.permission = this.user.sub_accesses ? this.user.sub_accesses[0] : null;
+            console.log(this.permission);
         }
         this.$store.dispatch('getGlobalVariables');
         // this.$store.dispatch('getTopCompanies');
