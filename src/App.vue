@@ -670,8 +670,8 @@ Vue.prototype.$globalVar = "Shared Data";
                 this.user = JSON.parse(this.currentUser)[0]
                 this.role = this.user.roles[0].name
                 this.permission = this.user.sub_accesses ? this.user.sub_accesses[0] : null;
-                console.log(this.role);
-                console.log(this.permission);
+                // console.log(this.role);
+                // console.log(this.permission);
             }
         },
     }

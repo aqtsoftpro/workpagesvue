@@ -27597,3 +27597,23 @@ td[data-label="Status"] {
   border-radius: 0 !important;
 }
 .jon-top-mr-b { margin-bottom: 0 !important;}
+
+
+.wp-bulk-selection {    }
+.wp-bulk-option { text-align: right;   }
+
+@media screen and (max-width: 768px) {
+
+  .employer-search-reponsive-filter {
+      flex-direction: column; /* Stack elements vertically */
+      padding: 10px;
+      height: auto !important;
+  }
+  .jobseeker-filter-1 { margin-bottom: 10px; }
+  .wp-bulk-selection { text-align: center; margin: 5px 0;    }
+  .wp-bulk-option { text-align: center; margin: 5px 0;   }
+  .jon-top-mr-b { flex-direction: column; }
+  
+  
+  
+}

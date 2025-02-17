@@ -24,7 +24,7 @@
                         <div v-if="filterVisible" class="table-wrapper2">
                             <div class="table-filter-area mb-30">
                                 <form @submit.prevent="filterSeeker">
-                                    <div class="form-wrap style-2 style-3">
+                                    <div class="form-wrap style-2 style-3 employer-search-reponsive-filter">
                                         <div class="form-inner jobseeker-filter-1">
                                             <div class="input-area">
                                                 <img src="assets/images/icon/search-2.svg" alt="">
@@ -61,11 +61,11 @@
 
                             <div v-if="bulkContainer" class="p-3 mb-3 contact-seeker-panel container">
                                 <div class="row">
-                                    <div class="col-lg-6 d-flex align-items-center">
+                                    <div class="col-lg-6 wp-bulk-selection">
                                         <button class="primry-btn-2 p-1 px-3 me-2 d-inline-block"
                                             @click="bulkSelection()">Bulk Selection</button>
                                     </div>
-                                    <div v-if="selectedSeekers.length > 0" class="col-lg-6 d-flex justify-content-end">
+                                    <div v-if="selectedSeekers.length > 0" class="col-lg-6 wp-bulk-option">
                                         <button class="primry-btn-2 p-1 px-3 me-2 d-inline-block"
                                             @click="openForm(selectedSeekersInfo)">Send Sms</button>
                                         <button class="primry-btn-2 p-1 px-3 d-inline-block"
