@@ -671,6 +671,7 @@ Vue.prototype.$globalVar = "Shared Data";
                 this.role = this.user.roles[0].name
                 this.permission = this.user.sub_accesses ? this.user.sub_accesses[0] : null;
                 console.log(this.role);
+                console.log(this.permission);
             }
         },
     }
