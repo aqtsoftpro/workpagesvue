@@ -51,7 +51,7 @@ export default createStore({
     companyApplications: [],
     globalVariables: [],
     suburbs: [],
-    employeeAvailibility: [],
+    employeeAvailability: [],
     companyInfo: null,
     companyReviews: null,
     homeStats: [],
@@ -124,7 +124,7 @@ export default createStore({
     companyApplications: state => state.companyApplications,
     globalVariables: state => state.globalVariables,
     suburbs: state => state.suburbs,
-    employeeAvailibility: state => state.employeeAvailibility,
+    employeeAvailability: state => state.employeeAvailability,
 
     companyInfo: state => state.companyInfo,
     companyReviews: state => state.companyReviews,
@@ -282,8 +282,8 @@ export default createStore({
       state.suburbs = payload
     },
 
-    SET_EMPLOYEEAVALIBILITY(state, payload) {
-      state.employeeAvailibility = payload
+    SET_EMPLOYEE_AVAILABILITY(state, payload) {
+      state.employeeAvailability = payload
     },
 
 
@@ -442,11 +442,11 @@ export default createStore({
         })
     },
 
-    getEmployeeAvailibility(context) {
-      axios.get(apiUrl + 'employeeAvailibility')
+    getEmployeeAvailability(context) {
+      axios.get(apiUrl + 'employeeAvailability')
         .then(res => {
 
-          context.commit('SET_EMPLOYEEAVALIBILITY', res.data)
+          context.commit('SET_EMPLOYEE_AVAILABILITY', res.data)
         })
         .catch(err => {
           toast.error(err.message, {

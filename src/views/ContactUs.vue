@@ -75,7 +75,7 @@
                             <h4>Need Any Help? Contact Us</h4>
                             <p>
                                 We are commited to providing you with the support you need whether you have questions,
-                                need assistance, or want more inforamtion about our services, our team is here to help.
+                                need assistance, or want more information about our services, our team is here to help.
                             </p>
                             <p>Feel free to us the contact details below to get in touch with us directly:</p>
                             <!-- <div class="support">
@@ -105,11 +105,11 @@
                                     <li><span class="fw-bold"> Customer Service Team:</span>
                                         Available from <span>9:00 AM to 5:00PM,</span> Monday to Friday. We are ready to
                                         address any queries related to your account,
-                                        job posting and general inquiries during these ours.
+                                        job posting and general enquiries during these hours.
                                     </li>
                                     <li>
                                         <span class="fw-bold">Recruitment Hub:</span>
-                                        Provied Extended coverage <span>24 hours a day, 6 days a week</span> to insure
+                                        Provided extended coverage <span>24 hours a day, 6 days a week</span> to ensure
                                         your receive timely support for urgent recruitment related matters.
                                     </li>
                                 </ul>
@@ -118,7 +118,7 @@
                                 <!-- <span>N:B</span>
                                 <p>Our Customer Service team are available from 9am to 5pm, Monday to Friday. Our
                                     Recruitment Hub provides coverage 24 hours a day, 6 days per week.</p> -->
-                                <p>We aim to make your experience with WORKPAGES seamless and hassle-free if you need
+                                <p>We aim to make your experience with WORKPAGES seamless and hassle-free.<br> if you need
                                     further contact details, such as our email or office address, please visit the
                                     relevant section on our website. </p>
                             </div>

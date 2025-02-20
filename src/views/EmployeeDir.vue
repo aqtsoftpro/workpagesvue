@@ -33,12 +33,12 @@
                                             </div>
                                         </div>
                                         <div class="form-inner jobseeker-filter-1">
-                                            <select class="form-select" v-model="searchQuery.availibility_id">
-                                                <option value="">Select Availibility</option>
-                                                <option v-for="availibility in employeeAvailibilityList"
-                                                    :value="availibility.id"
-                                                    :selected="searchQuery.availibility_id == availibility.id">{{
-                                                        availibility.name }}
+                                            <select class="form-select" v-model="searchQuery.availability_id">
+                                                <option value="">Select Availability</option>
+                                                <option v-for="availability in employeeAvailabilityList"
+                                                    :value="availability.id"
+                                                    :selected="searchQuery.availability_id == availability.id">{{
+                                                        availability.name }}
                                                 </option>
                                             </select>
                                         </div>
@@ -128,7 +128,7 @@
                                                                 seeker.qualification?.name ?? 'No Qualification' }}</p>
                                                         </li>
                                                         <li v-if="seeker.description">
-                                                            <p><span class="title">Summery:</span> {{
+                                                            <p><span class="title">Summary:</span> {{
                                                                 seeker.description.length > 100 ?
                                                                     seeker.description.substring(0, 75) + '...' :
                                                                     seeker.description }}</p>
@@ -317,11 +317,11 @@ import { mapGetters } from 'vuex';
             textColor: '',
             searchQuery: {
                 keyword: '',
-                availibility_id: '',
+                availability_id: '',
                 location_id: '',
             },
-            search_availibility: [],
-            employeeAvailibilityList: [],
+            search_availability: [],
+            employeeAvailabilityList: [],
             locationsOptions: [],
             selectedSeekers: [],
             selectedSeekersInfo: [],
@@ -476,7 +476,7 @@ import { mapGetters } from 'vuex';
             const formData = new FormData();
 
             formData.append('keyword', this.searchQuery.keyword);
-            formData.append('availibility_id', this.searchQuery.availibility_id);
+            formData.append('availability_id', this.searchQuery.availability_id);
             formData.append('location_id', this.searchQuery.location_id);
 
             await this.$store.dispatch('getEmpdirectory', formData);
@@ -489,7 +489,7 @@ import { mapGetters } from 'vuex';
             'employeeDirectory',
             'loggedIn',
             'globalVariables',
-            'employeeAvailibility',
+            'employeeAvailability',
             'locations',
         ]),
 
@@ -501,7 +501,7 @@ import { mapGetters } from 'vuex';
         this.$store.dispatch('searchJobs', query);
         this.$store.dispatch('getEmpdirectory', this.searchQuery);
         this.$store.dispatch('getGlobalVariables');
-        this.$store.dispatch('getEmployeeAvailibility', '');
+        this.$store.dispatch('getEmployeeAvailability', '');
         this.$store.dispatch('getLocations', '');
     },
     watch: {
@@ -517,8 +517,8 @@ import { mapGetters } from 'vuex';
             this.bgImage = 'background-image: url(' + this.globalVariables._banner_image + ')';
             this.textColor = 'color: ' + this.globalVariables._banner_text_color + ' !important;';
         },
-        employeeAvailibility() {
-            this.employeeAvailibilityList = this.employeeAvailibility;
+        employeeAvailability() {
+            this.employeeAvailabilityList = this.employeeAvailability;
         },
         locations() {
 
