@@ -27588,8 +27588,15 @@ td[data-label="Status"] {
 }
 
 .selected-seekers {
-  background-color: rgb(0 63 136 / 10%);
+  background-color: #010536;
+
 }
+.selected-seekers ul li p { color:#ffffff !important;}
+.selected-seekers ul li span { color:#ffffff !important;}
+.selected-seekers h5 { color:#ffffff !important;}
+.selected-seekers span { color:#ffffff !important;}
+.selected-seekers button.primry-btn-2 { background-color: #ffff00 !important; color:#000 !important; }
+
 .contact-seeker-card { cursor: pointer; border:1px solid #00509d; }
 .contact-seeker-panel { background-color: #EFF3F2; }
 
