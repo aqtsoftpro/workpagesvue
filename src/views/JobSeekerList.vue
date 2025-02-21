@@ -369,8 +369,12 @@ import { mapGetters } from 'vuex';
 
         bulkSelection() {
 
-            this.bulkSelectionVar = true;
-            console.log('bulk');
+            this.bulkSelectionVar = !this.bulkSelectionVar;
+            console.log(this.bulkSelectionVar);
+            if(!this.bulkSelectionVar)
+                {
+                    this.selectedSeekers = [];
+                }
 
         },
 
@@ -436,6 +440,7 @@ import { mapGetters } from 'vuex';
             await this.$store.dispatch('sendMessage', this.smsForm);
             window.setTimeout(() => {
                 this.isLoading = false;
+                this.smsForm.message ='';
                 this.closeForm;
             }, 3000);
         },
@@ -455,6 +460,8 @@ import { mapGetters } from 'vuex';
             await this.$store.dispatch('sendEmail', this.mailForm);
             window.setTimeout(() => {
                 this.isLoading = false;
+                this.mailForm.subject = '';
+                this.mailForm.body = '';
                 this.closeMailForm;
             }, 6000);
         },

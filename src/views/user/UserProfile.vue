@@ -139,13 +139,13 @@
 
                                     <div class="col-md-6">
                                         <div class="form-inner mb-25">
-                                            <label>Select Availibility</label>
+                                            <label>Select Availability</label>
                                             <div class="input-area">
                                                 <img src="/assets/images/icon/qualification-2.svg" alt="">
-                                                <select class="form-select" v-model="user.availibility_id">
-                                                    <option value="">Select Availibility</option>
-                                                    <option v-for="availibility in employeeAvailibilityList" :value="availibility.id"
-                                                        :selected="user.availibility_id == availibility.id">{{ availibility.name }}
+                                                <select class="form-select" v-model="user.availability_id">
+                                                    <option value="">Select Availability</option>
+                                                    <option v-for="availability in employeeAvailabilityList" :value="availability.id"
+                                                        :selected="user.availability_id == availability.id">{{ availability.name }}
                                                     </option>
                                                 </select>
                                             </div>
@@ -201,24 +201,36 @@
 
 
                                     <div class="col-md-12">
-                                        <div class="d-flex justify-content-between align-items-center ">
-                                            <h6>Casual Portal Visibility </h6>
-                                            <div class="form-check form-switch mt-2">
-                                                <InputSwitch :pt="{ slider: 'my-switch-slider' }"
-                                                    v-model="user.casual_portal_visibility" />
-                                            </div>
-                                        </div>
-                                    </div>
+    <div class="d-flex justify-content-between align-items-center">
+      <h6>Casual Portal Visibility</h6>
+      <div class="form-check form-switch mt-2">
+        <div class="visibility-switch-container" :class="{ disabled: visibilityIsDisabled }">
+          <span class="visibility-status-label">{{ user.casual_portal_visibility ? "Visible" : "Not Visible" }}</span>
+          <InputSwitch 
+            v-model="user.casual_portal_visibility"
+         
+            :pt="{ slider: 'my-switch-slider' }"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
 
-                                    <div class="col-md-12 mb-5">
-                                        <div class="d-flex justify-content-between align-items-center ">
-                                            <h6>Employee Directory Visibility </h6>
-                                            <div class="form-check form-switch mt-2">
-                                                <InputSwitch :pt="{ slider: 'my-switch-slider' }"
-                                                    v-model="user.employee_directory_visibility" />
-                                            </div>
-                                        </div>
-                                    </div>
+  <div class="col-md-12 mb-5">
+    <div class="d-flex justify-content-between align-items-center">
+      <h6>Employee Directory Visibility</h6>
+      <div class="form-check form-switch mt-2">
+        <div class="visibility-switch-container" :class="{ disabled: visibilityIsDisabled }">
+          <span class="visibility-status-label">{{ user.employee_directory_visibility ? "Visible" : "Not Visible" }}</span>
+          <InputSwitch 
+            v-model="user.employee_directory_visibility"
+     
+            :pt="{ slider: 'my-switch-slider' }"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
 
                                     <div class="col-md-12">
                                         <div class="form-inner">
@@ -446,7 +458,7 @@ import moment from 'moment';
                 description: '',
                 address: '',
                 suburb_id: '',
-                availibility_id: '',
+                availability_id: '',
                 cv: '',
                 casual_portal_visibility: false,
                 employee_directory_visibility: false,
@@ -478,7 +490,7 @@ import moment from 'moment';
             logoVisible: true,
             isLoading: false,
             subrubsList: [],
-            employeeAvailibilityList: [],
+            employeeAvailabilityList: [],
 
             documents: [
                 { id: 1, name: 'Work Rights' },
@@ -492,6 +504,7 @@ import moment from 'moment';
                 detail: '',
                 file_path: ''
             },
+            visibilityIsDisabled: false
         }
     },
     created() {
@@ -506,7 +519,7 @@ import moment from 'moment';
             'languages',
             'userSocials',
             'suburbs',
-            'employeeAvailibility',
+            'employeeAvailability',
             'userDetails'
         ])
     },
@@ -527,7 +540,7 @@ import moment from 'moment';
             this.user.suburb_id = event.value
         },
         changeAvilibility(event: any) {
-            this.user.availibility_id = event.value
+            this.user.availability_id = event.value
         },
         async updateProfile() {
  
@@ -612,7 +625,7 @@ import moment from 'moment';
         this.$store.dispatch('getLocations', '')
         this.$store.dispatch('getLanguages', '')
         this.$store.dispatch('getSuburb', '')
-        this.$store.dispatch('getEmployeeAvailibility', '')
+        this.$store.dispatch('getEmployeeAvailability', '')
         this.$store.dispatch('getUserSocials', this.user.id)
         this.$store.dispatch('getUserDetails', '')
 
@@ -649,8 +662,8 @@ import moment from 'moment';
 
             this.subrubsList = this.suburbs;
         },
-        employeeAvailibility() {
-            this.employeeAvailibilityList = this.employeeAvailibility;
+        employeeAvailability() {
+            this.employeeAvailabilityList = this.employeeAvailability;
         },
         locations() {
             this.locationsOptions = this.locations

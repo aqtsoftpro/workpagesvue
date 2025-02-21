@@ -55,6 +55,7 @@
                                     </div>
                                 </form>
                             </div>
+
                         </div>
 
 
@@ -65,7 +66,8 @@
                                 <div class="row">
                                     <div class="col-lg-6 wp-bulk-selection">
                                         <button class="primry-btn-2 p-1 px-3 me-2 d-inline-block"
-                                            @click="bulkSelection()">Bulk Selection</button>
+                                            @click="bulkSelection()">Bulk Selection
+                                        </button>
                                     </div>
                                     <div v-if="selectedSeekers.length > 0" class="col-lg-6 wp-bulk-option">
                                         <button class="primry-btn-2 p-1 px-3 me-2 d-inline-block"
@@ -378,7 +380,12 @@ import { mapGetters } from 'vuex';
 
         bulkSelection() {
 
-            this.bulkSelectionVar = true;
+            this.bulkSelectionVar = !this.bulkSelectionVar;
+            console.log(this.bulkSelectionVar);
+            if(!this.bulkSelectionVar)
+                {
+                    this.selectedSeekers = [];
+                }
 
         },
 
@@ -443,11 +450,14 @@ import { mapGetters } from 'vuex';
                 return;
             }
 
-            this.smsForm.message ='';
             this.isLoading = true;
             await this.$store.dispatch('sendMessage', this.smsForm);
+            
+
+
             window.setTimeout(() => {
                 this.isLoading = false;
+                this.smsForm.message ='';
                 this.closeForm;
             }, 3000);
         },
@@ -462,12 +472,14 @@ import { mapGetters } from 'vuex';
 
             this.isLoading = true;
 
-            this.mailForm.subject = '';
-            this.mailForm.body = '';
-            this.isLoading = true;
             await this.$store.dispatch('sendEmail', this.mailForm);
+
+
+
             window.setTimeout(() => {
                 this.isLoading = false;
+                this.mailForm.subject = '';
+                this.mailForm.body = '';
                 this.closeMailForm;
             }, 6000);
         },

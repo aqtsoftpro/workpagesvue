@@ -27609,6 +27609,29 @@ td[data-label="Status"] {
 .wp-bulk-selection {    }
 .wp-bulk-option { text-align: right;   }
 
+
+.visibility-switch-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 10px;
+  border-radius: 8px;
+  transition: background 0.3s ease-in-out;
+}
+
+.visibility-switch-container.disabled {
+  background: rgba(0, 0, 0, 0.1);
+  pointer-events: none;
+  opacity: 0.6;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.visibility-status-label {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+}
+
 @media screen and (max-width: 768px) {
 
   .employer-search-reponsive-filter {
@@ -27621,6 +27644,5 @@ td[data-label="Status"] {
   .wp-bulk-option { text-align: center; margin: 5px 0;   }
   .jon-top-mr-b { flex-direction: column; }
   
-  
-  
 }
+.wp-subs-btn { color:#000 !important;}

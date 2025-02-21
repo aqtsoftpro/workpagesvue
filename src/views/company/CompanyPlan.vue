@@ -20,21 +20,23 @@
                         <table class="eg-table table plan-invoice-table mb-0">
                             <thead>
                                 <tr>
-                                    <th>(#) Number</th>
-                                    <th>Creation Date</th>
-                                    <th>Expiry Date</th>
+                                    <th width="50">#</th>
+                                    <th>Date</th>
+                               
                                     <th>Package</th>
                                     <th>Amount</th>
                                     <th>Payment Through</th>
-                                    <th>Payment Status</th>
+                                    <th>Status</th>
+                                    <th>Download</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>   
                             <tbody>
                                 <tr v-if="companySubscriptions.length > 0" v-for="subscription in companySubscriptions" class="style-2">
-                                    <td data-label="(#) Number">#-{{ subscription.id }}</td>
-                                    <td data-label="Date">{{ formatDate(subscription.created_at) }}</td>
-                                    <td data-label="Expiry Date">{{ formatDate(subscription.ends_at) }}</td>
+                                    <td data-label="(#) Number">{{ subscription.id }}</td>
+                                    <td data-label="Date">Creation : {{ formatDate(subscription.created_at) }}<br>
+                                        Expiry : {{ formatDate(subscription.ends_at) }}</td>
+                                    <!-- <td data-label="Expiry Date">{{ formatDate(subscription.ends_at) }}</td> -->
                                     <td data-label="Package">
                                         <button class="eg-btn light-yellow-btn pkg-name "  >{{ subscription.package?.name }}</button>
                                     </td>
@@ -47,11 +49,16 @@
                                         <!-- <a class="status yellow-color" :href="subscription.receipt_url" target="_blank" >
                                             {{ subscription.stripe_status==""? 'Pending': subscription.stripe_status}} <i class="bi bi-download ms-5"></i>
                                         </a> -->
-                                        <button :class="{'status':true, 'yellow-color': true}" @click="getReceipt(subscription.receipt_url)">{{ subscription.stripe_status==""? 'Pending': subscription.stripe_status}} <i class="bi bi-download"></i></button>
+                                        <span :class="{'badge bg-danger': new Date(subscription.ends_at) < new Date(), 'badge bg-success': new Date(subscription.ends_at) >= new Date()}">
+        {{ new Date(subscription.ends_at) < new Date() ? 'Expired' : 'Active' }}
+                                        </span>
+                                    </td>
+                                    <td data-label="Payment">
+                                        <button :class="{'status':true, 'yellow-color': true}" @click="getReceipt(subscription.receipt_url)"><i class="bi bi-download wp-subs-btn"></i></button>
                                     </td>
                                     <td class="action">
                                         <span v-if="subscription.status == 'unsubscribed'" class="badge bg-danger">Unsubscribed</span>
-                                        <button v-else class="status yellow-color" @click="unsubscribe({'subscription_id': subscription.id})">Unsubscribe</button>
+                                        <button v-else class="status yellow-color  wp-subs-btn" @click="unsubscribe({'subscription_id': subscription.id})">Unsubscribe</button>
                                     </td>
                                 </tr>
                                 <tr v-else >
@@ -194,6 +201,7 @@ import CompanyMenu from './CompanyMenu.vue'
     unsubscribe(subscription: any){        
         this.$store.dispatch('unSubscribe', subscription)
     },
+
   },
   async mounted() {
     this.$store.dispatch('companySubscriptions')
