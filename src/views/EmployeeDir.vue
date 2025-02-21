@@ -385,6 +385,7 @@ import { mapGetters } from 'vuex';
             if(!this.bulkSelectionVar)
                 {
                     this.selectedSeekers = [];
+                    this.selectedSeekersInfo = [];
                 }
 
         },
@@ -453,8 +454,6 @@ import { mapGetters } from 'vuex';
             this.isLoading = true;
             await this.$store.dispatch('sendMessage', this.smsForm);
             
-
-
             window.setTimeout(() => {
                 this.isLoading = false;
                 this.smsForm.message ='';
@@ -473,8 +472,6 @@ import { mapGetters } from 'vuex';
             this.isLoading = true;
 
             await this.$store.dispatch('sendEmail', this.mailForm);
-
-
 
             window.setTimeout(() => {
                 this.isLoading = false;

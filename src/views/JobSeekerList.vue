@@ -374,6 +374,7 @@ import { mapGetters } from 'vuex';
             if(!this.bulkSelectionVar)
                 {
                     this.selectedSeekers = [];
+                    this.selectedSeekersInfo = [];
                 }
 
         },

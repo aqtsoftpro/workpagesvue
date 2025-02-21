@@ -22,7 +22,6 @@
                                 <tr>
                                     <th width="50">#</th>
                                     <th>Date</th>
-                               
                                     <th>Package</th>
                                     <th>Amount</th>
                                     <th>Payment Through</th>
@@ -49,9 +48,12 @@
                                         <!-- <a class="status yellow-color" :href="subscription.receipt_url" target="_blank" >
                                             {{ subscription.stripe_status==""? 'Pending': subscription.stripe_status}} <i class="bi bi-download ms-5"></i>
                                         </a> -->
-                                        <span :class="{'badge bg-danger': new Date(subscription.ends_at) < new Date(), 'badge bg-success': new Date(subscription.ends_at) >= new Date()}">
-        {{ new Date(subscription.ends_at) < new Date() ? 'Expired' : 'Active' }}
-                                        </span>
+                                        <span :class="{
+    'badge bg-danger': new Date(subscription.ends_at) < new Date() || subscription.status === 'unsubscribed', 
+    'badge bg-success': new Date(subscription.ends_at) >= new Date() && subscription.status !== 'unsubscribed'
+}">
+    {{ new Date(subscription.ends_at) < new Date() || subscription.status === 'unsubscribed' ? 'Expired' : 'Active' }}
+</span>
                                     </td>
                                     <td data-label="Payment">
                                         <button :class="{'status':true, 'yellow-color': true}" @click="getReceipt(subscription.receipt_url)"><i class="bi bi-download wp-subs-btn"></i></button>
