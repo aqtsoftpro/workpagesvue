@@ -459,8 +459,7 @@ import { mapGetters } from 'vuex';
 
             this.isLoading = true;
             
-            this.mailForm.subject = '';
-            this.mailForm.body = '';
+    
             await this.$store.dispatch('sendEmail', this.mailForm);
             window.setTimeout(() => {
                 this.isLoading = false;
