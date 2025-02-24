@@ -62,7 +62,7 @@
                             <div v-if="bulkContainer" class="p-3 mb-3 contact-seeker-panel container">
                                 <div class="row">
                                     <div class="col-lg-6 wp-bulk-selection">
-                                        <button class="primry-btn-2 p-1 px-3 me-2 d-inline-block"
+                                        <button :class="{ 'bulkselection-active': bulkSelectionBtn }" class="primry-btn-2 p-1 px-3 me-2 d-inline-block"
                                             @click="bulkSelection()">Bulk Selection</button>
                                     </div>
                                     <div v-if="selectedSeekers.length > 0" class="col-lg-6 wp-bulk-option">
@@ -318,6 +318,7 @@ import { mapGetters } from 'vuex';
             bulkSelectionVar: false,
             bulkContainer: true,
             filterVisible: true,
+            bulkSelectionBtn : false,
         }
     },
     methods: {
@@ -371,10 +372,12 @@ import { mapGetters } from 'vuex';
 
             this.bulkSelectionVar = !this.bulkSelectionVar;
             console.log(this.bulkSelectionVar);
+            this.bulkSelectionBtn = true;
             if(!this.bulkSelectionVar)
                 {
                     this.selectedSeekers = [];
                     this.selectedSeekersInfo = [];
+                    this.bulkSelectionBtn = false;
                 }
 
         },
