@@ -27632,6 +27632,8 @@ td[data-label="Status"] {
   color: #333;
 }
 
+.bulkselection-active { background-color: #ffff00 !important; color:#000000 !important;  }
+
 @media screen and (max-width: 768px) {
 
   .employer-search-reponsive-filter {
