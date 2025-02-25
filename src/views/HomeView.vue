@@ -690,9 +690,8 @@
                             <div class="job-discription">
                                 <ul>
                                     <li>
-                                        <p><span class="title">Salary:</span> {{ job.salary_range }} / <span
-                                                class="time">{{
-                                                    job.payment_mode }}</span></p>
+                                        <p><span class="title">Salary:</span> {{ job.salary_range }}  <span
+                                                class="time"></span></p>
                                     </li>
                                     <li>
                                         <p><span class="title">Job Type:</span> <span> {{ job.job_type }},
