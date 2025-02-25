@@ -356,7 +356,8 @@ import { mapGetters } from 'vuex';
     },
     watch: {
         candidateApplications() {
-            this.jobApplications = this.candidateApplications.Listing
+            this.jobApplications = this.candidateApplications.Listing;
+            // console.log("user app:"+this.jobApplications.Listing);
         },
         currentUser: {
             handler() {

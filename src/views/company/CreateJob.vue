@@ -285,7 +285,7 @@ import Calendar from 'primevue/calendar';
             gender: null,
             salary_from: 0,
             salary_to: 0,
-            currency_id: 1,
+            currency_id: 3,
             expiration: null,
             isLoading: false,
         },
