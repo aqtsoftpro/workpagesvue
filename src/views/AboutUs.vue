@@ -23,7 +23,8 @@
     <!-- ========== Job Listing Start============= -->
     <div class="job-listing-area pt-120 mb-120">
       <div class="container">
-        <div v-if="!isLoading" v-html="cleanStyleAttribute"> </div>
+        <!-- <div v-if="!isLoading" v-html="cleanStyleAttribute"> </div> -->
+        <div v-if="!isLoading"> </div>
         <div v-else class="blur">
           <div class="spin-loader"></div>
         </div>
@@ -56,10 +57,10 @@ import PrivacyPolicy from './PrivacyPolicy.vue'; // @ is an alias to /src
       'globalVariables'
     ]),
 
-    cleanStyleAttribute() {
-      // Replace backslashes inside style attribute
-      return this.cmsPages.replace(/style=\\"/g, 'style="').replace(/\\"/g, '"');
-    }
+    // cleanStyleAttribute() {
+    //   // Replace backslashes inside style attribute
+    //   return this.cmsPages.replace(/style=\\"/g, 'style="').replace(/\\"/g, '"');
+    // }
   },
   mounted() {
     var credentials = {
