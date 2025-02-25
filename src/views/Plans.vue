@@ -49,7 +49,7 @@
                                         </div> -->
                                     </div>
                                     <div class="price-area">
-                                        <h3>${{ plan.price }}
+                                        <h3>WS${{ plan.price }}
                                             <!-- / <span>Per Job +VAT</span> -->
                                         </h3>
                                     </div>

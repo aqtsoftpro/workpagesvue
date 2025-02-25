@@ -39,7 +39,7 @@
                                     <td data-label="Package">
                                         <button class="eg-btn light-yellow-btn pkg-name "  >{{ subscription.package?.name }}</button>
                                     </td>
-                                    <td data-label="Amount">${{ subscription.stripe_price ?? 0 }}</td>
+                                    <td data-label="Amount">WS${{ subscription.stripe_price ?? 0 }}</td>
                                     <td data-label="Payment Through">{{ subscription.package?.stripe_price_id ? subscription.brand+ ' card - '+subscription.last_4 : 'Offline Method' }}</td>
                                     <td data-label="Payment Status">
                                         <!-- <router-link v-if="subscription.receipt_url" class="status yellow-color" :to="subscription.receipt_url" target="_blank">
