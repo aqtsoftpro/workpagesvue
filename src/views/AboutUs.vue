@@ -22,13 +22,9 @@
     <!-- ========== Inner Banner end============= -->
     <!-- ========== Job Listing Start============= -->
     <div class="job-listing-area pt-120 mb-120">
-      <div class="container">
-        <!-- <div v-if="!isLoading" v-html="cleanStyleAttribute"> </div> -->
-        <div v-if="!isLoading"> </div>
-        <div v-else class="blur">
-          <div class="spin-loader"></div>
+        <div class="container">
+          <div v-html="cmsPageInfo"></div>
         </div>
-      </div>
     </div>
     <!-- ========== Job Listing e nd============= -->
   </div>
@@ -57,10 +53,7 @@ import PrivacyPolicy from './PrivacyPolicy.vue'; // @ is an alias to /src
       'globalVariables'
     ]),
 
-    // cleanStyleAttribute() {
-    //   // Replace backslashes inside style attribute
-    //   return this.cmsPages.replace(/style=\\"/g, 'style="').replace(/\\"/g, '"');
-    // }
+
   },
   mounted() {
     var credentials = {
@@ -72,12 +65,9 @@ import PrivacyPolicy from './PrivacyPolicy.vue'; // @ is an alias to /src
 
   },
   watch: {
-    cmsPages() {
+    cmsPages()
+    {
       this.cmsPageInfo = this.cmsPages
-      console.log(this.cmsPages);
-      window.setTimeout(() => {
-        this.isLoading = false;
-      }, 5000);
     },
     globalVariables() {
       this.bgImage = 'background-image: url(' + this.globalVariables._banner_image + '); color: ' + this.globalVariables._banner_text_color + '!important;';
