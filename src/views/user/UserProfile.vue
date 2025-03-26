@@ -61,7 +61,7 @@
                                             <div class="input-area">
                                                 <img src="/assets/images/icon/company-2.svg" alt="">
                                                 <select class="form-select" v-model="user.suburb_id">
-                                                    <option value="">Select Suburb</option>
+                                                    <option value="">Select Location</option>
                                                     <option v-for="subrub in subrubsList" :value="subrub.id"
                                                         :selected="user.suburb_id == subrub.id">{{ subrub.name }}
                                                     </option>

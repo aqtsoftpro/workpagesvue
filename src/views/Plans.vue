@@ -49,7 +49,7 @@
                                         </div> -->
                                     </div>
                                     <div class="price-area">
-                                        <h3>WS${{ plan.price }}
+                                        <h3>WST ${{ plan.price }}
                                             <!-- / <span>Per Job +VAT</span> -->
                                         </h3>
                                     </div>
@@ -106,19 +106,19 @@
                             <h4>Why Choose WORKPAGES for Your Business Advertising?</h4>
                             <ul>
                                 <li>
-                                    <p><span>Wide Audience Reach: </span> Showcase your jobs to diverse and active audience.</p>
+                                    <p><span>Wide Audience Reach: </span> Showcase your jobs to diverse and active audience</p>
                                 </li>
                                 <li>
-                                    <p><span>Simple Job Posting: </span> Post jobs effortlessly and quickly.</p>
+                                    <p><span>Simple Job Posting: </span> Post jobs effortlessly and quickly</p>
                                 </li>
                                 <li>
-                                    <p><span>Extensive CV Database: </span>Find the right candidates with access to a large pool of CVs.</p>
+                                    <p><span>Extensive CV Database: </span>Find the right candidates with access to a large pool of CVs</p>
                                 </li>
                                 <li>
-                                    <p><span>Active Recruiter Network: </span>Connect with a growing community of bussinesses and recruites.</p>
+                                    <p><span>Active Recruiter Network: </span>Connect with a growing community of bussinesses and recruites</p>
                                 </li>
                                 <li>
-                                    <p><span>High Job Engagement: </span>Get your job posts noticed by the right candidates.</p>
+                                    <p><span>High Job Engagement: </span>Get your job posts noticed by the right candidates</p>
                                 </li>
                             </ul>
                         </div>

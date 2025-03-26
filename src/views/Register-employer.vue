@@ -119,7 +119,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-inner mb-25">
-                                                    <label for="email">Suburb</label>
+                                                    <label for="email">Location</label>
                                                     <div class="input-area">
                                                         <img src="assets/images/icon/loction.svg" alt="">
                                                         <Dropdown
@@ -130,7 +130,7 @@
                                                             ref="suburb_id"
                                                             optionLabel="name" 
                                                             optionValue="id"
-                                                            placeholder="Select Suburb" 
+                                                            placeholder="Select Location" 
                                                             class="w-full"
                                                             />
                                                     </div>
