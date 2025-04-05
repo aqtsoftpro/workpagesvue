@@ -330,7 +330,7 @@
                     class="col-lg-3 col-md-4 col-sm-6 mb--50 d-flex justify-content-md-center justify-content-sm-end justify-content-center">
                     <div class="footer-widget">
                         <div class="widget-title">
-                            <!-- <h5>For Candidate’s</h5> -->
+                            <h5>For Candidates</h5>
                         </div>
                         <div class="menu-container">
                             <ul>
@@ -353,7 +353,7 @@
                     class="col-lg-3 col-md-4 col-sm-6 mb--50 d-flex justify-content-lg-center justify-content-md-end justify-content-sm-start justify-content-center">
                     <div class="footer-widget">
                         <div class="widget-title">
-                            <!-- <h5>For Employer’s</h5> -->
+                            <h5>For Employers</h5>
                         </div>
                         <div class="menu-container">
                             <ul>

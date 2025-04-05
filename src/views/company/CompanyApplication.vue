@@ -361,6 +361,7 @@ interface SubAccess {
         },
 
         async downloadCv(application: any) {
+
             application.isLoading = true;
             try {
                 await this.$store.dispatch('donwload', application.cv);
@@ -371,6 +372,7 @@ interface SubAccess {
             } catch (error) {
                 console.log(error);
             }
+            
         }
     },
     watch: {

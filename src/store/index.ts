@@ -619,6 +619,74 @@ export default createStore({
       }
     },
 
+    async goToSubscribePackage(context, payload) {
+      
+      try {
+
+        const response = await axios.post(apiUrl + 'subscribepackage', payload, {
+          headers: {
+            authorization: 'Bearer ' + localStorage.getItem('token'),
+            'Content-Type': 'multipart/form-data'
+          }
+
+        });
+
+
+        if (response.data.error) {
+          console.error(response.data.error);
+          toast.error(response.data.message, {
+            position: toast.POSITION.BOTTOM_RIGHT,
+          })
+        } else {
+          toast.success(response.data.message, {
+            position: toast.POSITION.BOTTOM_RIGHT,
+          });
+          setTimeout(() => {
+            router.push('/subscriber');
+          }, 3000);
+          console.log('Redirecting to checkout...');
+        }
+
+
+      } catch (error) {
+       
+        console.error(error);
+        // Handle the error, show a message, or perform any other actions
+      }
+    },
+
+    async goToSubscribe(context, payload) {
+      try {
+
+        const response = await axios.post(apiUrl + 'packageSubscriptions', payload, {
+          headers: {
+            authorization: 'Bearer ' + localStorage.getItem('token'),
+            'Content-Type': 'multipart/form-data'
+          }
+
+        });
+        
+        // const sessionId = response.data.id;
+
+        // const result = await stripe.redirectToCheckout({
+        //   sessionId: sessionId,
+        // });
+
+        // // Check if there's an error during redirection
+        // if (result.error) {
+        //   console.error(result.error);
+        //   // Handle the error, show a message, or perform any other actions
+        // } else {
+        //   // The redirection was successful
+        //   console.log('Redirecting to checkout...');
+        // }
+
+      } catch (error) {
+        console.error(error);
+        // Handle the error, show a message, or perform any other actions
+      }
+    },
+
 
     updateProfile(context, payload) {
       console.log(apiUrl + 'user/' + payload.id);

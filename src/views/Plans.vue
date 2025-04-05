@@ -67,7 +67,7 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <div class="d-flex justify-content-center mt-5">
+                                    <div v-if="this.paymentMethodCreditCard == 1" class="d-flex justify-content-center mt-5">
                                         <button v-if="this.activePlanId == null && !plan.isLoading && plan.price > 0"
                                             @click="checkout(plan)" class="primry-btn-2 custom-btn lg-btn"
                                             type="button">{{ this.loggedIn == true ? 'Buy Now' : 'Login To Buy' }}
@@ -79,6 +79,25 @@
                                         <button v-if="!plan.isLoading && plan.price == 0" @click="zeroSubscribe(plan)"
                                             class="primry-btn-2 custom-btn lg-btn" type="button">{{ this.loggedIn ==
                                             true ? 'Buy Now':'Login To Buy'}} </button>
+                                        <button v-if="plan.isLoading" class="primry-btn-2 custom-btn lg-btn"
+                                            type="button">
+                                            <span class="me-3 fs-6 text-white">Processing...</span>
+                                            <i class="fa fa-spinner fa-spin text-white ms-3" style="font-size:24px">
+                                            </i>
+                                        </button>
+                                    </div>
+                                    <div v-else class="d-flex justify-content-center mt-5">
+                                        <button v-if="this.activePlanId == null && !plan.isLoading && plan.price > 0"
+                                            @click="subscribePackage(plan)" class="primry-btn-2 custom-btn lg-btn"
+                                            type="button">{{ this.loggedIn == true ? 'Subscribe Now' : 'Login To Buy' }}
+                                        </button>
+                                        <button
+                                            v-if="this.activePlanId !== null && !plan.isLoading && plan.price > 0 && this.activePlanId == plan.id"
+                                            class="primry-btn-2 custom-btn lg-btn" type="button" disabled>Subscribed
+                                        </button>
+                                        <button v-if="!plan.isLoading && plan.price == 0" @click="zeroSubscribe(plan)"
+                                            class="primry-btn-2 custom-btn lg-btn" type="button">{{ this.loggedIn ==
+                                            true ? 'Subscribe Now':'Login To Buy'}} </button>
                                         <button v-if="plan.isLoading" class="primry-btn-2 custom-btn lg-btn"
                                             type="button">
                                             <span class="me-3 fs-6 text-white">Processing...</span>
@@ -212,6 +231,9 @@ interface Plan {
             activePlanId: null,
             bgImage: '',
             textColor: '',
+            paymentMethodDirectDeposite:'',
+            paymentMethodCreditCard:'',  
+            subsUser: null,      
         }
     },
     async created() {
@@ -228,7 +250,9 @@ interface Plan {
             'allPlans',
             'loggedIn',
             'activeSub',
-            'globalVariables'
+            'globalVariables',
+            'currentUser',
+
         ]),
     },
     mounted() {
@@ -252,6 +276,33 @@ interface Plan {
 
         },
 
+        subscribePackage(plan: Plan) {
+ 
+            plan.isLoading = true;
+            if (this.loggedIn == true) {
+                var credentials = {
+                    'package': plan.id,
+                }
+                this.$store.dispatch('goToSubscribePackage', credentials);
+            } else {
+                this.$router.push('/login');
+            }
+
+        },
+
+        subscribe(plan: Plan) {
+            plan.isLoading = true;
+            if (this.loggedIn == true) {
+                var credentials = {
+                    'package': plan.id,
+                }
+                this.$store.dispatch('goToSubscribe', credentials);
+            } else {
+                this.$router.push('/login');
+            }
+
+        },
+
         async zeroSubscribe(plan: Plan) {
             plan.isLoading = true;
             if (this.loggedIn == true) {
@@ -267,8 +318,13 @@ interface Plan {
             this.activePlanId = this.activeSub?.package_id ?? null;
         },
         globalVariables() {
+
             this.bgImage = 'background-image: url(' + this.globalVariables._banner_image + ')';
             this.textColor = 'color: ' + this.globalVariables._banner_text_color + ' !important;';
+            this.paymentMethodDirectDeposite = this.globalVariables._payment_method_direct_deposite;
+            this.paymentMethodCreditCard = this.globalVariables._payment_method_credit_card;
+            console.log("paymentMethodDirectDeposite", this.paymentMethodDirectDeposite);
+            console.log("paymentMethodCreditCard", this.paymentMethodCreditCard);
         }
     }
 })

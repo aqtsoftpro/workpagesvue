@@ -22,6 +22,7 @@ import CompanyApplicationList from '../views/company/CompanyApplication.vue'
 import CompanyJobList from '../views/company/CompanyJobList.vue'
 import CompanyProfile from '../views/company/CompanyProfile.vue'
 import CompanyPlan from '../views/company/CompanyPlan.vue'
+import Subscriber from '../views/Subscriber.vue'
 import CompanySettings from '../views/company/CompanySettings.vue'
 import CompanyRegisterationCompleted from '../views/CompanyRegistrationCompleted.vue'
 import AccountVerification from '../views/AccountVerification.vue'
@@ -267,6 +268,11 @@ const routes: Array<RouteRecordRaw> = [
         path: '/company/plan',
         component: CompanyPlan,
         meta: { requiresAuth: true, role: 'Employer', 'sub_access': false, }
+      },
+      {
+        path: '/subscriber',
+        name: 'subscriber',
+        component: Subscriber
       },
       {
         path: '/company/settings',

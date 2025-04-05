@@ -40,7 +40,12 @@
                                         <button class="eg-btn light-yellow-btn pkg-name "  >{{ subscription.package?.name }}</button>
                                     </td>
                                     <td data-label="Amount">WST ${{ subscription.stripe_price ?? 0 }}</td>
-                                    <td data-label="Payment Through">{{ subscription.package?.stripe_price_id ? subscription.brand+ ' card - '+subscription.last_4 : 'Offline Method' }}</td>
+                                    <td v-if="subscription.subscription_status == 0" data-label="Payment Through">
+                                        {{ subscription.package?.stripe_price_id ? subscription.brand + ' card - ' + subscription.last_4 : 'Offline Method' }}
+                                    </td>
+                                    <td v-else data-label="Payment Through">
+                                        Direct Deposit
+                                    </td>
                                     <td data-label="Payment Status">
                                         <!-- <router-link v-if="subscription.receipt_url" class="status yellow-color" :to="subscription.receipt_url" target="_blank">
                                             {{ subscription.stripe_status==""? 'Pending': subscription.stripe_status}} <i class="bi bi-download ms-5"></i>
@@ -49,18 +54,23 @@
                                             {{ subscription.stripe_status==""? 'Pending': subscription.stripe_status}} <i class="bi bi-download ms-5"></i>
                                         </a> -->
                                         <span :class="{
-    'badge bg-danger': new Date(subscription.ends_at) < new Date() || subscription.status === 'unsubscribed', 
-    'badge bg-success': new Date(subscription.ends_at) >= new Date() && subscription.status !== 'unsubscribed'
-}">
-    {{ new Date(subscription.ends_at) < new Date() || subscription.status === 'unsubscribed' ? 'Expired' : 'Active' }}
-</span>
+                                            'badge bg-danger': new Date(subscription.ends_at) < new Date() || subscription.status === 'unsubscribed',
+                                            'badge bg-warning': subscription.status === 'pending',
+                                            'badge bg-success': new Date(subscription.ends_at) >= new Date() && subscription.status !== 'unsubscribed' && subscription.status !== 'pending' }">
+                                            {{
+                                                subscription.status === 'pending' ? 'Pending' :
+                                                (new Date(subscription.ends_at) < new Date() || subscription.status === 'unsubscribed' ? 'Expired' : 'Active')
+                                            }}
+                                        </span>
                                     </td>
                                     <td data-label="Payment">
-                                        <button :class="{'status':true, 'yellow-color': true}" @click="getReceipt(subscription.receipt_url)"><i class="bi bi-download wp-subs-btn"></i></button>
+                                        <button  v-if="subscription.subscription_status == 0" :class="{'status':true, 'yellow-color': true}" @click="getReceipt(subscription.receipt_url)"><i class="bi bi-download wp-subs-btn"></i></button>
                                     </td>
                                     <td class="action">
-                                        <span v-if="subscription.status == 'unsubscribed'" class="badge bg-danger">Unsubscribed</span>
-                                        <button v-else class="status yellow-color  wp-subs-btn" @click="unsubscribe({'subscription_id': subscription.id})">Unsubscribe</button>
+                                        <div v-if="subscription.subscription_status == 0">
+                                            <span v-if="subscription.status == 'unsubscribed'" class="badge bg-danger">Unsubscribed</span>
+                                            <button v-else class="status yellow-color  wp-subs-btn" @click="unsubscribe({'subscription_id': subscription.id})">Unsubscribe</button>
+                                        </div>
                                     </td>
                                 </tr>
                                 <tr v-else >
