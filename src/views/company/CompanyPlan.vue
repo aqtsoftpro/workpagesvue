@@ -63,13 +63,14 @@
                                             }}
                                         </span>
                                     </td>
-                                    <td data-label="Payment">{{   }}
+                                    <td data-label="Payment">
                                         <button  v-if="subscription.receipt_url" :class="{'status':true, 'yellow-color': true}" @click="getReceipt(subscription.receipt_url)"><i class="bi bi-download wp-subs-btn"></i></button>
                                     </td>
                                     <td class="action">
-                                        <div v-if="subscription.status != 'pending'"></div>
+                                        <div v-if="subscription.subscription_status != 'pending'">
                                             <span v-if="subscription.status == 'unsubscribed'" class="badge bg-danger">Unsubscribed</span>
                                             <button v-else class="status yellow-color  wp-subs-btn" @click="unsubscribe({'subscription_id': subscription.id})">Unsubscribe</button>
+                                        </div>
                                    
                                     </td>
                                 </tr>
