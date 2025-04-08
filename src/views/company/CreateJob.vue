@@ -218,7 +218,7 @@
                                     </div> 
                                     <div class="col-md-6">
                                         <div class="form-inner mb-25">
-                                            <label for="salary_from">Job Expiery</label>
+                                            <label for="salary_from">Job Expiry</label>
                                             <div class="input-area">
                                                 <img src="/assets/images/icon/company-2.svg" alt="">
                                                 <Calendar v-model="jobForm.expiration" dateFormat="dd/mm/yy" />
