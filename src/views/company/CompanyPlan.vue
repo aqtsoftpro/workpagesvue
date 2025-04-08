@@ -40,7 +40,7 @@
                                         <button class="eg-btn light-yellow-btn pkg-name "  >{{ subscription.package?.name }}</button>
                                     </td>
                                     <td data-label="Amount">WST ${{ subscription.stripe_price ?? 0 }}</td>
-                                    <td v-if="subscription.subscription_status == 0" data-label="Payment Through">
+                                    <td v-if="subscription.subscription_status != 1" data-label="Payment Through">
                                         {{ subscription.package?.stripe_price_id ? subscription.brand + ' card - ' + subscription.last_4 : 'Offline Method' }}
                                     </td>
                                     <td v-else data-label="Payment Through">
@@ -67,10 +67,10 @@
                                         <button  v-if="subscription.receipt_url" :class="{'status':true, 'yellow-color': true}" @click="getReceipt(subscription.receipt_url)"><i class="bi bi-download wp-subs-btn"></i></button>
                                     </td>
                                     <td class="action">
-                                        <div v-if="subscription.subscription_status != 'pending'">
+                                      
                                             <span v-if="subscription.status == 'unsubscribed'" class="badge bg-danger">Unsubscribed</span>
                                             <button v-else class="status yellow-color  wp-subs-btn" @click="unsubscribe({'subscription_id': subscription.id})">Unsubscribe</button>
-                                        </div>
+                               
                                    
                                     </td>
                                 </tr>

@@ -642,7 +642,7 @@ export default createStore({
             position: toast.POSITION.BOTTOM_RIGHT,
           });
           setTimeout(() => {
-            router.push('/subscriber');
+            router.push('/thank-you');
           }, 3000);
           console.log('Redirecting to checkout...');
         }

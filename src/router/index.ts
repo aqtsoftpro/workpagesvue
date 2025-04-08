@@ -270,7 +270,7 @@ const routes: Array<RouteRecordRaw> = [
         meta: { requiresAuth: true, role: 'Employer', 'sub_access': false, }
       },
       {
-        path: '/subscriber',
+        path: '/thank-you',
         name: 'subscriber',
         component: Subscriber
       },
