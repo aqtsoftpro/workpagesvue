@@ -89,15 +89,15 @@
                                     <div v-else class="d-flex justify-content-center mt-5">
                                         <button v-if="this.activePlanId == null && !plan.isLoading && plan.price > 0"
                                             @click="subscribePackage(plan)" class="primry-btn-2 custom-btn lg-btn"
-                                            type="button">{{ this.loggedIn == true ? 'Subscribe Now check' : 'Login To Buy' }}
+                                            type="button">{{ this.loggedIn == true ? 'Subscribe Now' : 'Login To Buy' }}
                                         </button>
                                         <button
                                             v-if="this.activePlanId !== null && !plan.isLoading && plan.price > 0 && this.activePlanId == plan.id"
                                             class="primry-btn-2 custom-btn lg-btn" type="button" disabled>Subscribed
                                         </button>
-                                        <button v-if="!plan.isLoading && plan.price == 0" @click="zeroSubscribe(plan)"
+                                        <button v-if="!plan.isLoading && plan.price == 0 && this.activePlanId == null" @click="zeroSubscribe(plan)"
                                             class="primry-btn-2 custom-btn lg-btn" type="button">{{ this.loggedIn ==
-                                            true ? 'Subscribe Now check1':'Login To Buy'}} </button>
+                                            true ? 'Subscribe Now':'Login To Buy'}} </button>
                                         <button v-if="plan.isLoading" class="primry-btn-2 custom-btn lg-btn"
                                             type="button">
                                             <span class="me-3 fs-6 text-white">Processing...</span>
