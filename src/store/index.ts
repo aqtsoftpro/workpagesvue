@@ -2195,11 +2195,13 @@ export default createStore({
     },
 
     unSubscribe(context, payload) {
+     
       axios.post(apiUrl + 'unsubscribe', payload, {
         headers: {
           'authorization': 'Bearer ' + localStorage.getItem('token')
         },
       }).then(result => {
+        
         toast.success(result.data.message, {
           position: toast.POSITION.BOTTOM_RIGHT,
         });

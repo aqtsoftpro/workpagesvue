@@ -33,7 +33,7 @@
                             768: { perPage: 1 }, // For screens <= 576px
                         }
                     }" aria-label="My Favorite Images">
-                        <SplideSlide v-for="(plan, index) in allPlans">
+                        <SplideSlide v-for="(plan, index) in allPlans" :key="'plan-'+plan.id+'-'+index">
                             <div class="col-lg-12 col-md-12">
                                 <div class="pricing-plan-card1 mx-2 bg-card1"
                                     style="height: 50em;">
@@ -74,7 +74,7 @@
                                         </button>
                                         <button
                                             v-if="this.activePlanId !== null && !plan.isLoading && plan.price > 0 && this.activePlanId == plan.id"
-                                            class="primry-btn-2 custom-btn lg-btn" type="button" disabled>Subscribed
+                                            class="primry-btn-2 custom-btn lg-btn" type="button" @click="unsubscribe(plan)">Unsubscribed
                                         </button>
                                         <button v-if="!plan.isLoading && plan.price == 0" @click="zeroSubscribe(plan)"
                                             class="primry-btn-2 custom-btn lg-btn" type="button">{{ this.loggedIn ==
@@ -93,7 +93,7 @@
                                         </button>
                                         <button
                                             v-if="this.activePlanId !== null && !plan.isLoading && plan.price > 0 && this.activePlanId == plan.id"
-                                            class="primry-btn-2 custom-btn lg-btn" type="button" disabled>Subscribed
+                                            class="primry-btn-2 custom-btn lg-btn" type="button" @click="unsubscribe(plan)">Unsubscribed
                                         </button>
                                         <button v-if="!plan.isLoading && plan.price == 0 && this.activePlanId == null" @click="zeroSubscribe(plan)"
                                             class="primry-btn-2 custom-btn lg-btn" type="button">{{ this.loggedIn ==
@@ -211,6 +211,7 @@ import { mapGetters } from 'vuex';
 import { loadStripe } from '@stripe/stripe-js';
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import '@splidejs/vue-splide/css';
+import { debounce } from 'lodash';
 // import '../../public/assets/js/crousel.js'; // Adjust the path if necessary
 
 
@@ -262,7 +263,9 @@ interface Plan {
         }
         this.$store.dispatch('getGlobalVariables');
     },
+    
     methods: {
+
         checkout(plan: Plan) {
             plan.isLoading = true;
             if (this.loggedIn == true) {
@@ -311,6 +314,20 @@ interface Plan {
                 this.$router.push('/login');
             }
         },
+
+        unsubscribe(plan: any){
+
+            plan.isLoading = true;    
+            const payload = {
+            unsubscribe: true,
+        };
+        this.$store.dispatch('unSubscribe', payload);
+        setTimeout(() => {
+                window.location.reload();
+            }, 2000);
+        },
+
+
     },
 
     watch: {
