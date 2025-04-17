@@ -74,7 +74,7 @@
                                         </button>
                                         <button
                                             v-if="this.activePlanId !== null && !plan.isLoading && plan.price > 0 && this.activePlanId == plan.id"
-                                            class="primry-btn-2 custom-btn lg-btn" type="button" @click="unsubscribe(plan)">Unsubscribed
+                                            class="primry-btn-2 custom-btn lg-btn" type="button" @click="unsubscribe(plan)">Unsubscribe
                                         </button>
                                         <button v-if="!plan.isLoading && plan.price == 0" @click="zeroSubscribe(plan)"
                                             class="primry-btn-2 custom-btn lg-btn" type="button">{{ this.loggedIn ==
@@ -93,7 +93,7 @@
                                         </button>
                                         <button
                                             v-if="this.activePlanId !== null && !plan.isLoading && plan.price > 0 && this.activePlanId == plan.id"
-                                            class="primry-btn-2 custom-btn lg-btn" type="button" @click="unsubscribe(plan)">Unsubscribed
+                                            class="primry-btn-2 custom-btn lg-btn" type="button" @click="unsubscribe(plan)">Unsubscribe
                                         </button>
                                         <button v-if="!plan.isLoading && plan.price == 0 && this.activePlanId == null" @click="zeroSubscribe(plan)"
                                             class="primry-btn-2 custom-btn lg-btn" type="button">{{ this.loggedIn ==
@@ -211,7 +211,7 @@ import { mapGetters } from 'vuex';
 import { loadStripe } from '@stripe/stripe-js';
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import '@splidejs/vue-splide/css';
-import { debounce } from 'lodash';
+
 // import '../../public/assets/js/crousel.js'; // Adjust the path if necessary
 
 
@@ -259,7 +259,10 @@ interface Plan {
     mounted() {
         this.$store.dispatch('getAllPlans');
         if (this.loggedIn == true) {
-            this.$store.dispatch('getAciveSub');
+            this.$store.dispatch('getAciveSub').then(() => {
+            this.activePlanId = this.activeSub?.package_id;
+            console.log("activePlanId (mounted):", this.activePlanId);
+            });
         }
         this.$store.dispatch('getGlobalVariables');
     },
@@ -331,10 +334,10 @@ interface Plan {
     },
 
     watch: {
-        activeSub() {
-            this.activePlanId = this.activeSub?.package_id ?? null;
-            console.log("activePlanId", this.activePlanId); 
-        },
+        // activeSub() {
+        //     this.activePlanId = this.activeSub?.package_id;
+        //     console.log("activePlanId", this.activePlanId); 
+        // },
         globalVariables() {
 
             this.bgImage = 'background-image: url(' + this.globalVariables._banner_image + ')';
