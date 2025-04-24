@@ -149,7 +149,7 @@
                                                         name="password"
                                                         v-model="employerForm.password" 
                                                         type="password"  
-                                                        id="password" 
+                                                        id="password3" 
                                                         placeholder="Password"
                                                         ref="password_comp"
                                                         :rules="passWord"
@@ -168,7 +168,7 @@
                                                         name="retype_password"
                                                         v-model="employerForm.password_confirmation" 
                                                         type="password"
-                                                        id="retype_password"
+                                                        id="password4"
                                               
                                                         placeholder="Confirm Password"
                                                         :rules="RetypePassWord"

@@ -380,6 +380,9 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
+
+  console.log('Navigating to:', to.meta);
+  
   // Check if the route requires authentication
   window.scrollTo(0, 0);
 

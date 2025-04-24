@@ -47,7 +47,7 @@
                                     <ul class="one">
                                         <li>
                                             <img src="/assets/images/icon/map-2.svg" alt="">
-                                            <p><span class="title">Location:</span> {{ current_job.location }}</p>
+                                            <p><span class="title">Location:</span> {{ current_job.location }} </p>
                                         </li>
                                         <li>
                                             <img src="/assets/images/icon/category-2.svg" alt="">
@@ -157,12 +157,19 @@
                             <p>Send your resume at <a href="mailto:info@example.com">info@example.com</a></p>
                         </div>
                         -->
-                            <div class="location-area">
+                            <div class="location-area" v-if="current_job.state">
                                 <h6>Get Location:</h6>
-                                <iframe
+                                <!-- <iframe
                                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3649.564763018799!2d90.36349791490355!3d23.834071191491947!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c14c8682a473%3A0xa6c74743d52adb88!2sEgens%20Lab!5e0!3m2!1sen!2sbd!4v1674212581590!5m2!1sen!2sbd"
                                     style="border:0;" allowfullscreen="" loading="lazy"
-                                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                    referrerpolicy="no-referrer-when-downgrade"></iframe> -->
+                                    <iframe
+                                        :src="mapUrl"
+                                        style="border:0;"
+                                        allowfullscreen
+                                        loading="lazy"
+                                        referrerpolicy="no-referrer-when-downgrade">
+                                    </iframe>
                             </div>
                         </div>
                     </div>
@@ -262,7 +269,7 @@
                                                         <label>Upload your resume (optional)</label>
                                                         <div class="input-area">
                                                             <img src="/assets/images/icon/user-2.svg" alt="">
-                                                            <input v-on:change="onFileSelected" type="file" name="cv" />
+                                                            <input v-on:change="onFileSelected" type="file" accept="application/pdf" name="cv" />
                                                         </div>
                                                         <label v-if="user.cv !== null">CV already uploaded</label>
                                                     </div>
@@ -457,6 +464,7 @@ import { useRoute, useRouter } from 'vue-router'
                 salary_period: '',
             },
             user_current_job_applied: '',
+            google_map_api_key: '',
             currentUri: '',
             isLoading: false,
             isCopied: false,
@@ -503,6 +511,10 @@ import { useRoute, useRouter } from 'vue-router'
             'loggedIn',
             'globalVariables'
         ]),
+        mapUrl() {
+            const state = encodeURIComponent(this.current_job.state || '');
+            return `https://www.google.com/maps/embed/v1/place?key=${this.google_map_api_key}&q=${state}`;
+        }
 
     },
     mounted() {
@@ -657,6 +669,7 @@ import { useRoute, useRouter } from 'vue-router'
             this.current_job = this.jobDetail
             this.application.job_id = this.current_job.id
             this.application.company_id = this.current_job.company_id
+            console.log(this.current_job);
             // } else {
             //     useRouter().push('/login');
             // }
@@ -670,7 +683,9 @@ import { useRoute, useRouter } from 'vue-router'
         },
         globalVariables() {
             this.bgImage = 'background-image: url(' + this.globalVariables._banner_image + '); color: ' + this.globalVariables._banner_text_color + '!important;';
-            this.textColor = 'color: ' + this.globalVariables._banner_text_color + ' !important;'
+            this.textColor = 'color: ' + this.globalVariables._banner_text_color + ' !important;',
+            this.google_map_api_key = this.globalVariables._google_map_api_key
+            
         }
     }
 })

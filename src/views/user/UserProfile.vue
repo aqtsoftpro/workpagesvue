@@ -158,7 +158,7 @@
                                             <div class="input-area">
                                                 <img src="/assets/images/icon/create-resume.svg" alt="" width="16">
                                                 <input type="file" @change="cvHandle" placeholder="upload file"
-                                                    accept="application/pdf" />
+                                                accept=".pdf,application/pdf,image/jpeg,image/jpg,image/png,image/webp" />
                                             </div>
                                             <label v-if="user.cv !== null">Resume already uploaded</label>
                                         </div>
@@ -186,7 +186,7 @@
                                                             <p>Upload Logo</p>
                                                             <button type="button" class="upload-btn"><i
                                                                     class="bi bi-plus-lg"></i></button>
-                                                            <input v-on:change="handlePhotoUpload" type="file" />
+                                                            <input v-on:change="handlePhotoUpload" type="file" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/jpg,image/png,image/webp" />
                                                         </div>
                                                         <span>Maximum File Upload: 2 MB</span>
                                                     </div>

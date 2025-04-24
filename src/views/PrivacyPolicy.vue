@@ -22,7 +22,7 @@
     <!-- ========== Inner Banner end============= -->
     <!-- ========== Job Listing Start============= -->
     <div class="job-listing-area pt-120 mb-120">
-        <div class="container">
+        <div class="container cms-editor">
           <div v-html="cmsPageInfo"></div>
         </div>
     </div>
