@@ -307,7 +307,7 @@ import Dropdown from 'primevue/dropdown';
         isConfirm() {
             if (this.changepass.password !== this.confirm_pass) {
                 this.confirmPass = false;
-                this.confirmText = 'Confirm passwor should match with password. '
+                this.confirmText = 'Confirm password should match with password. '
             }
             else {
                 this.confirmPass = true;

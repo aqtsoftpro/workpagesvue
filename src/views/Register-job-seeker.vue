@@ -67,11 +67,11 @@
                                                         <img src="/assets/images/icon/company-2.svg" alt="">
                                                         <!-- <input v-model="userForm.suburb_id" type="text" id="suburns" name="suburb" placeholder="Select Suburb"> -->
                                                         <Dropdown
-                                                            name="suburb_id"
+                                                            name="location_id"
                                                             @change="changeSuburb"
-                                                            v-model=this.userForm.suburb_id
-                                                            :options="suburbs" 
-                                                            ref="suburb_id"
+                                                            v-model=this.userForm.location_id
+                                                            :options="states" 
+                                                            ref="location_id"
                                                             optionLabel="name" 
                                                             optionValue="id"
                                                             placeholder="Select Location" 
@@ -343,6 +343,7 @@ function getMimeType(file:any, fallback = null) {
                 first_name: null,
                 last_name: null,
                 suburb_id: null,
+                location_id: null,
                 username: null,
                 email: null,
                 password: null,
@@ -369,7 +370,8 @@ function getMimeType(file:any, fallback = null) {
         ...mapGetters([
             'signUpUser',
             'companyTypes',
-            'suburbs'
+            'suburbs',
+            'states'
         ])
     },
     methods: {
@@ -427,7 +429,7 @@ function getMimeType(file:any, fallback = null) {
         isConfirm() {
             if (this.userForm.password !== this.userForm.password_confirmation) {
                 this.confirmPass = false;
-                this.confirmText = 'Confirm passwor should match with password. '
+                this.confirmText = 'Confirm password should match with password. '
             }
             else {
                 this.confirmPass = true;
@@ -453,7 +455,7 @@ function getMimeType(file:any, fallback = null) {
             this.employerForm.company_type_id = event.value
         },
         changeSuburb(event:any){
-            this.userForm.suburb_id = event.value
+            this.userForm.location_id = event.value
         },
 
         onPhotoSelected(event:any){
@@ -529,7 +531,7 @@ function getMimeType(file:any, fallback = null) {
   mounted() {
     this.$store.dispatch('getCompanyTypes', '');
     this.$store.dispatch('getSuburb', '');
-
+    this.$store.dispatch('getStates', '');
     let Script = document.createElement("script");
     Script.setAttribute("src", "/assets/js/main.js");
     document.head.appendChild(Script);

@@ -124,9 +124,9 @@
                                                         <img src="assets/images/icon/loction.svg" alt="">
                                                         <Dropdown
                                                             name="suburb_id"
-                                                            @change="changeSuburb"
-                                                            v-model=this.employerForm.suburb_id
-                                                            :options="suburbs" 
+                                                            @change="changeLocation"
+                                                            v-model=this.employerForm.location_id
+                                                            :options="states" 
                                                             ref="suburb_id"
                                                             optionLabel="name" 
                                                             optionValue="id"
@@ -281,6 +281,7 @@ import Dropdown from 'primevue/dropdown';
             company_name: null,
             company_type_id: null,
             suburb_id: null,
+            location_id: null,
             email: null,
             password: null,
             type: 'employer',
@@ -298,7 +299,8 @@ import Dropdown from 'primevue/dropdown';
           'signUpUser',
           'companyTypes',
           'signUpCompany',
-          'suburbs'
+          'suburbs',
+          'states'
     ])
   },
   methods: {
@@ -427,8 +429,8 @@ import Dropdown from 'primevue/dropdown';
         changeCompanyType(event:any){
             this.employerForm.company_type_id = event.value
         },
-        changeSuburb(event:any){
-            this.userForm.suburb_id = event.value
+        changeLocation(event:any){
+            this.userForm.location_id = event.value
         },
 
         fillOther() {
@@ -469,7 +471,7 @@ import Dropdown from 'primevue/dropdown';
         isConfirm() {
             if (this.employerForm.password !== this.employerForm.password_confirmation) {
                 this.confirmPass = false;
-                this.confirmText = 'Confirm passwor should match with password. '
+                this.confirmText = 'Confirm password should match with password. '
             }
             else {
                 this.confirmPass = true;
@@ -480,10 +482,10 @@ import Dropdown from 'primevue/dropdown';
     {
       this.$store.dispatch('getCompanyTypes', '');
       this.$store.dispatch('getSuburb', '');
-
-    let Script = document.createElement("script");
-    Script.setAttribute("src", "/assets/js/main.js");
-    document.head.appendChild(Script);
+      this.$store.dispatch('getStates', '');
+        let Script = document.createElement("script");
+        Script.setAttribute("src", "/assets/js/main.js");
+        document.head.appendChild(Script);
     }
   
 })

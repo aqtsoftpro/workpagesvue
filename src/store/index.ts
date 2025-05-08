@@ -462,7 +462,7 @@ export default createStore({
         }
       })
         .then(res => {
-          console.log(res);
+          console.log('Candi Response'+res.data.status);
           if (res.data.status == 'error') {
 
             if (res.data.data.first_name) {
@@ -485,11 +485,11 @@ export default createStore({
                 position: toast.POSITION.BOTTOM_RIGHT,
               });
             }
-            if (res.data.data.suburb_id) {
-              toast.error(res.data.data.suburb_id, {
-                position: toast.POSITION.BOTTOM_RIGHT,
-              });
-            }
+            // if (res.data.data.suburb_id) {
+            //   toast.error(res.data.data.suburb_id, {
+            //     position: toast.POSITION.BOTTOM_RIGHT,
+            //   });
+            // }
           }
           else {
             toast.success(res.data.message, {
@@ -543,11 +543,11 @@ export default createStore({
                 position: toast.POSITION.BOTTOM_RIGHT,
               });
             }
-            if (res.data.data.suburb_id) {
-              toast.error(res.data.data.suburb_id, {
-                position: toast.POSITION.BOTTOM_RIGHT,
-              });
-            }
+            // if (res.data.data.suburb_id) {
+            //   toast.error(res.data.data.suburb_id, {
+            //     position: toast.POSITION.BOTTOM_RIGHT,
+            //   });
+            // }
             if (res.data.data.company_type_id) {
               toast.error(res.data.data.company_type_id, {
                 position: toast.POSITION.BOTTOM_RIGHT,

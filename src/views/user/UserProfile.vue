@@ -57,13 +57,13 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-inner mb-25">
-                                            <label>Suburb</label>
+                                            <label>Location</label>
                                             <div class="input-area">
                                                 <img src="/assets/images/icon/company-2.svg" alt="">
-                                                <select class="form-select" v-model="user.suburb_id">
+                                                <select class="form-select" v-model="user.location_id">
                                                     <option value="">Select Location</option>
-                                                    <option v-for="subrub in subrubsList" :value="subrub.id"
-                                                        :selected="user.suburb_id == subrub.id">{{ subrub.name }}
+                                                    <option v-for="state in states" :value="state.id"
+                                                        :selected="user.location_id == state.id">{{ state.name }}
                                                     </option>
                                                 </select>
                                             </div>
@@ -458,6 +458,7 @@ import moment from 'moment';
                 description: '',
                 address: '',
                 suburb_id: '',
+                location_id: '',
                 availability_id: '',
                 cv: '',
                 casual_portal_visibility: false,
@@ -490,6 +491,7 @@ import moment from 'moment';
             logoVisible: true,
             isLoading: false,
             subrubsList: [],
+            statesList: [],
             employeeAvailabilityList: [],
 
             documents: [
@@ -520,8 +522,12 @@ import moment from 'moment';
             'userSocials',
             'suburbs',
             'employeeAvailability',
-            'userDetails'
-        ])
+            'userDetails',
+            'states'
+        ]),
+        statesList(): Array<{ id: number; name: string }> {
+      return this.states;
+    }
     },
     methods: {
         changeLanguage(event: any) {
@@ -615,7 +621,7 @@ import moment from 'moment';
     mounted() {
         this.$store.dispatch('getCurrentUser')
         this.user = JSON.parse(this.currentUser)[0]
-        console.log(this.user.userMeta);
+        console.log('user_info',this.user.location_id);
         this.user.casual_portal_visibility = this.user.userMeta?.casual_portal_visibility == "1" ? true : false;
 
         this.user.employee_directory_visibility = this.user.userMeta?.employee_directory_visibility == "1" ? true : false;
@@ -625,6 +631,7 @@ import moment from 'moment';
         this.$store.dispatch('getLocations', '')
         this.$store.dispatch('getLanguages', '')
         this.$store.dispatch('getSuburb', '')
+        this.$store.dispatch('getStates', '')
         this.$store.dispatch('getEmployeeAvailability', '')
         this.$store.dispatch('getUserSocials', this.user.id)
         this.$store.dispatch('getUserDetails', '')
@@ -662,6 +669,7 @@ import moment from 'moment';
 
             this.subrubsList = this.suburbs;
         },
+    
         employeeAvailability() {
             this.employeeAvailabilityList = this.employeeAvailability;
         },

@@ -14,17 +14,17 @@
                                 <div class="tab-content" id="nav-tabContent">
                                       <form @submit.prevent="freeTrial()"  >
                                           <div class="row">
-                                              <div class="col-md-6">
+                                              <div class="col-md-12">
                                                   <div class="form-inner mb-25">
-                                                      <label for="first_tname">First Name*</label>
+                                                      <label for="first_tname">Name*</label>
                                                       <div class="input-area">
                                                           <img src="assets/images/icon/user-2.svg" alt="">
                                                           <input
                                                           name="first_name"
-                                                          v-model="employerForm.first_name" 
+                                                          v-model="employerForm.name" 
                                                           type="text" id="first_name" 
                                                           placeholder="Mr. Robert"
-                                                          :rules="firstName"
+                                                          :rules="name"
                                                           /> 
                                                       </div>
   
@@ -34,24 +34,8 @@
                 
                                                   </div>
                                               </div>
-                                              <div class="col-md-6">
-                                                  <div class="form-inner mb-25">
-                                                      <label for="last_name">Last Name*</label>
-                                                      <div class="input-area">
-                                                          <img src="assets/images/icon/user-2.svg" alt="">
-                                                          <input
-                                                              name="last_name"
-                                                              v-model="employerForm.last_name" 
-                                                              type="text" 
-                                                              id="last_name"  
-                                                              placeholder="Jonson"
-                                                              :rules="lastName" 
-                                                          />
-                                                      </div>
-                                                      <!-- <ErrorMessage class="text-danger" name="last_name" /> -->
-                                                  </div>
-                                              </div>
-                                              <div class="col-md-6">
+                                        
+                                              <!-- <div class="col-md-6">
                                                   <div class="form-inner mb-25">
                                                       <label for="username">User Name*</label>
                                                       <div class="input-area">
@@ -65,27 +49,10 @@
                                                               :rules="userName"
                                                               />
                                                       </div>
-                                                      <!-- <ErrorMessage class="text-danger" name="username" /> -->
+                                                      
                                                   </div>
-                                              </div>
-                                              <div class="col-md-6">
-                                                  <div class="form-inner mb-25">
-                                                      <label for="email">Email*</label>
-                                                      <div class="input-area">
-                                                          <img src="assets/images/icon/email-2.svg" alt="">
-                                                          <input 
-                                                          name="email"
-                                                          v-model="employerForm.email" 
-                                                          type="email"
-                                                          id="email" 
-                                                          placeholder="robert@gmail.com"
-                                                          :rules="validateEmail" 
-                                                          />
-                                                      </div>
-                                                      <!-- <ErrorMessage class="text-danger" name="email" /> -->
-                                                  </div>
-                                              </div>
-                                              <div class="col-md-6">
+                                              </div> -->
+                                              <div class="col-md-12">
                                                   <div class="form-inner mb-25">
                                                       <label for="company_name">Company Name*</label>
                                                       <div class="input-area">
@@ -102,6 +69,24 @@
                                                       <!-- <ErrorMessage class="text-danger" name="company_name" /> -->
                                                   </div>
                                               </div>
+                                              <div class="col-md-12">
+                                                  <div class="form-inner mb-25">
+                                                      <label for="email">Email*</label>
+                                                      <div class="input-area">
+                                                          <img src="assets/images/icon/email-2.svg" alt="">
+                                                          <input 
+                                                          name="email"
+                                                          v-model="employerForm.email" 
+                                                          type="email"
+                                                          id="email" 
+                                                          placeholder="robert@gmail.com"
+                                                          :rules="validateEmail" 
+                                                          />
+                                                      </div>
+                                                      <!-- <ErrorMessage class="text-danger" name="email" /> -->
+                                                  </div>
+                                              </div>
+
                                               <!-- <div class="col-md-6">
                                                   <div class="form-inner mb-25">
                                                       <label>Company Type*</label>
@@ -200,8 +185,7 @@
               type: 'user'
           },
           employerForm: {
-              first_name: null,
-              last_name: null,
+              name: null,
               username: null,
               company_name: null,
               company_type_id: null,
@@ -317,13 +301,13 @@
       {
         const route = useRoute();
         this.user = JSON.parse(this.currentUser)[0];
-        console.log(this.user);
+        console.log('user_info',this.user);
         
         if (this.user !== null) {
-            this.employerForm.first_name = this.user.first_name;
-            this.employerForm.last_name = this.user.last_name;
+            this.employerForm.name = this.user.name;
+
             this.employerForm.username = this.user.username;
-            this.employerForm.company_name = this.user.company_name;
+            this.employerForm.company_name = this.user.company.name;
             this.employerForm.company_type_id = this.user.company_type_id;
             this.employerForm.suburb_id = this.user.suburb_id;
             this.employerForm.email = this.user.email;

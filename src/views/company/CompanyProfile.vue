@@ -82,11 +82,11 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-inner mb-25">
-                                            <label for="location">State*</label>
+                                            <label for="location">Location*</label>
                                             <div class="input-area">
                                                 <img src="/assets/images/icon/map-2.svg" alt="">
                                                 <Dropdown 
-                                                v-model=this.userForm.state_id                                       
+                                                v-model=this.userForm.location_id                                       
                                                 :options="states"
                                                 @change="changeState"
                                                 ref="location"
@@ -296,8 +296,9 @@ import Company from './index.vue';
     return{
         userForm: {
             name: null,
-            location_id: 2,
+            // location_id: 2,
             state_id: null,
+            location_id: null,
             address:null,
             about: null,
             logo: null,
@@ -331,7 +332,7 @@ import Company from './index.vue';
         this.userForm.location_id = event.value
     },
     changeState(event:any){
-        this.userForm.state_id = event.value
+        this.userForm.location_id = event.value
     },
     async updateCompanyProfile(){
         this.isLoading = true;
